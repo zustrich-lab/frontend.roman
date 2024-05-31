@@ -1,38 +1,151 @@
+*{
+  user-select: none;
+}
+
+body {
+	margin: 0;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background: linear-gradient(#060927, orange, orange);
+  width: 100%;    
+  height: 100vh;	 
+  margin: 0;
   display: flex;
   flex-direction: column;
+}
+
+.info {
+  width: 100%;
+  height: 12%;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.info img:first-child {
+  margin-right: 10px; 
+}
+
+.info p {
+  margin: 0;
+  margin-right: auto;
+  z-index: 1;
+}
+
+.info img{
+  margin: 25px;
+  z-index: 1;
+}
+
+.main {
+  width: 100%;
+  height: 88%;
+  background: #3E2C56;
+  border-radius: 60px 60px 0% 0%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  box-shadow: 0px -10px 0px orange,
+				      0px -10px 90px orange;
+}
+
+.CoinInfo{
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  height: 10%;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.CoinInfo p{
+  font-size: 48px;
+  font-weight: bold;
+  color: #bcbcbc;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.halfBox{
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.halfBoxDiv {
+  background: linear-gradient(to right, yellow, orange);
+  width: 80%;
+  height: 80%;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.halfBoxDiv p {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coin-image {
+  height: 1.5em; /* Adjust this value as needed to match the font size */
+}
+
+.mainInfo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 18%;
+  width: 100%;
+}
+
+.lower{
+  height: 15%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lowerDiv{
+  background: #060927;
+  height: 80%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  border-radius: 15px;
+  color: Black;
+  font-weight: bold;
+}
+
+.BTNLOW{
+  height: 80%;
+  width: 20%;
+  background: linear-gradient(to right, yellow, orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 24px;
+}
+
+.Progress{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
