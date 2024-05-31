@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Импорт axios для HTTP запросов
 import './App.css';
 import coinIcon from './CU.png';
 import Icon from './N.png';
@@ -29,29 +30,83 @@ function App() {
 
   const [isShopOpen, setIsShopOpen] = useState(false);
 
+  // Загрузка данных пользователя при монтировании компонента
+  useEffect(() => {
+    const loadUserData = async () => {
+      const telegramId = 'your-telegram-id'; // замените на реальный telegramId
+      try {
+        const response = await axios.get(`/api/user/${telegramId}`);
+        const userData = response.data;
+        setClicks(userData.clicks);
+        setCoins(userData.coins);
+        setUpgradeCost(userData.upgradeCost);
+        setUpgradeLevel(userData.upgradeLevel);
+        setCoinPerClick(userData.coinPerClick);
+        setUpgradeCostEnergy(userData.upgradeCostEnergy);
+        setUpgradeLevelEnergy(userData.upgradeLevelEnergy);
+        setClickLimit(userData.clickLimit);
+        setEnergyNow(userData.energyNow);
+      } catch (error) {
+        console.error('Error loading user data:', error);
+      }
+    };
+
+    loadUserData();
+  }, []);
+
+  // Сохранение данных при изменении состояния
+  useEffect(() => {
+    const saveUserData = async () => {
+      const telegramId = 'your-telegram-id'; // замените на реальный telegramId
+      const userData = {
+        telegramId,
+        clicks,
+        coins,
+        upgradeCost,
+        upgradeLevel,
+        coinPerClick,
+        upgradeCostEnergy,
+        upgradeLevelEnergy,
+        clickLimit,
+        energyNow
+      };
+      try {
+        await axios.put('/api/user', { telegramId, userData });
+      } catch (error) {
+        console.error('Error saving user data:', error);
+      }
+    };
+
+    // Устанавливаем таймер для периодического сохранения данных
+    const interval = setInterval(saveUserData, 10000); // Сохранение каждые 10 секунд
+
+    // Очищаем таймер при размонтировании компонента
+    return () => clearInterval(interval);
+  }, [clicks, coins, upgradeCost, upgradeLevel, coinPerClick, upgradeCostEnergy, upgradeLevelEnergy, clickLimit, energyNow]);
+
   //Нажатие на монету
   const handleCoinClick = () => {
-  if (energyNow >= coinPerClick) {
-    setCoins(coins + coinPerClick);
-    setClicks(clicks + 1);
-    setEnergyNow(energyNow - coinPerClick);
-  }
-};
+    if (energyNow >= coinPerClick) {
+      setCoins(coins + coinPerClick);
+      setClicks(clicks + 1);
+      setEnergyNow(energyNow - coinPerClick);
+    }
+  };
   
   //Востановления енергиї
   useEffect(() => {
-  const interval = setInterval(() => {
-    setEnergyNow((energyNow) => {
-      if (energyNow < clickLimit) {
-        return energyNow + 1;
-      } else {
-        return energyNow;
-      }
-    });
-  }, time);
+    const interval = setInterval(() => {
+      setEnergyNow((energyNow) => {
+        if (energyNow < clickLimit) {
+          return energyNow + 1;
+        } else {
+          return energyNow;
+        }
+      });
+    }, time);
 
-  return () => clearInterval(interval);
-}, [clickLimit, time]);
+    return () => clearInterval(interval);
+  }, [clickLimit, time]);
 
   //Прокачка монет за тап
   const CoinPerClickUpgrade = () => {
