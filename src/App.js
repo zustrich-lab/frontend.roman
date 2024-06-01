@@ -9,6 +9,7 @@ import BB from './BB.png';
 import ProgressBar from './ProgressBar';
 import Shop from './shop';
 import Coindiv from './coin';
+import Ref from './ref';
 import localStorage from 'localStorage';
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
   const [time, setTime] = useState(2000)
 
   const [isShopOpen, setIsShopOpen] = useState(false);
+  const [isRefOpen, setIsRefOpen] = useState(false);
+
   const [telegramId, setTelegramId] = useState(null);
 
   // Получение или генерация идентификатора пользователя
@@ -162,49 +165,57 @@ function App() {
     setIsShopOpen(false);
   };
 
+  const handleOpenRef = () => {
+    setIsRefOpen(true);
+  };
+
+  const handleCloseRef = () => {
+    setIsRefOpen(false);
+  };
+
   return (
       <body>
-      <div class="App">
-        <div class = "info">
+      <div className="App">
+        <div className = "info">
           <img src={Icon} alt="Icon"/>
           <p> Name </p>
           <img src={logo} alt="Bifclif"/>
         </div>
-        <div class = "main">
-          <div class="mainInfo">
-            <div class="halfBox">
-              <div class = "halfBoxDiv">
+        <div className = "main">
+          <div className="mainInfo">
+            <div className="halfBox">
+              <div className = "halfBoxDiv">
                 <p> Coin Per Tap</p>
-                <p>+{coinPerClick} <img src={coinIcon} alt="Coin" class="coin-image"/></p>
+                <p>+{coinPerClick} <img src={coinIcon} alt="Coin" className="coin-image"/></p>
               </div>
             </div>
-            <div class="halfBox">
-              <div class = "halfBoxDiv">
+            <div className="halfBox">
+              <div className = "halfBoxDiv">
                 <p> Energy </p>
-                <p>{clickLimit} / {energyNow}<img src={BB} alt="Battery" class="coin-image"/></p>
+                <p>{clickLimit} / {energyNow}<img src={BB} alt="Battery" className="coin-image"/></p>
               </div>
             </div>
           </div>
-          <div class="CoinInfo">
+          <div className="CoinInfo">
             <img src={coinIcon} alt="Coin" height = "90%" />
             <p>{coins}</p>
           </div>
           <Coindiv onClick={handleCoinClick} coinPerClick={coinPerClick} energyNow={energyNow}/>
-          <div class="Progress">
+          <div className="Progress">
             <ProgressBar current={energyNow} max={clickLimit} />
           </div>
-          <div class = "lower">
-            <div class = "lowerDiv">
-              <div class="BTNLOW">
+          <div className = "lower">
+            <div className = "lowerDiv">
+              <div className="BTNLOW">
                 <img src={logo} alt="Bifclif" height = "65%" />
               </div>
-              <div class="BTNLOW">
+              <div className="BTNLOW">
                 <p onClick={handleOpenShop} >Shop</p>
               </div>
-              <div class="BTNLOW">
-                <p>🔋</p>
+              <div onClick={handleOpenRef} className="BTNLOW">
+                <p>Ref👥</p>
               </div>
-              <div class="BTNLOW">
+              <div className="BTNLOW">
                 <p>🚀</p>
               </div>
             </div>
@@ -234,6 +245,11 @@ function App() {
           />
       )}
 
+      {isRefOpen && (
+          <Ref
+              onClose={handleCloseRef}
+          />
+      )};
       </body>
   );
 }
