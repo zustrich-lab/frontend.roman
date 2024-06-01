@@ -71,7 +71,7 @@ function App() {
     }
   }, [telegramId]);
 
-  // Сохранение данных при изменении состояния
+
   useEffect(() => {
     if (telegramId) {
       const saveUserData = async () => {
@@ -94,10 +94,8 @@ function App() {
         }
       };
 
-      // Устанавливаем таймер для периодического сохранения данных
       const interval = setInterval(saveUserData, 10000); // Сохранение каждые 10 секунд
 
-      // Очищаем таймер при размонтировании компонента
       return () => clearInterval(interval);
     }
   }, [telegramId, clicks, coins, upgradeCost, upgradeLevel, coinPerClick, upgradeCostEnergy, upgradeLevelEnergy, clickLimit, energyNow]);
