@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid'; // Импорт библиотеки для генерации уникальных идентификаторов
 import './App.css';
-import coinIcon from './CU.png';
-import Icon from './N.png';
-import logo from './b.png';
-import BB from './BB.png';
+import coinIcon from './IMG/CU.png';
+import Icon from './IMG/N.png';
+import logo from './IMG/b.png';
+import BB from './IMG/BB.png';
 import ProgressBar from './ProgressBar';
 import Shop from './shop';
 import Coindiv from './coin';
 import Ref from './ref';
+import Earn from './earn';
 import localStorage from 'localStorage';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
 
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isRefOpen, setIsRefOpen] = useState(false);
+  const [isEarnOpen, setIsEarnOpen] = useState(false);
 
   const [telegramId, setTelegramId] = useState(null);
 
@@ -171,6 +173,14 @@ function App() {
     setIsRefOpen(false);
   };
 
+  const handleOpenEarn = () => {
+    setIsEarnOpen(true);
+  };
+
+  const handleCloseEarn = () => {
+    setIsEarnOpen(false);
+  };
+
   return (
       <body>
       <div className="App">
@@ -204,14 +214,17 @@ function App() {
           </div>
           <div className = "lower">
             <div className = "lowerDiv">
-              <div className="BTNLOW">
-                <img src={logo} alt="Bifclif" height = "65%" />
+              <div className="BTNLOW" onClick={handleOpenEarn}>
+                <p>Earn</p>
+                <p>💸</p>
               </div>
-              <div className="BTNLOW">
-                <p onClick={handleOpenShop} >Shop</p>
+              <div className="BTNLOW" onClick={handleOpenShop}>
+                <p>Shop</p>
+                <p>🛒</p>
               </div>
-              <div onClick={handleOpenRef} className="BTNLOW">
-                <p>Ref👥</p>
+              <div  className="BTNLOW" onClick={handleOpenRef}>
+                <p>Ref</p>
+                <p>👥</p>
               </div>
               <div className="BTNLOW">
                 <p>🚀</p>
@@ -248,6 +261,13 @@ function App() {
               onClose={handleCloseRef}
           />
       )};
+
+      {isEarnOpen && (
+          <Earn
+              onClose={handleCloseEarn}
+          />
+      )};
+
       </body>
   );
 }

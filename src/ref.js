@@ -1,6 +1,6 @@
 import React from 'react';
 import './ref.css'
-import Icon from './N.png';;
+import Icon from './IMG/N.png';
 
 const Ref = ({onClose}) => {
     return (

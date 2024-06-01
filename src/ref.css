@@ -125,7 +125,7 @@
     width: 40px;
 }
 
-button {
+.sendMenu button {
     background: linear-gradient(135deg, #060927, #3E2C56);
     border: none;
     height: 35%;
@@ -137,12 +137,12 @@ button {
     transition: background 0.3s, transform 0.3s;
 }
 
-button:hover {
+.sendMenu button:hover {
     background: linear-gradient(135deg, #ff6600, #ff3300);
     transform: translateY(-2px);
 }
 
-button:disabled {
+.sendMenu button:disabled {
     background: #555;
     cursor: not-allowed;
 }
