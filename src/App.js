@@ -12,6 +12,7 @@ import Coindiv from './coin';
 import localStorage from 'localStorage';
 
 function App() {
+
   const [clicks, setClicks] = useState(0);
   const [coins, setCoins] = useState(0);
 
