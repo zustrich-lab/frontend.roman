@@ -9,6 +9,7 @@ import BB from './BB.png';
 import ProgressBar from './ProgressBar';
 import Shop from './shop';
 import Coindiv from './coin';
+import localStorage from 'localStorage';
 
 function App() {
 
