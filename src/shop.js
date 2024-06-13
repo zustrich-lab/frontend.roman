@@ -8,63 +8,75 @@ const Shop = ({ coins, onClose,
   return (
       <div className="shop">
         <div class="zagolovok">
-        <p>Магазин</p>
+        <p>Shop</p>
         </div>
         <div className="section">
           <div className='hz'>
-            <p>Монет за клик</p>
+            <p>Coin Per Tap</p>
           </div>
           <div className="section-menu">
-            <p>{coinPerClick}</p>
-            <div className="inform">
-              <p>Уровень улучшения: {upgradeLevel}</p>
-            </div>
-            <div className="inform">
-              <p>Стоимость улучшения: {upgradeCost}</p>
-            </div>
+              <div className="shopMainInfo">
+                <div className="inform">
+                  <p>{coinPerClick}</p>
+                </div>
+                <div className="inform">
+                  <p>LVL: {upgradeLevel}</p>
+                </div>
+                <div className="inform">
+                  <p>Price: {upgradeCost}</p>
+                </div>
+              </div>
             <button onClick={onUpgrade} disabled={coins < upgradeCost}>
-              Улучшить
+              Upgrade
             </button>
           </div>
         </div>
 
         <div className="section">
           <div className='hz'>
-            <p>Энергия</p>
+            <p>Energy</p>
           </div>
           <div className="section-menu">
-            <p>{clickLimit}</p>
-            <div className="inform">
-              <p>Уровень улучшения: {upgradeLevelEnergy}</p>
-            </div>
-            <div className="inform">
-              <p>Стоимость улучшения: {upgradeCostEnergy}</p>
+            <div className="shopMainInfo">
+              <div className="inform">
+                <p>{clickLimit}</p>
+              </div>
+              <div className="inform">
+                <p>LVL: {upgradeLevelEnergy}</p>
+              </div>
+              <div className="inform">
+                <p>Price: {upgradeCostEnergy}</p>
+              </div>
             </div>
             <button onClick={onUpgradeEnergy} disabled={coins < upgradeCostEnergy}>
-              Улучшить
+              Upgrade
             </button>
           </div>
         </div>
 
         <div className="section">
           <div className='hz'>
-            <p>Востановления енергиї</p>
+            <p>Energy Recovery</p>
           </div>
           <div className="section-menu">
-            <p>{valEnergyTime} в секунду</p>
-            <div className="inform">
-              <p>Уровень улучшения: {upgradeEnergyTimeLevel}</p>
-            </div>
-            <div className="inform">
-              <p>Стоимость улучшения: {upgradeCostEnergyTime}</p>
+            <div className="shopMainInfo">
+              <div className="inform">
+                <p>{valEnergyTime}</p>
+              </div>
+              <div className="inform">
+                <p>LVL: {upgradeEnergyTimeLevel}</p>
+              </div>
+              <div className="inform">
+                <p>Price: {upgradeCostEnergyTime}</p>
+              </div>
             </div>
             <button onClick={onUpgradeEnergyTime} disabled={coins <upgradeCostEnergyTime}>
-              Улучшить
+              Upgrade
             </button>
           </div>
         </div>
         <div class="zagolovok">
-        <button onClick={onClose} className="close-button">Закрыть</button>
+        <button onClick={onClose} className="close-button">Close</button>
         </div>
       </div>
   );

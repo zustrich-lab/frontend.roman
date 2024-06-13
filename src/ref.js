@@ -6,26 +6,26 @@ const Ref = ({onClose}) => {
     return (
         <div className="ref">
             <div className="zagolovok">
-                <p>Реферали</p>
+                <p>Referrals</p>
             </div>
 
             <div className="SendBorder">
                 <div className='SendInfo'>
-                    <p>Пригласить Друга</p>
+                    <p>Invite Friend</p>
                 </div>
                 <div className="sendMenu">
                     <button>
-                        Пригласить
+                        Invite
                     </button>
-                    <button>
-                        Скопировать Ссилку
+                    <button>       
+                        Copy Link
                     </button>
                 </div>
             </div>
 
             <div className="FrandsBorder">
                 <div className='FrendsInfo'>
-                    <p>Мои друзя</p>
+                    <p>My Friends</p>
                 </div>
                 <div className="FrendsMenu">
 
@@ -66,7 +66,7 @@ const Ref = ({onClose}) => {
                 </div>
             </div>
             <div className="zagolovok">
-                <button onClick={onClose} className="close-button">Закрыть</button>
+                <button onClick={onClose} className="close-button">Close</button>
             </div>
         </div>
     );

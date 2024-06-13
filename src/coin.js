@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import coinImage from './IMG/8nog.png';
+import ink from './IMG/ink.png';
 import './coin.css';
 
 const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
@@ -41,13 +42,12 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
 
       <img  src={coinImage} 
             alt="Coin" 
-            height="105%" 
+            height="100%" 
             //onMouseDown={handleInteractionStart}
             //onMouseUp={handleInteractionEnd}
             //onClick={onClick}
             onTouchEnd={handleInteractionEnd}
             onTouchStart={(event) => {handleInteractionStart(event); NumberUpAnim(event); }}
-            id="omar"
             />
 
       <AnimatePresence>
@@ -61,7 +61,9 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
               transition={{ duration: 2, ease: "ease-out" }}   
               style={{ top: click.y, left: click.x }}
             >
-              +{click.value}
+              <p>+{click.value}</p>
+              <img id="inktap" src={ink} alt='ink' width={"100%"}/>
+              
             </motion.div>
         ))}
       </AnimatePresence>
