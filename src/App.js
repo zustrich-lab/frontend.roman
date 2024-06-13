@@ -27,15 +27,15 @@ function App() {
   const [upgradeLevel, setUpgradeLevel] = useState(1);
   const [coinPerClick, setCoinPerClick] = useState(1);
 
-  const [upgradeCostEnergy, setUpgradeCostEnergy] = useState(100)
-  const [upgradeLevelEnergy, setUpgradeLevelEnergy] = useState(1)
+  const [upgradeCostEnergy, setUpgradeCostEnergy] = useState(100);
+  const [upgradeLevelEnergy, setUpgradeLevelEnergy] = useState(1);
   const [clickLimit, setClickLimit] = useState(100);
   const [energyNow, setEnergyNow] = useState(100);
 
-  const [upgradeCostEnergyTime, setUpgradeCostEnergyTime] = useState(200)
-  const [valEnergyTime, setvalEnergyTime] = useState(0.5)
-  const [upgradeEnergyTimeLevel, setupgradeEnergyTimeLevel] = useState(1)
-  const [time, setTime] = useState(2000)
+  const [upgradeCostEnergyTime, setUpgradeCostEnergyTime] = useState(200);
+  const [valEnergyTime, setvalEnergyTime] = useState(0.5);
+  const [upgradeEnergyTimeLevel, setupgradeEnergyTimeLevel] = useState(1);
+  const [time, setTime] = useState(2000);
 
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isRefOpen, setIsRefOpen] = useState(false);
@@ -218,13 +218,13 @@ function App() {
           <Ref
               onClose={handleCloseRef}
           />
-      )};
+      )}
 
       {isEarnOpen && (
           <Earn
               onClose={handleCloseEarn}
           />
-      )};
+      )}
 
       </body>
   );

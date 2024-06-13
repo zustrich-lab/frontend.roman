@@ -59,7 +59,7 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
               animate={{ opacity: 0, y: -150 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 2, ease: "ease-out" }}   
-              style={{ top: click.y, left: click.x }}
+              style={{ top: click.y, left: click.x}}
             >
               <p>+{click.value}</p>
               <img id="inktap" src={ink} alt='ink' width={"100%"}/>
