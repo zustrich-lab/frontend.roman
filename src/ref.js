@@ -120,10 +120,6 @@ const Ref = ({onClose}) => {
                             <img src={boxIcon} alt='boxIcon' height={"65%"}/>
                         </div>
                     </div>
-                    
-                    <div className='Frends'>
-                    </div>
-                    
                 </div>
             </div>
             <div className="thripleBTN">

@@ -44,6 +44,15 @@ function App() {
   const [isLogoVisible, setIsLogoVisible] = useState(true);
   const [isInviteLogoVisible, setisInviteLogoVisible] = useState(false);
 
+
+  useEffect(() => {
+    if (window.Telegram.WebApp) {
+      const tg = window.Telegram.WebApp;
+      tg.expand();
+    }
+  }, []);
+
+
   //Нажатие на монету
   const handleCoinClick = () => {
     if (energyNow >= coinPerClick) {
