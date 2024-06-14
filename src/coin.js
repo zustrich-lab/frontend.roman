@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import coinImage from './IMG/8nog.png';
+import coinImage from './IMG/88nog.png';
 import ink from './IMG/ink.png';
 import './coin.css';
 
@@ -39,7 +39,7 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
 
   return (
     <motion.div className='Podsos'>
-
+      
       <img  src={coinImage} 
             alt="Coin" 
             height="100%" 
@@ -48,8 +48,8 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
             //onClick={onClick}
             onTouchEnd={handleInteractionEnd}
             onTouchStart={(event) => {handleInteractionStart(event); NumberUpAnim(event); }}
-            />
-
+      />
+      
       <AnimatePresence>
         {clicksArray.map((click) => (
             <motion.div

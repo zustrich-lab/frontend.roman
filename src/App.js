@@ -233,19 +233,19 @@ function App() {
               onUpgradeEnergy={EnergyUpgrade}
               onUpgradeEnergyTime={EnergyTimeUpgrade}
           />
-      )};
+      )}
 
       {isRefOpen && (
           <Ref
               onClose={handleCloseRef}
           />
-      )};
+      )}
 
       {isEarnOpen && (
           <Earn
               onClose={handleCloseEarn}
           />
-      )};
+      )}
 
       </body>
   );
