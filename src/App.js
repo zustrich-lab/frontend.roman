@@ -144,7 +144,7 @@ function App() {
             className={isLogoVisible ? 'fade-in' : 'fade-out'}           
           />
 
-<img
+          <img
             src={InviteLogo}
             alt="log"
             height={"85%"}
