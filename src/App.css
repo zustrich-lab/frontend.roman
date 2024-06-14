@@ -47,6 +47,7 @@ body {
 
 .logo img{
   margin-bottom: 20px;
+  position: absolute;
 }
 
 .main {
@@ -274,4 +275,14 @@ body {
 @font-face {
   font-family: MullerMedium;
   src: url(/src/fonts/MullerMedium.ttf) format('truetype');
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }

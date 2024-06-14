@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Icon from './IMG/logo.png';
-import MainLogo from'./IMG/mainLogo.png';
 import avatar from './IMG/avatar.png';
 import ink from './IMG/ink.png';
 import inviteIcon from './IMG/Invite.png';
 import lootIcon from './IMG/loot.png';
 import p2eIcon from './IMG/p2e.png';
 import shopIcon from './IMG/shop.png';
-import earnIcon from './IMG/earn.png'
+import earnIcon from './IMG/earn.png';
 
 import ProgressBar from './ProgressBar';
 import Shop from './shop';
@@ -16,7 +15,8 @@ import Coindiv from './coin';
 import Ref from './ref';
 import Earn from './earn';
 
-
+import MainLogo from './IMG/mainLogo.png';
+import InviteLogo from './IMG/inviteLogo.png'
 
 function App() {
 
@@ -40,6 +40,9 @@ function App() {
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isRefOpen, setIsRefOpen] = useState(false);
   const [isEarnOpen, setIsEarnOpen] = useState(false);
+
+  const [isLogoVisible, setIsLogoVisible] = useState(true);
+  const [isInviteLogoVisible, setisInviteLogoVisible] = useState(false);
 
   //Нажатие на монету
   const handleCoinClick = () => {
@@ -106,10 +109,14 @@ function App() {
 
   const handleOpenRef = () => {
     setIsRefOpen(true);
+    setIsLogoVisible(false);
+    setisInviteLogoVisible(true);
   };
 
   const handleCloseRef = () => {
     setIsRefOpen(false);
+    setIsLogoVisible(true);
+    setisInviteLogoVisible(false);
   };
 
   const handleOpenEarn = () => {
@@ -129,7 +136,21 @@ function App() {
           <img id="pngavatar"src={avatar} alt="Bifclif" height={"70%"}/>
         </div>
         <div className="logo">
-          <img src={MainLogo} alt="log" height={"95%"}/>
+
+        <img
+            src={MainLogo}
+            alt="log"
+            height={"95%"}
+            className={isLogoVisible ? 'fade-in' : 'fade-out'}           
+          />
+
+<img
+            src={InviteLogo}
+            alt="log"
+            height={"85%"}
+            className={isInviteLogoVisible ? 'fade-in' : 'fade-out'}           
+          />
+
         </div>
         <div className = "main">
           <div className="mainInfo">
@@ -212,23 +233,21 @@ function App() {
               onUpgradeEnergy={EnergyUpgrade}
               onUpgradeEnergyTime={EnergyTimeUpgrade}
           />
-      )}
+      )};
 
       {isRefOpen && (
           <Ref
               onClose={handleCloseRef}
           />
-      )}
+      )};
 
       {isEarnOpen && (
           <Earn
               onClose={handleCloseEarn}
           />
-      )}
+      )};
 
       </body>
   );
 }
-
-
 export default App;
