@@ -14,7 +14,10 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
     const y = touchEvent.clientY - rect.top;
     const rotateX = ((y / rect.height) - 0.5) * -40;
     const rotateY = ((x / rect.width) - 0.5) * 40;
-    navigator.vibrate(100);
+    
+    if (navigator.vibrate) {
+      navigator.vibrate(100); 
+    }
     
     event.target.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   };
