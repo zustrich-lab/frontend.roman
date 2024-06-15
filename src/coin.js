@@ -38,7 +38,7 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
     onClick();
 
     if (navigator.vibrate) {
-      navigator.vibrate(20);
+      navigator.vibrate(50);
     }
 
   };
@@ -51,9 +51,9 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
             height="100%" 
             //onMouseDown={handleInteractionStart}
             //onMouseUp={handleInteractionEnd}
-            //onClick={onClick}
+            onClick={(event) => {handleInteractionStart(event); NumberUpAnim(event); }}
             onTouchEnd={handleInteractionEnd}
-            onTouchStart={(event) => {handleInteractionStart(event); NumberUpAnim(event); }}
+            //onTouchStart={(event) => {handleInteractionStart(event); NumberUpAnim(event); }}
       />
       
       <AnimatePresence>
