@@ -61,6 +61,9 @@ function App() {
       setCoins(coins + coinPerClick);
       setClicks(clicks + 1);
       setEnergyNow(energyNow - coinPerClick);
+      if (navigator.vibrate) {
+        navigator.vibrate(200); // Вибрация на 200 миллисекунд
+      }
     }
   };
 

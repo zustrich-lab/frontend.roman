@@ -15,10 +15,6 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
     const rotateX = ((y / rect.height) - 0.5) * -40;
     const rotateY = ((x / rect.width) - 0.5) * 40;
     
-    if (navigator.vibrate) {
-      navigator.vibrate(100); 
-    }
-    
     event.target.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   };
     
@@ -38,6 +34,7 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
     ...prevClicks,
     { id: Date.now(), x, y, value: coinPerClick },
     ]);
+
     onClick();
   };
 
