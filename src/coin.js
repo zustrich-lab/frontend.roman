@@ -38,10 +38,7 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
     onClick();
 
     if (navigator.vibrate) {
-      console.log('Vibrating on touchstart');
-      navigator.vibrate(200);
-    } else {
-      console.log('Vibration not supported');
+      navigator.vibrate(20);
     }
 
   };
@@ -54,9 +51,9 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
             height="100%" 
             //onMouseDown={handleInteractionStart}
             //onMouseUp={handleInteractionEnd}
-            onClick= {(event) => {handleInteractionStart(event); NumberUpAnim(event); }}
+            //onClick={onClick}
             onTouchEnd={handleInteractionEnd}
-            //onTouchStart={(event) => {handleInteractionStart(event); NumberUpAnim(event); }}
+            onTouchStart={(event) => {handleInteractionStart(event); NumberUpAnim(event); }}
       />
       
       <AnimatePresence>
