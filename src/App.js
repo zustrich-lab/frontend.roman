@@ -60,10 +60,7 @@ function App() {
     if (energyNow >= coinPerClick) {
       setCoins(coins + coinPerClick);
       setClicks(clicks + 1);
-      setEnergyNow(energyNow - coinPerClick);
-
-      navigator.vibrate(1000);
-      
+      setEnergyNow(energyNow - coinPerClick);     
     }
   };
 
@@ -119,6 +116,12 @@ function App() {
 
   const handleCloseShop = () => {
     setIsShopOpen(false);
+    if (navigator.vibrate) {
+      console.log('Vibrating on touchstart');
+      navigator.vibrate(200);
+    } else {
+      console.log('Vibration not supported');
+    }
   };
 
   const handleOpenRef = () => {
