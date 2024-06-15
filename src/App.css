@@ -1,3 +1,8 @@
+*{
+  user-select: none;
+  touch-action: manipulation;
+}
+
 body {
 	margin: 0;
   width: 100%;
@@ -251,7 +256,7 @@ body {
 
 #odstup{margin-right: auto;}
 
-#kalendar{margin-bottom: 8px;}
+#kalendar{margin-bottom: 1vh;}
 
 #left_thriple{margin-left: 0.8vh;}
 
@@ -281,10 +286,10 @@ body {
 
 .fade-out {
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.6s ease;
 }
 
 .fade-in {
   opacity: 1;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.6s ease;
 }

@@ -1,93 +1,22 @@
-.earn {
-    position: fixed;
+.EarnClose{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 12%;
     width: 100%;
-    height: 78%;
     bottom: 0;
-    color: white;
-    background: #151515;
-    text-align: center;
-    border-radius: 35px 35px 0 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
 }
 
-.zagolovok{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 8%;
-    width: 100%;
-    font-size: 48px;
-    color: #f6ff82;
-}
-
-.EarnBorder{
-    background:#202020;
-    border-radius: 10px;
-    height: 80%;
+.EarnClose button{
     width: 90%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-}
-
-.EarnMenu{
-    height: 95%;
-    width: 95%;
-    background: #151515;
-    border: 2px;
-    border-style: solid;
-    border-radius: 10px;
-    border-color: #323232;
-    box-shadow: 0 0 15px -2px black;
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    justify-content: center;
-    overflow: scroll;
-}
-
-.Zadanie{
-    height: 40%;
-    width: 95%;
-    background: #323232;
-    border-radius: 10px;
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
-}
-
-.Zadanie button {
-    background: #151515;
-    height: 20%;
-    width: 90%;
-    border-radius: 10px;
-    font-size: 20px;
+    height: 70%;
+    border-radius: 4vh;
+    font: 3.5vh MullerMedium;
     font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-    color: white;
-    border: 1px solid #f8fe80;
-
-}
-
-.zg{
-    height: 16%;
-    width: 100%;
-}
-
-.Zadanie h1{
-    font: 22px sans-serif;
-    margin: 0;
-    color: white;
-}
-
-.Zadanie p{
-    font: 18px sans-serif;
-    margin: 0;
+    padding-top: 0.5vh ;
+    color: black;
+    background: red;
+    box-shadow: 0 0 0 0.8vh #5c1616;
 }

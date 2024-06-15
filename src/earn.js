@@ -1,73 +1,36 @@
 import React from 'react';
 import './earn.css'
 
+import gray_8nogIcon from './IMG/gray_8nog.png';
+import znakLogo from './IMG/Znak.png';
 
 const Earn = ({onClose}) => {
     return (
-        <div className="earn">
-            <div className="zagolovok">
-                <p>Rewards</p>
-            </div>
+        <div className="Ref_Earn_Window">
 
-            <div className="EarnBorder">
-                <div className="EarnMenu">
-
-                    <div className="Zadanie">
-                        <div className="zg">
-                            <h1>Subscribe on tg-channel</h1>
-                        </div>
-                        <p>Reward: 10000</p>
-                        <button>
-                            Subscribe
-                        </button>
-                        <button>
-                            Check
-                        </button>
+            <div className="Ref_Earn_BoxBorder">
+                <div className='Ref_Earn_Box'>
+                    <img src={gray_8nogIcon} alt='gray_8nogIcon' height={"80%"}/>
+                </div>
+                <div className='Ref_Earn_BoxTitle'>
+                    <div className='Ref_Earn_BoxUp'>
+                        <p>WEEKLY TASKS</p>
                     </div>
-
-                    <div className="Zadanie">
-                        <div className="zg">
-                            <h1>Join a Clash Royale clan</h1>
+                    <div className='Ref_Earn_BoxDown'>
+                        <div className='Ref_Earn_BoxLeft'>
+                            <img src={znakLogo} alt='znakLogo' height={"50%"}/>
                         </div>
-                        <p>Reward: 99000</p>
-                        <button>
-                            Subscribe
-                        </button>
-                        <button>
-                            Check
-                        </button>
-                    </div>
-
-                    <div className="Zadanie">
-                        <div className="zg">
-                            <h1>Subscribe to twitter</h1>
+                        <div className='Ref_Earn_BoxRight'>
+                            <p>COMPLATE WEEKLY</p>
+                            <p>TASKS AND <span className="Ref_Earn_Purple">EARN</span></p>
+                            <p className="Ref_Earn_Purple" >MORE ITEMS</p>
                         </div>
-                        <p>Reward: 10000</p>
-                        <button>
-                            Subscribe
-                        </button>
-                        <button>
-                            Check
-                        </button>
                     </div>
-
-                    <div className="Zadanie">
-                        <div className="zg">
-                            <h1>Subscribe to Discord</h1>
-                        </div>
-                        <p>Reward: 10000</p>
-                        <button>
-                            Subscribe
-                        </button>
-                        <button>
-                            Check
-                        </button>
-                    </div>
-
                 </div>
             </div>
-            <div className="zagolovok">
-                <button onClick={onClose} className="close-button">Close</button>
+
+            <div className="EarnClose">
+                <button onClick={onClose}>Close</button>
             </div>
         </div>
     );

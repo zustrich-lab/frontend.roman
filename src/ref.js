@@ -14,21 +14,21 @@ import BoyarskiiAvatar from './IMG/BoyarskiiAvatar.png';
 
 const Ref = ({onClose}) => {
     return (
-        <div className="ref">
-            <div className="BoxBorder">
-                <div className='Box'>
+        <div className="Ref_Earn_Window">
+            <div className="Ref_Earn_BoxBorder">
+                <div className='Ref_Earn_Box'>
                     <img src={boxIcon} alt='boxIcon' height={"60%"}/>
                 </div>
-                <div className='BoxTitle'>
-                    <div className='BoxUp'>
+                <div className='Ref_Earn_BoxTitle'>
+                    <div className='Ref_Earn_BoxUp'>
                         <p>INVITE A FRIEND</p>
                     </div>
-                    <div className='BoxDown'>
-                        <div className='BoxLeft'>
+                    <div className='Ref_Earn_BoxDown'>
+                        <div className='Ref_Earn_BoxLeft'>
                             <img src={znakLogo} alt='znakLogo' height={"50%"}/>
                         </div>
-                        <div className='BoxRight'>
-                            <p>GET <span className="mysteryBox">MYSTERY BOX</span></p>
+                        <div className='Ref_Earn_BoxRight'>
+                            <p>GET <span className="Ref_Earn_Purple">MYSTERY BOX</span></p>
                             <p>FOR YOU AND YOUR</p>
                             <p>FRIEND</p>
                         </div>
@@ -36,100 +36,100 @@ const Ref = ({onClose}) => {
                 </div>
             </div>
 
-            <div className="FrandsBorder">
-                <div className='FrendsInfo'>
+            <div className="refFrandsBorder">
+                <div className='refFrendsInfo'>
                     <p>LIST OF YOUR FRIENDS</p>
                     <img src={s} alt='s' height={"40%"}/>
                 </div>
-                <div className="FrendsMenu">
+                <div className="refFrendsMenu">
 
-                    <div className='Frends'>
-                        <div className='FrendsIcon'>
+                    <div className='refFrends'>
+                        <div className='refFrendsIcon'>
                             <img src={FriendAvatar} alt='FriendAvatar' height={"65%"}/>
                         </div>
-                        <div className='FrendsName'>
+                        <div className='refFrendsName'>
                             <p>ARTUR</p>
                             <p id="Friends_rank">Beginner <span id="Beginner_rank"> ● </span></p>
                         </div>
-                        <div className='FrendsIcon'>
+                        <div className='refFrendsIcon'>
                             <img src={boxIcon} alt='boxIcon' height={"65%"}/>
                         </div>
                     </div>
 
-                    <div className='Frends'>
-                        <div className='FrendsIcon'>
+                    <div className='refFrends'>
+                        <div className='refFrendsIcon'>
                             <img src={DimaAvatar} alt='DimaAvatar' height={"65%"}/>
                         </div>
-                        <div className='FrendsName'>
+                        <div className='refFrendsName'>
                             <p>DIMA BAGMET</p>
                             <p id="Friends_rank">Advanced <span id="Advanced_rank"> ● </span></p>
                         </div>
-                        <div className='FrendsIcon'>
+                        <div className='refFrendsIcon'>
                             <img src={boxIcon} alt='boxIcon' height={"65%"}/>
                         </div>
                     </div>
 
-                    <div className='Frends'>
-                        <div className='FrendsIcon'>
+                    <div className='refFrends'>
+                        <div className='refFrendsIcon'>
                             <img src={NazarAvatar} alt='NazarAvatar' height={"65%"}/>
                         </div>
-                        <div className='FrendsName'>
+                        <div className='refFrendsName'>
                             <p>NAZAR</p>
                             <p id="Friends_rank">Intermediate <span id="Intermediate_rank"> ● </span></p>
                         </div>
-                        <div className='FrendsIcon'>
+                        <div className='refFrendsIcon'>
                             <img src={boxIcon} alt='boxIcon' height={"65%"}/>
                         </div>
                     </div>
 
-                    <div className='Frends'>
-                        <div className='FrendsIcon'>
+                    <div className='refFrends'>
+                        <div className='refFrendsIcon'>
                             <img src={AndriiAvatar} alt='AndriiAvatar' height={"65%"}/>
                         </div>
-                        <div className='FrendsName'>
+                        <div className='refFrendsName'>
                             <p>АНДРІЙ</p>
                             <p id="Friends_rank">Expert <span id="Expert_rank"> ● </span></p>
                         </div>
-                        <div className='FrendsIcon'>
+                        <div className='refFrendsIcon'>
                             <img src={boxIcon} alt='boxIcon' height={"65%"}/>
                         </div>
                     </div>
 
-                    <div className='Frends'>
-                        <div className='FrendsIcon'>
+                    <div className='refFrends'>
+                        <div className='refFrendsIcon'>
                             <img src={IlyaAvatar} alt='IlyaAvatar' height={"65%"}/>
                         </div>
-                        <div className='FrendsName'>
+                        <div className='refFrendsName'>
                             <p>ИЛЬЯ</p>
                             <p id="Friends_rank">Master <span id="Master_rank"> ● </span></p>
                         </div>
-                        <div className='FrendsIcon'>
+                        <div className='refFrendsIcon'>
                             <img src={boxIcon} alt='boxIcon' height={"65%"}/>
                         </div>
                     </div>
 
-                    <div className='Frends'>
-                        <div className='FrendsIcon'>
+                    <div className='refFrends'>
+                        <div className='refFrendsIcon'>
                             <img src={BoyarskiiAvatar} alt='BoyarskiiAvatar' height={"65%"}/>
                         </div>
-                        <div className='FrendsName'>
+                        <div className='refFrendsName'>
                             <p>АНДРІЙ</p>
                             <p id="Friends_rank">Advanced <span id="Advanced_rank"> ● </span></p>
                         </div>
-                        <div className='FrendsIcon'>
+                        <div className='refFrendsIcon'>
                             <img src={boxIcon} alt='boxIcon' height={"65%"}/>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="thripleBTN">
-                <button onClick={onClose} id='goClose'className="go">X</button>
-                <button id='goInvite'className="go">
+            <div className="refthripleBTN">
+                <button onClick={onClose} id='refgoClose'className="refgo">X</button>
+                <button id='refgoInvite'className="refgo">
                     <p>INVITE</p>
                     <img src={inviteIcon} height={"50%"} alt='inviteIcon'/>
                 </button>
-                <button className="go">
-                    <img src={copyLogo} alt='copyLogo' height={"65%"}/>
+                <button className="refgo">
+                    <img src={copyLogo} alt='refcopyLogo' height={"65%"}/>
                 </button>
             </div>
         </div>

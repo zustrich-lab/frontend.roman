@@ -2,21 +2,21 @@
     user-select: none;
 }
 
-.ref {
+.Ref_Earn_Window {
     width: 100%;
     height: 78%;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    position: fixed;
     border-radius: 3vh 3vh 0 0;
     bottom: 0;
     color: white;
     background: #151515;
 }
 
-.BoxBorder{
+.Ref_Earn_BoxBorder{
     width: 90%;
     height: 18%;
     border-radius: 2vh;
@@ -28,7 +28,7 @@
     top: 2vh;
 }
 
-.Box{
+.Ref_Earn_Box{
     width: 28%;
     height: 100%;
     display: flex;
@@ -39,18 +39,18 @@
                     0 0 3px 0 #151515;
 }
 
-.Box img{
+.Ref_Earn_Box img{
     filter: drop-shadow(2px 2px 3px rgba(0,0,0,50%));
 }
 
-.BoxTitle{
+.Ref_Earn_BoxTitle{
     width: 72%;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.BoxUp{
+.Ref_Earn_BoxUp{
     width: 100%;
     height: 35%;
     display: flex;
@@ -59,20 +59,20 @@
     
 }
 
-.BoxUp p{
+.Ref_Earn_BoxUp p{
     margin: 0;
     font-size: 2vh;
     font-family: MullerMedium;
 }
 
-.BoxDown{
+.Ref_Earn_BoxDown{
     width: 100%;
     height: 65%;
     display: flex;
     flex-direction: row;
 }
 
-.BoxLeft{
+.Ref_Earn_BoxLeft{
     width: 18%;
     height: 100%;
     display: flex;
@@ -80,7 +80,7 @@
     justify-content: center;
 }
 
-.BoxRight{
+.Ref_Earn_BoxRight{
     width: 82%;
     height: 100%;
     display: flex;
@@ -88,15 +88,15 @@
     justify-content: center;
 }
 
-.BoxRight p{
+.Ref_Earn_BoxRight p{
     margin: 0;
     font-size: 2vh;
     font-family: Muller;
 }
 
-.mysteryBox{color: #CF2395;}
+.Ref_Earn_Purple{color: #CF2395;}
 
-.FrandsBorder{
+.refFrandsBorder{
     border-radius: 2vh 2vh 0 0 ;
     box-shadow:inset 0 0 0 0.1vh #454545;
     background:#2D2D2D;
@@ -107,7 +107,7 @@
     flex-direction: column;
 }
 
-.FrendsInfo{
+.refFrendsInfo{
     height: 10%;
     width: 80%;
     display: flex;
@@ -115,13 +115,13 @@
     align-items: center;
 }
 
-.FrendsInfo p{
+.refFrendsInfo p{
     margin: 0;
     font-size: 2vh;
     font-family: MullerMedium;
 }
 
-.FrendsMenu{
+.refFrendsMenu{
     height: 90%;
     width: 100%;
     display: flex;
@@ -131,7 +131,7 @@
     box-sizing: border-box;
 }
 
-.Frends{
+.refFrends{
     height: 15%;
     width: 90%;
     display: flex;
@@ -140,11 +140,11 @@
     margin-bottom: 1.5vh;
 }
 
-.Frends img{
+.refFrends img{
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,30%));
 }
 
-.FrendsIcon{
+.refFrendsIcon{
     height: 100%;
     width: 22%;
     display: flex;
@@ -152,7 +152,7 @@
     justify-content: center;
 }
 
-.FrendsName{
+.refFrendsName{
     height: 100%;
     width: 78%;
     display: flex;
@@ -161,7 +161,7 @@
     justify-content: center;
 }
 
-.FrendsName p{
+.refFrendsName p{
     margin: 0;
     font-family: Muller;
     font-size: 2vh;
@@ -179,7 +179,7 @@
 
 #Master_rank{color: #A513FF;}
 
-.thripleBTN{
+.refthripleBTN{
     position: absolute;
     display: flex;
     justify-content: space-evenly;
@@ -190,7 +190,7 @@
     bottom: 0;
 }
 
-.go {
+.refgo {
     width: 18%;
     height: 70%;
     border-radius: 4vh;
@@ -202,12 +202,12 @@
     color: black;
 }
 
-#goClose{
+#refgoClose{
     background: red;
     box-shadow: 0 0 0 0.8vh #5c1616;
 }
 
-#goInvite {
+#refgoInvite {
     width: 45%;
     display: flex;
     flex-direction: row;
@@ -216,7 +216,7 @@
     padding-top: 0 ;
 }
 
-#goInvite p{
+#refgoInvite p{
     margin: 0.6vh;
     margin-top: 1.5vh;
 }

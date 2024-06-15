@@ -16,7 +16,8 @@ import Ref from './ref';
 import Earn from './earn';
 
 import MainLogo from './IMG/mainLogo.png';
-import InviteLogo from './IMG/inviteLogo.png'
+import InviteLogo from './IMG/inviteLogo.png';
+import EarnLogo from './IMG/earnLogo.png';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
 
   const [isLogoVisible, setIsLogoVisible] = useState(true);
   const [isInviteLogoVisible, setisInviteLogoVisible] = useState(false);
+  const [isEarnLogoVisible, setisEarnLogoVisible] = useState(false);
 
 
   useEffect(() => {
@@ -118,22 +120,26 @@ function App() {
 
   const handleOpenRef = () => {
     setIsRefOpen(true);
-    setIsLogoVisible(false);
     setisInviteLogoVisible(true);
+    setIsLogoVisible(false);
   };
 
   const handleCloseRef = () => {
     setIsRefOpen(false);
-    setIsLogoVisible(true);
     setisInviteLogoVisible(false);
+    setIsLogoVisible(true);
   };
 
   const handleOpenEarn = () => {
     setIsEarnOpen(true);
+    setisEarnLogoVisible(true);
+    setIsLogoVisible(false);
   };
 
   const handleCloseEarn = () => {
     setIsEarnOpen(false);
+    setisEarnLogoVisible(false);
+    setIsLogoVisible(true);
   };
 
   return (
@@ -158,6 +164,13 @@ function App() {
             alt="log"
             height={"85%"}
             className={isInviteLogoVisible ? 'fade-in' : 'fade-out'}           
+          />
+
+          <img
+            src={EarnLogo}
+            alt="log"
+            height={"85%"}
+            className={isEarnLogoVisible ? 'fade-in' : 'fade-out'}           
           />
 
         </div>
