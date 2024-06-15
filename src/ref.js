@@ -45,7 +45,7 @@ const Ref = ({onClose}) => {
 
                     <div className='refFrends'>
                         <div className='refFrendsIcon'>
-                            <img src={FriendAvatar} alt='FriendAvatar' height={"70%"}/>
+                            <img src={FriendAvatar} alt='FriendAvatar' height={"75%"}/>
                         </div>
                         <div className='refFrendsName'>
                             <p>ARTUR</p>
@@ -58,7 +58,7 @@ const Ref = ({onClose}) => {
 
                     <div className='refFrends'>
                         <div className='refFrendsIcon'>
-                            <img src={DimaAvatar} alt='DimaAvatar' height={"70%"}/>
+                            <img src={DimaAvatar} alt='DimaAvatar' height={"75%"}/>
                         </div>
                         <div className='refFrendsName'>
                             <p>DIMA BAGMET</p>
@@ -71,7 +71,7 @@ const Ref = ({onClose}) => {
 
                     <div className='refFrends'>
                         <div className='refFrendsIcon'>
-                            <img src={NazarAvatar} alt='NazarAvatar' height={"70%"}/>
+                            <img src={NazarAvatar} alt='NazarAvatar' height={"75%"}/>
                         </div>
                         <div className='refFrendsName'>
                             <p>NAZAR</p>
@@ -84,7 +84,7 @@ const Ref = ({onClose}) => {
 
                     <div className='refFrends'>
                         <div className='refFrendsIcon'>
-                            <img src={AndriiAvatar} alt='AndriiAvatar' height={"70%"}/>
+                            <img src={AndriiAvatar} alt='AndriiAvatar' height={"75%"}/>
                         </div>
                         <div className='refFrendsName'>
                             <p>АНДРІЙ</p>
@@ -97,7 +97,7 @@ const Ref = ({onClose}) => {
 
                     <div className='refFrends'>
                         <div className='refFrendsIcon'>
-                            <img src={IlyaAvatar} alt='IlyaAvatar' height={"70%"}/>
+                            <img src={IlyaAvatar} alt='IlyaAvatar' height={"75%"}/>
                         </div>
                         <div className='refFrendsName'>
                             <p>ИЛЬЯ</p>
@@ -110,7 +110,7 @@ const Ref = ({onClose}) => {
 
                     <div className='refFrends'>
                         <div className='refFrendsIcon'>
-                            <img src={BoyarskiiAvatar} alt='BoyarskiiAvatar' height={"70%"}/>
+                            <img src={BoyarskiiAvatar} alt='BoyarskiiAvatar' height={"75%"}/>
                         </div>
                         <div className='refFrendsName'>
                             <p>АНДРІЙ</p>
@@ -121,19 +121,6 @@ const Ref = ({onClose}) => {
                         </div>
                     </div>
 
-                    <div className='refFrends'>
-                        <div className='refFrendsIcon'>
-                            <img src={BoyarskiiAvatar} alt='BoyarskiiAvatar' height={"70%"}/>
-                        </div>
-                        <div className='refFrendsName'>
-                            <p>АНДРІЙ</p>
-                            <p id="Friends_rank">Advanced <span id="Advanced_rank"> ● </span></p>
-                        </div>
-                        <div className='refFrendsIcon'>
-                            <img src={boxIcon} alt='boxIcon' height={"65%"}/>
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
             <div className="refthripleBTN">
