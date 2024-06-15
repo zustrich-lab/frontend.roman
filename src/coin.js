@@ -37,7 +37,10 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
 
     onClick();
 
-    navigator.vibrate(10);
+    if (navigator.vibrate) {
+      navigator.vibrate(10);
+    }
+
   };
 
   return (
