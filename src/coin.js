@@ -26,7 +26,6 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
     const touchEvent = event.type === 'touchstart' ? event.touches[0] : event;
     if (coinPerClick >  energyNow) return;
     
-    
     const x = touchEvent.clientX;
     const y = touchEvent.clientY;
     
