@@ -12,7 +12,7 @@ import Task_5 from './IMG/task_5.png';
 
 const Earn = ({onClose}) => {
     return (
-        <div className="Ref_Earn_Window">
+        <div className="Earn_Window">
 
             <div className="Ref_Earn_BoxBorder">
                 <div className='Ref_Earn_Box'>

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+
 import Icon from './IMG/logo.png';
 import avatar from './IMG/avatar.png';
 import ink from './IMG/ink.png';
-import inviteIcon from './IMG/Invite.png';
-import lootIcon from './IMG/loot.png';
-import p2eIcon from './IMG/p2e.png';
-import shopIcon from './IMG/shop.png';
+
+import inviteIcon from './IMG/LowerIcon/Invite_Icon.png';
+import lootIcon from './IMG/LowerIcon/Loot_Icon.png';
+import p2eIcon from './IMG/LowerIcon/P2E_Icon.png';
+import shopIcon from './IMG/LowerIcon/Shop_Icon.png';
+
 import earnIcon from './IMG/earn.png';
 
 import ProgressBar from './ProgressBar';
@@ -209,28 +212,32 @@ function App() {
           </div>        
           <div className = "lower">
 
-            <div className="lowerUp">
-              <div className="lowerGame">
-                <img src={p2eIcon} height={"60%"} alt='p2e'/>
-                <p>SWITCH TO P2E</p>
-              </div>
-            </div>
-
             <div className="lowerDown">
-                <div className="BTNLOW"  onClick={handleOpenShop}>
-                  <img src={shopIcon} height={"45%"} alt='shopIcon'/>
-                 <p>SHOP</p>
+                <div className='BTN' onClick={handleOpenShop}>
+                  <div className="BTNLOW">
+                    <img src={shopIcon} height={"90%"} alt='shopIcon'/>       
+                  </div>
+                  <p>SHOP</p>
                 </div>
-                <div className="BTNLOW" id="orangeBTN" onClick={handleOpenRef}>
-                  <img src={inviteIcon} height={"40%"} alt='inviteIcon'/>
+                <div className='BTN' onClick={handleOpenRef}>
+                  <div className="BTNLOW">
+                    <img src={inviteIcon} height={"115%"} alt='inviteIcon'/>   
+                  </div>
                   <p>INVITE</p>
                 </div>
-                <div  className="BTNLOW">
-                  <img src={lootIcon} height={"65%"} alt='lootIcon'/>
+                <div className='BTN'>
+                  <div  className="BTNLOW">
+                    <img src={lootIcon} height={"90%"} alt='lootIcon'/>
+                  </div>
                   <p>LOOT</p>
                 </div>
+                <div className='BTN'>
+                  <div  className="BTNLOW">
+                    <img src={p2eIcon} height={"90%"} alt='p2eIcon'/>
+                  </div>
+                  <p>P2E</p>
+                </div>
             </div>
-
           </div>
         </div>
       </div>

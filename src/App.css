@@ -60,7 +60,7 @@ body {
   height: 78%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-direction: column;
   border-radius: 3vh 3vh 0 0;
   box-shadow: 0 -2px 0 #f6ff82,
@@ -141,74 +141,50 @@ body {
 
 .lower{
   width: 100%;
-  height: 20%;
-  float: left;
+  height: 16%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 3vh 3vh 0 0;
   box-shadow: 0 -2px 0 #f6ff82;
 }
 
 .lowerDown{
-  width: 100%;
-  height: 50%;
+  width: 92%;
+  height: 100%;
   display: flex;
-  align-items: start;
-  justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-between;
   flex-direction: row;
   position: relative;
 }
 
-.BTNLOW{
-  width: 28.5vw;
-  height: 5vh;
+.BTN{
+  height: 100%;
+  width: 20vw;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 3vh;
-  box-shadow: 0 0 0 0.5vh #5a5c37;
-  background: #f8fe80;
-  margin: 0;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
-.BTNLOW p{
-  margin-top: 3vh;
-  margin-left: 0.2vh;
-  font: 2.5vh MullerMedium;
-  font-weight: bold;
-}
-
-.lowerUp{
-  width: 100%;
-  height: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.8vh;
-  margin-bottom: 0.5vh;
-}
-
-.lowerGame{
-  width: 92%;
-  height: 68%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0.3vh;
-  border-radius: 3vh;
-  border-style: solid;
-  border-color: #323232;
+.BTN p{
   color: white;
+  margin: 0;
+  font: 2.2vh MullerMedium;
+  margin-bottom: 0.6vh;
+}
+
+.BTNLOW{
+  width: 100%;
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.5vh;
+  box-shadow: 0 0 0 0.5vh #2D2D2D;
   background: #202020;
-}
-
-.lowerGame p{
-  margin-top: 3vh;
-  margin-left: 0.8vh;
-  font: 2.5vh Muller;
-  font-weight: bold;
-}
-
-.lower img{
-  margin: 4px;
+  margin-top: 1.2vh;
 }
 
 .Progress{
@@ -248,8 +224,6 @@ body {
 .userStatus p {
   margin: 0;
 }
-
-#orangeBTN{box-shadow: 0 0 0 0.5vh #83561f; background: #f18b10;}
 
 #nonBold{font-family: MullerLight; color: lightgray;}
 

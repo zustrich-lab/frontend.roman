@@ -47,7 +47,7 @@ const Coindiv = ({ onClick, coinPerClick, energyNow}) => {
       
       <img  src={coinImage} 
             alt="Coin" 
-            height="100%" 
+            height="90%" 
             //onMouseDown={handleInteractionStart}
             //onMouseUp={handleInteractionEnd}
             //onClick={onClick}

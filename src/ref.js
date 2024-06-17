@@ -3,8 +3,8 @@ import './ref.css'
 import boxIcon from './IMG/box.png';
 import znakLogo from './IMG/Znak.png';
 import s from './IMG/s.png'
-import copyLogo from './IMG/copy.png';
-import inviteIcon from './IMG/Invite.png';
+import ink from './IMG/ink.png';
+import inviteIcon from './IMG/LowerIcon/Invite_Icon.png';
 import FriendAvatar from './IMG/ArturAvatar.png';
 import DimaAvatar from './IMG/DimaAvatar.png';
 import NazarAvatar from './IMG/NazarAvatar.png';
@@ -125,12 +125,13 @@ const Ref = ({onClose}) => {
             </div>
             <div className="refthripleBTN">
                 <button onClick={onClose} id='refgoClose'className="refgo">X</button>
-                <button id='refgoInvite'className="refgo">
-                    <p>INVITE</p>
-                    <img src={inviteIcon} height={"50%"} alt='inviteIcon'/>
-                </button>
                 <button className="refgo">
-                    <img src={copyLogo} alt='refcopyLogo' height={"65%"}/>
+                    <p>INVITE </p>
+                    <img src={inviteIcon} alt='inviteIcon' height={"110%"}/>
+                </button>
+                <button className="refgo" id='refgoCopy'>
+                    <img src={ink} alt='ink' height={"50%"}/>
+                    <p>COPY</p>
                 </button>
             </div>
         </div>

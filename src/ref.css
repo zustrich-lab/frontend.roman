@@ -8,7 +8,6 @@
     position: fixed;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     flex-direction: column;
     border-radius: 3vh 3vh 0 0;
     bottom: 0;
@@ -98,18 +97,19 @@
 .Ref_Earn_Purple{color: #CF2395;}
 
 .refFrandsBorder{
-    border-radius: 2vh 2vh 0 0 ;
+    border-radius: 2vh;
     box-shadow:inset 0 0 0 0.1vh #454545;
     background:#2D2D2D;
-    height: 76%;
-    width: 96%;
+    height: 65%;
+    width: 90%;
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: 3.5vh;
 }
 
 .refFrendsInfo{
-    height: 10%;
+    height: 14%;
     width: 80%;
     display: flex;
     justify-content: space-between;
@@ -123,14 +123,13 @@
 }
 
 .refFrendsMenu{
-    height: 74%;
+    height: 86%;
     width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
     overflow: scroll;
     box-sizing: border-box;
-    mask-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 15%);
 }
 
 .refFrends{
@@ -144,8 +143,6 @@
 
 .refFrends img{
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,30%));
-    
-    
 }
 
 .refFrendsIcon{
@@ -186,41 +183,48 @@
 .refthripleBTN{
     position: absolute;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     height: 12%;
-    width: 96%;
+    width: 90%;
     bottom: 0;  
 }
 
 .refgo {
-    width: 18%;
-    height: 70%;
-    border-radius: 4vh;
-    box-shadow: 0 0 0 0.8vh #83561f; 
-    background: #f18b10;
+    width: 55%;
+    height: 80%;
+    border-radius: 1.5vh;
+    box-shadow:inset 0 0 0 0.5vh #2D2D2D;
+    background: linear-gradient(#181818, #6d6d6d); 
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font: 3.5vh MullerMedium;
-    font-weight: bold;
-    padding-top: 0.5vh ;
-    color: black;
+}
+
+.refgo p{
+    margin-top: 4.5vh;
+    margin-right: 1vh;
+}
+
+#refgoCopy {
+    width: 20%;
+    flex-direction: column;
+    
+}
+
+#refgoCopy p{
+    margin: 0;
+    font: 2vh MullerMedium;
 }
 
 #refgoClose{
     background: red;
-    box-shadow: 0 0 0 0.8vh #5c1616;
-}
-
-#refgoInvite {
-    width: 45%;
-    display: flex;
-    flex-direction: row;
+    box-shadow: inset 0 0 0 0.5vh #5c1616;
+    color: black;
+    font-weight: bold;
     align-items: center;
-    justify-content: center;
-    padding-top: 0 ;
-}
-
-#refgoInvite p{
-    margin: 0.6vh;
-    margin-top: 1.5vh;
+    width: 20%;
 }

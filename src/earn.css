@@ -9,6 +9,20 @@
     bottom: 0;
 }
 
+.Earn_Window {
+    width: 100%;
+    height: 78%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: 3vh 3vh 0 0;
+    bottom: 0;
+    color: white;
+    background: #151515;
+}
+
 .EarnClose button{
     width: 90%;
     height: 70%;
