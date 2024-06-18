@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ref.css'
 import boxIcon from './IMG/box.png';
 import znakLogo from './IMG/Znak.png';
@@ -13,8 +13,14 @@ import IlyaAvatar from './IMG/IlyaAvatar.png';
 import BoyarskiiAvatar from './IMG/BoyarskiiAvatar.png';
 
 const Ref = ({onClose}) => {
+    const [isClosingRefForAnim, setClosingRefForAnim] = useState(false);
+  
+    const handleCloseRefAnim = () => {
+        setClosingRefForAnim(true);
+    };
+  
     return (
-        <div className="Ref_Earn_Window">
+      <div className={`Ref_Window ${isClosingRefForAnim ? 'closing' : ''}`}>
             <div className="Ref_Earn_BoxBorder">
                 <div className='Ref_Earn_Box'>
                     <img src={boxIcon} alt='boxIcon' height={"60%"}/>
@@ -133,7 +139,7 @@ const Ref = ({onClose}) => {
                     <p>COPY</p>
                 </button>
             </div>
-            <button id='CloseDebug' onClick={onClose}>X</button>
+            <button id='CloseDebug' onClick={(event) => {onClose(event); handleCloseRefAnim(event); }}>X</button>
         </div>
     );
 };

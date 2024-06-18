@@ -128,9 +128,12 @@ function App() {
   };
 
   const handleCloseRef = () => {
-    setIsRefOpen(false);
     setisInviteLogoVisible(false);
     setIsLogoVisible(true);
+
+    setTimeout(() => {
+      setIsRefOpen(false);
+    }, 190);
   };
 
   const handleOpenEarn = () => {
@@ -140,9 +143,12 @@ function App() {
   };
 
   const handleCloseEarn = () => {
-    setIsEarnOpen(false);
-    setisEarnLogoVisible(false);
     setIsLogoVisible(true);
+    setisEarnLogoVisible(false);
+  
+    setTimeout(() => {
+      setIsEarnOpen(false);
+    }, 190);
   };
 
   return (

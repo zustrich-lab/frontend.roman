@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './earn.css'
 
 import gray_8nogIcon from './IMG/gray_8nog.png';
@@ -10,9 +10,15 @@ import Task_3 from './IMG/TaskIcon/task_3.png';
 import Task_4 from './IMG/TaskIcon/task_4.png';
 import Task_5 from './IMG/TaskIcon/task_5.png';
 
-const Earn = ({onClose}) => {
+const Earn = ({ onClose }) => {
+    const [isClosingEarnForAnim, setClosingEarnForAnim] = useState(false);
+  
+    const handleCloseEarnAnim = () => {
+        setClosingEarnForAnim(true);
+    };
+  
     return (
-        <div className="Earn_Window">
+      <div className={`Earn_Window ${isClosingEarnForAnim ? 'closing' : ''}`}>
 
             <div className="Ref_Earn_BoxBorder">
                 <div className='Ref_Earn_Box'>
@@ -98,7 +104,7 @@ const Earn = ({onClose}) => {
                 
             </div>
             
-            <button id='CloseDebug' onClick={onClose}>X</button>
+            <button id='CloseDebug' onClick={(event) => {onClose(event); handleCloseEarnAnim(event); }}>X</button>
             
         </div>
     );

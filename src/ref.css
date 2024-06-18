@@ -2,7 +2,7 @@
     user-select: none;
 }
 
-.Ref_Earn_Window {
+.Ref_Window {
     width: 100%;
     height: 78%;
     position: fixed;
@@ -225,4 +225,13 @@
 #refgoCopy p{
     margin: 0;
     font: 2vh MullerMedium;
+}
+
+.Ref_Window {
+    animation: slide-up 0.2s ease-out;
+}
+
+  
+.Ref_Window.closing {
+    animation: slide-down 0.2s ease-in;
 }
