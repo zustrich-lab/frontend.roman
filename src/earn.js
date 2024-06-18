@@ -4,11 +4,11 @@ import './earn.css'
 import gray_8nogIcon from './IMG/gray_8nog.png';
 import znakLogo from './IMG/Znak.png';
 
-import Task_1 from './IMG/task_1.png';
-import Task_2 from './IMG/task_2.png';
-import Task_3 from './IMG/task_3.png';
-import Task_4 from './IMG/task_4.png';
-import Task_5 from './IMG/task_5.png';
+import Task_1 from './IMG/TaskIcon/task_1.png';
+import Task_2 from './IMG/TaskIcon/task_2.png';
+import Task_3 from './IMG/TaskIcon/task_3.png';
+import Task_4 from './IMG/TaskIcon/task_4.png';
+import Task_5 from './IMG/TaskIcon/task_5.png';
 
 const Earn = ({onClose}) => {
     return (
@@ -53,7 +53,7 @@ const Earn = ({onClose}) => {
                             <p>ADD "BITCLIF" TO</p>
                             <p>NICKNAME</p>
                             <img src={Task_2} alt='Task_2' height={"35%"}/>
-                            <p>Name | Bitclif</p>
+                            <p id='littleEarn_p'>Name | Bitclif</p>
                         </div>
                     </div>
                     
@@ -64,7 +64,7 @@ const Earn = ({onClose}) => {
                                 <p>FRIENDS</p>
                             </div>
                             <div className='TaskIMG'>
-                                <img src={Task_3} alt='Task_3' height={"50%"}/>
+                                <img src={Task_3} alt='Task_3' height={"120%"}/>
                             </div>
                         </div>
                         <div id="BigTask" className="Task">
@@ -72,7 +72,7 @@ const Earn = ({onClose}) => {
                             <p>TELEGRAM</p>
                             <p>CHANNEL</p>
                             <img src={Task_4} alt='Task_4' height={"35%"}/>
-                                <p>BitclifGame CHANNEL</p>
+                                <p id='littleEarn_p'>BitclifGame CHANNEL</p>
                         </div>
                     </div>
 
@@ -90,16 +90,16 @@ const Earn = ({onClose}) => {
                             <p>FOLLOW US IN</p>
                             <p>TELEGRAM CHAT</p>
                             <img src={Task_4} alt='Task_4' height={"35%"}/>
-                                <p>BitclifGame CHAT</p>
+                                <p id='littleEarn_p'>BitclifGame CHAT</p>
                         </div>
                     </div>
 
                 </div>
                 
             </div>
-            <div className="EarnClose">
-                <button onClick={onClose}>Close</button>
-            </div>
+            
+            <button id='CloseDebug' onClick={onClose}>X</button>
+            
         </div>
     );
 };

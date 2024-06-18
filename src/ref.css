@@ -133,12 +133,12 @@
 }
 
 .refFrends{
-    height: 15%;
+    height: 16%;
     width: 90%;
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin-bottom: 1.5vh; 
+    margin-bottom: 1.8vh; 
 }
 
 .refFrends img{
@@ -180,6 +180,9 @@
 
 #Master_rank{color: #A513FF;}
 
+#Grandmaster_rank{color: #CD7F32;}
+
+
 .refthripleBTN{
     position: absolute;
     display: flex;
@@ -192,7 +195,7 @@
 }
 
 .refgo {
-    width: 55%;
+    width: 77%;
     height: 80%;
     border-radius: 1.5vh;
     box-shadow:inset 0 0 0 0.5vh #2D2D2D;
@@ -202,6 +205,10 @@
     align-items: center;
     justify-content: center;
     font: 3.5vh MullerMedium;
+}
+
+.refgo img{
+    filter: drop-shadow(2px 2px 3px rgba(0,0,0,50%));
 }
 
 .refgo p{
@@ -218,13 +225,4 @@
 #refgoCopy p{
     margin: 0;
     font: 2vh MullerMedium;
-}
-
-#refgoClose{
-    background: red;
-    box-shadow: inset 0 0 0 0.5vh #5c1616;
-    color: black;
-    font-weight: bold;
-    align-items: center;
-    width: 20%;
 }

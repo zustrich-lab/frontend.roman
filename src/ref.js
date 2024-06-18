@@ -113,8 +113,8 @@ const Ref = ({onClose}) => {
                             <img src={BoyarskiiAvatar} alt='BoyarskiiAvatar' height={"75%"}/>
                         </div>
                         <div className='refFrendsName'>
-                            <p>АНДРІЙ</p>
-                            <p id="Friends_rank">Advanced <span id="Advanced_rank"> ● </span></p>
+                            <p>BOYARSKIY</p>
+                            <p id="Friends_rank">Grandmaster <span id="Grandmaster_rank"> ● </span></p>
                         </div>
                         <div className='refFrendsIcon'>
                             <img src={boxIcon} alt='boxIcon' height={"65%"}/>
@@ -124,7 +124,6 @@ const Ref = ({onClose}) => {
                 </div>
             </div>
             <div className="refthripleBTN">
-                <button onClick={onClose} id='refgoClose'className="refgo">X</button>
                 <button className="refgo">
                     <p>INVITE </p>
                     <img src={inviteIcon} alt='inviteIcon' height={"110%"}/>
@@ -134,6 +133,7 @@ const Ref = ({onClose}) => {
                     <p>COPY</p>
                 </button>
             </div>
+            <button id='CloseDebug' onClick={onClose}>X</button>
         </div>
     );
 };
