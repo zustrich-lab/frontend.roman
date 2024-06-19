@@ -70,7 +70,10 @@
     position: absolute;
     top: 2vh;
     right: 2vh;
-    height: 6vh;
+    height: 15%;
+    display: flex;
+    align-items: start;
+    justify-content: end;
 }
 
 .Task_Border {
@@ -79,4 +82,8 @@
   
 .Task_Border.closing {
     animation: slide-down 0.2s ease-in;
+}
+
+.h1Div{
+    width: 70%;
 }

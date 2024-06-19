@@ -14,7 +14,9 @@ const TgChannelBord = ({onClose}) => {
     return (
         <div className={`Task_Border ${isClosingForAnim ? 'closing' : ''}`}>
             <div className="BackButtom" onClick={(event) => {onClose(event); handleCloseAnim(event); }}> <img src={BackButtom} alt='BackButtom'/> </div>
-            <h1>FOLLOW US IN TELEGRAM CHANNEL</h1>
+            <div className="h1Div">
+                <h1>FOLLOW US IN TELEGRAM CHANNEL</h1>
+            </div>
             <div className='NameChannelDiv'>
                 <img src={Icon} alt='Icon' id="TaskIcon"/>
                 <p>BifclifGame CHANNEL</p>
