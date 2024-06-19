@@ -12,17 +12,17 @@ import AndriiAvatar from './IMG/AndriiAvatar.png';
 import IlyaAvatar from './IMG/IlyaAvatar.png';
 import BoyarskiiAvatar from './IMG/BoyarskiiAvatar.png';
 
-const Ref = ({onClose}) => {
+const Ref = ({onClose, openBox}) => {
     const [isClosingRefForAnim, setClosingRefForAnim] = useState(false);
   
     const handleCloseRefAnim = () => {
         setClosingRefForAnim(true);
     };
-  
+
     return (
-      <div className={`Ref_Window ${isClosingRefForAnim ? 'closing' : ''}`}>
+        <div className={`Ref_Window ${isClosingRefForAnim ? 'closing' : ''}`}>
             <div className="Ref_Earn_BoxBorder">
-                <div className='Ref_Earn_Box'>
+                <div className='Ref_Earn_Box' onClick={openBox}>
                     <img src={boxIcon} alt='boxIcon' height={"60%"}/>
                 </div>
                 <div className='Ref_Earn_BoxTitle'>

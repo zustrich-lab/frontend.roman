@@ -17,6 +17,7 @@ import Shop from './shop';
 import Coindiv from './coin';
 import Ref from './ref';
 import Earn from './earn';
+import MysteryBox from './Mystery_Box';
 
 import MainLogo from './IMG/mainLogo.png';
 import InviteLogo from './IMG/inviteLogo.png';
@@ -44,6 +45,7 @@ function App() {
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isRefOpen, setIsRefOpen] = useState(false);
   const [isEarnOpen, setIsEarnOpen] = useState(false);
+  const [isBoxOpen, setisBoxOpen] = useState(false);
 
   const [isLogoVisible, setIsLogoVisible] = useState(true);
   const [isInviteLogoVisible, setisInviteLogoVisible] = useState(false);
@@ -113,6 +115,9 @@ function App() {
     }
   };
 
+  const handleCloseBox = () => {setisBoxOpen(false)};
+  const handleOpenBox = () => {setisBoxOpen(true)};
+
   const handleOpenShop = () => {
     setIsShopOpen(true);
   };
@@ -153,6 +158,12 @@ function App() {
 
   return (
       <body>
+      {isBoxOpen && (
+          <MysteryBox
+              onClose={handleCloseBox}
+          />
+      )}
+
       <div className="App">
         <div className = "info">
           <img src={Icon} alt="Icon" height={"55%"}/>
@@ -273,6 +284,7 @@ function App() {
       {isRefOpen && (
           <Ref
               onClose={handleCloseRef}
+              openBox={handleOpenBox}
           />
       )}
 
@@ -281,6 +293,8 @@ function App() {
               onClose={handleCloseEarn}
           />
       )}
+
+      
 
       </body>
   );
