@@ -10,15 +10,50 @@ import Task_3 from './IMG/TaskIcon/task_3.png';
 import Task_4 from './IMG/TaskIcon/task_4.png';
 import Task_5 from './IMG/TaskIcon/task_5.png';
 
+import TgChannelBord from './TaskJs/Tg_Channel';
+import TgChatBord from './TaskJs/Tg_Chat';
+import XBord from './TaskJs/X_Channel';
+
 const Earn = ({ onClose }) => {
     const [isClosingEarnForAnim, setClosingEarnForAnim] = useState(false);
   
     const handleCloseEarnAnim = () => {
         setClosingEarnForAnim(true);
     };
+
+    const [Tg_Channel_Const, Set_Tg_Channel] = useState(false);
+    const Tg_Channel_Open = () => {Set_Tg_Channel(true)};
+    const Tg_Channel_Close = () => {setTimeout(() => {Set_Tg_Channel(false);}, 190);};
+
+    const [Tg_Chat_Const, Set_Tg_Chat] = useState(false);
+    const Tg_Chat_Open = () => {Set_Tg_Chat(true)};
+    const Tg_Chat_Close = () => {setTimeout(() => {Set_Tg_Chat(false);}, 190);};
+
+    const [X_Const, set_X_Chat] = useState(false);
+    const X_Open = () => {set_X_Chat(true)};
+    const X_Close = () => {setTimeout(() => {set_X_Chat(false);}, 190);};
   
     return (
+
       <div className={`Earn_Window ${isClosingEarnForAnim ? 'closing' : ''}`}>
+
+            {Tg_Channel_Const && (
+                <TgChannelBord
+                    onClose={Tg_Channel_Close}
+                />
+            )}
+
+            {Tg_Chat_Const && (
+                <TgChatBord
+                    onClose={Tg_Chat_Close}
+                />
+            )}
+
+            {X_Const && (
+                <XBord
+                    onClose={X_Close}
+                />
+            )}
 
             <div className="Ref_Earn_BoxBorder">
                 <div className='Ref_Earn_Box'>
@@ -73,7 +108,7 @@ const Earn = ({ onClose }) => {
                                 <img src={Task_3} alt='Task_3' height={"120%"}/>
                             </div>
                         </div>
-                        <div id="BigTask" className="Task">
+                        <div id="BigTask" className="Task" onClick={Tg_Channel_Open}>
                             <p>FOLLOW US IN</p>
                             <p>TELEGRAM</p>
                             <p>CHANNEL</p>
@@ -83,7 +118,7 @@ const Earn = ({ onClose }) => {
                     </div>
 
                     <div className="TaskBorder">
-                        <div className="Task">
+                        <div className="Task" onClick={X_Open}>
                             <div className='TaskText'>
                                 <p>FOLLOW US</p>
                                 <p>IN X</p>
@@ -92,7 +127,7 @@ const Earn = ({ onClose }) => {
                                 <img id="x"src={Task_5} alt='Task_5' height={"90%"}/>
                             </div>
                         </div>
-                        <div id="BigTask" className="Task">
+                        <div id="BigTask" className="Task" onClick={Tg_Chat_Open}>
                             <p>FOLLOW US IN</p>
                             <p>TELEGRAM CHAT</p>
                             <img src={Task_4} alt='Task_4' height={"35%"}/>

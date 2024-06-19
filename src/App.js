@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-import Icon from './IMG/logo.png';
-import avatar from './IMG/avatar.png';
+import avatar from './IMG/Avatars/avatar.png';
 import ink from './IMG/ink.png';
-
-import inviteIcon from './IMG/LowerIcon/Invite_Icon.png';
-import lootIcon from './IMG/LowerIcon/Loot_Icon.png';
-import p2eIcon from './IMG/LowerIcon/P2E_Icon.png';
-import shopIcon from './IMG/LowerIcon/Shop_Icon.png';
 
 import earnIcon from './IMG/earn.png';
 
@@ -19,9 +13,15 @@ import Ref from './ref';
 import Earn from './earn';
 import MysteryBox from './Mystery_Box';
 
-import MainLogo from './IMG/mainLogo.png';
-import InviteLogo from './IMG/inviteLogo.png';
-import EarnLogo from './IMG/earnLogo.png';
+import MainLogo   from './IMG/All_Logo/mainLogo.png';
+import InviteLogo from './IMG/All_Logo/inviteLogo.png';
+import EarnLogo   from './IMG/All_Logo/earnLogo.png';
+import Logo       from './IMG/All_Logo/bitclifLogo.png';
+
+import inviteIcon from './IMG/LowerIcon/Invite_Icon.png';
+import lootIcon   from './IMG/LowerIcon/Loot_Icon.png';
+import p2eIcon    from './IMG/LowerIcon/P2E_Icon.png';
+import shopIcon   from './IMG/LowerIcon/Shop_Icon.png';
 
 function App() {
 
@@ -158,6 +158,7 @@ function App() {
 
   return (
       <body>
+        
       {isBoxOpen && (
           <MysteryBox
               onClose={handleCloseBox}
@@ -166,7 +167,7 @@ function App() {
 
       <div className="App">
         <div className = "info">
-          <img src={Icon} alt="Icon" height={"55%"}/>
+          <img src={Logo} alt="Logo" height={"55%"}/>
           <p> NAME </p>
           <img id="pngavatar"src={avatar} alt="Bifclif" height={"70%"}/>
         </div>
@@ -293,9 +294,6 @@ function App() {
               onClose={handleCloseEarn}
           />
       )}
-
-      
-
       </body>
   );
 }
