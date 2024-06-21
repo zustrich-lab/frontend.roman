@@ -99,9 +99,9 @@
 
 
 .Earn_Window {
-    animation: slide-up 0.2s ease-out;
+    animation: rotate-start 0.4s;
 }
   
 .Earn_Window.closing {
-    animation: slide-down 0.2s ease-in;
+    animation: rotate-end 0.4s;
 }

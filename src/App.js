@@ -51,7 +51,6 @@ function App() {
   const [isInviteLogoVisible, setisInviteLogoVisible] = useState(false);
   const [isEarnLogoVisible, setisEarnLogoVisible] = useState(false);
 
-
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
@@ -115,6 +114,10 @@ function App() {
     }
   };
 
+  const [isClosingAppForAnim, setClosingAppForAnim] = useState(false);
+  const handleCloseAppAnim = () => {setClosingAppForAnim(true);};
+  const handleOpenAppAnim = () => {setClosingAppForAnim(false);};
+
   const handleCloseBox = () => {setisBoxOpen(false)};
   const handleOpenBox = () => {setisBoxOpen(true)};
 
@@ -130,35 +133,40 @@ function App() {
     setIsRefOpen(true);
     setisInviteLogoVisible(true);
     setIsLogoVisible(false);
+    handleCloseAppAnim();
   };
 
   const handleCloseRef = () => {
     setisInviteLogoVisible(false);
     setIsLogoVisible(true);
+    handleOpenAppAnim();
 
     setTimeout(() => {
       setIsRefOpen(false);
-    }, 190);
+    }, 200);
   };
 
   const handleOpenEarn = () => {
     setIsEarnOpen(true);
     setisEarnLogoVisible(true);
     setIsLogoVisible(false);
+    handleCloseAppAnim();
   };
 
   const handleCloseEarn = () => {
     setIsLogoVisible(true);
     setisEarnLogoVisible(false);
-  
+    handleOpenAppAnim();
+
     setTimeout(() => {
       setIsEarnOpen(false);
-    }, 190);
+    }, 200);
   };
 
+
   return (
-      <body>
-        
+    <body>
+
       {isBoxOpen && (
           <MysteryBox
               onClose={handleCloseBox}
@@ -195,7 +203,8 @@ function App() {
           />
 
         </div>
-        <div className = "main">
+        <div className='BackGround_Div'></div>
+        <div className={`main ${isClosingAppForAnim ? 'closing' : ''}`}>
           <div className="mainInfo">
             <div className="BorderMainInfo">
               <div id="left_thriple" className="tripleBox">
@@ -294,7 +303,7 @@ function App() {
               onClose={handleCloseEarn}
           />
       )}
-      </body>
+    </body>
   );
 }
 export default App;

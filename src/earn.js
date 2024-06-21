@@ -16,10 +16,7 @@ import XBord from './TaskJs/X_Channel';
 
 const Earn = ({ onClose }) => {
     const [isClosingEarnForAnim, setClosingEarnForAnim] = useState(false);
-  
-    const handleCloseEarnAnim = () => {
-        setClosingEarnForAnim(true);
-    };
+    const handleCloseEarnAnim = () => {setClosingEarnForAnim(true);};
 
     const [Tg_Channel_Const, Set_Tg_Channel] = useState(false);
     const Tg_Channel_Open = () => {Set_Tg_Channel(true)};

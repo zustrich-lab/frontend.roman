@@ -63,9 +63,8 @@ body {
   justify-content: space-between;
   flex-direction: column;
   border-radius: 3vh 3vh 0 0;
-  box-shadow: 0 -2px 0 #f6ff82,
-              0 0 4px black;
   background: #151515;
+  z-index: 1;
 }
 
 .mainInfo{
@@ -229,6 +228,18 @@ body {
   margin: 0;
 }
 
+.BackGround_Div {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 78%;
+  border-radius: 3vh 3vh 0 0;
+  box-shadow: 0 -2px 0 #f6ff82,
+                  0 0 4px black;
+  background: #151515;
+  z-index: 0;
+}
+
 #nonBold{font-family: MullerLight; color: lightgray;}
 
 #odstup{margin-right: auto;}
@@ -272,21 +283,13 @@ body {
 }
 
 @keyframes slide-down {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(100%);
-  }
+  from {transform: translateY(0);}
+  to   {transform: translateY(100%);}
 }
 
 @keyframes slide-up {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-      transform: translateY(0);
-    }
+  from {transform: translateY(100%);}
+  to   {transform: translateY(0);}
 }
 
 #CloseDebug{
@@ -305,4 +308,40 @@ body {
   align-items: center;
   justify-content: center;
   font: 2vh MullerMedium;
+}
+
+
+@keyframes rotate-end {
+  from {
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    opacity: 1;
+    
+  }
+  to {
+    transform-style: preserve-3d;
+    transform: rotateY(-90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes rotate-start {
+  from {
+    transform-style: preserve-3d;
+    transform: rotateY(-90deg);
+    opacity: 0;  
+  }
+  to {
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.main {
+  animation: rotate-start 0.4s;
+}
+
+.main.closing {
+  animation: rotate-end 0.4s;
 }
