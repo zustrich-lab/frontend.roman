@@ -104,7 +104,7 @@ body {
 }
 
 .tripleBox p{
-  margin: 3px;
+  margin: 0.5vh;
   font: 2vh Muller;
   white-space: nowrap;
 }
@@ -252,24 +252,22 @@ body {
 
 #pngavatar{margin-right: 4vw; margin-top: 1.6vh; margin-left: 2vw;}
 
-@font-face {
-  font-family: Muller;
-  src: url(/src/fonts/MullerRegular.ttf) format('truetype');
-}
-
-@font-face {
-  font-family: MullerLight;
-  src: url(/src/fonts/MullerLight.ttf) format('truetype');
-}
-
-@font-face {
-  font-family: MullerBold;
-  src: url(/src/fonts/MullerBlack.ttf) format('truetype');
-}
-
-@font-face {
-  font-family: MullerMedium;
-  src: url(/src/fonts/MullerMedium.ttf) format('truetype');
+#CloseDebug{
+  background: red;
+  box-shadow: inset 0 0 0 0.3vh #5c1616;
+  color: black;
+  font-weight: bold;
+  border-radius: 3vh;
+  align-items: center;
+  width: 4vh;
+  height: 4vh;
+  position: absolute;
+  left: 1vw;
+  bottom: 79vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 2vh MullerMedium;
 }
 
 .fade-out {
@@ -291,25 +289,6 @@ body {
   from {transform: translateY(100%);}
   to   {transform: translateY(0);}
 }
-
-#CloseDebug{
-  background: red;
-  box-shadow: inset 0 0 0 0.3vh #5c1616;
-  color: black;
-  font-weight: bold;
-  border-radius: 3vh;
-  align-items: center;
-  width: 4vh;
-  height: 4vh;
-  position: absolute;
-  left: 1vw;
-  bottom: 79vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font: 2vh MullerMedium;
-}
-
 
 @keyframes rotate-end {
   from {
@@ -339,9 +318,29 @@ body {
 }
 
 .main {
-  animation: rotate-start 0.4s;
+  animation: rotate-start 0.3s;
 }
 
 .main.closing {
-  animation: rotate-end 0.4s;
+  animation: rotate-end 0.3s;
+}
+
+@font-face {
+  font-family: Muller;
+  src: url(/src/fonts/MullerRegular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: MullerLight;
+  src: url(/src/fonts/MullerLight.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: MullerBold;
+  src: url(/src/fonts/MullerBlack.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: MullerMedium;
+  src: url(/src/fonts/MullerMedium.ttf) format('truetype');
 }

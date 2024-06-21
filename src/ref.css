@@ -228,10 +228,10 @@
 }
 
 .Ref_Window {
-    animation: rotate-start 0.4s;
+    animation: rotate-start 0.3s;
 }
 
   
 .Ref_Window.closing {
-    animation: rotate-end 0.4s;
+    animation: rotate-end 0.3s;
 }

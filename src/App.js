@@ -143,7 +143,7 @@ function App() {
 
     setTimeout(() => {
       setIsRefOpen(false);
-    }, 200);
+    }, 150);
   };
 
   const handleOpenEarn = () => {
@@ -160,7 +160,7 @@ function App() {
 
     setTimeout(() => {
       setIsEarnOpen(false);
-    }, 200);
+    }, 150);
   };
 
 
