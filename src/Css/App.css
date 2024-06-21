@@ -83,7 +83,7 @@ body {
   align-items: center;
   justify-content: space-evenly; 
   border-radius: 3vh;
-  border: 2px;
+  border: 0.2vh;
   border-style: solid;
   border-color: #323232;
   box-shadow: 0 0 15px -2px black;
@@ -292,38 +292,33 @@ body {
 
 @keyframes rotate-end {
   from {
-    transform-style: preserve-3d;
-    transform: rotateY(0deg);
-    opacity: 1;
-    
-  }
-  to {
-    transform-style: preserve-3d;
-    transform: rotateY(-90deg);
-    opacity: 0;
-  }
+        transform-style: preserve-3d;
+        transform: rotateY(0deg);
+        opacity: 1;}
+  to   {
+        transform-style: preserve-3d;
+        transform: rotateY(-90deg);
+        opacity: 0;}
 }
 
 @keyframes rotate-start {
   from {
-    transform-style: preserve-3d;
-    transform: rotateY(-90deg);
-    opacity: 0;  
-  }
-  to {
-    transform-style: preserve-3d;
-    transform: rotateY(0deg);
-    opacity: 1;
-  }
+        transform-style: preserve-3d;
+        transform: rotateY(-90deg);
+        opacity: 0;}
+  to   {
+        transform-style: preserve-3d;
+        transform: rotateY(0deg);
+        opacity: 1;}
 }
 
-.main {
-  animation: rotate-start 0.3s;
-}
+.main { animation: rotate-start 0.3s;}
 
-.main.closing {
-  animation: rotate-end 0.3s;
-}
+.main.closing { animation: rotate-end 0.3s;}
+
+.Ref_Earn_Shop_Window { animation: rotate-start 0.3s;}
+
+.Ref_Earn_Shop_Window.closing { animation: rotate-end 0.3s;}
 
 @font-face {
   font-family: Muller;
@@ -336,11 +331,10 @@ body {
 }
 
 @font-face {
-  font-family: MullerBold;
-  src: url(/src/fonts/MullerBlack.ttf) format('truetype');
-}
-
-@font-face {
   font-family: MullerMedium;
   src: url(/src/fonts/MullerMedium.ttf) format('truetype');
+}
+
+button{
+  border: none;
 }

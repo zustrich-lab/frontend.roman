@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import './earn.css'
+import '../Css/earn.css'
 
-import gray_8nogIcon from './IMG/gray_8nog.png';
-import znakLogo from './IMG/Znak.png';
+import gray_8nogIcon from '../IMG/gray_8nog.png';
+import znakLogo from '../IMG/Znak.png';
 
-import Task_1 from './IMG/TaskIcon/task_1.png';
-import Task_2 from './IMG/TaskIcon/task_2.png';
-import Task_3 from './IMG/TaskIcon/task_3.png';
-import Task_4 from './IMG/TaskIcon/task_4.png';
-import Task_5 from './IMG/TaskIcon/task_5.png';
+import Task_1 from '../IMG/TaskIcon/task_1.png';
+import Task_2 from '../IMG/TaskIcon/task_2.png';
+import Task_3 from '../IMG/TaskIcon/task_3.png';
+import Task_4 from '../IMG/TaskIcon/task_4.png';
+import Task_5 from '../IMG/TaskIcon/task_5.png';
 
-import TgChannelBord from './TaskJs/Tg_Channel';
-import TgChatBord from './TaskJs/Tg_Chat';
-import XBord from './TaskJs/X_Channel';
+import TgChannelBord from '../TaskJs/Tg_Channel';
+import TgChatBord from '../TaskJs/Tg_Chat';
+import XBord from '../TaskJs/X_Channel';
 
 const Earn = ({ onClose }) => {
+    
     const [isClosingEarnForAnim, setClosingEarnForAnim] = useState(false);
     const handleCloseEarnAnim = () => {setClosingEarnForAnim(true);};
 
@@ -32,7 +33,7 @@ const Earn = ({ onClose }) => {
   
     return (
 
-      <div className={`Earn_Window ${isClosingEarnForAnim ? 'closing' : ''}`}>
+      <div className={`Ref_Earn_Shop_Window ${isClosingEarnForAnim ? 'closing' : ''}`} id="EarnWindow">
 
             {Tg_Channel_Const && (
                 <TgChannelBord

@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
-import './ref.css'
-import boxIcon from './IMG/box.png';
-import znakLogo from './IMG/Znak.png';
-import s from './IMG/s.png'
-import ink from './IMG/ink.png';
-import inviteIcon from './IMG/LowerIcon/Invite_Icon.png';
-import FriendAvatar from './IMG/Avatars/ArturAvatar.png';
-import DimaAvatar from './IMG/Avatars/DimaAvatar.png';
-import NazarAvatar from './IMG/Avatars/NazarAvatar.png';
-import AndriiAvatar from './IMG/Avatars/AndriiAvatar.png';
-import IlyaAvatar from './IMG/Avatars/IlyaAvatar.png';
-import BoyarskiiAvatar from './IMG/Avatars/BoyarskiiAvatar.png';
+import '../Css/ref.css'
+import boxIcon from '../IMG/box.png';
+import znakLogo from '../IMG/Znak.png';
+import s from '../IMG/s.png'
+import ink from '../IMG/ink.png';
+import inviteIcon from '../IMG/LowerIcon/Invite_Icon.png';
+import FriendAvatar from '../IMG/Avatars/ArturAvatar.png';
+import DimaAvatar from '../IMG/Avatars/DimaAvatar.png';
+import NazarAvatar from '../IMG/Avatars/NazarAvatar.png';
+import AndriiAvatar from '../IMG/Avatars/AndriiAvatar.png';
+import IlyaAvatar from '../IMG/Avatars/IlyaAvatar.png';
+import BoyarskiiAvatar from '../IMG/Avatars/BoyarskiiAvatar.png';
 
 const Ref = ({onClose, openBox}) => {
+    
     const [isClosingRefForAnim, setClosingRefForAnim] = useState(false);
-  
-    const handleCloseRefAnim = () => {
-        setClosingRefForAnim(true);
-    };
+    const handleCloseRefAnim = () => {setClosingRefForAnim(true);};
 
     return (
-        <div className={`Ref_Window ${isClosingRefForAnim ? 'closing' : ''}`}>
+        <div className={`Ref_Earn_Shop_Window ${isClosingRefForAnim ? 'closing' : ''}`}>
             <div className="Ref_Earn_BoxBorder">
                 <div className='Ref_Earn_Box' onClick={openBox}>
                     <img src={boxIcon} alt='boxIcon' height={"60%"}/>

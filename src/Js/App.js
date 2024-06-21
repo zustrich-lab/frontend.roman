@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import '../Css/App.css';
 
-import avatar from './IMG/Avatars/avatar.png';
-import ink from './IMG/ink.png';
+import avatar from '../IMG/Avatars/avatar.png';
+import ink from '../IMG/ink.png';
 
-import earnIcon from './IMG/earn.png';
+import earnIcon from '../IMG/earn.png';
 
 import ProgressBar from './ProgressBar';
 import Shop from './shop';
@@ -13,35 +13,27 @@ import Ref from './ref';
 import Earn from './earn';
 import MysteryBox from './Mystery_Box';
 
-import MainLogo   from './IMG/All_Logo/mainLogo.png';
-import InviteLogo from './IMG/All_Logo/inviteLogo.png';
-import EarnLogo   from './IMG/All_Logo/earnLogo.png';
-import Logo       from './IMG/All_Logo/bitclifLogo.png';
+import MainLogo   from '../IMG/All_Logo/mainLogo.png';
+import InviteLogo from '../IMG/All_Logo/inviteLogo.png';
+import ShopLogo from '../IMG/All_Logo/shopLogo.png';
+import EarnLogo   from '../IMG/All_Logo/earnLogo.png';
+import Logo       from '../IMG/All_Logo/bitclifLogo.png';
 
-import inviteIcon from './IMG/LowerIcon/Invite_Icon.png';
-import lootIcon   from './IMG/LowerIcon/Loot_Icon.png';
-import p2eIcon    from './IMG/LowerIcon/P2E_Icon.png';
-import shopIcon   from './IMG/LowerIcon/Shop_Icon.png';
+import inviteIcon from '../IMG/LowerIcon/Invite_Icon.png';
+import lootIcon   from '../IMG/LowerIcon/Loot_Icon.png';
+import p2eIcon    from '../IMG/LowerIcon/P2E_Icon.png';
+import shopIcon   from '../IMG/LowerIcon/Shop_Icon.png';
 
 function App() {
 
   const [clicks, setClicks] = useState(0);
-  const [coins, setCoins] = useState(0);
-
-  const [upgradeCost, setUpgradeCost] = useState(10);
-  const [upgradeLevel, setUpgradeLevel] = useState(1);
-  const [coinPerClick, setCoinPerClick] = useState(1);
-
-  const [upgradeCostEnergy, setUpgradeCostEnergy] = useState(100);
-  const [upgradeLevelEnergy, setUpgradeLevelEnergy] = useState(1);
-  const [clickLimit, setClickLimit] = useState(100);
   const [energyNow, setEnergyNow] = useState(100);
 
-  const [upgradeCostEnergyTime, setUpgradeCostEnergyTime] = useState(200);
-  const [valEnergyTime, setvalEnergyTime] = useState(0.5);
-  const [upgradeEnergyTimeLevel, setupgradeEnergyTimeLevel] = useState(1);
-  const [time, setTime] = useState(2000);
+  const coinPerClick = 1;
+  const clickLimit = 100;
+  const time= 2000;
 
+  const [isClosingAppForAnim, setClosingAppForAnim] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
   const [isRefOpen, setIsRefOpen] = useState(false);
   const [isEarnOpen, setIsEarnOpen] = useState(false);
@@ -50,6 +42,8 @@ function App() {
   const [isLogoVisible, setIsLogoVisible] = useState(true);
   const [isInviteLogoVisible, setisInviteLogoVisible] = useState(false);
   const [isEarnLogoVisible, setisEarnLogoVisible] = useState(false);
+  const [isEarnShopVisible, setisShopLogoVisible] = useState(false);
+
 
   useEffect(() => {
     if (window.Telegram.WebApp) {
@@ -62,7 +56,6 @@ function App() {
   //Нажатие на монету
   const handleCoinClick = () => {
     if (energyNow >= coinPerClick) {
-      setCoins(coins + coinPerClick);
       setClicks(clicks + 1);
       setEnergyNow(energyNow - coinPerClick);     
     }
@@ -83,38 +76,7 @@ function App() {
     return () => clearInterval(interval);
   }, [clickLimit, time]);
 
-  //Прокачка монет за тап
-  const CoinPerClickUpgrade = () => {
-    if (coins >= upgradeCost) {
-      setCoins(coins - upgradeCost);
-      setCoinPerClick(coinPerClick + 1);
-      setUpgradeLevel(upgradeLevel + 1);
-      setUpgradeCost(Math.floor(upgradeCost * 1.5));
-    }
-  };
-
-  //Прокачка лимита енергиї
-  const EnergyUpgrade = () => {
-    if (coins >= upgradeCostEnergy) {
-      setCoins(coins - upgradeCostEnergy);
-      setClickLimit(clickLimit * 2);
-      setUpgradeLevelEnergy(upgradeLevelEnergy + 1);
-      setUpgradeCostEnergy(Math.floor(upgradeCostEnergy * 1.5));
-    }
-  };
-
-  //Прокачка востановления енергії
-  const EnergyTimeUpgrade = () => {
-    if (coins >= upgradeCostEnergyTime) {
-      setCoins(coins - upgradeCostEnergyTime);
-      setvalEnergyTime(valEnergyTime * 2);
-      setupgradeEnergyTimeLevel(upgradeEnergyTimeLevel + 1);
-      setTime(time / 2);
-      setUpgradeCostEnergyTime(Math.floor(upgradeCostEnergyTime * 1.5));
-    }
-  };
-
-  const [isClosingAppForAnim, setClosingAppForAnim] = useState(false);
+  
   const handleCloseAppAnim = () => {setClosingAppForAnim(true);};
   const handleOpenAppAnim = () => {setClosingAppForAnim(false);};
 
@@ -123,10 +85,16 @@ function App() {
 
   const handleOpenShop = () => {
     setIsShopOpen(true);
+    setisShopLogoVisible(true);
+    setIsLogoVisible(false);
+    handleCloseAppAnim();
   };
 
   const handleCloseShop = () => {
-    setIsShopOpen(false);
+    setisShopLogoVisible(false);
+    setIsLogoVisible(true);
+    handleOpenAppAnim();
+    setTimeout(() => { setIsShopOpen(false); }, 150);
   };
 
   const handleOpenRef = () => {
@@ -140,10 +108,7 @@ function App() {
     setisInviteLogoVisible(false);
     setIsLogoVisible(true);
     handleOpenAppAnim();
-
-    setTimeout(() => {
-      setIsRefOpen(false);
-    }, 150);
+    setTimeout(() => { setIsRefOpen(false); }, 150);
   };
 
   const handleOpenEarn = () => {
@@ -157,10 +122,7 @@ function App() {
     setIsLogoVisible(true);
     setisEarnLogoVisible(false);
     handleOpenAppAnim();
-
-    setTimeout(() => {
-      setIsEarnOpen(false);
-    }, 150);
+    setTimeout(() => { setIsEarnOpen(false); }, 150);
   };
 
 
@@ -183,23 +145,30 @@ function App() {
 
         <img
             src={MainLogo}
-            alt="log"
+            alt="MainLogo"
             height={"95%"}
             className={isLogoVisible ? 'fade-in' : 'fade-out'}           
           />
 
           <img
             src={InviteLogo}
-            alt="log"
+            alt="InviteLogo"
             height={"85%"}
             className={isInviteLogoVisible ? 'fade-in' : 'fade-out'}           
           />
 
           <img
             src={EarnLogo}
-            alt="log"
+            alt="EarnLogo"
             height={"85%"}
             className={isEarnLogoVisible ? 'fade-in' : 'fade-out'}           
+          />
+
+          <img
+            src={ShopLogo}
+            alt="ShopLogo"
+            height={"75%"}
+            className={isEarnShopVisible ? 'fade-in' : 'fade-out'}           
           />
 
         </div>
@@ -270,24 +239,8 @@ function App() {
       </div>
 
       {isShopOpen && (
-          <Shop
-              coins={coins}
-              coinPerClick={coinPerClick}
-              upgradeCost={upgradeCost}
-              upgradeLevel={upgradeLevel}
-
-              clickLimit={clickLimit}
-              upgradeCostEnergy={upgradeCostEnergy}
-              upgradeLevelEnergy={upgradeLevelEnergy}
-
-              upgradeCostEnergyTime={upgradeCostEnergyTime}
-              valEnergyTime={valEnergyTime}
-              upgradeEnergyTimeLevel={upgradeEnergyTimeLevel}
-
+          <Shop        
               onClose={handleCloseShop}
-              onUpgrade={CoinPerClickUpgrade}
-              onUpgradeEnergy={EnergyUpgrade}
-              onUpgradeEnergyTime={EnergyTimeUpgrade}
           />
       )}
 

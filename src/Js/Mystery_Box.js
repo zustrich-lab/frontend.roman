@@ -1,6 +1,6 @@
 import React from 'react';
-import './Mystery_Box.css';
-import MysteryImg from './IMG/MisteryBox.png';
+import '../Css/Mystery_Box.css';
+import MysteryImg from '../IMG/MisteryBox.png';
 
 const MysteryBox = ({onClose}) => {
     

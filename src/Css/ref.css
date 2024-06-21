@@ -2,7 +2,7 @@
     user-select: none;
 }
 
-.Ref_Window {
+.Ref_Earn_Shop_Window {
     width: 100%;
     height: 78%;
     position: fixed;
@@ -219,19 +219,9 @@
 #refgoCopy {
     width: 20%;
     flex-direction: column;
-    
 }
 
 #refgoCopy p{
     margin: 0;
     font: 2vh MullerMedium;
-}
-
-.Ref_Window {
-    animation: rotate-start 0.3s;
-}
-
-  
-.Ref_Window.closing {
-    animation: rotate-end 0.3s;
 }
