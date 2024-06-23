@@ -146,9 +146,9 @@ function App() {
   };
 
   const handleCheckboxChange = (event) => {
-    const isLootVisible = !event.target.checked;
-    setisLootLogoVisible(isLootVisible); 
-    setisCraftLogoVisible(!isLootVisible); 
+    const LogoVisible = !event.target.checked;
+    setisLootLogoVisible(LogoVisible); 
+    setisCraftLogoVisible(!LogoVisible); 
   };
 
   return (
@@ -183,13 +183,11 @@ function App() {
           <img  src={LootLogo}
                 alt="LootLogo"
                 height={"85%"}
-                id='LootID'
                 className={isLootLogoVisible ? 'fade-in' : 'fade-out'}/>
 
           <img  src={CraftLogo}
                 alt="CraftLogo"
-                height={"85%"}
-                id='CraftID'
+                height={"90%"}
                 className={isCraftLogoVisible ? 'fade-in' : 'fade-out'}/>
 
         </div>
@@ -289,7 +287,7 @@ function App() {
               handleCheckboxChange={handleCheckboxChange}
           />
         )}
-        
+
       </div>
   );
 }

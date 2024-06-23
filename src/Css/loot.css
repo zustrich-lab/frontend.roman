@@ -1,3 +1,12 @@
+#LootWindow{
+  font: 10vh Muller;
+  justify-content: space-between;
+}
+
+#LootWindow p{
+  margin: 0;
+}
+
 .checkbox {
     width: 90vw;
     height: 8vh;
