@@ -12,13 +12,15 @@ import Coindiv from './coin';
 import Ref from './ref';
 import Earn from './earn';
 import MysteryBox from './Mystery_Box';
+import Loot from './loot'
 
 import MainLogo   from '../IMG/All_Logo/mainLogo.png';
 import InviteLogo from '../IMG/All_Logo/inviteLogo.png';
-import ShopLogo from '../IMG/All_Logo/shopLogo.png';
+import ShopLogo   from '../IMG/All_Logo/shopLogo.png';
+import LootLogo   from '../IMG/All_Logo/lootLogo.png';
 import EarnLogo   from '../IMG/All_Logo/earnLogo.png';
+import CraftLogo  from '../IMG/All_Logo/craftLogo.png';
 import Logo       from '../IMG/All_Logo/bitclifLogo.png';
-
 import inviteIcon from '../IMG/LowerIcon/Invite_Icon.png';
 import lootIcon   from '../IMG/LowerIcon/Loot_Icon.png';
 import p2eIcon    from '../IMG/LowerIcon/P2E_Icon.png';
@@ -38,11 +40,14 @@ function App() {
   const [isRefOpen, setIsRefOpen] = useState(false);
   const [isEarnOpen, setIsEarnOpen] = useState(false);
   const [isBoxOpen, setisBoxOpen] = useState(false);
+  const [isLootOpen, setisLootOpen] = useState(false);
 
   const [isLogoVisible, setIsLogoVisible] = useState(true);
   const [isInviteLogoVisible, setisInviteLogoVisible] = useState(false);
   const [isEarnLogoVisible, setisEarnLogoVisible] = useState(false);
-  const [isEarnShopVisible, setisShopLogoVisible] = useState(false);
+  const [isShopLogoVisible, setisShopLogoVisible] = useState(false);
+  const [isLootLogoVisible, setisLootLogoVisible] = useState(false);
+  const [isCraftLogoVisible, setisCraftLogoVisible] = useState(false);
 
 
   useEffect(() => {
@@ -125,16 +130,28 @@ function App() {
     setTimeout(() => { setIsEarnOpen(false); }, 150);
   };
 
+  const handleOpenLoot = () => {
+    setisLootLogoVisible(true);
+    setIsLogoVisible(false);
+    setisLootOpen(true);
+    handleCloseAppAnim();
+  };
+
+  const handleCloseLoot = () => {
+    setisLootLogoVisible(false);
+    setIsLogoVisible(true);
+    handleOpenAppAnim();
+    setisCraftLogoVisible(false);
+    setTimeout(() => { setisLootOpen(false); }, 150);
+  };
+
+  const handleCheckboxChange = (event) => {
+    const isLootVisible = !event.target.checked;
+    setisLootLogoVisible(isLootVisible); 
+    setisCraftLogoVisible(!isLootVisible); 
+  };
 
   return (
-    <body>
-
-      {isBoxOpen && (
-          <MysteryBox
-              onClose={handleCloseBox}
-          />
-      )}
-
       <div className="App">
         <div className = "info">
           <img src={Logo} alt="Logo" height={"55%"}/>
@@ -143,33 +160,37 @@ function App() {
         </div>
         <div className="logo">
 
-        <img
-            src={MainLogo}
-            alt="MainLogo"
-            height={"95%"}
-            className={isLogoVisible ? 'fade-in' : 'fade-out'}           
-          />
+          <img  src={MainLogo}
+                alt="MainLogo"
+                height={"95%"}
+                className={isLogoVisible ? 'fade-in' : 'fade-out'}/>
 
-          <img
-            src={InviteLogo}
-            alt="InviteLogo"
-            height={"85%"}
-            className={isInviteLogoVisible ? 'fade-in' : 'fade-out'}           
-          />
+          <img  src={InviteLogo}
+                alt="InviteLogo"
+                height={"85%"}
+                className={isInviteLogoVisible ? 'fade-in' : 'fade-out'}/>
 
-          <img
-            src={EarnLogo}
-            alt="EarnLogo"
-            height={"85%"}
-            className={isEarnLogoVisible ? 'fade-in' : 'fade-out'}           
-          />
+          <img  src={EarnLogo} 
+                alt="EarnLogo"
+                height={"85%"}
+                className={isEarnLogoVisible ? 'fade-in' : 'fade-out'}/>
 
-          <img
-            src={ShopLogo}
-            alt="ShopLogo"
-            height={"75%"}
-            className={isEarnShopVisible ? 'fade-in' : 'fade-out'}           
-          />
+          <img  src={ShopLogo}
+                alt="ShopLogo"
+                height={"85%"}
+                className={isShopLogoVisible ? 'fade-in' : 'fade-out'}/>
+
+          <img  src={LootLogo}
+                alt="LootLogo"
+                height={"85%"}
+                id='LootID'
+                className={isLootLogoVisible ? 'fade-in' : 'fade-out'}/>
+
+          <img  src={CraftLogo}
+                alt="CraftLogo"
+                height={"85%"}
+                id='CraftID'
+                className={isCraftLogoVisible ? 'fade-in' : 'fade-out'}/>
 
         </div>
         <div className='BackGround_Div'></div>
@@ -222,7 +243,7 @@ function App() {
                   <p>INVITE</p>
                 </div>
                 <div className='BTN'>
-                  <div  className="BTNLOW">
+                  <div  className="BTNLOW" onClick={handleOpenLoot}>
                     <img src={lootIcon} height={"90%"} alt='lootIcon'/>
                   </div>
                   <p>LOOT</p>
@@ -236,27 +257,40 @@ function App() {
             </div>
           </div>
         </div>
-      </div>
 
-      {isShopOpen && (
+        {isBoxOpen && (
+            <MysteryBox
+              onClose={handleCloseBox}
+            />
+        )}
+
+        {isShopOpen && (
           <Shop        
               onClose={handleCloseShop}
           />
-      )}
+        )}
 
-      {isRefOpen && (
+        {isRefOpen && (
           <Ref
               onClose={handleCloseRef}
               openBox={handleOpenBox}
           />
-      )}
+        )}
 
-      {isEarnOpen && (
+        {isEarnOpen && (
           <Earn
               onClose={handleCloseEarn}
           />
-      )}
-    </body>
+        )}
+
+        {isLootOpen && (
+          <Loot
+              onClose={handleCloseLoot}
+              handleCheckboxChange={handleCheckboxChange}
+          />
+        )}
+        
+      </div>
   );
 }
 export default App;
