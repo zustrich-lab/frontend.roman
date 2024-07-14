@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Css/App.css';
 
 import Friends from './Friends';
@@ -36,15 +36,6 @@ function App() {
     }
   }, []);
 
-  const handleBackButtonSetup = useCallback((onClick) => {
-    if (window.Telegram.WebApp) {
-      const backButton = window.Telegram.WebApp.BackButton;
-      backButton.show();
-      backButton.offClick();
-      backButton.onClick(onClick);
-    }
-  }, []);
-
   const handleHome = () => {
     setFriendsAnim(true);
     setLeaderboardAnim(true);
@@ -53,31 +44,19 @@ function App() {
     setApp(false);
   };
 
-  const handleFrends = useCallback(() => {
+  const handleFrends = () => {
     setIsFrendsOpen(true);
     setFriendsAnim(false);
     setLeaderboardAnim(true);
     setTimeout(() => { setIsLeaderboardOpen(false); }, 300);
-    handleBackButtonSetup(() => {
-      if (window.Telegram.WebApp.BackButton.isVisible) {
-        window.Telegram.WebApp.BackButton.hide();
-      }
-    });
-    setApp(true);
-  }, [handleBackButtonSetup]);
+    setApp(true);}
 
-  const handleLeaderboard = useCallback(() => {
+  const handleLeaderboard = () => {
     setIsLeaderboardOpen(true);
     setFriendsAnim(true);
     setLeaderboardAnim(false);
     setTimeout(() => { setIsFrendsOpen(false); }, 300);
-    handleBackButtonSetup(() => {
-      if (window.Telegram.WebApp.BackButton.isVisible) {
-        window.Telegram.WebApp.BackButton.hide();
-      }
-    });
-    setApp(true);
-  }, [handleBackButtonSetup]);
+    setApp(true);}
 
   const handleFirstPageClose = () => {
     setFPage(false);
