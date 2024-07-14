@@ -1,13 +1,12 @@
 import React from 'react';
 import '../Css/Friends.css'
 
-import invite from '../IMG/All_Logo/Invite_png.png';
 import ib from '../IMG/Av/IB.png';
 import k from '../IMG/Av/K.png';
 import g4 from '../IMG/Av/G4.png';
 import s from '../IMG/Av/S.png';
 
-const Friends = ({FriendsAnim}) => {
+const Friends = ({FriendsAnim, invite}) => {
 
     return (
         <div className={`Fr_Window ${FriendsAnim? 'fade-out' : ''}`}>

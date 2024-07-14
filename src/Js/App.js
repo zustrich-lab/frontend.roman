@@ -4,6 +4,7 @@ import '../Css/App.css';
 import Friends from './Friends';
 import Leaderboard from './Leaderboard';
 import First from './Firstpage';
+import Check from './Checking';
 
 import TS1 from '../IMG/TaskIcon/TS1.png';
 import TS2 from '../IMG/TaskIcon/TS2.png';
@@ -17,6 +18,7 @@ import IconFriends from '../IMG/LowerIcon/Friends.png';
 import Logo from '../IMG/All_Logo/Logo.png';
 import Play from '../IMG/All_Logo/Play.png';
 import Octo from '../IMG/All_Logo/Octo.png';
+import invite from '../IMG/All_Logo/Invite_png.png';
 
 function App() {
   const Coin = 128.293;
@@ -24,6 +26,7 @@ function App() {
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isFrendsOpen, setIsFrendsOpen] = useState(false);
   const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
+  const [CheckOpen, setCheckOpen] = useState(false);
 
   const [FriendsAnim, setFriendsAnim] = useState(false);
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
@@ -144,11 +147,13 @@ function App() {
         </div>
       </div>
 
-      {FPage && (<First onClose={handleFirstPageClose} />)}
+      {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
+
+      {CheckOpen && (<Check  setCheckOpen={setCheckOpen}/>)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} />)}
 
-      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} />)}
+      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} />)}
 
     </div>
   );

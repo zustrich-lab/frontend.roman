@@ -1,13 +1,11 @@
 import React from 'react';
 import '../Css/First.css';
 
-import Octis from '../IMG/All_Logo/giphy_octies.png';
-
-const First = ({ onClose }) => {
+const First = ({ onClose, setCheckOpen }) => {
   return (
     <div className="First_Window">
       <div className='First_octis'>
-        <img src={Octis} alt='Octis' />
+          <iframe src="https://giphy.com/embed/xDpTVxDKV6eEU" title='Zoiberg' className="Zoiberg"/>
       </div>
       <div className='Hey'>
         <p>👋 Hey!</p>
@@ -16,7 +14,7 @@ const First = ({ onClose }) => {
         <p>You’ve been in Telegram for a while, it’s <br/> time to get rewarded!</p>
       </div>
       <div className='OrangeBtn'>
-        <div className='BtnO' onClick={onClose}>
+        <div className='BtnO' onClick={(event) => {onClose(event);  setCheckOpen(true);}}>
           <p>Wow, let’s go!</p>
         </div>
       </div>
