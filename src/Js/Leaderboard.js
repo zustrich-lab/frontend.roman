@@ -27,7 +27,7 @@ const Leaderboard = ({LeaderboardAnim}) => {
             </div>
           </div>
 
-          <div className='Lb_inside' onClick={localStorage.clear()}>
+          <div className='Lb_inside'>
             <div className='LbPhoto'>
               <img src={ib} alt='ib'/><p> ivanbahranui <br/><span id='LbColor'>1,228 OCTIES</span></p>
             </div>
