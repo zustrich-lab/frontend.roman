@@ -1,0 +1,95 @@
+.Lb_Fr_Window {
+    width: 100%;
+    height: 90%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+    color: white;
+    background: #000000;
+    z-index: 1000;
+    animation: fade-in 0.3s forwards;
+}
+
+.Lb_Fr_Window.fade-out {
+    animation: fade-out 0.3s forwards;
+}
+
+.Fr_Info{
+  height: 18%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4.5vh;
+}
+
+.Fr_Main{
+    height: 32%;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+.Fr_Main img {width: 100%; max-width: 500px;}
+
+.Fr_InviteBtn{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.BTNInvete{
+    width: 88%;
+    height: 85%;
+    background: #D06C24;
+    border-radius: 2.5vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 2.5vh;
+}
+.BTNInvete p{margin: 1vh;}
+#Fr_dark{ color: #000000; font-size: 1.7vh;    font-weight: bold; font-family: MullerLight;}
+
+.Fr_Friends{
+    width: 88%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 2.5vh;
+}
+
+.Fr_list{
+    width: 88%;
+    height: 30%;
+    overflow: scroll;
+}
+
+.Fr_Frend{
+    width: 100%;
+    height: 9vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.FrPhoto{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.FrPhoto img{
+    height: 65%;
+}
+
+.FrPhoto p{
+    font-size: 2vh;
+}

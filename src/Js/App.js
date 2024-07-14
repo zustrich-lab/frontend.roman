@@ -1,8 +1,8 @@
 import React, { useState, useEffect,useCallback  } from 'react';
 import '../Css/App.css';
 
-import Ref from './ref';
-import Earn from './earn';
+import Friends from './Friends';
+import Leaderboard from './Leaderboard';
 
 import TS1 from '../IMG/TaskIcon/TS1.png';
 import TS2 from '../IMG/TaskIcon/TS2.png';
@@ -25,6 +25,9 @@ function App() {
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isFrendsOpen, setIsFrendsOpen] = useState(false);
 
+
+  const [FriendsAnim, setFriendsAnim] = useState(false);
+
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
@@ -42,9 +45,17 @@ function App() {
     }
   }, []);
 
-  // const handleLeaderboard = () => {setIsLeaderboardOpen(true); setIsFrendsOpen(false);};
-  const handleHome = () => {setIsLeaderboardOpen(false); setIsFrendsOpen(false);};
-  const handleFrends = () => {setIsFrendsOpen(true); setIsLeaderboardOpen(false);};
+  const handleHome = () => {
+    setFriendsAnim(true);
+    setTimeout(() => { setIsLeaderboardOpen(false);  }, 300);
+    setTimeout(() => { setIsFrendsOpen(false); }, 300);
+  };
+
+  const handleFrends = useCallback(() => {
+    setIsFrendsOpen(true); 
+    setIsLeaderboardOpen(false);
+    setFriendsAnim(false);
+    handleBackButtonSetup(() => {if (window.Telegram.WebApp.BackButton.isVisible) {window.Telegram.WebApp.BackButton.hide();}});}, [handleBackButtonSetup]);
 
   const handleLeaderboard = useCallback(() => {
     setIsLeaderboardOpen(true); setIsFrendsOpen(false);
@@ -132,9 +143,9 @@ function App() {
           </div> 
         </div>
 
-        {isLeaderboardOpen && (<Ref/>)}
+        {isLeaderboardOpen && (<Leaderboard />)}
 
-        {isFrendsOpen && (<Earn/>)}
+        {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim}/>)}
 
       </div>
   );
