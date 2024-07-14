@@ -3,6 +3,7 @@ import '../Css/App.css';
 
 import Friends from './Friends';
 import Leaderboard from './Leaderboard';
+import First from './Firstpage';
 
 import TS1 from '../IMG/TaskIcon/TS1.png';
 import TS2 from '../IMG/TaskIcon/TS2.png';
@@ -26,6 +27,9 @@ function App() {
   const [FriendsAnim, setFriendsAnim] = useState(false);
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
   const [app, setApp] = useState(false);
+
+  if (!localStorage.getItem('FPage')) { localStorage.setItem('FPage', 'true'); }
+  const FPage = localStorage.getItem('FPage') === 'true';
 
   useEffect(() => {
     if (window.Telegram.WebApp) {
@@ -157,6 +161,8 @@ function App() {
           </div>
         </div>
       </div>
+
+      {FPage && (<First/>)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} />)}
 

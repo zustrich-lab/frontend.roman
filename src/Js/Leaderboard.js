@@ -13,17 +13,10 @@ const Leaderboard = ({LeaderboardAnim}) => {
         <div className='lb_Info'>
           <p>Telegram Wall of Fame</p>
         </div>
-        <div className='Lb_Menu'>
-          <div className='Lb_inside'>
-            <div className='LbPhoto'>
-              <img src={ib} alt='ib'/><p> ivanbahranui <br/><span id='LbColor'>1,228 OCTIES</span></p>
-            </div>
-            <div className='LbPhoto'>
-              <p id="number">#5302384</p>
-            </div>
-          </div>
         
-          <div className='LbBorder'>
+        <div className='Lb_Menu'>
+
+        <div className='LbBorder'>
             <div className='Lb_Logo'>
               <img src={logo} alt='logo'/>
             </div>
@@ -34,6 +27,15 @@ const Leaderboard = ({LeaderboardAnim}) => {
             </div>
           </div>
 
+          <div className='Lb_inside'>
+            <div className='LbPhoto'>
+              <img src={ib} alt='ib'/><p> ivanbahranui <br/><span id='LbColor'>1,228 OCTIES</span></p>
+            </div>
+            <div className='LbPhoto'>
+              <p id="number">#5302384</p>
+            </div>
+          </div>
+        
           <div className='Lb_Liders'>
             <p>1,228,499 holders</p>
           </div>
@@ -41,7 +43,11 @@ const Leaderboard = ({LeaderboardAnim}) => {
 
                 <div className='Lb_Lider'>
                     <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                        <img src={ib} alt='ib'/> 
+                    </div>
+                    <div className='tt'>
+                      <p> ivanbahranui </p>
+                      <p id='LbColorr'>12,028 OCTIES</p>
                     </div>
                     <div className='LbPhotos' id="medal">
                         <img src={first} alt='first'/>
@@ -50,16 +56,24 @@ const Leaderboard = ({LeaderboardAnim}) => {
 
                 <div className='Lb_Lider'>
                     <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                        <img src={ib} alt='ib'/> 
+                    </div>
+                    <div className='tt'>
+                      <p> ivanbahranui </p>
+                      <p id='LbColorr'>1,228 OCTIES</p>
                     </div>
                     <div className='LbPhotos' id="medal">
                         <img src={second} alt='second'/>
                     </div>
                 </div>
-
+                
                 <div className='Lb_Lider'>
                     <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                        <img src={ib} alt='ib'/> 
+                    </div>
+                    <div className='tt'>
+                      <p> ivanbahranui </p>
+                      <p id='LbColorr'>644 OCTIES</p>
                     </div>
                     <div className='LbPhotos' id="medal">
                         <img src={thrid} alt='thrid'/>
@@ -68,7 +82,11 @@ const Leaderboard = ({LeaderboardAnim}) => {
 
                 <div className='Lb_Lider'>
                     <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                        <img src={ib} alt='ib'/> 
+                    </div>
+                    <div className='tt'>
+                      <p> ivanbahranui </p>
+                      <p id='LbColorr'>293 OCTIES</p>
                     </div>
                     <div className='LbPhotos' id="medal">
                         <p>#4</p>
@@ -77,7 +95,11 @@ const Leaderboard = ({LeaderboardAnim}) => {
 
                 <div className='Lb_Lider'>
                     <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                        <img src={ib} alt='ib'/> 
+                    </div>
+                    <div className='tt'>
+                      <p> ivanbahranui </p>
+                      <p id='LbColorr'>128 OCTIES</p>
                     </div>
                     <div className='LbPhotos' id="medal">
                         <p>#5</p>
@@ -86,7 +108,11 @@ const Leaderboard = ({LeaderboardAnim}) => {
 
                 <div className='Lb_Lider'>
                     <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                        <img src={ib} alt='ib'/> 
+                    </div>
+                    <div className='tt'>
+                      <p> ivanbahranui </p>
+                      <p id='LbColorr'>124 OCTIES</p>
                     </div>
                     <div className='LbPhotos' id="medal">
                         <p>#6</p>
@@ -95,7 +121,11 @@ const Leaderboard = ({LeaderboardAnim}) => {
 
                 <div className='Lb_Lider'>
                     <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                        <img src={ib} alt='ib'/> 
+                    </div>
+                    <div className='tt'>
+                      <p> ivanbahranui </p>
+                      <p id='LbColorr'>89 OCTIES</p>
                     </div>
                     <div className='LbPhotos' id="medal">
                         <p>#7</p>
@@ -104,7 +134,11 @@ const Leaderboard = ({LeaderboardAnim}) => {
 
                 <div className='Lb_Lider'>
                     <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                        <img src={ib} alt='ib'/> 
+                    </div>
+                    <div className='tt'>
+                      <p> ivanbahranui </p>
+                      <p id='LbColorr'>64 OCTIES</p>
                     </div>
                     <div className='LbPhotos' id="medal">
                         <p>#8</p>
@@ -113,7 +147,11 @@ const Leaderboard = ({LeaderboardAnim}) => {
 
                 <div className='Lb_Lider'>
                     <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                        <img src={ib} alt='ib'/> 
+                    </div>
+                    <div className='tt'>
+                      <p> ivanbahranui </p>
+                      <p id='LbColorr'>30 OCTIES</p>
                     </div>
                     <div className='LbPhotos' id="medal">
                         <p>#9</p>
@@ -122,55 +160,14 @@ const Leaderboard = ({LeaderboardAnim}) => {
 
                 <div className='Lb_Lider'>
                     <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                        <img src={ib} alt='ib'/> 
+                    </div>
+                    <div className='tt'>
+                      <p> ivanbahranui </p>
+                      <p id='LbColorr'>22 OCTIES</p>
                     </div>
                     <div className='LbPhotos' id="medal">
                         <p>#10</p>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#11</p>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#12</p>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#13</p>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#14</p>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib' /> <p id='txt'>ivanbahranui</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#15</p>
                     </div>
                 </div>
                   
