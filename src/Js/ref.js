@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../Css/ref.css'
 import boxIcon from '../IMG/box.png';
 import znakLogo from '../IMG/Znak.png';
 import s from '../IMG/s.png'
 import ink from '../IMG/ink.png';
-import inviteIcon from '../IMG/LowerIcon/Invite_Icon.png';
 import FriendAvatar from '../IMG/Avatars/ArturAvatar.png';
 import DimaAvatar from '../IMG/Avatars/DimaAvatar.png';
 import NazarAvatar from '../IMG/Avatars/NazarAvatar.png';
@@ -12,15 +11,12 @@ import AndriiAvatar from '../IMG/Avatars/AndriiAvatar.png';
 import IlyaAvatar from '../IMG/Avatars/IlyaAvatar.png';
 import BoyarskiiAvatar from '../IMG/Avatars/BoyarskiiAvatar.png';
 
-const Ref = ({onClose, openBox}) => {
-    
-    const [isClosingRefForAnim, setClosingRefForAnim] = useState(false);
-    const handleCloseRefAnim = () => {setClosingRefForAnim(true);};
+const Ref = () => {
 
     return (
-        <div className={`Ref_Earn_Shop_Window ${isClosingRefForAnim ? 'closing' : ''}`}>
+        <div className='Ref_Earn_Shop_Window'>
             <div className="Ref_Earn_BoxBorder">
-                <div className='Ref_Earn_Box' onClick={openBox}>
+                <div className='Ref_Earn_Box'>
                     <img src={boxIcon} alt='boxIcon' height={"60%"}/>
                 </div>
                 <div className='Ref_Earn_BoxTitle'>
@@ -130,14 +126,13 @@ const Ref = ({onClose, openBox}) => {
             <div className="refthripleBTN">
                 <button className="refgo">
                     <p>INVITE </p>
-                    <img src={inviteIcon} alt='inviteIcon' height={"110%"}/>
+                    
                 </button>
                 <button className="refgo" id='refgoCopy'>
                     <img src={ink} alt='ink' height={"50%"}/>
                     <p>COPY</p>
                 </button>
             </div>
-            <button id='CloseDebug' onClick={(event) => {onClose(event); handleCloseRefAnim(event); }}>X</button>
         </div>
     );
 };
