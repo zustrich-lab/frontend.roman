@@ -10,7 +10,7 @@ import s from '../IMG/Av/S.png';
 const Friends = ({FriendsAnim}) => {
 
     return (
-        <div className={`Lb_Fr_Window ${FriendsAnim? 'fade-out' : ''}`}>
+        <div className={`Fr_Window ${FriendsAnim? 'fade-out' : ''}`}>
             <div className='Fr_Info'>
                 <p>Invite friends <br/> and get more OCTIES</p>
             </div>

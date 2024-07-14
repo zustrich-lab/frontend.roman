@@ -185,6 +185,7 @@ body {
   display: flex;
   justify-content: center;
   background: #0F0F0F;
+  z-index: 1001;
 }
 
 @font-face {
@@ -214,4 +215,12 @@ body {
 
 button{
   border: none;
+}
+
+.blk{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: #000000;
+  z-index: 1000;
 }
