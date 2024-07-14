@@ -23,13 +23,11 @@ function App() {
 
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isFrendsOpen, setIsFrendsOpen] = useState(false);
+  const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
 
   const [FriendsAnim, setFriendsAnim] = useState(false);
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
   const [app, setApp] = useState(false);
-
-  if (!localStorage.getItem('FPage')) { localStorage.setItem('FPage', 'true'); }
-  const FPage = localStorage.getItem('FPage') === 'true';
 
   useEffect(() => {
     if (window.Telegram.WebApp) {
@@ -80,6 +78,11 @@ function App() {
     });
     setApp(true);
   }, [handleBackButtonSetup]);
+
+  const handleFirstPageClose = () => {
+    setFPage(false);
+    localStorage.setItem('FPage', 'false');
+  };
 
   return (
     <div className="App">
@@ -162,7 +165,7 @@ function App() {
         </div>
       </div>
 
-      {FPage && (<First/>)}
+      {FPage && (<First onClose={handleFirstPageClose} />)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} />)}
 
