@@ -113,11 +113,25 @@ function App() {
     setApp(true);
   };
 
+  const Tg_Channel_Open_chek = () => {
+        window.location.href = TG_CHANNEL_LINK;
+      };
+
+  useEffect(() => {
+       if (window.Telegram.WebApp) {
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        }
+   }, []);
+
   const handleFirstPageClose = () => {
     setFPage(false);
     localStorage.setItem('FPage', 'false');
   };
+  
+    const userId = new URLSearchParams(window.location.search).get('userId');
 
+   
   return (
     <div className="App">
       {app && <div className='blk'></div>}
