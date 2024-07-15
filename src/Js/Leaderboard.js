@@ -10,6 +10,8 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);
   const [userCount, setUserCount] = useState(0);
+  const [userNickname, setUserNickname] = useState('');
+
 
 useEffect(() => {
   const fetchUserCount = async () => {
@@ -41,11 +43,12 @@ useEffect(() => {
   
     const fetchUserRank = async () => {
       try {
-        console.log(`Fetching rank for userId: ${userId}`); 
+        console.log(`Fetching rank for userId: ${userId}`); // Логирование userId
         const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-rank`, { params: { userId } });
         if (response.data.success) {
-          console.log('User rank fetched successfully:', response.data.rank); 
+          console.log('User rank fetched successfully:', response.data.rank); // Логирование успешного ответа
           setUserRank(response.data.rank);
+          setUserNickname(response.data.nickname); // Сохранение ника
         } else {
           console.error('Error in response data:', response.data.message);
         }
@@ -104,7 +107,7 @@ useEffect(() => {
 
           <div className='Lb_inside'>
             <div className='LbPhoto'>
-            <div className="RamdomImage" 
+            <div 
 
             style={{
               backgroundColor: getRandomColor(), 
@@ -117,12 +120,12 @@ useEffect(() => {
               fontSize: '2vh',
               margin:'2vh',  
               color: 'white'}}>
-
+                
             </div>
               
               <div className='NameLb'>
-                <p> Current User </p>
-                <p id='LbColor'>{coins} OCTIES</p>
+              <p> {userNickname} <br/><span id='LbColor'>{userRank ? `Rank: ${userRank}` : 'Loading...'}</span></p>
+              <p id='LbColor'>{coins} OCTIES</p>
               </div>
             </div>
             <div className='LbPhoto'>
