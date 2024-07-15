@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../Css/Oct.css';
 
 import Octo from '../IMG/All_Logo/Octo.png';
-import Salut from '../IMG/All_Logo/fireworks.gif';
+import Salut from '../IMG/All_Logo/salut.gif';
 
 const Oct = ({ onClose }) => {
   const [showGif, setShowGif] = useState(true);
@@ -12,7 +12,7 @@ const Oct = ({ onClose }) => {
     if (showGif) {
       timer = setTimeout(() => {
         setShowGif(false);
-      }, 2500); // Set the duration of the GIF in milliseconds (e.g., 3000ms for 3 seconds)
+      }, 2400); // Set the duration of the GIF in milliseconds (e.g., 3000ms for 3 seconds)
     }
     return () => clearTimeout(timer);
   }, [showGif]);
