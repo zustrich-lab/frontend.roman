@@ -24,10 +24,10 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
   
     const fetchUserRank = async () => {
       try {
-        console.log(`Fetching rank for userId: ${userId}`); // Логирование userId
+        console.log(`Fetching rank for userId: ${userId}`); 
         const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-rank`, { params: { userId } });
         if (response.data.success) {
-          console.log('User rank fetched successfully:', response.data.rank); // Логирование успешного ответа
+          console.log('User rank fetched successfully:', response.data.rank); 
           setUserRank(response.data.rank);
         } else {
           console.error('Error in response data:', response.data.message);
