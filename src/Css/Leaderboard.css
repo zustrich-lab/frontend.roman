@@ -145,13 +145,3 @@
     height: 35%;
 }
 
-.RandomImage{
-    border-radius: 50%; 
-    width: 40px; 
-    height: 40px;
-    display: flex; 
-    align-items: center;
-    justify-Content: center;
-    font-size: 20px; 
-    color: white;
-}
