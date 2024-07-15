@@ -120,11 +120,11 @@ useEffect(() => {
               fontSize: '2vh',
               margin:'2vh',  
               color: 'white'}}>
-                
+
             </div>
               
               <div className='NameLb'>
-              <p> {userNickname} <br/><span id='LbColor'>{userRank ? `Rank: ${userRank}` : 'Loading...'}</span></p>
+              <p> {userNickname} <br/><span id='LbColor'>{'Loading...'}</span></p>
               <p id='LbColor'>{coins} OCTIES</p>
               </div>
             </div>
