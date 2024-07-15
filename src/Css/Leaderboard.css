@@ -17,6 +17,10 @@
     .Lb_Window {
       height: 80%;
     }
+
+    .Lb_Text p{
+        font-size: 2vh;
+    }
   }
 
 .Lb_Window.fade-out {
@@ -108,7 +112,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    font-size: 1.2vh;
+    font-size: 2.6vw;
 }
 
 .Lb_Liders{
