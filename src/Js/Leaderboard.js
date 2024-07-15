@@ -120,7 +120,7 @@ useEffect(() => {
               fontSize: '2vh',
               margin:'2vh',  
               color: 'white'}}>
-                
+                {userNickname.slice(0, 2).toUpperCase()}
             </div>
               
               <div className='NameLb'>
