@@ -87,7 +87,7 @@ const Leaderboard = ({ LeaderboardAnim, userId }) => {
 
           <div className='Lb_inside'>
             <div className='LbPhoto'>
-            <div style={{backgroundColor: getRandomColor(), borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: 'white'}}>
+            <div className="RamdomImage" style={{backgroundColor: getRandomColor()}}>
             </div>
               <p> Current User <br/><span id='LbColor'>1,228 OCTIES</span></p>
             </div>
@@ -103,7 +103,7 @@ const Leaderboard = ({ LeaderboardAnim, userId }) => {
             {leaderboard.map((user, index) => (
                 <div  key={user._id} className='Lb_Lider'>
                     <div className='LbPhoto'>
-                    <div style={{backgroundColor: getRandomColor(), borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: 'white'}}>
+                      <div className="RamdomImage" style={{backgroundColor: getRandomColor()}}>
                       {user.nickname.slice(0, 2).toUpperCase()}
                     </div>
                       <p> {user.firstName} {user.nickname} <br/><span id='LbColor'>{user.coins} OCTIES</span></p>
