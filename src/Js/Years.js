@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Css/Years.css';
+import star from '../IMG/All_Logo/star.gif'
 
 const Years = ({onClose, setOctOpen}) => {
   return (
@@ -17,6 +18,7 @@ const Years = ({onClose, setOctOpen}) => {
         <div className='YearMain'>
             <p>1</p>
             <p id="Ytxt">year ago</p>
+            <img src={star} id='Salut' alt='star'/>
         </div>
         <div className="OrangeBtn" id='YearBTN'>
             <div className='BtnO' onClick={(event) => { onClose(false); setOctOpen(true);}}>

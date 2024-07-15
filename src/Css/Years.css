@@ -43,9 +43,28 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    position: relative;
     font-size: 15vh;
 }
 
+.YearMain img{
+    height: 40%;
+    margin-bottom: 4vh;
+    z-index: 1;
+    overflow: visible;
+}
+
+.YearMain p{
+    z-index: 2;
+}
 #Ytxt{
     font-size: 4vh;
+}
+
+#Salut {
+    position: absolute;
+    height: 100%;
+    margin-top: 10vh;
+    z-index: 0;
+    overflow: visible;
 }
