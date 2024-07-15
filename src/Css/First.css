@@ -57,7 +57,7 @@
     margin: 0;
     position: absolute;
     object-fit: cover;
-    width: 150%; 
-    height: 150%; 
+    height:  70%;
+    clip-path: inset(0 0 10% 0);
   }
   

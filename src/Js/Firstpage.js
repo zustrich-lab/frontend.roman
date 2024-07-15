@@ -1,11 +1,12 @@
 import React from 'react';
 import '../Css/First.css';
+import gipsy from'../IMG/All_Logo/giphy.webp';
 
 const First = ({ onClose, setCheckOpen }) => {
   return (
     <div className="First_Window">
       <div className='First_octis'>
-          <iframe src="https://giphy.com/embed/xDpTVxDKV6eEU" title='Zoiberg' className="Zoiberg"/>
+          <img src={gipsy} alt='gypsy' className="Zoiberg"/>
       </div>
       <div className='Hey'>
         <p>👋 Hey!</p>
