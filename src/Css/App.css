@@ -225,3 +225,9 @@ button{
   background: #000000;
   z-index: 1000;
 }
+
+@media screen and (orientation: landscape) {
+  body {
+    display: none;
+  }
+}
