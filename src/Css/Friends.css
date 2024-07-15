@@ -33,7 +33,7 @@
     align-items: start;
     justify-content: center;
 }
-.Fr_Main img {width: 100%; max-width: 500px;}
+.Fr_Main img {height: 66%; }
 
 .Fr_InviteBtn{
     width: 100%;
