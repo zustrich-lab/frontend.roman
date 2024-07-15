@@ -6,7 +6,7 @@ import logo from '../IMG/All_Logo/LBoard.png';
 
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
-const Leaderboard = ({ LeaderboardAnim, userId }) => {
+const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);
 
@@ -87,9 +87,26 @@ const Leaderboard = ({ LeaderboardAnim, userId }) => {
 
           <div className='Lb_inside'>
             <div className='LbPhoto'>
-            <div className="RamdomImage" style={{backgroundColor: getRandomColor(), borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: 'white'}}>
+            <div className="RamdomImage" 
+
+            style={{
+              backgroundColor: getRandomColor(), 
+              borderRadius: '50%', 
+              aspectRatio: '1', 
+              height: '60%', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              fontSize: '2vh',
+              margin:'2vh',  
+              color: 'white'}}>
+
             </div>
-              <p> Current User <br/><span id='LbColor'>1,228 OCTIES</span></p>
+              
+              <div className='NameLb'>
+                <p> Current User </p>
+                <p id='LbColor'>{coins} OCTIES</p>
+              </div>
             </div>
             <div className='LbPhoto'>
               <p id="number">{userRank ? `#${userRank}` : '??'}</p>
@@ -103,15 +120,30 @@ const Leaderboard = ({ LeaderboardAnim, userId }) => {
             {leaderboard.map((user, index) => (
                 <div  key={user._id} className='Lb_Lider'>
                     <div className='LbPhoto'>
-                      <div className="RamdomImage" style={{backgroundColor: getRandomColor(), borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: 'white'}}>
-                      {user.nickname.slice(0, 2).toUpperCase()}
-                    </div>
-                      <p> {user.firstName} {user.nickname} <br/><span id='LbColor'>{user.coins} OCTIES</span></p>
-                    </div>
-                    <div className='LbPhoto' id="medal">
-                      <p>{getMedal(index)}</p>
+                      <div className="RamdomImage" 
+
+                        style={{
+                          backgroundColor: getRandomColor(), 
+                          borderRadius: '50%', 
+                          aspectRatio: '1', 
+                          height: '60%', 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          justifyContent: 'center', 
+                          fontSize: '2.5vh',
+                          margin:'2vh', 
+                          color: 'white'}}>
+                          {user.nickname.slice(0, 2).toUpperCase()}
+                      </div>  
+                    <div className='NameLb'>
+                      <p> {user.nickname} </p>
+                      <p id='LbColor'>{user.coins} OCTIES</p>
                     </div>
                 </div>
+                <div className='LbPhoto' id="medal">
+                  <p>{getMedal(index)}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>

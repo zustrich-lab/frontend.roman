@@ -4,7 +4,7 @@ import '../Css/Oct.css';
 import Octo from '../IMG/All_Logo/Octo.png';
 import Salut from '../IMG/All_Logo/salut.gif';
 
-const Oct = ({ onClose, setYearsOpen }) => {
+const Oct = ({ onClose, setYearsOpen, coins }) => {
   const handleClick = (event) => {
     const { clientX } = event;
     const screenWidth = window.innerWidth;
@@ -29,7 +29,7 @@ const Oct = ({ onClose, setYearsOpen }) => {
       </div>
       <div className='YearMain'>
         <img src={Octo} alt='Octo' />
-        <p id="Ytxt">838 OCTIES</p>
+        <p id="Ytxt">{coins} OCTIES</p>
         <img src={Salut} id='Salut' alt='Salut' />
       </div>
       <div className='YearInfo'>

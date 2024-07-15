@@ -218,9 +218,9 @@ function App() {
 
       {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen}/>)}
 
-      {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen}/>)}
+      {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coins={coins}/>)}
 
-      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId}/>)}
+      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins}/>)}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink}/>)}
 
