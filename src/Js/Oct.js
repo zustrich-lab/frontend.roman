@@ -12,7 +12,7 @@ const Oct = ({ onClose }) => {
     if (showGif) {
       timer = setTimeout(() => {
         setShowGif(false);
-      }, 2400); // Set the duration of the GIF in milliseconds (e.g., 3000ms for 3 seconds)
+      }, 2400); 
     }
     return () => clearTimeout(timer);
   }, [showGif]);
