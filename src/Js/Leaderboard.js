@@ -10,6 +10,8 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);
   const [userCount, setUserCount] = useState(0);
+  const [userName, setUserName] = useState('');
+
 
 useEffect(() => {
   const fetchUserCount = async () => {
@@ -27,40 +29,48 @@ useEffect(() => {
 }, []);
 
 
-  useEffect(() => {
-    const fetchLeaderboard = async () => {
-      try {
-        const response = await axios.get(`${REACT_APP_BACKEND_URL}/leaderboard`);
-        if (response.data.success) {
-          setLeaderboard(response.data.leaderboard);
-        }
-      } catch (error) {
-        console.error('Ошибка при загрузке лидерборда:', error);
+useEffect(() => {
+  const fetchLeaderboard = async () => {
+    try {
+      const response = await axios.get(`${REACT_APP_BACKEND_URL}/leaderboard`);
+      if (response.data.success) {
+        setLeaderboard(response.data.leaderboard);
       }
-    };
-  
-    const fetchUserRank = async () => {
-      try {
-        console.log(`Fetching rank for userId: ${userId}`); 
-        const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-rank`, { params: { userId } });
-        if (response.data.success) {
-          console.log('User rank fetched successfully:', response.data.rank); 
-          setUserRank(response.data.rank);
-        } else {
-          console.error('Error in response data:', response.data.message);
-        }
-      } catch (error) {
-        console.error('Ошибка при загрузке позиции пользователя:', error);
-      }
-    };
-
-    fetchLeaderboard();
-    if (userId) {
-      fetchUserRank();
-    } else {
-      console.error('userId не определен');
+    } catch (error) {
+      console.error('Ошибка при загрузке лидерборда:', error);
     }
-  }, [userId]);
+  };
+  
+  const fetchUserRankAndName = async () => {
+    try {
+      console.log(`Fetching rank for userId: ${userId}`); // Логирование userId
+      const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-rank`, { params: { userId } });
+      const userResponse = await axios.get(`${REACT_APP_BACKEND_URL}/get-user-data`, { params: { userId } });
+      
+      if (response.data.success) {
+        console.log('User rank fetched successfully:', response.data.rank); // Логирование успешного ответа
+        setUserRank(response.data.rank);
+      } else {
+        console.error('Error in response data:', response.data.message);
+      }
+      
+      if (userResponse.data) {
+        setUserName(userResponse.data.nickname);
+      } else {
+        console.error('Error in user response data');
+      }
+    } catch (error) {
+      console.error('Ошибка при загрузке данных пользователя:', error);
+    }
+  };
+
+  fetchLeaderboard();
+  if (userId) {
+    fetchUserRankAndName();
+  } else {
+    console.error('userId не определен');
+  }
+}, [userId]);
 
   const getMedal = (index) => {
     switch (index) {
@@ -117,12 +127,13 @@ useEffect(() => {
               fontSize: '2vh',
               margin:'2vh',  
               color: 'white'}}>
-
+                
+              {userName.slice(0, 2).toUpperCase()}
             </div>
               
               <div className='NameLb'>
-                <p> Current User </p>
-                <p id='LbColor'>{coins} OCTIES</p>
+              <p> {userName} <br/><span id='LbColor'>{userRank ? `Rank: ${userRank}` : 'Loading...'}</span></p>
+              <p id='LbColor'>{coins} OCTIES</p>
               </div>
             </div>
             <div className='LbPhoto'>
@@ -131,7 +142,7 @@ useEffect(() => {
           </div>
         
           <div className='Lb_Liders'>
-            <p>{userCount}</p>
+            <p>{userCount} Users</p>
           </div>
           <div className='Lb_list'>
             {leaderboard.map((user, index) => (
