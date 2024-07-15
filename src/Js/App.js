@@ -5,6 +5,8 @@ import Friends from './Friends';
 import Leaderboard from './Leaderboard';
 import First from './Firstpage';
 import Check from './Checking';
+import Years from './Years';
+import Oct from './Oct';
 
 import TS1 from '../IMG/TaskIcon/TS1.png';
 import TS2 from '../IMG/TaskIcon/TS2.png';
@@ -27,6 +29,8 @@ function App() {
   const [isFrendsOpen, setIsFrendsOpen] = useState(false);
   const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
   const [CheckOpen, setCheckOpen] = useState(false);
+  const [YearsOpen, setYearsOpen] = useState(false);
+  const [OctOpen, setOctOpen] = useState(false)
 
   const [FriendsAnim, setFriendsAnim] = useState(false);
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
@@ -71,7 +75,7 @@ function App() {
       {app && <div className='blk'></div>}
       <div className="info">
         <img src={Logo} alt='Logo' />
-        <div className='Txt'>
+        <div className='Txt' onClick={(event) => {setYearsOpen(true);}}>
           <img src={Play} alt='Play' />
           <p>Your Score</p>
         </div>
@@ -149,7 +153,11 @@ function App() {
 
       {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
 
-      {CheckOpen && (<Check  setCheckOpen={setCheckOpen}/>)}
+      {CheckOpen && (<Check  setCheckOpen={setCheckOpen} setYearsOpen={setYearsOpen}/>)}
+
+      {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen}/>)}
+
+      {OctOpen && (<Oct onClose={setOctOpen}/>)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} />)}
 

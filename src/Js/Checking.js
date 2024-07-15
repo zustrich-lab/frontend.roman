@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../Css/Checking.css';
 import V from '../IMG/All_Logo/V.png';
 
-const Check = ({ setCheckOpen }) => {
+const Check = ({ setCheckOpen , setYearsOpen}) => {
   const [showButton, setShowButton] = useState(false);
   const progressRefs = useRef([]);
   const imageRefs = useRef([]);
@@ -74,7 +74,7 @@ const Check = ({ setCheckOpen }) => {
       </div>
 
       <div className={`OrangeBtn ${showButton ? 'visible' : ''}`} id="checkBtn">
-        <div className='BtnO' onClick={(event) => { setCheckOpen(false); }}>
+        <div className='BtnO' onClick={(event) => { setCheckOpen(false); setYearsOpen(true)}}>
           <p>Continue</p>
         </div>
       </div>
