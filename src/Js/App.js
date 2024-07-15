@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/App.css';
+import axios from 'axios';
 
 import Friends from './Friends';
 import Leaderboard from './Leaderboard';
@@ -23,8 +24,15 @@ import Octo from '../IMG/All_Logo/Octo.png';
 import invite from '../IMG/All_Logo/Invite_png.png';
 import Join from '../IMG/All_Logo/Join.png';
 
+const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
+
 function App() {
-  const Coin = 128.293;
+  const [coins, setCoins] = useState(0);
+  const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
+  const [accountAgeCoins, setAccountAgeCoins] = useState(0);
+  const [subscriptionCoins, setSubscriptionCoins] = useState(0);
+  const [referralCode, setReferralCode] = useState('');
+  const [telegramLink, setTelegramLink] = useState('');
 
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isFrendsOpen, setIsFrendsOpen] = useState(false);
@@ -36,6 +44,56 @@ function App() {
   const [FriendsAnim, setFriendsAnim] = useState(false);
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
   const [app, setApp] = useState(false);
+  const TG_CHANNEL_LINK = "https://t.me/GOGOGOGOGOGOGOGgogogooo";
+
+  const fetchUserData = async (userId) => {
+    try {
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
+      const data = response.data;
+      if (response.status === 200) {
+        setCoins(data.coins);
+        setHasTelegramPremium(data.hasTelegramPremium);
+
+        // Calculate coins for account age and subscription separately
+        const accountCreationDate = new Date(data.accountCreationDate);
+        const currentYear = new Date().getFullYear();
+        const accountYear = accountCreationDate.getFullYear();
+        const yearsOld = currentYear - accountYear;
+        const accountAgeCoins = yearsOld * 500;
+        const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0;
+
+        setAccountAgeCoins(accountAgeCoins);
+        setSubscriptionCoins(subscriptionCoins);
+
+        // Fetch referral code and link
+        const referralResponse = await axios.post(`${REACT_APP_BACKEND_URL}/generate-referral`, { userId });
+        const referralData = referralResponse.data;
+        if (referralResponse.status === 200) {
+          setReferralCode(referralData.referralCode);
+          setTelegramLink(referralData.telegramLink);
+        } else {
+          console.error('Ошибка при получении реферальных данных:', referralData.message);
+        }
+      } else {
+        console.error('Ошибка при получении данных пользователя:', data.error);
+      }
+    } catch (error) {
+      console.error('Ошибка при получении данных пользователя:', error);
+    }
+  };
+
+  useEffect(() => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    if (userId) {
+      fetchUserData(userId);
+    } else {
+      console.error('userId не найден в URL');
+    }
+  }, []);
+
+  const Tg_Channel_Open_chek = () => {
+    window.location.href = TG_CHANNEL_LINK;
+  };
 
   useEffect(() => {
     if (window.Telegram.WebApp) {
@@ -71,6 +129,8 @@ function App() {
     localStorage.setItem('FPage', 'false');
   };
 
+  const userId = new URLSearchParams(window.location.search).get('userId');
+
   return (
     <div className="App">
       {app && <div className='blk'></div>}
@@ -85,14 +145,14 @@ function App() {
         <img src={Octo} alt='Octo' />
       </div>
       <div className='MainCoin'>
-        <p>{Coin} OCTIES</p>
+        <p>{coins} OCTIES</p>
       </div>
       <div className='Menu'>
         <div className='MenuBorder'>
           <p id='up'>OCTIES COMMUNITY</p>
           <p id='dp'>Home for Telegram OCs</p>
           <div className='MenuBtn'>
-            <img src={Join} alt='Join'/>
+            <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join'/>
             <p>+ 1000 OCTIES</p>
           </div>
         </div>
@@ -105,7 +165,7 @@ function App() {
               <img src={TS1} alt='TS1' /> <p id='txt'>Account age</p>
             </div>
             <div className='tsPhoto'>
-              <p>+838 OCTIES</p>
+              <p>+{accountAgeCoins} OCTIES</p>
             </div>
           </div>
 
@@ -114,7 +174,7 @@ function App() {
               <img src={TS2} alt='TS2' /> <p id='txt'>Telegram Premium</p>
             </div>
             <div className='tsPhoto'>
-              <p>+500 OCTIES</p>
+              <p>+{hasTelegramPremium ? 500 : 0} OCTIES</p>
             </div>
           </div>
 
@@ -123,7 +183,7 @@ function App() {
               <img src={TS3} alt='TS3' /> <p id='txt'>Channel Subscription</p>
             </div>
             <div className='tsPhoto'>
-              <p>+1,000 OCTIES</p>
+              <p>+{subscriptionCoins} OCTIES</p>
             </div>
           </div>
 
@@ -160,9 +220,9 @@ function App() {
 
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen}/>)}
 
-      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} />)}
+      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId}/>)}
 
-      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} />)}
+      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink}/>)}
 
     </div>
   );

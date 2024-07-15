@@ -1,13 +1,71 @@
-import React from 'react';
-import '../Css/Leaderboard.css'
+import React, { useState, useEffect } from 'react';
+import '../Css/Leaderboard.css';
+import axios from 'axios';
 
-import ib from '../IMG/Av/IB.png';
 import logo from '../IMG/All_Logo/LBoard.png';
-import first from '../IMG/LbBoard/first.png';
-import second from '../IMG/LbBoard/sekond.png';
-import thrid from '../IMG/LbBoard/last.png';
 
-const Leaderboard = ({LeaderboardAnim}) => {
+const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
+
+const Leaderboard = ({ LeaderboardAnim, userId }) => {
+  const [leaderboard, setLeaderboard] = useState([]);
+  const [userRank, setUserRank] = useState(null);
+
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      try {
+        const response = await axios.get(`${REACT_APP_BACKEND_URL}/leaderboard`);
+        if (response.data.success) {
+          setLeaderboard(response.data.leaderboard);
+        }
+      } catch (error) {
+        console.error('Ошибка при загрузке лидерборда:', error);
+      }
+    };
+  
+    const fetchUserRank = async () => {
+      try {
+        console.log(`Fetching rank for userId: ${userId}`); // Логирование userId
+        const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-rank`, { params: { userId } });
+        if (response.data.success) {
+          console.log('User rank fetched successfully:', response.data.rank); // Логирование успешного ответа
+          setUserRank(response.data.rank);
+        } else {
+          console.error('Error in response data:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Ошибка при загрузке позиции пользователя:', error);
+      }
+    };
+
+    fetchLeaderboard();
+    if (userId) {
+      fetchUserRank();
+    } else {
+      console.error('userId не определен');
+    }
+  }, [userId]);
+
+  const getMedal = (index) => {
+    switch (index) {
+      case 0:
+        return '🥇';
+      case 1:
+        return '🥈';
+      case 2:
+        return '🥉';
+      default:
+        return `#${index + 1}`;
+    }
+  };
+
+  const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
     return (
       <div className={`Lb_Window ${LeaderboardAnim? 'fade-out' : ''}`}>
         <div className='lb_Info'>
@@ -29,10 +87,12 @@ const Leaderboard = ({LeaderboardAnim}) => {
 
           <div className='Lb_inside'>
             <div className='LbPhoto'>
-              <img src={ib} alt='ib'/><p> ivanbahranui <br/><span id='LbColor'>1,228 OCTIES</span></p>
+            <div style={{backgroundColor: getRandomColor(), borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: 'white'}}>
+            </div>
+              <p> Current User <br/><span id='LbColor'>1,228 OCTIES</span></p>
             </div>
             <div className='LbPhoto'>
-              <p id="number">#5302384</p>
+              <p id="number">{userRank ? `#${userRank}` : '??'}</p>
             </div>
           </div>
         
@@ -40,105 +100,19 @@ const Leaderboard = ({LeaderboardAnim}) => {
             <p>1,228,499 holders</p>
           </div>
           <div className='Lb_list'>
-
-                <div className='Lb_Lider'>
+            {leaderboard.map((user, index) => (
+                <div  key={user._id} className='Lb_Lider'>
                     <div className='LbPhoto'>
-                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>1,228 OCTIES</span></p>
+                    <div style={{backgroundColor: getRandomColor(), borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: 'white'}}>
+                      {user.nickname.slice(0, 2).toUpperCase()}
+                    </div>
+                      <p> {user.firstName} {user.nickname} <br/><span id='LbColor'>{user.coins} OCTIES</span></p>
                     </div>
                     <div className='LbPhoto' id="medal">
-                        <img src={first} alt='first'/>
+                      <p>{getMedal(index)}</p>
                     </div>
                 </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhoto'>
-                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>1,228 OCTIES</span></p>
-                    </div>
-                    <div className='LbPhoto' id="medal">
-                        <img src={second} alt='second'/>
-                    </div>
-                </div>
-                
-                <div className='Lb_Lider'>
-                    <div className='LbPhoto'>
-                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>12,028 OCTIES</span></p>
-                    </div>
-                    <div className='LbPhoto' id="medal">
-                        <img src={thrid} alt='thrid'/>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhoto'>
-                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>1,228 OCTIES</span></p>
-                    </div>
-                    <div className='LbPhoto' id="medal">
-                      <p>#4</p>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhoto'>
-                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>644 OCTIES</span></p>
-                    </div>
-                    <div className='LbPhoto' id="medal">
-                      <p>#5</p>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhoto'>
-                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>293 OCTIES</span></p>
-                    </div>
-                    <div className='LbPhoto' id="medal">
-                      <p>#5</p>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhoto'>
-                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>228 OCTIES</span></p>
-                    </div>
-                    <div className='LbPhoto' id="medal">
-                      <p>#6</p>
-                    </div>
-                </div>
-                 
-                <div className='Lb_Lider'>
-                    <div className='LbPhoto'>
-                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>178 OCTIES</span></p>
-                    </div>
-                    <div className='LbPhoto' id="medal">
-                      <p>#7</p>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhoto'>
-                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>123 OCTIES</span></p>
-                    </div>
-                    <div className='LbPhoto' id="medal">
-                      <p>#8</p>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhoto'>
-                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>65 OCTIES</span></p>
-                    </div>
-                    <div className='LbPhoto' id="medal">
-                      <p>#9</p>
-                    </div>
-                </div>
-
-                <div className='Lb_Lider'>
-                    <div className='LbPhoto'>
-                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>18 OCTIES</span></p>
-                    </div>
-                    <div className='LbPhoto' id="medal">
-                      <p>#10</p>
-                    </div>
-                </div>
+            ))}
           </div>
         </div>
       </div>
