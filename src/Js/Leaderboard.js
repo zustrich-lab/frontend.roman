@@ -128,12 +128,12 @@ useEffect(() => {
               margin:'2vh',  
               color: 'white'}}>
                 
-              {userName.slice(0, 2).toUpperCase()}
+              
             </div>
               
               <div className='NameLb'>
-              <p> {userName} <br/><span id='LbColor'>{userRank ? `Rank: ${userRank}` : 'Loading...'}</span></p>
-              <p id='LbColor'>{coins} OCTIES</p>
+                <p> {userName} </p>
+                <p id='LbColor'>{coins} OCTIES</p>
               </div>
             </div>
             <div className='LbPhoto'>
