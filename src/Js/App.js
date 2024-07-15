@@ -158,7 +158,7 @@ function App() {
 
       {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen}/>)}
 
-      {OctOpen && (<Oct onClose={setOctOpen}/>)}
+      {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen}/>)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} />)}
 

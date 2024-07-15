@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../Css/Oct.css';
 
 import Octo from '../IMG/All_Logo/Octo.png';
 import Salut from '../IMG/All_Logo/salut.gif';
 
-const Oct = ({ onClose }) => {
-  const [showGif, setShowGif] = useState(true);
+const Oct = ({ onClose, setYearsOpen }) => {
+  const handleClick = (event) => {
+    const { clientX } = event;
+    const screenWidth = window.innerWidth;
 
-  useEffect(() => {
-    let timer;
-    if (showGif) {
-      timer = setTimeout(() => {
-        setShowGif(false);
-      }, 2400); 
+    if (clientX <= screenWidth / 2) {
+      onClose(false);
+      setYearsOpen(true);
     }
-    return () => clearTimeout(timer);
-  }, [showGif]);
+  };
 
   return (
-    <div className="First_Window" id="checkwindow">
+    <div className="First_Window" id="checkwindow" onClick={handleClick}>
       <div className='Story'>
         <div className='StoryOne'></div>
         <div className='StoryTwo' id='TwoOcs'></div>
@@ -32,13 +30,13 @@ const Oct = ({ onClose }) => {
       <div className='YearMain'>
         <img src={Octo} alt='Octo' />
         <p id="Ytxt">838 OCTIES</p>
-        {showGif && <img src={Salut} id='Salut' alt='Salut' />}
+        <img src={Salut} id='Salut' alt='Salut' />
       </div>
       <div className='YearInfo'>
         <p>Thanks for your time on Telegram 🤝</p>
       </div>
       <div className="OrangeBtn" id='YearBTN'>
-        <div className='BtnO' onClick={() => onClose(false)}>
+        <div className='BtnO' onClick={(event) => { event.stopPropagation(); onClose(false); }}>
           <p>Continue</p>
         </div>
       </div>
