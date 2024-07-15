@@ -9,6 +9,23 @@ const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);
+  const [userCount, setUserCount] = useState(0);
+
+useEffect(() => {
+  const fetchUserCount = async () => {
+    try {
+      const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-count`);
+      if (response.data.success) {
+        setUserCount(response.data.count);
+      }
+    } catch (error) {
+      console.error('Ошибка при получении количества пользователей:', error);
+    }
+  };
+
+  fetchUserCount();
+}, []);
+
 
   useEffect(() => {
     const fetchLeaderboard = async () => {
@@ -114,7 +131,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
           </div>
         
           <div className='Lb_Liders'>
-            <p>1,228,499 holders</p>
+            <p>{userCount}</p>
           </div>
           <div className='Lb_list'>
             {leaderboard.map((user, index) => (
