@@ -110,7 +110,7 @@ function App() {
 
           <div className='Fr_Frend'>
                     <div className='FrPhoto'>
-                        <img src={TS1} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                        <img src={TS2} alt='ib' /> <p id='txt'>ivanbahranui</p>
                     </div>
                     <div className='FrPhoto'>
                         <p>+1,228 OCTIES</p>
