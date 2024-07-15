@@ -40,6 +40,7 @@ function App() {
   const [CheckOpen, setCheckOpen] = useState(false);
   const [YearsOpen, setYearsOpen] = useState(false);
   const [OctOpen, setOctOpen] = useState(false)
+  const [Yearr, setYearr] = useState(0)
 
   const [FriendsAnim, setFriendsAnim] = useState(false);
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
@@ -59,6 +60,7 @@ function App() {
         const currentYear = new Date().getFullYear();
         const accountYear = accountCreationDate.getFullYear();
         const yearsOld = currentYear - accountYear;
+        setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
         const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0;
 
@@ -216,7 +218,7 @@ function App() {
 
       {CheckOpen && (<Check  setCheckOpen={setCheckOpen} setYearsOpen={setYearsOpen}/>)}
 
-      {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen}/>)}
+      {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen} Yearr={Yearr}/>)}
 
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coins={coins}/>)}
 

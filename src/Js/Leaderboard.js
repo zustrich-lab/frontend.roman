@@ -133,6 +133,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
                           fontSize: '2.5vh',
                           margin:'2vh', 
                           color: 'white'}}>
+                            
                           {user.nickname.slice(0, 2).toUpperCase()}
                       </div>  
                     <div className='NameLb'>

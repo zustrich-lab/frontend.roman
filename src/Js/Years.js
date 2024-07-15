@@ -2,7 +2,7 @@ import React from 'react';
 import '../Css/Years.css';
 import star from '../IMG/All_Logo/star.gif';
 
-const Years = ({ onClose, setOctOpen }) => {
+const Years = ({ onClose, setOctOpen ,Yearr}) => {
   const handleClick = (event) => {
     const { clientX } = event;
     const screenWidth = window.innerWidth;
@@ -26,7 +26,7 @@ const Years = ({ onClose, setOctOpen }) => {
         <p>You have joined Telegram</p>
       </div>
       <div className="YearMain">
-        <p>1</p>
+        <p>{Yearr}</p>
         <p id="Ytxt">year ago</p>
         <img src={star} id="Star" alt="star" />
       </div>
