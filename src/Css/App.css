@@ -245,12 +245,17 @@ button{
   }
 
   .Tasks{
+    height: 20vh;
     font-size: 3vh;
   }
   
   .MenuBorder{
-    height: 35%;
+    height: 20vh;
+    font-size: 4vh;
   }
+
+  #up{ font-size: 3vh;}
+  #dp{ font-size: 2vh;}
 
   .Txt{
     font-size: 2.5vh;
