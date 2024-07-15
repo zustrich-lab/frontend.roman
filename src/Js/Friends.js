@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import '../Css/Friends.css';
+import '../Css/Friends.css'
 import axios from 'axios';
 
-const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
+const Friends = ({FriendsAnim, invite, referralCode, telegramLink }) => {
+
     const [referredUsers, setReferredUsers] = useState([]);
     const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
@@ -25,18 +26,24 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
     };
 
     return (
-        <div className={`Fr_Window ${FriendsAnim ? 'fade-out' : ''}`}>
+        <div className={`Fr_Window ${FriendsAnim? 'fade-out' : ''}`}>
             <div className='Fr_Info'>
-                <p>Invite friends <br /> and get more OCTIES</p>
-                <p>Your referral code: {referralCode}</p>
-                <button onClick={handleShareLink}>Share your link</button>
+                <p>Invite friends <br/> and get more OCTIES</p>
             </div>
             <div className='Fr_Main'>
-                <img src={invite} alt='invite' />
+                <img src={invite} alt='invite'/>
             </div>
+            <div className='Fr_InviteBtn'>
+                <div className='BTNInvete' onClick={handleShareLink}>
+                    <p>Invite friends</p>
+                    <p id='Fr_dark'>+10% of your <br/>friend’s age</p>
+                </div>
+            </div>
+
             <div className='Fr_Friends'>
                 <p>{referredUsers.length} friends</p>
             </div>
+
             <div className='Fr_list'>
                 {referredUsers.map((user, index) => (
                     <div key={index} className='Fr_Frend'>
@@ -49,6 +56,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
                     </div>
                 ))}
             </div>
+            
         </div>
     );
 };
