@@ -42,135 +42,103 @@ const Leaderboard = ({LeaderboardAnim}) => {
           <div className='Lb_list'>
 
                 <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib'/> 
+                    <div className='LbPhoto'>
+                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>1,228 OCTIES</span></p>
                     </div>
-                    <div className='tt'>
-                      <p> ivanbahranui </p>
-                      <p id='LbColorr'>12,028 OCTIES</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
+                    <div className='LbPhoto' id="medal">
                         <img src={first} alt='first'/>
                     </div>
                 </div>
 
                 <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib'/> 
+                    <div className='LbPhoto'>
+                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>1,228 OCTIES</span></p>
                     </div>
-                    <div className='tt'>
-                      <p> ivanbahranui </p>
-                      <p id='LbColorr'>1,228 OCTIES</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
+                    <div className='LbPhoto' id="medal">
                         <img src={second} alt='second'/>
                     </div>
                 </div>
                 
                 <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib'/> 
+                    <div className='LbPhoto'>
+                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>12,028 OCTIES</span></p>
                     </div>
-                    <div className='tt'>
-                      <p> ivanbahranui </p>
-                      <p id='LbColorr'>644 OCTIES</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
+                    <div className='LbPhoto' id="medal">
                         <img src={thrid} alt='thrid'/>
                     </div>
                 </div>
 
                 <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib'/> 
+                    <div className='LbPhoto'>
+                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>1,228 OCTIES</span></p>
                     </div>
-                    <div className='tt'>
-                      <p> ivanbahranui </p>
-                      <p id='LbColorr'>293 OCTIES</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#4</p>
+                    <div className='LbPhoto' id="medal">
+                      <p>#4</p>
                     </div>
                 </div>
 
                 <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib'/> 
+                    <div className='LbPhoto'>
+                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>644 OCTIES</span></p>
                     </div>
-                    <div className='tt'>
-                      <p> ivanbahranui </p>
-                      <p id='LbColorr'>128 OCTIES</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#5</p>
+                    <div className='LbPhoto' id="medal">
+                      <p>#5</p>
                     </div>
                 </div>
 
                 <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib'/> 
+                    <div className='LbPhoto'>
+                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>293 OCTIES</span></p>
                     </div>
-                    <div className='tt'>
-                      <p> ivanbahranui </p>
-                      <p id='LbColorr'>124 OCTIES</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#6</p>
+                    <div className='LbPhoto' id="medal">
+                      <p>#5</p>
                     </div>
                 </div>
 
                 <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib'/> 
+                    <div className='LbPhoto'>
+                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>228 OCTIES</span></p>
                     </div>
-                    <div className='tt'>
-                      <p> ivanbahranui </p>
-                      <p id='LbColorr'>89 OCTIES</p>
+                    <div className='LbPhoto' id="medal">
+                      <p>#6</p>
                     </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#7</p>
+                </div>
+                 
+                <div className='Lb_Lider'>
+                    <div className='LbPhoto'>
+                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>178 OCTIES</span></p>
+                    </div>
+                    <div className='LbPhoto' id="medal">
+                      <p>#7</p>
                     </div>
                 </div>
 
                 <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib'/> 
+                    <div className='LbPhoto'>
+                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>123 OCTIES</span></p>
                     </div>
-                    <div className='tt'>
-                      <p> ivanbahranui </p>
-                      <p id='LbColorr'>64 OCTIES</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#8</p>
+                    <div className='LbPhoto' id="medal">
+                      <p>#8</p>
                     </div>
                 </div>
 
                 <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib'/> 
+                    <div className='LbPhoto'>
+                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>65 OCTIES</span></p>
                     </div>
-                    <div className='tt'>
-                      <p> ivanbahranui </p>
-                      <p id='LbColorr'>30 OCTIES</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#9</p>
+                    <div className='LbPhoto' id="medal">
+                      <p>#9</p>
                     </div>
                 </div>
 
                 <div className='Lb_Lider'>
-                    <div className='LbPhotos'>
-                        <img src={ib} alt='ib'/> 
+                    <div className='LbPhoto'>
+                        <img src={ib} alt='ib'/> <p> ivanbahranui <br/><span id='LbColor'>18 OCTIES</span></p>
                     </div>
-                    <div className='tt'>
-                      <p> ivanbahranui </p>
-                      <p id='LbColorr'>22 OCTIES</p>
-                    </div>
-                    <div className='LbPhotos' id="medal">
-                        <p>#10</p>
+                    <div className='LbPhoto' id="medal">
+                      <p>#10</p>
                     </div>
                 </div>
-                  
           </div>
         </div>
       </div>

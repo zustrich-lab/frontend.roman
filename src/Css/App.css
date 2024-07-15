@@ -147,7 +147,7 @@ body {
 }
 
 .tsPhoto img{
-  height: 65%;
+  height: 60%;
 }
 
 .tsPhoto{
@@ -161,7 +161,7 @@ body {
   font-size: 1.8vh;
 }
 #txt{
-  margin-left: 2vh;
+  margin-left: 1.2vh;
 }
 
 .LowerBTN{
