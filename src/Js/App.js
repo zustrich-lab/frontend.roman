@@ -108,14 +108,14 @@ function App() {
             </div>
           </div>
 
-          <div className='TS'>
-            <div className='tsPhoto'>
-              <img src={TS2} alt='TS2' /> <p id='txt'>Telegram Premium</p>
-            </div>
-            <div className='tsPhoto'>
-              <p>+500 OCTIES</p>
-            </div>
-          </div>
+          <div className='Fr_Frend'>
+                    <div className='FrPhoto'>
+                        <img src={TS1} alt='ib' /> <p id='txt'>ivanbahranui</p>
+                    </div>
+                    <div className='FrPhoto'>
+                        <p>+1,228 OCTIES</p>
+                    </div>
+                </div>
 
           <div className='TS'>
             <div className='tsPhoto'>
