@@ -172,7 +172,7 @@ function App() {
           <p id='dp'>Home for Telegram OCs</p>
           <div className='MenuBtn'>
             {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join'/>}
-            <p>+ 1000 OCTIES</p>
+            {Knopka && <p>+</p>}<p> 1000 OCTIES</p>
             {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka'/>}
           </div>
         </div>
