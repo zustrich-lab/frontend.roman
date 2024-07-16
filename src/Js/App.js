@@ -58,7 +58,6 @@ function App() {
   const [referralCode, setReferralCode] = useState('');
   const [telegramLink, setTelegramLink] = useState('');
 
-
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isFrendsOpen, setIsFrendsOpen] = useState(false);
   const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
@@ -136,7 +135,7 @@ const checkSubscriptionAndUpdate = async (userId) => {
     const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
     if (response.status === 200) {
       // Обновляем состояние монет и подписки
-      setCoins(response.data.coins);
+      //setCoins(response.data.coins);
       setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
       if(response.data.isSubscribed){
         localStorage.setItem('Galka', 'true');
@@ -177,6 +176,14 @@ const checkSubscriptionAndUpdate = async (userId) => {
 //   }
 // };
 
+  // useEffect(() => {
+  //   const userId = new URLSearchParams(window.location.search).get('userId');
+  //   if (userId) {
+  //     checkAndFetchSubscription(userId);
+  //   } else {
+  //     console.error('userId не найден в URL');
+  //   }
+  // }, [fetchUserData]);
 
 const Tg_Channel_Open_chek = () => {
   const userId = new URLSearchParams(window.location.search).get('userId');
@@ -202,14 +209,6 @@ const Tg_Channel_Open_chek = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const userId = new URLSearchParams(window.location.search).get('userId');
-  //   if (userId) {
-  //     checkAndFetchSubscription(userId);
-  //   } else {
-  //     console.error('userId не найден в URL');
-  //   }
-  // }, [fetchUserData]);
 
   const handleHome = () => {
     setIsLeaderboardOpen(false);
