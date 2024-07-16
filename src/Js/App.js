@@ -118,6 +118,7 @@ function App() {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.expand();
+
       tg.onEvent('viewportChanged', () => {
         const userId = new URLSearchParams(window.location.search).get('userId');
         if (userId) {
@@ -134,7 +135,11 @@ function App() {
             });
         }
       });
+
+      window.Telegram.WebApp.disableVerticalSwipes();
+
     }
+    
   }, []);
 
   const handleHome = () => {
