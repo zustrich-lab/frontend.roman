@@ -5,6 +5,11 @@ import Octo from '../IMG/All_Logo/Octo.png';
 import Salut from '../IMG/All_Logo/salut.gif';
 
 const Oct = ({ onClose, setYearsOpen, coinOnlyYears }) => {
+
+  function Vibration() {
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  }
+
   const handleClick = (event) => {
     const { clientX } = event;
     const screenWidth = window.innerWidth;
@@ -36,7 +41,7 @@ const Oct = ({ onClose, setYearsOpen, coinOnlyYears }) => {
         <p>Thanks for your time on Telegram 🤝</p>
       </div>
       <div className="OrangeBtn" id='YearBTN'>
-        <div className='BtnO' onClick={(event) => { event.stopPropagation(); onClose(false); }}>
+        <div className='BtnO' onClick={(event) => { event.stopPropagation(); onClose(false); Vibration(); }}>
           <p>Continue</p>
         </div>
       </div>

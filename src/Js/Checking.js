@@ -3,6 +3,14 @@ import '../Css/Checking.css';
 import V from '../IMG/All_Logo/V.png';
 
 const Check = ({ setCheckOpen, setYearsOpen }) => {
+
+  function handleClickCheckWithVibration() {
+    onClose();
+    setCheckOpen(false);
+    setYearsOpen(true);
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  }
+
   const [showButton, setShowButton] = useState(false);
   const progressRefs = useRef([]);
   const imageRefs = useRef([]);
@@ -92,7 +100,7 @@ const Check = ({ setCheckOpen, setYearsOpen }) => {
       </div>
 
       <div className={`OrangeBtn ${showButton ? 'visible' : ''}`} id="checkBtn">
-        <div className='BtnO' onClick={() => { setCheckOpen(false); setYearsOpen(true); }}>
+        <div className='BtnO' onClick={handleClickCheckWithVibration}>
           <p>Continue</p>
         </div>
       </div>

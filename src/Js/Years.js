@@ -3,6 +3,11 @@ import '../Css/Years.css';
 import star from '../IMG/All_Logo/star.gif';
 
 const Years = ({ onClose, setOctOpen ,Yearr}) => {
+
+  function Vibration() {
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  }
+
   const handleClick = (event) => {
     const { clientX } = event;
     const screenWidth = window.innerWidth;
@@ -31,7 +36,7 @@ const Years = ({ onClose, setOctOpen ,Yearr}) => {
         <img src={star} id="Star" alt="star" />
       </div>
       <div className="OrangeBtn" id="YearBTN">
-        <div className="BtnO" onClick={(event) => { event.stopPropagation(); onClose(false); setOctOpen(true); }}>
+        <div className="BtnO" onClick={(event) => { event.stopPropagation(); onClose(false); setOctOpen(true);  Vibration(); }}>
             <p>Continue</p>
         </div>
       </div>

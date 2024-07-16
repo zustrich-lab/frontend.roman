@@ -184,6 +184,7 @@ function App() {
 
   const Tg_Channel_Open_chek = () => {
     window.location.href = TG_CHANNEL_LINK;
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   };
 
   useEffect(() => {
