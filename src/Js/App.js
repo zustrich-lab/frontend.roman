@@ -247,9 +247,11 @@ const Tg_Channel_Open_chek = () => {
 
   const userId = new URLSearchParams(window.location.search).get('userId');
 
-  return (
-    <div className="App">
-      {app && <div className='blk'></div>}
+
+    return (
+      <div className="App">
+        <div id="app-scrollable">
+        {app && <div className='blk'></div>}
       <div className="info">
         <img src={Logo} alt='Logo' />
         <div className='Txt' onClick={(event) => {setYearsOpen(true);}}>
@@ -327,7 +329,10 @@ const Tg_Channel_Open_chek = () => {
             <img src={IconFriends} alt='IconFriends' />
           </div>
         </div>
+        </div>
       </div>
+
+    
 
       {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
 
