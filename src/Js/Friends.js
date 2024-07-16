@@ -7,17 +7,24 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
     const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
     useEffect(() => {
+        const storedReferredUsers = localStorage.getItem('referredUsers');
+        if (storedReferredUsers) {
+            setReferredUsers(JSON.parse(storedReferredUsers));
+        }
+    
         const fetchReferredUsers = async () => {
             try {
                 const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-referred-users`, { referralCode });
                 setReferredUsers(response.data.referredUsers);
+                localStorage.setItem('referredUsers', JSON.stringify(response.data.referredUsers));
             } catch (error) {
                 console.error('Ошибка при получении данных о рефералах:', error);
             }
         };
-
+    
         fetchReferredUsers();
     }, [referralCode]);
+    
 
     const handleShareLink = () => {
         const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent('Присоединяйся к нашему приложению и получай бонусы!')}`;

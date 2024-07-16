@@ -49,6 +49,54 @@ function App() {
   if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
   const Knopka = localStorage.getItem('Knopka') === 'true';
 
+  useEffect(() => {
+    const storedCoins = localStorage.getItem('coins');
+    const storedHasTelegramPremium = localStorage.getItem('hasTelegramPremium');
+    const storedAccountAgeCoins = localStorage.getItem('accountAgeCoins');
+    const storedSubscriptionCoins = localStorage.getItem('subscriptionCoins');
+    const storedReferralCode = localStorage.getItem('referralCode');
+    const storedTelegramLink = localStorage.getItem('telegramLink');
+
+    if (storedCoins) setCoins(JSON.parse(storedCoins));
+    if (storedHasTelegramPremium) setHasTelegramPremium(JSON.parse(storedHasTelegramPremium));
+    if (storedAccountAgeCoins) setAccountAgeCoins(JSON.parse(storedAccountAgeCoins));
+    if (storedSubscriptionCoins) setSubscriptionCoins(JSON.parse(storedSubscriptionCoins));
+    if (storedReferralCode) setReferralCode(storedReferralCode);
+    if (storedTelegramLink) setTelegramLink(storedTelegramLink);
+
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    if (userId) {
+        fetchUserData(userId);
+    } else {
+        console.error('userId не найден в URL');
+    }
+}, []);
+
+useEffect(() => {
+  localStorage.setItem('coins', JSON.stringify(coins));
+}, [coins]);
+
+useEffect(() => {
+  localStorage.setItem('hasTelegramPremium', JSON.stringify(hasTelegramPremium));
+}, [hasTelegramPremium]);
+
+useEffect(() => {
+  localStorage.setItem('accountAgeCoins', JSON.stringify(accountAgeCoins));
+}, [accountAgeCoins]);
+
+useEffect(() => {
+  localStorage.setItem('subscriptionCoins', JSON.stringify(subscriptionCoins));
+}, [subscriptionCoins]);
+
+useEffect(() => {
+  localStorage.setItem('referralCode', referralCode);
+}, [referralCode]);
+
+useEffect(() => {
+  localStorage.setItem('telegramLink', telegramLink);
+}, [telegramLink]);
+
+
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
   const [referralCoins, setReferralCoins] = useState(0);
