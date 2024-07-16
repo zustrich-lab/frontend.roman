@@ -146,7 +146,7 @@ useEffect(() => {
                           backgroundColor: getRandomColor(), 
                           borderRadius: '50%', 
                           aspectRatio: '1', 
-                          height: '60%', 
+                          height: '70%', 
                           display: 'flex', 
                           alignItems: 'center', 
                           justifyContent: 'center', 
@@ -154,7 +154,7 @@ useEffect(() => {
                           margin:'2vh', 
                           color: 'white'}}>
                             
-                          {user.nickname.slice(0, 2).toUpperCase()}
+                          <p style={{margin: '0'}}>{user.nickname.slice(0, 2).toUpperCase()}</p>
                       </div>  
                     <div className='NameLb'>
                       <p> {user.nickname} </p>
