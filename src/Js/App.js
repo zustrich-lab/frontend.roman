@@ -206,6 +206,7 @@ const Tg_Channel_Open_chek = () => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.expand();
+      tg.disableVerticalSwipes()
     }
   }, []);
 
@@ -238,14 +239,6 @@ const Tg_Channel_Open_chek = () => {
     setFPage(false);
     localStorage.setItem('FPage', 'false');
   };
-
-  Telegram.WebApp.onEvent('viewportChanged', function(viewport) {
-    if (viewport.isExpanded) {
-      window.Telegram.WebApp.expand()
-    } else {
-      window.Telegram.WebApp.expand()
-    }
-  });
   
   const userId = new URLSearchParams(window.location.search).get('userId');
 
