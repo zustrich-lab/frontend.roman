@@ -162,6 +162,7 @@ function App() {
     }
   };
 
+  
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
     if (userId) {
@@ -169,7 +170,8 @@ function App() {
     } else {
       console.error('userId не найден в URL');
     }
-  }, []);
+  }, [fetchUserData]);
+
   const handleHome = () => {
     setIsLeaderboardOpen(false);
     setIsFrendsOpen(false);
