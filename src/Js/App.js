@@ -140,6 +140,22 @@ const checkSubscriptionAndUpdate = async (userId) => {
   }
 };
 
+const checkAndFetchSubscription = async (userId) => {
+  try {
+    const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+    if (response.status === 200) {
+      setCoins(response.data.coins);
+      setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
+      
+    } else {
+      console.error('Ошибка при проверке подписки:', response.data.error);
+      
+    }
+  } catch (error) {
+    console.error('Ошибка при проверке подписки:', error);
+  }
+};
+
 const Tg_Channel_Open_chek = () => {
   const userId = new URLSearchParams(window.location.search).get('userId');
   window.open(TG_CHANNEL_LINK, '_blank'); // Открываем канал в новой вкладке
