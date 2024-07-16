@@ -119,7 +119,6 @@ function App() {
             localStorage.setItem('Galka', 'false');
             localStorage.setItem('Knopka', 'true');
           }
-          
         }
       } else {
         console.error('Ошибка при получении данных пользователя:', data.error);
