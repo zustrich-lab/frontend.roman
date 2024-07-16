@@ -126,7 +126,7 @@ function App() {
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  }, [hasTelegramPremium]);
+  }, [hasTelegramPremium, referralCoins]);
 
   const checkSubscription = useCallback(async (userId) => {
     try {
