@@ -31,17 +31,17 @@ function App() {
 
   function handleHomeWithVibration() {
     handleHome();
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
 
   function handleLeaderboardWithVibration() {
     handleLeaderboard();
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
 
   function handleFrendsWithVibration() {
     handleFrends();
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
 
   if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
@@ -88,14 +88,6 @@ function App() {
         setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
         const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0 ;
-
-        if (subscriptionCoins === 1000) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-        }
 
         if (hasTelegramPremium === true){
           setVisibleTelegramPremium(true)
@@ -150,8 +142,12 @@ const checkAndFetchSubscription = async (userId) => {
     if (response.status === 200) {
       setCoins(response.data.coins);
       setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
+      localStorage.setItem('Galka', 'true');
+      localStorage.setItem('Knopka', 'false');
     } else {
       console.error('Ошибка при проверке подписки:', response.data.error);
+      localStorage.setItem('Galka', 'false');
+      localStorage.setItem('Knopka', 'true');
     }
   } catch (error) {
     console.error('Ошибка при проверке подписки:', error);
