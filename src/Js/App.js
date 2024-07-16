@@ -29,6 +29,21 @@ const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
 function App() {
 
+  function handleHomeWithVibration() {
+    handleHome();
+    navigator.vibrate(10);
+  }
+
+  function handleLeaderboardWithVibration() {
+    handleLeaderboard();
+    navigator.vibrate(10);
+  }
+
+  function handleFrendsWithVibration() {
+    handleFrends();
+    navigator.vibrate(10);
+  }
+
   if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
   const Galo4ka = localStorage.getItem('Galka') === 'true';
   if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
@@ -256,13 +271,13 @@ function App() {
 
       <div className='BTNLow'>
         <div className='LowerBTN'>
-          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen) ? 'img-dark' : ''}`} onClick={handleHome}>
+          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen) ? 'img-dark' : ''}`} onClick={handleHomeWithVibration}>
             <img src={IconHome} alt='IconHome' />
           </div>
-          <div className={`BTN ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboard}>
+          <div className={`BTN ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboardWithVibration}>
             <img src={IconLeaderboard} alt='IconLeaderboard' />
           </div>
-          <div className={`BTN ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrends}>
+          <div className={`BTN ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrendsWithVibration}>
             <img src={IconFriends} alt='IconFriends' />
           </div>
         </div>
