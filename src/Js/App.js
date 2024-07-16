@@ -131,8 +131,7 @@ function App() {
 
   // App.js
 
-
-const checkAndFetchSubscription = async (userId) => {
+const checkSubscriptionAndUpdate = async (userId) => {
   try {
     const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
     if (response.status === 200) {
@@ -155,6 +154,29 @@ const checkAndFetchSubscription = async (userId) => {
   }
 };
 
+// const checkAndFetchSubscription = async (userId) => {
+//   try {
+//     const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+//     if (response.status === 200) {
+//       // Обновляем состояние монет и подписки
+//       setCoins(response.data.coins);
+//       setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
+//       if(response.data.isSubscribed){
+//         localStorage.setItem('Galka', 'true');
+//         localStorage.setItem('Knopka', 'false');
+//       } else {
+//         localStorage.setItem('Galka', 'false');
+//         localStorage.setItem('Knopka', 'true');
+//       }
+
+//     } else {
+//       console.error('Ошибка при проверке подписки:', response.data.error);
+//     }
+//   } catch (error) {
+//     console.error('Ошибка при проверке подписки:', error);
+//   }
+// };
+
 
 const Tg_Channel_Open_chek = () => {
   const userId = new URLSearchParams(window.location.search).get('userId');
@@ -163,7 +185,6 @@ const Tg_Channel_Open_chek = () => {
     checkSubscriptionAndUpdate(userId); // Проверяем подписку после задержки
   }, 5000); // Задержка в 5 секунд для того, чтобы пользователь успел подписаться
 };
-
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
@@ -174,8 +195,6 @@ const Tg_Channel_Open_chek = () => {
     }
   }, [fetchUserData]);
 
-  
-
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
@@ -183,17 +202,14 @@ const Tg_Channel_Open_chek = () => {
     }
   }, []);
 
-
-
-  
-  useEffect(() => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    if (userId) {
-      checkAndFetchSubscription(userId);
-    } else {
-      console.error('userId не найден в URL');
-    }
-  }, [fetchUserData]);
+  // useEffect(() => {
+  //   const userId = new URLSearchParams(window.location.search).get('userId');
+  //   if (userId) {
+  //     checkAndFetchSubscription(userId);
+  //   } else {
+  //     console.error('userId не найден в URL');
+  //   }
+  // }, [fetchUserData]);
 
   const handleHome = () => {
     setIsLeaderboardOpen(false);
