@@ -5,7 +5,7 @@ import gipsy from'../IMG/All_Logo/flag.gif';
 const First = ({ onClose, setCheckOpen }) => {
 
   function handleClickFirstWithVibration() {
-    onClose;
+    onClose();
     setCheckOpen(true);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
