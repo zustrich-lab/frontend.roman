@@ -53,10 +53,11 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
             <div className='Fr_list'>
                 {referredUsers.map((user, index) => (
                     <div key={index} className='Fr_Frend'>
-                        <div className='FrPhoto' style={{backgroundColor: getRandomColor(), borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: 'white'}}>
+                        <div className='FrPhoto' style={{ backgroundColor: getRandomColor(), borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: 'white' }}>
                             {user.nickname.slice(0, 2).toUpperCase()}
                         </div>
-                        <div className='FrPhoto'>
+                        <div className='FrDetails'>
+                            <p>{user.nickname}</p>
                             <p>+{user.earnedCoins} OCTIES</p>
                         </div>
                     </div>
