@@ -275,3 +275,7 @@ button{
   }
 
 }
+
+.img-dark {
+  filter: brightness(40%);
+}

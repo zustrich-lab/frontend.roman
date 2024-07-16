@@ -104,3 +104,8 @@
 .FrPhoto p{
     font-size: 1.8vh;
 }
+
+#FR_Coins_frend p{
+    font-size: 2.2vh;
+    margin: 0;
+}
