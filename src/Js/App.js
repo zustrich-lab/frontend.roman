@@ -124,10 +124,10 @@ function App() {
   }, []);
 
   const handleHome = () => {
+    setIsLeaderboardOpen(false);
+    setIsFrendsOpen(false);
     setFriendsAnim(true);
     setLeaderboardAnim(true);
-    setTimeout(() => { setIsLeaderboardOpen(false); }, 300);
-    setTimeout(() => { setIsFrendsOpen(false); }, 300);
     setApp(false);
   };
 
@@ -135,15 +135,17 @@ function App() {
     setIsFrendsOpen(true);
     setFriendsAnim(false);
     setLeaderboardAnim(true);
-    setTimeout(() => { setIsLeaderboardOpen(false); }, 300);
-    setApp(true);}
+    setIsLeaderboardOpen(false);
+    setApp(true);
+  };
 
   const handleLeaderboard = () => {
     setIsLeaderboardOpen(true);
     setFriendsAnim(true);
     setLeaderboardAnim(false);
-    setTimeout(() => { setIsFrendsOpen(false); }, 300);
-    setApp(true);}
+    setIsFrendsOpen(false);
+    setApp(true);
+  };
 
   const handleFirstPageClose = () => {
     setFPage(false);
@@ -222,13 +224,13 @@ function App() {
 
       <div className='BTNLow'>
         <div className='LowerBTN'>
-          <div className='BTN' onClick={handleHome}>
+          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen) ? 'img-dark' : ''}`} onClick={handleHome}>
             <img src={IconHome} alt='IconHome' />
           </div>
-          <div className='BTN' onClick={handleLeaderboard}>
+          <div className={`BTN ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboard}>
             <img src={IconLeaderboard} alt='IconLeaderboard' />
           </div>
-          <div className='BTN' onClick={handleFrends}>
+          <div className={`BTN ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrends}>
             <img src={IconFriends} alt='IconFriends' />
           </div>
         </div>
