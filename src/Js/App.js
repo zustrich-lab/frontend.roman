@@ -95,6 +95,10 @@ function App() {
         } else {
           console.error('Ошибка при получении реферальных данных:', referralData.message);
         }
+        const subscriptionResponse = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+        if (subscriptionResponse.status === 200) {
+          setCoins(subscriptionResponse.data.coins);
+        }
       } else {
         console.error('Ошибка при получении данных пользователя:', data.error);
       }
