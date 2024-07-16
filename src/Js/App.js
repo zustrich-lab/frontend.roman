@@ -206,6 +206,7 @@ const Tg_Channel_Open_chek = () => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.expand();
+      tg.disableVerticalSwipes()
     }
   }, []);
 
@@ -303,7 +304,7 @@ const Tg_Channel_Open_chek = () => {
               <img src={TS4} alt='TS4' /> <p id='txt'>Invites</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{referralCoins} OCTIES</p>
+              <p>+ 0 OCTIES</p>
             </div>
           </div>
         </div>
