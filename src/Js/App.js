@@ -76,7 +76,7 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        setCoins(data.coins);
+        setCoins(data.coins + referralCoins); 
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
 
@@ -135,7 +135,7 @@ const checkSubscriptionAndUpdate = async (userId) => {
     const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
     if (response.status === 200) {
       // Обновляем состояние монет и подписки
-      //setCoins(response.data.coins);
+      setCoins(response.data.coins);
       setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
       if(response.data.isSubscribed){
         localStorage.setItem('Galka', 'true');
@@ -153,37 +153,37 @@ const checkSubscriptionAndUpdate = async (userId) => {
   }
 };
 
-// const checkAndFetchSubscription = async (userId) => {
-//   try {
-//     const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-//     if (response.status === 200) {
-//       // Обновляем состояние монет и подписки
-//       setCoins(response.data.coins);
-//       setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
-//       if(response.data.isSubscribed){
-//         localStorage.setItem('Galka', 'true');
-//         localStorage.setItem('Knopka', 'false');
-//       } else {
-//         localStorage.setItem('Galka', 'false');
-//         localStorage.setItem('Knopka', 'true');
-//       }
+const checkAndFetchSubscription = async (userId) => {
+  try {
+    const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+    if (response.status === 200) {
+      // Обновляем состояние монет и подписки
+      setCoins(response.data.coins);
+      setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
+      if(response.data.isSubscribed){
+        localStorage.setItem('Galka', 'true');
+        localStorage.setItem('Knopka', 'false');
+      } else {
+        localStorage.setItem('Galka', 'false');
+        localStorage.setItem('Knopka', 'true');
+      }
 
-//     } else {
-//       console.error('Ошибка при проверке подписки:', response.data.error);
-//     }
-//   } catch (error) {
-//     console.error('Ошибка при проверке подписки:', error);
-//   }
-// };
+    } else {
+      console.error('Ошибка при проверке подписки:', response.data.error);
+    }
+  } catch (error) {
+    console.error('Ошибка при проверке подписки:', error);
+  }
+};
 
-  // useEffect(() => {
-  //   const userId = new URLSearchParams(window.location.search).get('userId');
-  //   if (userId) {
-  //     checkAndFetchSubscription(userId);
-  //   } else {
-  //     console.error('userId не найден в URL');
-  //   }
-  // }, [fetchUserData]);
+  useEffect(() => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    if (userId) {
+      checkAndFetchSubscription(userId);
+    } else {
+      console.error('userId не найден в URL');
+    }
+  }, [fetchUserData]);
 
 const Tg_Channel_Open_chek = () => {
   const userId = new URLSearchParams(window.location.search).get('userId');
