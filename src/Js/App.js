@@ -128,20 +128,6 @@ const checkSubscriptionAndUpdate = async (userId) => {
       // Обновляем состояние монет и подписки
       setCoins(response.data.coins);
       setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
-    } else {
-      console.error('Ошибка при проверке подписки:', response.data.error);
-    }
-  } catch (error) {
-    console.error('Ошибка при проверке подписки:', error);
-  }
-};
-
-const checkAndFetchSubscription = async (userId) => {
-  try {
-    const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-    if (response.status === 200) {
-      setCoins(response.data.coins);
-      setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
       localStorage.setItem('Galka', 'true');
       localStorage.setItem('Knopka', 'false');
     } else {
