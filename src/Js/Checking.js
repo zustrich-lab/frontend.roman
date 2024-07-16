@@ -5,7 +5,6 @@ import V from '../IMG/All_Logo/V.png';
 const Check = ({ setCheckOpen, setYearsOpen }) => {
 
   function handleClickCheckWithVibration() {
-    onClose();
     setCheckOpen(false);
     setYearsOpen(true);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
