@@ -49,7 +49,8 @@ function App() {
   if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
   const Knopka = localStorage.getItem('Knopka') === 'true';
 
-  const [coinOnlyYears, setcoinOnlyYears] = useState(0)
+  const [coinOnlyYears, setcoinOnlyYears] = useState(0);
+  const [VisibleInvite, setVisibleInvite] = useState(false);
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
   const [referralCoins, setReferralCoins] = useState(0);
@@ -101,6 +102,10 @@ function App() {
 
         if (hasTelegramPremium === true){
           setVisibleTelegramPremium(true)
+        }
+
+        if (referralCoins > 0){
+          setVisibleInvite(true)
         }
         
         setAccountAgeCoins(accountAgeCoins);
@@ -271,14 +276,14 @@ function App() {
             </div>
           </div>}
 
-          <div className='TS'>
+          {VisibleInvite &&<div className='TS'>
             <div className='tsPhoto'>
               <img src={TS4} alt='TS4' /> <p id='txt'>Invites</p>
             </div>
             <div className='tsPhoto'>
               <p>+{referralCoins} OCTIES</p>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
 
