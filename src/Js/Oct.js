@@ -17,6 +17,7 @@ const Oct = ({ onClose, setYearsOpen, coinOnlyYears }) => {
     if (clientX <= screenWidth / 2) {
       onClose(false);
       setYearsOpen(true);
+      Vibration();
     }
   };
 

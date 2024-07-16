@@ -15,6 +15,7 @@ const Years = ({ onClose, setOctOpen ,Yearr}) => {
     if (clientX > screenWidth / 2) {
       onClose(false);
       setOctOpen(true);
+      Vibration();
     }
   };
 
