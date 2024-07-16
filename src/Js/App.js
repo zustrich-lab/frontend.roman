@@ -195,6 +195,7 @@ const Tg_Channel_Open_chek = () => {
     }
   }, [fetchUserData]);
 
+
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
