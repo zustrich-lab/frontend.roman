@@ -122,17 +122,20 @@ function App() {
       tg.expand();
       window.Telegram.WebApp.disableVerticalSwipes();
     }
+
+    window.WebApp.onEvent('viewportChanged', function(viewport) {
+      if (!viewport.isExpanded) {
+        window.Telegram.WebApp.expand();
+      } else {
+        window.Telegram.WebApp.expand();
+      }
+    });
+
   }, []);
 
   window.Telegram.WebApp.disableVerticalSwipes();
 
-  Telegram.WebApp.onEvent('viewportChanged', function(viewport) {
-    if (!viewport.isExpanded) {
-      window.Telegram.WebApp.expand();
-    } else {
-      window.Telegram.WebApp.expand();
-    }
-  });
+  
 
   const handleHome = () => {
     setIsLeaderboardOpen(false);
