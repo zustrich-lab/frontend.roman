@@ -28,6 +28,27 @@ import Join from '../IMG/All_Logo/Join.png';
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
 function App() {
+  const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
+  const [coins, setCoins] = useState(0);
+  const [referralCoins, setReferralCoins] = useState(0);
+  const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
+  const [accountAgeCoins, setAccountAgeCoins] = useState(0);
+  const [subscriptionCoins, setSubscriptionCoins] = useState(0);
+  const [referralCode, setReferralCode] = useState('');
+  const [telegramLink, setTelegramLink] = useState('');
+
+  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
+  const [isFrendsOpen, setIsFrendsOpen] = useState(false);
+  const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
+  const [CheckOpen, setCheckOpen] = useState(false);
+  const [YearsOpen, setYearsOpen] = useState(false);
+  const [OctOpen, setOctOpen] = useState(false)
+  const [Yearr, setYearr] = useState(0)
+
+  const [FriendsAnim, setFriendsAnim] = useState(false);
+  const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
+  const [app, setApp] = useState(false);
+  const TG_CHANNEL_LINK = "https://t.me/octies_channel";
 
   function handleHomeWithVibration() {
     handleHome();
@@ -97,27 +118,7 @@ useEffect(() => {
 }, [telegramLink]);
 
 
-  const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
-  const [coins, setCoins] = useState(0);
-  const [referralCoins, setReferralCoins] = useState(0);
-  const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
-  const [accountAgeCoins, setAccountAgeCoins] = useState(0);
-  const [subscriptionCoins, setSubscriptionCoins] = useState(0);
-  const [referralCode, setReferralCode] = useState('');
-  const [telegramLink, setTelegramLink] = useState('');
 
-  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
-  const [isFrendsOpen, setIsFrendsOpen] = useState(false);
-  const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
-  const [CheckOpen, setCheckOpen] = useState(false);
-  const [YearsOpen, setYearsOpen] = useState(false);
-  const [OctOpen, setOctOpen] = useState(false)
-  const [Yearr, setYearr] = useState(0)
-
-  const [FriendsAnim, setFriendsAnim] = useState(false);
-  const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
-  const [app, setApp] = useState(false);
-  const TG_CHANNEL_LINK = "https://t.me/octies_channel";
 
   const fetchUserData = useCallback(async (userId) => {
     try {
