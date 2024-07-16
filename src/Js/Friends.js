@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import '../Css/Friends.css'
+import '../Css/Friends.css';
 import axios from 'axios';
 
-const Friends = ({FriendsAnim, invite, referralCode, telegramLink }) => {
-
+const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
     const [referredUsers, setReferredUsers] = useState([]);
     const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
@@ -25,8 +24,17 @@ const Friends = ({FriendsAnim, invite, referralCode, telegramLink }) => {
         window.open(telegramUrl, '_blank');
     };
 
+    const getRandomColor = () => {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    };
+
     return (
-        <div className={`Fr_Window ${FriendsAnim? 'fade-out' : ''}`}>
+        <div className={`Fr_Window ${FriendsAnim ? 'fade-out' : ''}`}>
             <div className='Fr_Info'>
                 <p>Invite friends <br/> and get more OCTIES</p>
             </div>
@@ -34,21 +42,19 @@ const Friends = ({FriendsAnim, invite, referralCode, telegramLink }) => {
                 <img src={invite} alt='invite'/>
             </div>
             <div className='Fr_InviteBtn'>
-                <div className='BTNInvete' onClick={handleShareLink}>
-                    <p>Invite friends</p>
+                <div className='BTNInvete'>
+                    <p onClick={handleShareLink}>Invite friends</p>
                     <p id='Fr_dark'>+10% of your <br/>friend’s age</p>
                 </div>
             </div>
-
             <div className='Fr_Friends'>
                 <p>{referredUsers.length} friends</p>
             </div>
-
             <div className='Fr_list'>
                 {referredUsers.map((user, index) => (
                     <div key={index} className='Fr_Frend'>
-                        <div className='FrPhoto'>
-                            <p id='txt'>{user.nickname}</p>
+                        <div className='FrPhoto' style={{backgroundColor: getRandomColor(), borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: 'white'}}>
+                            {user.nickname.slice(0, 2).toUpperCase()}
                         </div>
                         <div className='FrPhoto'>
                             <p>+{user.earnedCoins} OCTIES</p>
@@ -56,7 +62,6 @@ const Friends = ({FriendsAnim, invite, referralCode, telegramLink }) => {
                     </div>
                 ))}
             </div>
-            
         </div>
     );
 };
