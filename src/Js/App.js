@@ -251,7 +251,6 @@ const Tg_Channel_Open_chek = () => {
 
   return (
     <div className="App">
-    <div id="app-scrollable">
     {app && <div className='blk'></div>}
       <div className="info">
         <img src={Logo} alt='Logo' />
@@ -345,7 +344,6 @@ const Tg_Channel_Open_chek = () => {
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink}/>)}
 
     </div>
-  </div>
 
   );
 }
