@@ -31,17 +31,17 @@ function App() {
 
   function handleHomeWithVibration() {
     handleHome();
-    navigator.vibrate(10);
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
   }
 
   function handleLeaderboardWithVibration() {
     handleLeaderboard();
-    navigator.vibrate(10);
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
   }
 
   function handleFrendsWithVibration() {
     handleFrends();
-    navigator.vibrate(10);
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
   }
 
   if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
