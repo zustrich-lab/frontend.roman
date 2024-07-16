@@ -29,6 +29,21 @@ const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
 function App() {
 
+  function handleHomeWithVibration() {
+    handleHome();
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  }
+
+  function handleLeaderboardWithVibration() {
+    handleLeaderboard();
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  }
+
+  function handleFrendsWithVibration() {
+    handleFrends();
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  }
+
   if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
   const Galo4ka = localStorage.getItem('Galka') === 'true';
   if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
@@ -74,9 +89,12 @@ function App() {
         const accountAgeCoins = yearsOld * 500;
         const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0 ;
 
-        if (subscriptionCoins === 1000) {
+        if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
         }
 
         if (hasTelegramPremium === true){
@@ -262,15 +280,15 @@ function App() {
         </div>
       </div>
 
-      <div className='BTNLow'>
+     <div className='BTNLow'>
         <div className='LowerBTN'>
-          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen) ? 'img-dark' : ''}`} onClick={handleHome}>
+          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen) ? 'img-dark' : ''}`} onClick={handleHomeWithVibration}>
             <img src={IconHome} alt='IconHome' />
           </div>
-          <div className={`BTN ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboard}>
+          <div className={`BTN ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboardWithVibration}>
             <img src={IconLeaderboard} alt='IconLeaderboard' />
           </div>
-          <div className={`BTN ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrends}>
+          <div className={`BTN ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrendsWithVibration}>
             <img src={IconFriends} alt='IconFriends' />
           </div>
         </div>
