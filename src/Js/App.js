@@ -28,6 +28,12 @@ import Join from '../IMG/All_Logo/Join.png';
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
 function App() {
+
+  if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
+  const Galo4ka = localStorage.getItem('Galka') === 'true';
+  if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
+  const Knopka = localStorage.getItem('Knopka') === 'true';
+
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
   const [referralCoins, setReferralCoins] = useState(0);
@@ -89,10 +95,6 @@ function App() {
         } else {
           console.error('Ошибка при получении реферальных данных:', referralData.message);
         }
-        const subscriptionResponse = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-        if (subscriptionResponse.status === 200) {
-          setCoins(subscriptionResponse.data.coins);
-        }
       } else {
         console.error('Ошибка при получении данных пользователя:', data.error);
       }
@@ -100,78 +102,6 @@ function App() {
       console.error('Ошибка при получении данных пользователя:', error);
     }
   }, [hasTelegramPremium]);
-
-  function handleHomeWithVibration() {
-    handleHome();
-    navigator.vibrate(10);
-  }
-
-  function handleLeaderboardWithVibration() {
-    handleLeaderboard();
-    navigator.vibrate(10);
-  }
-
-  function handleFrendsWithVibration() {
-    handleFrends();
-    navigator.vibrate(10);
-  }
-
-  if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
-  const Galo4ka = localStorage.getItem('Galka') === 'true';
-  if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
-  const Knopka = localStorage.getItem('Knopka') === 'true';
-
-  useEffect(() => {
-    const storedCoins = localStorage.getItem('coins');
-    const storedHasTelegramPremium = localStorage.getItem('hasTelegramPremium');
-    const storedAccountAgeCoins = localStorage.getItem('accountAgeCoins');
-    const storedSubscriptionCoins = localStorage.getItem('subscriptionCoins');
-    const storedReferralCode = localStorage.getItem('referralCode');
-    const storedTelegramLink = localStorage.getItem('telegramLink');
-
-    if (storedCoins) setCoins(JSON.parse(storedCoins));
-    if (storedHasTelegramPremium) setHasTelegramPremium(JSON.parse(storedHasTelegramPremium));
-    if (storedAccountAgeCoins) setAccountAgeCoins(JSON.parse(storedAccountAgeCoins));
-    if (storedSubscriptionCoins) setSubscriptionCoins(JSON.parse(storedSubscriptionCoins));
-    if (storedReferralCode) setReferralCode(storedReferralCode);
-    if (storedTelegramLink) setTelegramLink(storedTelegramLink);
-
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    if (userId) {
-        fetchUserData(userId);
-    } else {
-        console.error('userId не найден в URL');
-    }
-}, [fetchUserData]);
-
-useEffect(() => {
-  localStorage.setItem('coins', JSON.stringify(coins));
-}, [coins]);
-
-useEffect(() => {
-  localStorage.setItem('hasTelegramPremium', JSON.stringify(hasTelegramPremium));
-}, [hasTelegramPremium]);
-
-useEffect(() => {
-  localStorage.setItem('accountAgeCoins', JSON.stringify(accountAgeCoins));
-}, [accountAgeCoins]);
-
-useEffect(() => {
-  localStorage.setItem('subscriptionCoins', JSON.stringify(subscriptionCoins));
-}, [subscriptionCoins]);
-
-useEffect(() => {
-  localStorage.setItem('referralCode', referralCode);
-}, [referralCode]);
-
-useEffect(() => {
-  localStorage.setItem('telegramLink', telegramLink);
-}, [telegramLink]);
-
-
-
-
-  
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
@@ -193,8 +123,6 @@ useEffect(() => {
     }
   }, []);
 
-
-  
   const handleHome = () => {
     setIsLeaderboardOpen(false);
     setIsFrendsOpen(false);
@@ -296,13 +224,13 @@ useEffect(() => {
 
       <div className='BTNLow'>
         <div className='LowerBTN'>
-          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen) ? 'img-dark' : ''}`} onClick={handleHomeWithVibration}>
+          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen) ? 'img-dark' : ''}`} onClick={handleHome}>
             <img src={IconHome} alt='IconHome' />
           </div>
-          <div className={`BTN ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboardWithVibration}>
+          <div className={`BTN ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboard}>
             <img src={IconLeaderboard} alt='IconLeaderboard' />
           </div>
-          <div className={`BTN ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrendsWithVibration}>
+          <div className={`BTN ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrends}>
             <img src={IconFriends} alt='IconFriends' />
           </div>
         </div>

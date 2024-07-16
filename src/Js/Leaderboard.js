@@ -10,7 +10,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);
   const [userCount, setUserCount] = useState(0);
-  const [userNickname] = useState('');
+  const [userNickname, setUserNickname] = useState('');
 
 
 useEffect(() => {
@@ -29,45 +29,41 @@ useEffect(() => {
 }, []);
 
 
-useEffect(() => {
-  const storedLeaderboard = localStorage.getItem('leaderboard');
-  const storedUserRank = localStorage.getItem('userRank');
-
-  if (storedLeaderboard) setLeaderboard(JSON.parse(storedLeaderboard));
-  if (storedUserRank) setUserRank(JSON.parse(storedUserRank));
-
-  const fetchLeaderboard = async () => {
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
       try {
-          const response = await axios.get(`${REACT_APP_BACKEND_URL}/leaderboard`);
-          if (response.data.success) {
-              setLeaderboard(response.data.leaderboard);
-              localStorage.setItem('leaderboard', JSON.stringify(response.data.leaderboard));
-          }
+        const response = await axios.get(`${REACT_APP_BACKEND_URL}/leaderboard`);
+        if (response.data.success) {
+          setLeaderboard(response.data.leaderboard);
+        }
       } catch (error) {
-          console.error('Ошибка при загрузке лидерборда:', error);
+        console.error('Ошибка при загрузке лидерборда:', error);
       }
-  };
-
-  const fetchUserRank = async () => {
+    };
+  
+    const fetchUserRank = async () => {
       try {
-          const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-rank`, { params: { userId } });
-          if (response.data.success) {
-              setUserRank(response.data.rank);
-              localStorage.setItem('userRank', JSON.stringify(response.data.rank));
-          }
+        console.log(`Fetching rank for userId: ${userId}`); // Логирование userId
+        const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-rank`, { params: { userId } });
+        if (response.data.success) {
+          console.log('User rank fetched successfully:', response.data.rank); // Логирование успешного ответа
+          setUserRank(response.data.rank);
+          setUserNickname(response.data.nickname); // Сохранение ника
+        } else {
+          console.error('Error in response data:', response.data.message);
+        }
       } catch (error) {
-          console.error('Ошибка при загрузке позиции пользователя:', error);
+        console.error('Ошибка при загрузке позиции пользователя:', error);
       }
-  };
+    };
 
-  fetchLeaderboard();
-  if (userId) {
+    fetchLeaderboard();
+    if (userId) {
       fetchUserRank();
-  } else {
+    } else {
       console.error('userId не определен');
-  }
-}, [userId]);
-
+    }
+  }, [userId]);
 
   const getMedal = (index) => {
     switch (index) {
