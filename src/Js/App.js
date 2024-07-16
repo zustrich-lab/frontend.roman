@@ -49,6 +49,7 @@ function App() {
   if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
   const Knopka = localStorage.getItem('Knopka') === 'true';
 
+  const [coinOnlyYears, setcoinOnlyYears] = useState(0)
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
   const [referralCoins, setReferralCoins] = useState(0);
@@ -87,6 +88,7 @@ function App() {
         const yearsOld = currentYear - accountYear;
         setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
+        setcoinOnlyYears(accountAgeCoins);
         const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0 ;
 
         if (data.hasCheckedSubscription) {
@@ -300,7 +302,7 @@ function App() {
 
       {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen} Yearr={Yearr}/>)}
 
-      {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coins={coins}/>)}
+      {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears}/>)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins}/>)}
 
