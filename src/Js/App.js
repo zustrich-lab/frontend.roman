@@ -127,6 +127,46 @@ function App() {
     }
   }, [hasTelegramPremium]);
 
+  // App.js
+
+const checkSubscriptionAndUpdate = async (userId) => {
+  try {
+    const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+    if (response.status === 200) {
+      // Обновляем состояние монет и подписки
+      setCoins(response.data.coins);
+      setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
+    } else {
+      console.error('Ошибка при проверке подписки:', response.data.error);
+    }
+  } catch (error) {
+    console.error('Ошибка при проверке подписки:', error);
+  }
+};
+
+const checkAndFetchSubscription = async (userId) => {
+  try {
+    const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+    if (response.status === 200) {
+      setCoins(response.data.coins);
+      setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
+    } else {
+      console.error('Ошибка при проверке подписки:', response.data.error);
+    }
+  } catch (error) {
+    console.error('Ошибка при проверке подписки:', error);
+  }
+};
+
+const Tg_Channel_Open_chek = () => {
+  const userId = new URLSearchParams(window.location.search).get('userId');
+  window.open(TG_CHANNEL_LINK, '_blank'); // Открываем канал в новой вкладке
+  setTimeout(() => {
+    checkSubscriptionAndUpdate(userId); // Проверяем подписку после задержки
+  }, 5000); // Задержка в 5 секунд для того, чтобы пользователь успел подписаться
+};
+
+
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
     if (userId) {
@@ -136,9 +176,7 @@ function App() {
     }
   }, [fetchUserData]);
 
-  const Tg_Channel_Open_chek = () => {
-    window.location.href = TG_CHANNEL_LINK;
-  };
+  
 
   useEffect(() => {
     if (window.Telegram.WebApp) {
@@ -148,19 +186,6 @@ function App() {
   }, []);
 
 
-  const checkAndFetchSubscription = async (userId) => {
-    try {
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-      if (response.data.success) {
-        // обновляем данные пользователя
-        fetchUserData(userId);
-      } else {
-        console.error('Ошибка при проверке подписки:', response.data.error);
-      }
-    } catch (error) {
-      console.error('Ошибка при проверке подписки:', error);
-    }
-  };
 
   
   useEffect(() => {
