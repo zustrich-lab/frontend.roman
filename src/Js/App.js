@@ -69,10 +69,8 @@ function App() {
         const accountAgeCoins = yearsOld * 500;
         const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0 ;
 
-        localStorage.setItem('Galka', 'true');
-
         if (subscriptionCoins === 1000) {
-          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Galka', 'true');
         }
 
         setAccountAgeCoins(accountAgeCoins);
