@@ -100,6 +100,10 @@ function App() {
         } else {
           console.error('Ошибка при получении реферальных данных:', referralData.message);
         }
+        const subscriptionResponse = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+        if (subscriptionResponse.status === 200) {
+          setCoins(subscriptionResponse.data.coins);
+        }
       } else {
         console.error('Ошибка при получении данных пользователя:', data.error);
       }
@@ -128,6 +132,29 @@ function App() {
     }
   }, []);
 
+
+  const checkAndFetchSubscription = async (userId) => {
+    try {
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+      if (response.data.success) {
+        // обновляем данные пользователя
+        fetchUserData(userId);
+      } else {
+        console.error('Ошибка при проверке подписки:', response.data.error);
+      }
+    } catch (error) {
+      console.error('Ошибка при проверке подписки:', error);
+    }
+  };
+
+  useEffect(() => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    if (userId) {
+      checkAndFetchSubscription(userId);
+    } else {
+      console.error('userId не найден в URL');
+    }
+  }, []);
   const handleHome = () => {
     setIsLeaderboardOpen(false);
     setIsFrendsOpen(false);
