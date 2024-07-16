@@ -210,6 +210,7 @@ const Tg_Channel_Open_chek = () => {
     }
   }, []);
 
+  window.Telegram.WebApp.disableVerticalSwipes();
 
   const handleHome = () => {
     setIsLeaderboardOpen(false);
