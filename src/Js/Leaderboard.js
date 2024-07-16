@@ -29,41 +29,41 @@ useEffect(() => {
 }, []);
 
 
-useEffect(() => {
-  const fetchLeaderboard = async () => {
-    try {
-      const response = await axios.get(`${REACT_APP_BACKEND_URL}/leaderboard`);
-      if (response.data.success) {
-        setLeaderboard(response.data.leaderboard);
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      try {
+        const response = await axios.get(`${REACT_APP_BACKEND_URL}/leaderboard`);
+        if (response.data.success) {
+          setLeaderboard(response.data.leaderboard);
+        }
+      } catch (error) {
+        console.error('Ошибка при загрузке лидерборда:', error);
       }
-    } catch (error) {
-      console.error('Ошибка при загрузке лидерборда:', error);
-    }
-  };
-
-  const fetchUserRank = async () => {
-    try {
-      console.log(`Fetching rank for userId: ${userId}`); // Логирование userId
-      const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-rank`, { params: { userId } });
-      if (response.data.success) {
-        console.log('User rank fetched successfully:', response.data.rank); // Логирование успешного ответа
-        setUserRank(response.data.rank);
-      } else {
-        console.error('Error in response data:', response.data.message);
+    };
+  
+    const fetchUserRank = async () => {
+      try {
+        console.log(`Fetching rank for userId: ${userId}`); // Логирование userId
+        const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-rank`, { params: { userId } });
+        if (response.data.success) {
+          console.log('User rank fetched successfully:', response.data.rank); // Логирование успешного ответа
+          setUserRank(response.data.rank);
+          setUserNickname(response.data.nickname); // Сохранение ника
+        } else {
+          console.error('Error in response data:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Ошибка при загрузке позиции пользователя:', error);
       }
-    } catch (error) {
-      console.error('Ошибка при загрузке позиции пользователя:', error);
+    };
+
+    fetchLeaderboard();
+    if (userId) {
+      fetchUserRank();
+    } else {
+      console.error('userId не определен');
     }
-  };
-
-  fetchLeaderboard();
-  if (userId) {
-    fetchUserRank();
-  } else {
-    console.error('userId не определен');
-  }
-}, [userId]);
-
+  }, [userId]);
 
   const getMedal = (index) => {
     switch (index) {
