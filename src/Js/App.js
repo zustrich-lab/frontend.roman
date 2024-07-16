@@ -36,6 +36,7 @@ function App() {
 
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
+  const [referralCoins, setReferralCoins] = useState(0);
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
   const [accountAgeCoins, setAccountAgeCoins] = useState(0);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
@@ -61,6 +62,7 @@ function App() {
       const data = response.data;
       if (response.status === 200) {
         setCoins(data.coins);
+        setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
 
         // Calculate coins for account age and subscription separately
@@ -212,7 +214,7 @@ function App() {
               <img src={TS4} alt='TS4' /> <p id='txt'>Invites</p>
             </div>
             <div className='tsPhoto'>
-              <p>+0 OCTIES</p>
+              <p>+{referralCoins} OCTIES</p>
             </div>
           </div>
         </div>
