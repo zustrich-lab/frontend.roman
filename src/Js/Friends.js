@@ -55,9 +55,10 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
                     <div key={index} className='Fr_Frend'>
                         <div className='FrPhoto' style={{ backgroundColor: getRandomColor(), borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: 'white' }}>
                             {user.nickname.slice(0, 2).toUpperCase()}
+                            <p>{user.nickname}</p>
                         </div>
                         <div className='FrDetails'>
-                            <p>{user.nickname}</p>
+                            
                             <p>+{user.earnedCoins} OCTIES</p>
                         </div>
                     </div>
