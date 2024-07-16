@@ -71,26 +71,33 @@ function App() {
   const [app, setApp] = useState(false);
   const TG_CHANNEL_LINK = "https://t.me/octies_channel";
 
-  const fetchUserData = async (userId) => {
+  const fetchUserData = useCallback(async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        const totalCoins = data.coins + data.referralCoins; // Суммируем общие монеты и монеты за рефералов
-        setCoins(totalCoins);
+        setCoins(data.coins);
+        setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
-  
+
         // Calculate coins for account age and subscription separately
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
         const accountYear = accountCreationDate.getFullYear();
         const yearsOld = currentYear - accountYear;
+        setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
-        const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0;
-  
+        const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0 ;
+
+        if (hasTelegramPremium === true){
+          setVisibleTelegramPremium(true)
+        } else {
+          setVisibleTelegramPremium(false)
+        }
+        
         setAccountAgeCoins(accountAgeCoins);
         setSubscriptionCoins(subscriptionCoins);
-  
+
         // Fetch referral code and link
         const referralResponse = await axios.post(`${REACT_APP_BACKEND_URL}/generate-referral`, { userId });
         const referralData = referralResponse.data;
@@ -100,14 +107,26 @@ function App() {
         } else {
           console.error('Ошибка при получении реферальных данных:', referralData.message);
         }
+        const subscriptionResponse = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+        if (subscriptionResponse.status === 200) {
+          setCoins(subscriptionResponse.data.coins);
+
+          if(response.data.isSubscribed){
+            localStorage.setItem('Galka', 'true');
+            localStorage.setItem('Knopka', 'false');
+          } else {
+            localStorage.setItem('Galka', 'false');
+            localStorage.setItem('Knopka', 'true');
+          }
+          
+        }
       } else {
         console.error('Ошибка при получении данных пользователя:', data.error);
       }
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  };
-  
+  }, [hasTelegramPremium]);
 
   // App.js
 
