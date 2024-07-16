@@ -1,9 +1,14 @@
-* {
+*{
   user-select: none;
 }
 
+html {
+  height: auto;
+  overflow: hidden;
+}
+
 body {
-  margin: 0;
+	margin: 0;
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -22,7 +27,7 @@ body {
   background: #000000;
   color: white;
   font-family: Muller;
-  font-size: 2.2vh;
+  font-size: 2.2vh ;
 }
 
 .App p{
