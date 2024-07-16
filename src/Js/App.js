@@ -77,10 +77,15 @@ function App() {
         if (subscriptionCoins === 1000) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
         }
 
         if (hasTelegramPremium === true){
           setVisibleTelegramPremium(true)
+        } else {
+          setVisibleTelegramPremium(false)
         }
         
         setAccountAgeCoins(accountAgeCoins);
@@ -230,14 +235,14 @@ function App() {
             </div>
           </div>}
 
-          <div className='TS'>
+          {Galo4ka && <div className='TS'>
             <div className='tsPhoto'>
               <img src={TS3} alt='TS3' /> <p id='txt'>Channel Subscription</p>
             </div>
             <div className='tsPhoto'>
               <p>+{subscriptionCoins} OCTIES</p>
             </div>
-          </div>
+          </div>}
 
           <div className='TS'>
             <div className='tsPhoto'>
