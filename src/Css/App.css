@@ -3,28 +3,31 @@
 }
 
 body {
-	margin: 0;
+  margin: 0;
   width: 100%;
   height: 100vh;
-  position: fixed;
+  overflow: hidden;
+}
+
+html, body, #root {
+  height: 100%;
 }
 
 .App {
   margin: 0;
   width: 100%;
-  height: 100vh;
-  position: fixed;
+  height: 100%;
+  position: relative;
   display: flex;
-  text-align: center;
   flex-direction: column;
   background: #000000;
   color: white;
   font-family: Muller;
-  font-size: 2.2vh ;
+  font-size: 2.2vh;
 }
 
-.App p{
- margin: 0;
+.App p {
+  margin: 0;
 }
 
 .info {
@@ -36,12 +39,12 @@ body {
   justify-content: center;
 }
 
-.info img{
+.info img {
   width: 100%;
   height: 100%;
 }
 
-.Txt{
+.Txt {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -51,7 +54,7 @@ body {
   flex-direction: row;
   font-size: 2.2vh;
 }
-.Txt p{
+.Txt p {
   margin-top: 0.6vh;
 }
 
@@ -68,38 +71,47 @@ body {
   align-items: center;
   justify-content: center;
 }
-.main img{height: 70%;}
+.main img {
+  height: 70%;
+}
 
-.MainCoin{
+.MainCoin {
   height: 8%;
   width: 100%;
   font-size: 4vh;
 }
 
 .Menu {
-  height: 55%;
+  flex: 1;
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  overflow-y: auto; /* This will allow scrolling within the menu if content overflows */
 }
 
-.MenuBorder{
+.MenuBorder {
   background: #1A1A1A;
   border-radius: 2vh;
   width: 90%;
-  height: 27%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
 }
-.MenuBorder p{margin-left: 2vh;}
-#up{margin-top: 2.5vh; font-size: 2.1vh;}
-#dp{margin-bottom: 0.8vh; font-size: 1.8vh;}
+.MenuBorder p {
+  margin-left: 2vh;
+}
+#up {
+  margin-top: 2.5vh;
+  font-size: 2.1vh;
+}
+#dp {
+  margin-bottom: 0.8vh;
+  font-size: 1.8vh;
+}
 
 .MenuBorder button {
-  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,7 +120,7 @@ body {
   width: 5vh;
   font-size: 2vh;
 }
-.MenuBtn{
+.MenuBtn {
   display: flex;
   flex-direction: row;
   height: 30%;
@@ -116,10 +128,15 @@ body {
   margin-bottom: 2vh;
   color: #9F9F9F;
 }
-.MenuBtn img {height:100%;margin-left: 2vh;}
-.MenuBtn p {margin-top: 0.8vh;}
+.MenuBtn img {
+  height: 100%;
+  margin-left: 2vh;
+}
+.MenuBtn p {
+  margin-top: 0.8vh;
+}
 
-.Reward{
+.Reward {
   height: 12%;
   width: 90%;
   display: flex;
@@ -129,50 +146,45 @@ body {
   font-weight: bold;
 }
 
-.Tasks{
-  height: 61%;
+.Tasks {
   width: 90%;
   display: flex;
   flex-direction: column;
   font-size: 1.8vh;
 }
 
-.TS{
+.TS {
   width: 100%;
-  height: 8.4vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.tsPhoto img{
+.tsPhoto img {
   height: 60%;
 }
 
-.tsPhoto{
-  height: 100%;
+.tsPhoto {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.tsPhoto p{
+.tsPhoto p {
   font-size: 1.8vh;
 }
-#txt{
+#txt {
   margin-left: 1.2vh;
 }
 
-.LowerBTN{
+.LowerBTN {
   width: 92%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  overflow: hidden;
 }
 
-.LowerBTN img{
+.LowerBTN img {
   height: 50%;
 }
 
@@ -184,13 +196,13 @@ body {
   align-items: center;
 }
 
-.BTNLow{
+.BTNLow {
   width: 100%;
-  height: 10%;
-  display: flex;
-  justify-content: center;
+  position: fixed;
+  bottom: 0;
   background: #0F0F0F;
   z-index: 1001;
+  padding-bottom: env(safe-area-inset-bottom); /* This will account for the safe area on iPhones */
 }
 
 @font-face {
@@ -208,22 +220,22 @@ body {
   src: url(/src/fonts/MullerMedium.ttf) format('truetype');
 }
 
-@keyframes fade-out  {
-  from {opacity: 1;}
-  to   {opacity: 0;}
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 @keyframes fade-in {
-  from {opacity: 0;}
-  to   {opacity: 1;}
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-button{
+button {
   border: none;
   color: #000000;
 }
 
-.blk{
+.blk {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -231,12 +243,12 @@ button{
   z-index: 1000;
 }
 
-#galo4ka{
+#galo4ka {
   height: 2.5vh;
   margin-left: 1vh;
 }
 
-#plus{
+#plus {
   margin: 0;
   display: inline;
 }
@@ -250,31 +262,30 @@ button{
     height: 6%;
   }
 
-  .Menu{
+  .Menu {
     overflow: scroll;
   }
 
-  .Tasks{
+  .Tasks {
     height: 20vh;
     font-size: 3vh;
   }
   
-  .MenuBorder{
+  .MenuBorder {
     height: 20vh;
     font-size: 4vh;
   }
 
-  #up{ font-size: 3vh;}
-  #dp{ font-size: 2vh;}
+  #up { font-size: 3vh; }
+  #dp { font-size: 2vh; }
 
-  .Txt{
+  .Txt {
     font-size: 2.5vh;
   }
 
   .Fr_Window {
     height: 80%;
   }
-
 }
 
 .img-dark {
