@@ -235,6 +235,11 @@ button{
   margin-left: 1vh;
 }
 
+#plus{
+  margin: 0;
+  display: inline;
+}
+
 @media (orientation: landscape) {
   .BTNLow {
     height: 20%;
