@@ -29,6 +29,21 @@ const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
 function App() {
 
+  function handleHomeWithVibration() {
+    handleHome();
+    navigator.vibrate(10);
+  }
+
+  function handleLeaderboardWithVibration() {
+    handleLeaderboard();
+    navigator.vibrate(10);
+  }
+
+  function handleFrendsWithVibration() {
+    handleFrends();
+    navigator.vibrate(10);
+  }
+
   if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
   const Galo4ka = localStorage.getItem('Galka') === 'true';
   if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
@@ -77,10 +92,15 @@ function App() {
         if (subscriptionCoins === 1000) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
+        } else {
+          localStorage.setItem('Galka', 'false');
+          localStorage.setItem('Knopka', 'true');
         }
 
         if (hasTelegramPremium === true){
           setVisibleTelegramPremium(true)
+        } else {
+          setVisibleTelegramPremium(false)
         }
         
         setAccountAgeCoins(accountAgeCoins);
@@ -94,6 +114,10 @@ function App() {
           setTelegramLink(referralData.telegramLink);
         } else {
           console.error('Ошибка при получении реферальных данных:', referralData.message);
+        }
+        const subscriptionResponse = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+        if (subscriptionResponse.status === 200) {
+          setCoins(subscriptionResponse.data.coins);
         }
       } else {
         console.error('Ошибка при получении данных пользователя:', data.error);
@@ -122,6 +146,31 @@ function App() {
       tg.expand();
     }
   }, []);
+
+
+  const checkAndFetchSubscription = async (userId) => {
+    try {
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+      if (response.data.success) {
+        // обновляем данные пользователя
+        fetchUserData(userId);
+      } else {
+        console.error('Ошибка при проверке подписки:', response.data.error);
+      }
+    } catch (error) {
+      console.error('Ошибка при проверке подписки:', error);
+    }
+  };
+
+  
+  useEffect(() => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    if (userId) {
+      checkAndFetchSubscription(userId);
+    } else {
+      console.error('userId не найден в URL');
+    }
+  }, [fetchUserData]);
 
   const handleHome = () => {
     setIsLeaderboardOpen(false);
@@ -202,14 +251,14 @@ function App() {
             </div>
           </div>}
 
-          <div className='TS'>
+          {Galo4ka && <div className='TS'>
             <div className='tsPhoto'>
               <img src={TS3} alt='TS3' /> <p id='txt'>Channel Subscription</p>
             </div>
             <div className='tsPhoto'>
               <p>+{subscriptionCoins} OCTIES</p>
             </div>
-          </div>
+          </div>}
 
           <div className='TS'>
             <div className='tsPhoto'>
@@ -224,13 +273,13 @@ function App() {
 
       <div className='BTNLow'>
         <div className='LowerBTN'>
-          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen) ? 'img-dark' : ''}`} onClick={handleHome}>
+          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen) ? 'img-dark' : ''}`} onClick={handleHomeWithVibration}>
             <img src={IconHome} alt='IconHome' />
           </div>
-          <div className={`BTN ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboard}>
+          <div className={`BTN ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboardWithVibration}>
             <img src={IconLeaderboard} alt='IconLeaderboard' />
           </div>
-          <div className={`BTN ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrends}>
+          <div className={`BTN ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrendsWithVibration}>
             <img src={IconFriends} alt='IconFriends' />
           </div>
         </div>
