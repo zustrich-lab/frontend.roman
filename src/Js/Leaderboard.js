@@ -113,7 +113,7 @@ useEffect(() => {
               backgroundColor: getRandomColor(), 
               borderRadius: '50%', 
               aspectRatio: '1', 
-              height: '70%', 
+              height: '5.5vh', 
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'center', 
@@ -140,13 +140,13 @@ useEffect(() => {
             {leaderboard.map((user, index) => (
                 <div  key={user._id} className='Lb_Lider'>
                     <div className='LbPhoto'>
-                      <div className="RamdomImage" 
+                      <div
 
                         style={{
                           backgroundColor: getRandomColor(), 
                           borderRadius: '50%', 
                           aspectRatio: '1', 
-                          height: '80%', 
+                          height: '5.5vh', 
                           display: 'flex', 
                           alignItems: 'center', 
                           justifyContent: 'center', 
