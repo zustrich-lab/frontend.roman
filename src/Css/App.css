@@ -2,11 +2,6 @@
   user-select: none;
 }
 
-html {
-  height: auto;
-  overflow: hidden;
-}
-
 body {
 	margin: 0;
   width: 100%;
