@@ -13,6 +13,7 @@ import TS1 from '../IMG/TaskIcon/TS1.png';
 import TS2 from '../IMG/TaskIcon/TS2.png';
 import TS3 from '../IMG/TaskIcon/TS3.png';
 import TS4 from '../IMG/TaskIcon/TS4.png';
+import galo4ka from '../IMG/All_Logo/galol4ka.png';
 
 import IconHome from '../IMG/LowerIcon/Home.png';
 import IconLeaderboard from '../IMG/LowerIcon/Leaderboard.png';
@@ -27,6 +28,10 @@ import Join from '../IMG/All_Logo/Join.png';
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
 function App() {
+
+  if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
+  const Galo4ka = localStorage.getItem('Galka') === 'true';
+
   const [coins, setCoins] = useState(0);
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
   const [accountAgeCoins, setAccountAgeCoins] = useState(0);
@@ -62,7 +67,13 @@ function App() {
         const yearsOld = currentYear - accountYear;
         setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
-        const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0;
+        const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0 ;
+
+        localStorage.setItem('Galka', 'true');
+
+        if (data.hasCheckedSubscription) {
+          localStorage.setItem('VisibleChat', 'false');
+        }
 
         setAccountAgeCoins(accountAgeCoins);
         setSubscriptionCoins(subscriptionCoins);
@@ -156,6 +167,7 @@ function App() {
           <div className='MenuBtn'>
             <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join'/>
             <p>+ 1000 OCTIES</p>
+            {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka'/>}
           </div>
         </div>
         <div className='Reward'>
@@ -194,7 +206,7 @@ function App() {
               <img src={TS4} alt='TS4' /> <p id='txt'>Invites</p>
             </div>
             <div className='tsPhoto'>
-              <p>+125,995 OCTIES</p>
+              <p>+0 OCTIES</p>
             </div>
           </div>
         </div>
