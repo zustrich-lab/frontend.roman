@@ -155,8 +155,8 @@ function App() {
     } else {
       console.error('userId не найден в URL');
     }
-  }, [checkAndFetchSubscription]);
-  
+  }, [fetchUserData]);
+
   const handleHome = () => {
     setIsLeaderboardOpen(false);
     setIsFrendsOpen(false);
