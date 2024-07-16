@@ -58,6 +58,7 @@ function App() {
   const [referralCode, setReferralCode] = useState('');
   const [telegramLink, setTelegramLink] = useState('');
 
+
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isFrendsOpen, setIsFrendsOpen] = useState(false);
   const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
@@ -76,8 +77,7 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        const totalCoins = data.coins + data.referralCoins; // Суммируем монеты и реферальные монеты
-        setCoins(totalCoins);
+        setCoins(data.coins);
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
 
@@ -119,6 +119,7 @@ function App() {
             localStorage.setItem('Galka', 'false');
             localStorage.setItem('Knopka', 'true');
           }
+          
         }
       } else {
         console.error('Ошибка при получении данных пользователя:', data.error);
@@ -130,7 +131,8 @@ function App() {
 
   // App.js
 
-const checkSubscriptionAndUpdate = async (userId) => {
+
+const checkAndFetchSubscription = async (userId) => {
   try {
     const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
     if (response.status === 200) {
@@ -153,29 +155,6 @@ const checkSubscriptionAndUpdate = async (userId) => {
   }
 };
 
-const checkAndFetchSubscription = async (userId) => {
-  try {
-    const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-    if (response.status === 200) {
-      setCoins(response.data.coins);
-      setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
-
-      if(response.data.isSubscribed){
-        localStorage.setItem('Galka', 'true');
-        localStorage.setItem('Knopka', 'false');
-      } else {
-        localStorage.setItem('Galka', 'false');
-        localStorage.setItem('Knopka', 'true');
-      }
-      
-    } else {
-      console.error('Ошибка при проверке подписки:', response.data.error);
-    }
-
-  } catch (error) {
-    console.error('Ошибка при проверке подписки:', error);
-  }
-};
 
 const Tg_Channel_Open_chek = () => {
   const userId = new URLSearchParams(window.location.search).get('userId');
