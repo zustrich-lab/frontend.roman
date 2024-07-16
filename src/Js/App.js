@@ -65,6 +65,7 @@ function App() {
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
 
+        // Calculate coins for account age and subscription separately
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
         const accountYear = accountCreationDate.getFullYear();
@@ -85,6 +86,7 @@ function App() {
         setAccountAgeCoins(accountAgeCoins);
         setSubscriptionCoins(subscriptionCoins);
 
+        // Fetch referral code and link
         const referralResponse = await axios.post(`${REACT_APP_BACKEND_URL}/generate-referral`, { userId });
         const referralData = referralResponse.data;
         if (referralResponse.status === 200) {
@@ -118,28 +120,7 @@ function App() {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.expand();
-
-      tg.onEvent('viewportChanged', () => {
-        const userId = new URLSearchParams(window.location.search).get('userId');
-        if (userId) {
-          axios.post(`${REACT_APP_BACKEND_URL}/check-subscription`, { userId })
-            .then(response => {
-              if (response.data.isSubscribed) {
-                setSubscriptionCoins(prev => prev + 1000); // Обновляем количество монет
-                localStorage.setItem('Galka', 'true');
-                localStorage.setItem('Knopka', 'false');
-              }
-            })
-            .catch(error => {
-              console.error('Ошибка при проверке подписки:', error);
-            });
-        }
-      });
-
-      window.Telegram.WebApp.disableVerticalSwipes();
-
     }
-    
   }, []);
 
   const handleHome = () => {
