@@ -125,7 +125,7 @@ useEffect(() => {
               
               <div className='NameLb'>
               <p>{userNickname ? `${userNickname}` : 'Loading...'}</p>
-              <p id='LbColor'>{coins} OCTIES</p>
+              <p id='LbColor'>{user.coins} OCTIES</p>
               </div>
             </div>
             <div className='LbPhoto'>
