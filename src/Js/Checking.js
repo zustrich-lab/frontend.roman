@@ -1,30 +1,48 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import '../Css/Checking.css';
 import V from '../IMG/All_Logo/V.png';
 
-const Check = ({ setCheckOpen , setYearsOpen}) => {
+const Check = ({ setCheckOpen, setYearsOpen }) => {
   const [showButton, setShowButton] = useState(false);
   const progressRefs = useRef([]);
   const imageRefs = useRef([]);
 
-  useEffect(() => {
-    const animateProgress = () => {
-      progressRefs.current.forEach((ref, index) => {
+  const totalDuration = 3000; // total duration of 2 seconds
+  const stages = 8;
+  const stageDuration = totalDuration / stages;
+
+  const animateProgress = useCallback((ref, imageRef, index, stage) => {
+    if (stage <= stages) {
+      const currentWidth = parseFloat(ref.style.width) || 0;
+      const targetWidth = stage * (100 / stages);
+      if (currentWidth < targetWidth) {
+        const randomPause = Math.random() * (stageDuration / 2); // random pause between 0 and half of stageDuration
+        ref.style.transition = `width ${stageDuration}ms ease-in-out`;
         setTimeout(() => {
-          ref.style.width = '100%';
+          ref.style.width = `${targetWidth}%`;
+
           setTimeout(() => {
-            imageRefs.current[index].classList.remove('grayscale');
-            if (index === progressRefs.current.length - 1) {
-              setTimeout(() => {
-                setShowButton(true);
-              }, 100); 
-            }
-          }, 1500); 
-        }, index *500); 
-      });
-    };
-    animateProgress();
-  }, []);
+            animateProgress(ref, imageRef, index, stage + 1);
+          }, stageDuration + randomPause); // add pause before next stage
+        }, randomPause); // add initial pause
+      } else {
+        animateProgress(ref, imageRef, index, stage + 1);
+      }
+    } else {
+      imageRef.classList.remove('grayscale');
+      if (index === progressRefs.current.length - 1) {
+        setTimeout(() => {
+          setShowButton(true);
+        }, 100);
+      }
+    }
+  }, [stageDuration, stages]);
+
+  useEffect(() => {
+    progressRefs.current.forEach((ref, index) => {
+      animateProgress(ref, imageRefs.current[index], index, 1);
+    });
+  }, [animateProgress]);
 
   return (
     <div className="First_Window" id="checkwindow">
@@ -74,7 +92,7 @@ const Check = ({ setCheckOpen , setYearsOpen}) => {
       </div>
 
       <div className={`OrangeBtn ${showButton ? 'visible' : ''}`} id="checkBtn">
-        <div className='BtnO' onClick={(event) => { setCheckOpen(false); setYearsOpen(true)}}>
+        <div className='BtnO' onClick={() => { setCheckOpen(false); setYearsOpen(true); }}>
           <p>Continue</p>
         </div>
       </div>
