@@ -195,17 +195,12 @@ const Tg_Channel_Open_chek = () => {
     }
   }, [fetchUserData]);
 
-  
-
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.expand();
     }
   }, []);
-
-
-
   
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
@@ -248,7 +243,6 @@ const Tg_Channel_Open_chek = () => {
   const userId = new URLSearchParams(window.location.search).get('userId');
 
   return (
-    
     <div className="App">
       {app && <div className='blk'></div>}
       <div className="info">
