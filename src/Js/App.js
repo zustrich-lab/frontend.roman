@@ -51,7 +51,7 @@ function App() {
 
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
-  //const [referralCoins, setReferralCoins] = useState(0);
+  const [referralCoins, setReferralCoins] = useState(0);
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
   const [accountAgeCoins, setAccountAgeCoins] = useState(0);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
@@ -76,7 +76,7 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        const referralCoins = data.referredUsers.reduce((acc, ref) => acc + ref.earnedCoins, 0);
+        setReferralCoins(data.referralCoins);
         setCoins(data.coins + referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
 
@@ -239,7 +239,7 @@ const Tg_Channel_Open_chek = () => {
     setFPage(false);
     localStorage.setItem('FPage', 'false');
   };
-  
+
   const userId = new URLSearchParams(window.location.search).get('userId');
 
   return (
