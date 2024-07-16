@@ -262,14 +262,14 @@ function App() {
             </div>
           </div>}
 
-          <div className='TS'>
+          {Galo4ka && <div className='TS'>
             <div className='tsPhoto'>
               <img src={TS3} alt='TS3' /> <p id='txt'>Channel Subscription</p>
             </div>
             <div className='tsPhoto'>
               <p>+{subscriptionCoins} OCTIES</p>
             </div>
-          </div>
+          </div>}
 
           <div className='TS'>
             <div className='tsPhoto'>
