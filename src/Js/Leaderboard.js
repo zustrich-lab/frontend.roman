@@ -134,7 +134,7 @@ useEffect(() => {
           </div>
         
           <div className='Lb_Liders'>
-            <p>{userCount} Users</p>
+            <p>{userCount} holders</p>
           </div>
           <div className='Lb_list'>
             {leaderboard.map((user, index) => (
