@@ -76,7 +76,8 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        setCoins(data.coins);
+        const totalCoins = data.coins + data.referralCoins; // Суммируем монеты и реферальные монеты
+        setCoins(totalCoins);
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
 
