@@ -34,7 +34,6 @@ function App() {
   if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
   const Knopka = localStorage.getItem('Knopka') === 'true';
 
-  const referralCoin = (false);
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
@@ -55,10 +54,6 @@ function App() {
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
   const [app, setApp] = useState(false);
   const TG_CHANNEL_LINK = "https://t.me/GOGOGOGOGOGOGOGgogogooo";
-
-  if (hasTelegramPremium === 0){
-    setVisibleTelegramPremium(true)
-  };
 
   const fetchUserData = async (userId) => {
     try {
@@ -82,6 +77,10 @@ function App() {
           localStorage.setItem('Knopka', 'false');
         }
 
+        if (hasTelegramPremium === 500){
+          setVisibleTelegramPremium(true)
+        }
+        
         setAccountAgeCoins(accountAgeCoins);
         setSubscriptionCoins(subscriptionCoins);
 
@@ -208,14 +207,14 @@ function App() {
             </div>
           </div>
 
-          {referralCoin && <div className='TS'>
+          <div className='TS'>
             <div className='tsPhoto'>
               <img src={TS4} alt='TS4' /> <p id='txt'>Invites</p>
             </div>
             <div className='tsPhoto'>
               <p>+0 OCTIES</p>
             </div>
-          </div>}
+          </div>
         </div>
       </div>
 
