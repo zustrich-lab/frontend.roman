@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Css/First.css';
-import gipsy from'../IMG/All_Logo/giphy.webp';
+import gipsy from'../IMG/All_Logo/flag.gif';
 
 const First = ({ onClose, setCheckOpen }) => {
   return (

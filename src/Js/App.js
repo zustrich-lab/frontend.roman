@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import '../Css/App.css';
 import axios from 'axios';
 
@@ -13,6 +13,7 @@ import TS1 from '../IMG/TaskIcon/TS1.png';
 import TS2 from '../IMG/TaskIcon/TS2.png';
 import TS3 from '../IMG/TaskIcon/TS3.png';
 import TS4 from '../IMG/TaskIcon/TS4.png';
+import galo4ka from '../IMG/All_Logo/galol4ka.png';
 
 import IconHome from '../IMG/LowerIcon/Home.png';
 import IconLeaderboard from '../IMG/LowerIcon/Leaderboard.png';
@@ -27,6 +28,13 @@ import Join from '../IMG/All_Logo/Join.png';
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
 function App() {
+
+  if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
+  const Galo4ka = localStorage.getItem('Galka') === 'true';
+  if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
+  const Knopka = localStorage.getItem('Knopka') === 'true';
+
+  const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
   const [accountAgeCoins, setAccountAgeCoins] = useState(0);
@@ -47,7 +55,7 @@ function App() {
   const [app, setApp] = useState(false);
   const TG_CHANNEL_LINK = "https://t.me/GOGOGOGOGOGOGOGgogogooo";
 
-  const fetchUserData = async (userId) => {
+  const fetchUserData = useCallback(async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
@@ -62,8 +70,17 @@ function App() {
         const yearsOld = currentYear - accountYear;
         setYearr(yearsOld);
         const accountAgeCoins = yearsOld * 500;
-        const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0;
+        const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0 ;
 
+        if (subscriptionCoins === 1000) {
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+        }
+
+        if (hasTelegramPremium === true){
+          setVisibleTelegramPremium(true)
+        }
+        
         setAccountAgeCoins(accountAgeCoins);
         setSubscriptionCoins(subscriptionCoins);
 
@@ -82,7 +99,7 @@ function App() {
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  };
+  }, [hasTelegramPremium]);
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
@@ -91,7 +108,7 @@ function App() {
     } else {
       console.error('userId не найден в URL');
     }
-  }, []);
+  }, [fetchUserData]);
 
   const Tg_Channel_Open_chek = () => {
     window.location.href = TG_CHANNEL_LINK;
@@ -154,8 +171,9 @@ function App() {
           <p id='up'>OCTIES COMMUNITY</p>
           <p id='dp'>Home for Telegram OCs</p>
           <div className='MenuBtn'>
-            <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join'/>
-            <p>+ 1000 OCTIES</p>
+            {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join'/>}
+            <p> {Knopka && <p id="plus">+</p>} 1000 OCTIES</p>
+            {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka'/>}
           </div>
         </div>
         <div className='Reward'>
@@ -171,14 +189,14 @@ function App() {
             </div>
           </div>
 
-          <div className='TS'>
+          {VisibleTelegramPremium && <div className='TS'>
             <div className='tsPhoto'>
               <img src={TS2} alt='TS2' /> <p id='txt'>Telegram Premium</p>
             </div>
             <div className='tsPhoto'>
               <p>+{hasTelegramPremium ? 500 : 0} OCTIES</p>
             </div>
-          </div>
+          </div>}
 
           <div className='TS'>
             <div className='tsPhoto'>
@@ -194,7 +212,7 @@ function App() {
               <img src={TS4} alt='TS4' /> <p id='txt'>Invites</p>
             </div>
             <div className='tsPhoto'>
-              <p>+125,995 OCTIES</p>
+              <p>+0 OCTIES</p>
             </div>
           </div>
         </div>

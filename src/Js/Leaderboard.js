@@ -113,7 +113,7 @@ useEffect(() => {
               backgroundColor: getRandomColor(), 
               borderRadius: '50%', 
               aspectRatio: '1', 
-              height: '60%', 
+              height: '5.5vh', 
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'center', 
@@ -134,19 +134,19 @@ useEffect(() => {
           </div>
         
           <div className='Lb_Liders'>
-            <p>{userCount} Users</p>
+            <p>{userCount} holders</p>
           </div>
           <div className='Lb_list'>
             {leaderboard.map((user, index) => (
                 <div  key={user._id} className='Lb_Lider'>
                     <div className='LbPhoto'>
-                      <div className="RamdomImage" 
+                      <div
 
                         style={{
                           backgroundColor: getRandomColor(), 
                           borderRadius: '50%', 
                           aspectRatio: '1', 
-                          height: '60%', 
+                          height: '5.5vh', 
                           display: 'flex', 
                           alignItems: 'center', 
                           justifyContent: 'center', 
@@ -154,7 +154,7 @@ useEffect(() => {
                           margin:'2vh', 
                           color: 'white'}}>
                             
-                          {user.nickname.slice(0, 2).toUpperCase()}
+                          <p style={{margin: '0'}}>{user.nickname.slice(0, 2).toUpperCase()}</p>
                       </div>  
                     <div className='NameLb'>
                       <p> {user.nickname} </p>

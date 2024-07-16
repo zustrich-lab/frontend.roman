@@ -64,11 +64,6 @@
     justify-content: start;
 }
 
-.LbPhoto img{
-    height: 60%;
-    margin: 1.5vh;
-}
-
 .LbPhoto p{
     font-size: 1.8vh;
     margin-right: 2vh;
@@ -135,7 +130,7 @@
 
 .Lb_Lider{
     width: 100%;
-    height: 9vh;
+    height: 8vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
