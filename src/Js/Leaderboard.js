@@ -10,7 +10,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);
   const [userCount, setUserCount] = useState(0);
-  const [userNickname, setUserNickname] = useState('');
+  const [userNickname] = useState('');
 
 
 useEffect(() => {
