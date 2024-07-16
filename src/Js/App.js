@@ -44,6 +44,11 @@ function App() {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
 
+  function handleOpenStoryWithVibration() {
+    setYearsOpen(true);
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  }
+
   if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
   const Galo4ka = localStorage.getItem('Galka') === 'true';
   if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
@@ -224,7 +229,7 @@ function App() {
       {app && <div className='blk'></div>}
       <div className="info">
         <img src={Logo} alt='Logo' />
-        <div className='Txt' onClick={(event) => {setYearsOpen(true);}}>
+        <div className='Txt' onClick={handleOpenStoryWithVibration}>
           <img src={Play} alt='Play' />
           <p>Your Score</p>
         </div>
