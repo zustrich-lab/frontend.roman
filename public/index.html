@@ -1,76 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <link rel="icon" href="/favicon.ico"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
-  <meta name="theme-color" content="#000000"/>
-  <meta name="description" content="Web site created using create-react-app"/>
-  <link rel="apple-touch-icon" href="/logo192.png"/>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="manifest" href="/manifest.json"/>
-  <title>React App</title>
-  <script defer="defer" src="/static/js/main.8f9b6e92.js"></script>
-  <link href="/static/css/main.6eea87fb.css" rel="stylesheet">
-</head>
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <script>
-    window.Telegram.WebApp.expand();
-
-    const scrollableEl = document.getElementById('root');
-    const overflow = 100;
-
-    function setupDocument(enable) {
-      if (enable) {
-        document.body.style.marginTop = `${overflow}px`;
-        document.body.style.height = window.innerHeight + overflow + "px";
-        document.body.style.paddingBottom = `${overflow}px`;
-        window.scrollTo(0, overflow);
-      } else {
-        document.body.style.removeProperty('marginTop');
-        document.body.style.removeProperty('height');
-        document.body.style.removeProperty('paddingBottom');
-        window.scrollTo(0, 0);
-      }
-    }
-
-    setupDocument(true);
-
-    window.Telegram.WebApp.expand();
-
-    let ts = undefined;
-
-    const onTouchStart = (e) => {
-      ts = e.touches[0].clientY;
-    };
-
-    const onTouchMove = (e) => {
-      if (scrollableEl) {
-        const scroll = scrollableEl.scrollTop;
-        const te = e.changedTouches[0].clientY;
-        if (scroll <= 0 && ts < te) {
-          e.preventDefault();
-        }
-      } else {
-        e.preventDefault();
-      }
-    };
-
-    document.documentElement.addEventListener('touchstart', onTouchStart, { passive: false });
-    document.documentElement.addEventListener('touchmove', onTouchMove, { passive: false });
-
-    const onScroll = () => {
-      if (window.scrollY < overflow) {
-        window.scrollTo(0, overflow);
-        if (scrollableEl) {
-          scrollableEl.scrollTo(0, 0);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-  </script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script>document.addEventListener("DOMContentLoaded",(function(){window.Telegram.WebApp&&(window.Telegram.WebApp.ready(),window.Telegram.WebApp.setHeaderColor("#000000"))}))</script>
+  </body>
 </html>
