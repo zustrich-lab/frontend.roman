@@ -31,6 +31,8 @@ function App() {
 
   if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
   const Galo4ka = localStorage.getItem('Galka') === 'true';
+  if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
+  const Knopka = localStorage.getItem('Knopka') === 'true';
 
   const [coins, setCoins] = useState(0);
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
@@ -71,6 +73,7 @@ function App() {
 
         if (subscriptionCoins === 1000) {
           localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
         }
 
         setAccountAgeCoins(accountAgeCoins);
@@ -163,7 +166,7 @@ function App() {
           <p id='up'>OCTIES COMMUNITY</p>
           <p id='dp'>Home for Telegram OCs</p>
           <div className='MenuBtn'>
-            <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join'/>
+            {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join'/>}
             <p>+ 1000 OCTIES</p>
             {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka'/>}
           </div>
