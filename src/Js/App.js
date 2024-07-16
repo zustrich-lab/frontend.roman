@@ -120,8 +120,11 @@ function App() {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.expand();
+      window.Telegram.WebApp.disableVerticalSwipes();
     }
   }, []);
+
+  window.Telegram.WebApp.disableVerticalSwipes();
 
   const handleHome = () => {
     setIsLeaderboardOpen(false);
