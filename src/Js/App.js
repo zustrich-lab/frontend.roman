@@ -71,7 +71,7 @@ function App() {
 
         localStorage.setItem('Galka', 'true');
 
-        if (subscriptionCoins) {
+        if (subscriptionCoins === 1000) {
           localStorage.setItem('VisibleChat', 'false');
         }
 
