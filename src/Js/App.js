@@ -76,8 +76,8 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        setCoins(data.coins + data.referralCoins); 
         setReferralCoins(data.referralCoins);
+        setCoins(data.coins + referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
 
         // Calculate coins for account age and subscription separately
