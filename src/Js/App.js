@@ -77,7 +77,7 @@ function App() {
           localStorage.setItem('Knopka', 'false');
         }
 
-        if (hasTelegramPremium === 500){
+        if (hasTelegramPremium === true){
           setVisibleTelegramPremium(true)
         }
         
