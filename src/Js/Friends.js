@@ -42,8 +42,8 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
                 <img src={invite} alt='invite'/>
             </div>
             <div className='Fr_InviteBtn'>
-                <div className='BTNInvete' onClick={handleShareLink}>
-                    <p>Invite friends</p>
+                <div className='BTNInvete'>
+                    <p onClick={handleShareLink}>Invite friends</p>
                     <p id='Fr_dark'>+10% of your <br/>friend’s age</p>
                 </div>
             </div>
@@ -52,32 +52,17 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
             </div>
             <div className='Fr_list'>
                 {referredUsers.map((user, index) => (
-                    <div key={index} className='Lb_Lider'>
-                        <div className='LbPhoto'  
-                        style={{ backgroundColor: getRandomColor(),
-                            borderRadius: '50%',
-                            aspectRatio: '1', 
-                            height: '5.5vh', 
-                            display: 'flex',
-                            alignItems: 'center', 
-                            justifyContent: 'center',
-                            fontSize: '20px', 
-                            marginRight:'2vh', 
-                            color: 'white' }}>
-                            <p style={{margin: '0'}}>{user.nickname.slice(0, 2).toUpperCase()}</p>
+                    <div key={index} className='Fr_Frend'>
+                        <div className='FrPhoto' style={{ backgroundColor: getRandomColor(), borderRadius: '50%', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', color: 'white' }}>
+                            {user.nickname.slice(0, 2).toUpperCase()}
                         </div>
-                        
-                        <div className='NameLb'>
-                            <p>{user.nickname}</p>
-                        </div>
-
-                        <div className='LbPhoto' id='FR_Coins_frend'>
+                        <p>{user.nickname}</p>
+                        <div className='FrDetails'>
                            
-                        <p>+{user.earnedCoins} OCTIES</p>
+                            <p>+{user.earnedCoins} OCTIES</p>
                         </div>
                     </div>
                 ))}
-
             </div>
         </div>
     );
