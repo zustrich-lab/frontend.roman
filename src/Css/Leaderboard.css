@@ -64,11 +64,6 @@
     justify-content: start;
 }
 
-.LbPhoto img{
-    height: 60%;
-    margin: 1.5vh;
-}
-
 .LbPhoto p{
     font-size: 1.8vh;
     margin-right: 2vh;
