@@ -58,6 +58,5 @@
     position: absolute;
     object-fit: cover;
     height:  70%;
-    clip-path: inset(0 0 10% 0);
   }
   
