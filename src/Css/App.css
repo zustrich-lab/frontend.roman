@@ -231,8 +231,10 @@ button{
 }
 
 #galo4ka{
-  height: 3vh;
+  height: 2.5vh;
+  margin-left: 1vh;
 }
+
 @media (orientation: landscape) {
   .BTNLow {
     height: 20%;
