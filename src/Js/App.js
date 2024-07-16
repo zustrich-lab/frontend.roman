@@ -77,15 +77,10 @@ function App() {
         if (subscriptionCoins === 1000) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
         }
 
         if (hasTelegramPremium === true){
           setVisibleTelegramPremium(true)
-        } else {
-          setVisibleTelegramPremium(false)
         }
         
         setAccountAgeCoins(accountAgeCoins);
@@ -133,30 +128,7 @@ function App() {
   }, []);
 
 
-  const checkAndFetchSubscription = async (userId) => {
-    try {
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-      if (response.data.success) {
-        // обновляем данные пользователя
-        fetchUserData(userId);
-      } else {
-        console.error('Ошибка при проверке подписки:', response.data.error);
-      }
-    } catch (error) {
-      console.error('Ошибка при проверке подписки:', error);
-    }
-  };
-
   
-  useEffect(() => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    if (userId) {
-      checkAndFetchSubscription(userId);
-    } else {
-      console.error('userId не найден в URL');
-    }
-  }, [fetchUserData]);
-
   const handleHome = () => {
     setIsLeaderboardOpen(false);
     setIsFrendsOpen(false);
@@ -236,14 +208,14 @@ function App() {
             </div>
           </div>}
 
-          {Galo4ka && <div className='TS'>
+          <div className='TS'>
             <div className='tsPhoto'>
               <img src={TS3} alt='TS3' /> <p id='txt'>Channel Subscription</p>
             </div>
             <div className='tsPhoto'>
               <p>+{subscriptionCoins} OCTIES</p>
             </div>
-          </div>}
+          </div>
 
           <div className='TS'>
             <div className='tsPhoto'>
