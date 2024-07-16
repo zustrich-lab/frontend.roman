@@ -103,6 +103,46 @@ function App() {
     }
   }, [hasTelegramPremium]);
 
+  const checkSubscription = useCallback(async (userId) => {
+    try {
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+      const data = response.data;
+      if (response.status === 200) {
+        // Обновите состояние на основе ответа сервера
+        setCoins(data.coins);
+        if (data.isSubscribed) {
+          setSubscriptionCoins(1000);
+          localStorage.setItem('Galka', 'true');
+          localStorage.setItem('Knopka', 'false');
+        }
+      } else {
+        console.error('Ошибка при проверке подписки:', data.message);
+      }
+    } catch (error) {
+      console.error('Ошибка при проверке подписки:', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    if (userId) {
+      const handleVisibilityChange = () => {
+        if (!document.hidden) {
+          checkSubscription(userId);
+        }
+      };
+      
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      // Удаляем обработчик при размонтировании компонента
+      return () => {
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+      };
+    } else {
+      console.error('userId не найден в URL');
+    }
+  }, [checkSubscription]);
+
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
     if (userId) {
