@@ -118,7 +118,6 @@ function App() {
             localStorage.setItem('Galka', 'false');
             localStorage.setItem('Knopka', 'true');
           }
-
         }
       } else {
         console.error('Ошибка при получении данных пользователя:', data.error);
@@ -245,13 +244,11 @@ const Tg_Channel_Open_chek = () => {
     localStorage.setItem('FPage', 'false');
   };
 
-  
-
   const userId = new URLSearchParams(window.location.search).get('userId');
 
   return (
     <div className="App">
-    {app && <div className='blk'></div>}
+      {app && <div className='blk'></div>}
       <div className="info">
         <img src={Logo} alt='Logo' />
         <div className='Txt' onClick={(event) => {setYearsOpen(true);}}>
@@ -344,7 +341,6 @@ const Tg_Channel_Open_chek = () => {
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink}/>)}
 
     </div>
-
   );
 }
 
