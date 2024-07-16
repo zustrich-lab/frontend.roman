@@ -194,7 +194,7 @@ const Tg_Channel_Open_chek = () => {
     } else {
       console.error('userId не найден в URL');
     }
-  }, [fetchUserData]);
+  }, [fetchUserData, checkAndFetchSubscription]);
 
   const handleHome = () => {
     setIsLeaderboardOpen(false);
