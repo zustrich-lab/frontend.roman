@@ -76,7 +76,7 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        setCoins(data.coins + referralCoins); 
+        setCoins(data.coins + data.referralCoins); 
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
 
@@ -126,7 +126,7 @@ function App() {
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  }, [hasTelegramPremium], [referralCoins]);
+  }, [hasTelegramPremium]);
 
   // App.js
 
