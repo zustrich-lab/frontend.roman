@@ -146,7 +146,7 @@ useEffect(() => {
                           backgroundColor: getRandomColor(), 
                           borderRadius: '50%', 
                           aspectRatio: '1', 
-                          height: '70%', 
+                          height: '80%', 
                           display: 'flex', 
                           alignItems: 'center', 
                           justifyContent: 'center', 
