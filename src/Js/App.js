@@ -56,52 +56,42 @@ function App() {
   const [app, setApp] = useState(false);
   const TG_CHANNEL_LINK = "https://t.me/GOGOGOGOGOGOGOGgogogooo";
 
-  const fetchUserData = useCallback(async (userId) => {
-    try {
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
-      const data = response.data;
-      if (response.status === 200) {
-        setCoins(data.coins);
-        setReferralCoins(data.referralCoins);
-        setHasTelegramPremium(data.hasTelegramPremium);
+const fetchUserData = async (userId) => {
+  try {
+    const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
+    const data = response.data;
+    if (response.status === 200) {
+      setCoins(data.coins);
+      setHasTelegramPremium(data.hasTelegramPremium);
 
-        // Calculate coins for account age and subscription separately
-        const accountCreationDate = new Date(data.accountCreationDate);
-        const currentYear = new Date().getFullYear();
-        const accountYear = accountCreationDate.getFullYear();
-        const yearsOld = currentYear - accountYear;
-        setYearr(yearsOld);
-        const accountAgeCoins = yearsOld * 500;
-        const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0 ;
+      // Calculate coins for account age and subscription separately
+      const accountCreationDate = new Date(data.accountCreationDate);
+      const currentYear = new Date().getFullYear();
+      const accountYear = accountCreationDate.getFullYear();
+      const yearsOld = currentYear - accountYear;
+      const accountAgeCoins = yearsOld * 500;
+      const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0;
 
-        if (subscriptionCoins === 1000) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-        }
+      setAccountAgeCoins(accountAgeCoins);
+      setSubscriptionCoins(subscriptionCoins);
 
-        if (hasTelegramPremium === true){
-          setVisibleTelegramPremium(true)
-        }
-        
-        setAccountAgeCoins(accountAgeCoins);
-        setSubscriptionCoins(subscriptionCoins);
-
-        // Fetch referral code and link
-        const referralResponse = await axios.post(`${REACT_APP_BACKEND_URL}/generate-referral`, { userId });
-        const referralData = referralResponse.data;
-        if (referralResponse.status === 200) {
-          setReferralCode(referralData.referralCode);
-          setTelegramLink(referralData.telegramLink);
-        } else {
-          console.error('Ошибка при получении реферальных данных:', referralData.message);
-        }
+      // Fetch referral code and link
+      const referralResponse = await axios.post(`${REACT_APP_BACKEND_URL}/generate-referral`, { userId });
+      const referralData = referralResponse.data;
+      if (referralResponse.status === 200) {
+        setReferralCode(referralData.referralCode);
+        setTelegramLink(referralData.telegramLink);
       } else {
-        console.error('Ошибка при получении данных пользователя:', data.error);
+        console.error('Ошибка при получении реферальных данных:', referralData.message);
       }
-    } catch (error) {
-      console.error('Ошибка при получении данных пользователя:', error);
+    } else {
+      console.error('Ошибка при получении данных пользователя:', data.error);
     }
-  }, [hasTelegramPremium]);
+  } catch (error) {
+    console.error('Ошибка при получении данных пользователя:', error);
+  }
+};
+
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
