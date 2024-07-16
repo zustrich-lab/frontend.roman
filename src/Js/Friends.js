@@ -42,8 +42,8 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
                 <img src={invite} alt='invite'/>
             </div>
             <div className='Fr_InviteBtn'>
-                <div className='BTNInvete'>
-                    <p onClick={handleShareLink}>Invite friends</p>
+                <div className='BTNInvete' onClick={handleShareLink}>
+                    <p>Invite friends</p>
                     <p id='Fr_dark'>+10% of your <br/>friend’s age</p>
                 </div>
             </div>
