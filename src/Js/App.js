@@ -113,6 +113,8 @@ function App() {
         }
       } else {
         console.error('Ошибка при получении данных пользователя:', data.error);
+        localStorage.setItem('Galka', 'false');
+        localStorage.setItem('Knopka', 'true');
       }
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
@@ -132,7 +134,8 @@ const checkSubscriptionAndUpdate = async (userId) => {
       localStorage.setItem('Knopka', 'false');
     } else {
       console.error('Ошибка при проверке подписки:', response.data.error);
-      
+      localStorage.setItem('Galka', 'false');
+      localStorage.setItem('Knopka', 'true');
     }
   } catch (error) {
     console.error('Ошибка при проверке подписки:', error);
