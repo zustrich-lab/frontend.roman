@@ -1,13 +1,26 @@
-*{
+html {
+  height: auto;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Existing CSS */
+* {
   user-select: none;
 }
 
 body {
-	margin: 0;
+  margin: 0;
   width: 100%;
   height: 100vh;
   position: fixed;
-  overflow: hidden; 
+  overflow: hidden;
   isolation: isolate;
 }
 
@@ -22,7 +35,7 @@ body {
   background: #000000;
   color: white;
   font-family: Muller;
-  font-size: 2.2vh ;
+  font-size: 2.2vh;
 }
 
 .App p{
