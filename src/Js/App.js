@@ -110,11 +110,18 @@ function App() {
         const subscriptionResponse = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
         if (subscriptionResponse.status === 200) {
           setCoins(subscriptionResponse.data.coins);
+
+          if(response.data.isSubscribed){
+            localStorage.setItem('Galka', 'true');
+            localStorage.setItem('Knopka', 'false');
+          } else {
+            localStorage.setItem('Galka', 'false');
+            localStorage.setItem('Knopka', 'true');
+          }
+          
         }
       } else {
         console.error('Ошибка при получении данных пользователя:', data.error);
-        localStorage.setItem('Galka', 'false');
-        localStorage.setItem('Knopka', 'true');
       }
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
@@ -130,12 +137,16 @@ const checkSubscriptionAndUpdate = async (userId) => {
       // Обновляем состояние монет и подписки
       setCoins(response.data.coins);
       setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
-      localStorage.setItem('Galka', 'true');
-      localStorage.setItem('Knopka', 'false');
+      if(response.data.isSubscribed){
+        localStorage.setItem('Galka', 'true');
+        localStorage.setItem('Knopka', 'false');
+      } else {
+        localStorage.setItem('Galka', 'false');
+        localStorage.setItem('Knopka', 'true');
+      }
+
     } else {
       console.error('Ошибка при проверке подписки:', response.data.error);
-      localStorage.setItem('Galka', 'false');
-      localStorage.setItem('Knopka', 'true');
     }
   } catch (error) {
     console.error('Ошибка при проверке подписки:', error);
@@ -148,13 +159,19 @@ const checkAndFetchSubscription = async (userId) => {
     if (response.status === 200) {
       setCoins(response.data.coins);
       setSubscriptionCoins(response.data.isSubscribed ? 1000 : 0);
+
+      if(response.data.isSubscribed){
+        localStorage.setItem('Galka', 'true');
+        localStorage.setItem('Knopka', 'false');
+      } else {
+        localStorage.setItem('Galka', 'false');
+        localStorage.setItem('Knopka', 'true');
+      }
       
     } else {
       console.error('Ошибка при проверке подписки:', response.data.error);
-      localStorage.setItem('Galka', 'false');
-      localStorage.setItem('Knopka', 'true');
-      
     }
+
   } catch (error) {
     console.error('Ошибка при проверке подписки:', error);
   }
