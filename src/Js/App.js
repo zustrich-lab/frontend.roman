@@ -77,7 +77,7 @@ function App() {
       const data = response.data;
       if (response.status === 200) {
         setReferralCoins(data.referralCoins);
-        setCoins(data.coins + referralCoins);
+        setCoins(data.coins);
         setHasTelegramPremium(data.hasTelegramPremium);
 
         // Calculate coins for account age and subscription separately
