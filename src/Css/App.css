@@ -1,16 +1,8 @@
 html {
-  height: auto;
-  overflow: hidden;
-}
-
-body {
-  min-height: 100vh;
   height: 100vh;
   overflow: hidden;
-  isolation: isolate;
 }
 
-/* Existing CSS */
 * {
   user-select: none;
 }
@@ -41,7 +33,7 @@ body {
 #app-scrollable {
   overflow-y: auto; /* Разрешаем вертикальную прокрутку внутри элемента */
   -webkit-overflow-scrolling: touch; /* Для плавной прокрутки на iOS */
-  height: calc(0); /* Высота содержимого за вычетом шапки */
+  height: calc(100vh); /* Высота содержимого за вычетом шапки */
 }
 
 .App p{
