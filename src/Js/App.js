@@ -140,7 +140,7 @@ function App() {
 
   const checkSubscription = useCallback(async (userId) => {
     try {
-        const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription`, { userId });
+        const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
         const data = response.data;
         if (response.status === 200) {
             if (data.isSubscribed) {
