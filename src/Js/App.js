@@ -102,14 +102,14 @@ function App() {
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-
+          setCoins(data.coins);
 
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
-
+          setCoins(data.coins);
         }
-        setCoins(data.coins);
+
         if (hasTelegramPremium === true){
           setVisibleTelegramPremium(true)
         }
@@ -198,11 +198,13 @@ useEffect(() => {
 }, [fetchUserData, checkSubscription]);
 
 
-  const Tg_Channel_Open_chek = () => {
-    window.location.href = TG_CHANNEL_LINK;
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-  };
-
+const Tg_Channel_Open_chek = () => {
+  const userId = new URLSearchParams(window.location.search).get('userId');
+  window.open(TG_CHANNEL_LINK, '_blank'); // Открываем канал в новой вкладке
+  setTimeout(() => {
+    checkSubscriptionAndUpdate(userId); // Проверяем подписку после задержки
+  }, 5000); // Задержка в 5 секунд для того, чтобы пользователь успел подписаться
+};
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
