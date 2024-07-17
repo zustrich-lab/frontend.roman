@@ -214,11 +214,13 @@ const checkSubscriptionAndUpdate = async (userId) => {
 
 const Tg_Channel_Open_chek = () => {
   const userId = new URLSearchParams(window.location.search).get('userId');
+  window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   window.open(TG_CHANNEL_LINK, '_blank'); // Открываем канал в новой вкладке
   setTimeout(() => {
     checkSubscriptionAndUpdate(userId); // Проверяем подписку после задержки
-  }, 5000); // Задержка в 5 секунд для того, чтобы пользователь успел подписаться
+  }, 3000); // Задержка в 5 секунд для того, чтобы пользователь успел подписаться
 };
+
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
