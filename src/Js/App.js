@@ -147,14 +147,12 @@ function App() {
                 setSubscriptionCoins(1000);
                 localStorage.setItem('Galka', 'true');
                 localStorage.setItem('Knopka', 'false');
-                setCoins(data.coins);
             } else {
                 setSubscriptionCoins(0);
                 localStorage.setItem('Galka', 'false');
                 localStorage.setItem('Knopka', 'true');
-                setCoins(data.coins);
             }
-  
+            setCoins(data.coins);
         } else {
             console.error('Ошибка при проверке подписки:', data.message);
         }
@@ -186,7 +184,7 @@ useEffect(() => {
   
   
 
-  const coinmain = coins - referralCoins;
+  //const coinmain = coins - referralCoins;
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
@@ -254,7 +252,7 @@ useEffect(() => {
         <img src={Octo} alt='Octo' />
       </div>
       <div className='MainCoin'>
-        <p>{coinmain} OCTIES</p>
+        <p>{coins} OCTIES</p>
       </div>
       <div className='Menu'>
         <div className='MenuBorder'>
@@ -330,7 +328,7 @@ useEffect(() => {
 
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears}/>)}
 
-      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coinmain}/>)}
+      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins}/>)}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink}/>)}
 
