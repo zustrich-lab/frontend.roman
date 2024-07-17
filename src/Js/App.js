@@ -145,6 +145,7 @@ function App() {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
         }else {
+          setSubscriptionCoins(0);
           localStorage.setItem('Galka', 'fllse');
           localStorage.setItem('Knopka', 'true');
         }
