@@ -140,28 +140,28 @@ function App() {
 
   
 
-  const checkSubscription = useCallback(async (userId) => {
+  const checkSubscription = useCallback(async () => {
     try {
-        const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-        const data = response.data;
-        if (response.status === 200) {
-            if (data.isSubscribed) {
-                setSubscriptionCoins(1000);
-                localStorage.setItem('Galka', 'true');
-                localStorage.setItem('Knopka', 'false');
-            } else {
-                setSubscriptionCoins(0);
-                localStorage.setItem('Galka', 'false');
-                localStorage.setItem('Knopka', 'true');
-            }
-            setCoins(data.coins);
-        } else {
-            console.error('Ошибка при проверке подписки:', data.message);
-        }
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+      if (response.status === 200) {
+        setCoins(response.data.coins);
+      } else {
+        console.error('Ошибка при проверке подписки:', response.data.message);
+      }
     } catch (error) {
-        console.error('Ошибка при проверке подписки:', error);
+      console.error('Ошибка при проверке подписки:', error);
     }
-}, []);
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      const intervalId = setInterval(() => {
+        checkSubscription();
+      }, 3000); // 3 секунды
+
+      return () => clearInterval(intervalId);
+    }
+  }, [checkSubscription, userId]);
 
 
 useEffect(() => {
