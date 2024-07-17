@@ -54,6 +54,7 @@ function App() {
   if (!localStorage.getItem('Knopka')) { localStorage.setItem('Knopka', 'true'); }
   const Knopka = localStorage.getItem('Knopka') === 'true';
 
+  
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [VisibleInvite, setVisibleInvite] = useState(false);
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
@@ -64,6 +65,7 @@ function App() {
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
   const [referralCode, setReferralCode] = useState('');
   const [telegramLink, setTelegramLink] = useState('');
+  const coinmain = coins - referralCoins;
 
   const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
   const [isFrendsOpen, setIsFrendsOpen] = useState(false);
@@ -181,10 +183,6 @@ useEffect(() => {
   }
 }, [checkSubscription]);
 
-  
-  
-
-  const coinmain = coins - referralCoins;
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
