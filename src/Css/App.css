@@ -69,6 +69,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: auto;
 }
 .main img{height: 70%;}
 
@@ -82,7 +83,6 @@ body {
   height: 55%;
   width: 100%;
   display: flex;
-  overflow: auto;
   align-items: center;
   flex-direction: column;
 }
