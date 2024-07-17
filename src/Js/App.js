@@ -100,12 +100,12 @@ function App() {
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-          setCoins(data.coins);
+          setCoins(data.coins - referralCoins);
 
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
-          setCoins(data.coins);
+          setCoins(data.coins - referralCoins);
         }
 
         if (hasTelegramPremium === true){
@@ -147,15 +147,12 @@ function App() {
                 setSubscriptionCoins(1000);
                 localStorage.setItem('Galka', 'true');
                 localStorage.setItem('Knopka', 'false');
-                setCoins(data.coins);
-
             } else {
                 setSubscriptionCoins(0);
                 localStorage.setItem('Galka', 'false');
                 localStorage.setItem('Knopka', 'true');
-                setCoins(data.coins);
-
             }
+            setCoins(data.coins - referralCoins);
         } else {
             console.error('Ошибка при проверке подписки:', data.message);
         }
