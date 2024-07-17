@@ -184,14 +184,19 @@ useEffect(() => {
 }, [checkSubscription]);
 
 
-  useEffect(() => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    if (userId) {
-      fetchUserData(userId);
-    } else {
-      console.error('userId не найден в URL');
-    }
-  }, [fetchUserData]);
+useEffect(() => {
+  const userId = new URLSearchParams(window.location.search).get('userId');
+  if (userId) {
+    fetchUserData(userId).then(() => {
+      checkSubscription(userId).then(() => {
+        fetchUserData(userId); // Обновить данные пользователя после проверки подписки
+      });
+    });
+  } else {
+    console.error('userId не найден в URL');
+  }
+}, [fetchUserData, checkSubscription]);
+
 
   const Tg_Channel_Open_chek = () => {
     window.location.href = TG_CHANNEL_LINK;
