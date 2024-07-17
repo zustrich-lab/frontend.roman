@@ -48,8 +48,8 @@ function App() {
     setYearsOpen(true);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
-  
   const checkSubscription = useCallback(async () => {
+    if (!userId) return; // Добавляем проверку на наличие userId
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
       if (response.status === 200) {
@@ -60,17 +60,17 @@ function App() {
     } catch (error) {
       console.error('Ошибка при проверке подписки:', error);
     }
-  }, [userId]);
-  
+  }, []); // Убираем userId из зависимостей
+
   useEffect(() => {
     if (userId) {
       const intervalId = setInterval(() => {
         checkSubscription();
       }, 3000); // 3 секунды
-  
+
       return () => clearInterval(intervalId);
     }
-  }, [checkSubscription, userId]);
+  }, [userId, checkSubscription]); 
 
   if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
   const Galo4ka = localStorage.getItem('Galka') === 'true';
