@@ -138,32 +138,6 @@ function App() {
     }
   }, [hasTelegramPremium, referralCoins]);
 
-  
-
-  const checkSubscription = useCallback(async () => {
-    try {
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-      if (response.status === 200) {
-        setCoins(response.data.coins);
-      } else {
-        console.error('Ошибка при проверке подписки:', response.data.message);
-      }
-    } catch (error) {
-      console.error('Ошибка при проверке подписки:', error);
-    }
-  }, [userId]);
-
-  useEffect(() => {
-    if (userId) {
-      const intervalId = setInterval(() => {
-        checkSubscription();
-      }, 3000); // 3 секунды
-
-      return () => clearInterval(intervalId);
-    }
-  }, [checkSubscription, userId]);
-
-
 useEffect(() => {
   const userId = new URLSearchParams(window.location.search).get('userId');
   if (userId) {
@@ -183,6 +157,28 @@ useEffect(() => {
   }
 }, [checkSubscription]);
 
+const checkSubscription = useCallback(async () => {
+  try {
+    const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+    if (response.status === 200) {
+      setCoins(response.data.coins);
+    } else {
+      console.error('Ошибка при проверке подписки:', response.data.message);
+    }
+  } catch (error) {
+    console.error('Ошибка при проверке подписки:', error);
+  }
+}, [userId]);
+
+useEffect(() => {
+  if (userId) {
+    const intervalId = setInterval(() => {
+      checkSubscription();
+    }, 3000); // 3 секунды
+
+    return () => clearInterval(intervalId);
+  }
+}, [checkSubscription, userId]);
 
 useEffect(() => {
   const userId = new URLSearchParams(window.location.search).get('userId');
