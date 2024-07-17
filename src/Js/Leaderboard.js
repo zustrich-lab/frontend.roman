@@ -12,22 +12,20 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins }) => {
   const [userCount, setUserCount] = useState(0);
   const [userNickname, setUserNickname] = useState('');
 
-
-useEffect(() => {
-  const fetchUserCount = async () => {
-    try {
-      const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-count`);
-      if (response.data.success) {
-        setUserCount(response.data.count);
+  useEffect(() => {
+    const fetchUserCount = async () => {
+      try {
+        const response = await axios.get(`${REACT_APP_BACKEND_URL}/user-count`);
+        if (response.data.success) {
+          setUserCount(response.data.count);
+        }
+      } catch (error) {
+        console.error('Ошибка при получении количества пользователей:', error);
       }
-    } catch (error) {
-      console.error('Ошибка при получении количества пользователей:', error);
-    }
-  };
+    };
 
-  fetchUserCount();
-}, []);
-
+    fetchUserCount();
+  }, []);
 
   useEffect(() => {
     const fetchLeaderboard = async () => {
@@ -86,90 +84,89 @@ useEffect(() => {
     }
     return color;
   };
-    return (
-      <div className={`Lb_Window ${LeaderboardAnim? 'fade-out' : ''}`}>
-        <div className='lb_Info'>
-          <p>Telegram Wall of Fame</p>
-        </div>
-        
-        <div className='Lb_Menu'>
 
+  return (
+    <div className={`Lb_Window ${LeaderboardAnim? 'fade-out' : ''}`}>
+      <div className='lb_Info'>
+        <p>Telegram Wall of Fame</p>
+      </div>
+      
+      <div className='Lb_Menu'>
         <div className='LbBorder'>
-            <div className='Lb_Logo'>
-              <img src={logo} alt='logo'/>
-            </div>
-            <div className='Lb_Text'>
-              <p>🥇The 1st holder will get 400,000 OCTIES</p>
-              <p>🥈The 2nd holder will get 250,000 OCTIES</p>
-              <p>🥉The 3rd holder will get 100,000 OCTIES</p>
-            </div>
+          <div className='Lb_Logo'>
+            <img src={logo} alt='logo'/>
           </div>
+          <div className='Lb_Text'>
+            <p>🥇The 1st holder will get 400,000 OCTIES</p>
+            <p>🥈The 2nd holder will get 250,000 OCTIES</p>
+            <p>🥉The 3rd holder will get 100,000 OCTIES</p>
+          </div>
+        </div>
 
-          <div className='Lb_inside'>
-            <div className='LbPhoto'>
+        <div className='Lb_inside'>
+          <div className='LbPhoto'>
             <div 
-
-            style={{
-              backgroundColor: getRandomColor(), 
-              borderRadius: '50%', 
-              aspectRatio: '1', 
-              height: '5.5vh', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '2vh',
-              margin:'2vh',  
-              color: 'white'}}>
-                {userNickname.slice(0, 2).toUpperCase()}
+              style={{
+                backgroundColor: getRandomColor(), 
+                borderRadius: '50%', 
+                aspectRatio: '1', 
+                height: '5.5vh', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                fontSize: '2vh',
+                margin:'2vh',  
+                color: 'white'
+              }}>
+              {userNickname.slice(0, 2).toUpperCase()}
             </div>
-              
-              <div className='NameLb'>
+            
+            <div className='NameLb'>
               <p>{userNickname ? `${userNickname}` : 'Loading...'}</p>
               <p id='LbColor'>{coins} OCTIES</p>
-              </div>
-            </div>
-            <div className='LbPhoto'>
-              <p id="number">{userRank ? `#${userRank}` : '??'}</p>
             </div>
           </div>
-        
-          <div className='Lb_Liders'>
-            <p>{userCount} holders</p>
-          </div>
-          <div className='Lb_list'>
-            {leaderboard.map((user, index) => (
-                <div  key={user._id} className='Lb_Lider'>
-                    <div className='LbPhoto'>
-                      <div
-
-                        style={{
-                          backgroundColor: getRandomColor(), 
-                          borderRadius: '50%', 
-                          aspectRatio: '1', 
-                          height: '5.5vh', 
-                          display: 'flex', 
-                          alignItems: 'center', 
-                          justifyContent: 'center', 
-                          fontSize: '2.5vh',
-                          margin:'2vh', 
-                          color: 'white'}}>
-                            
-                          <p style={{margin: '0'}}>{user.nickname.slice(0, 2).toUpperCase()}</p>
-                      </div>  
-                    <div className='NameLb'>
-                      <p> {user.nickname} </p>
-                      <p id='LbColor'>{user.coins} OCTIES</p>
-                    </div>
-                </div>
-                <div className='LbPhoto' id="medal">
-                  <p>{getMedal(index)}</p>
-                </div>
-              </div>
-            ))}
+          <div className='LbPhoto'>
+            <p id="number">{userRank ? `#${userRank}` : '??'}</p>
           </div>
         </div>
+
+        <div className='Lb_Liders'>
+          <p>{userCount} holders</p>
+        </div>
+        <div className='Lb_list'>
+          {leaderboard.map((user, index) => (
+            <div key={user._id} className='Lb_Lider'>
+              <div className='LbPhoto'>
+                <div
+                  style={{
+                    backgroundColor: getRandomColor(), 
+                    borderRadius: '50%', 
+                    aspectRatio: '1', 
+                    height: '5.5vh', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    fontSize: '2.5vh',
+                    margin:'2vh', 
+                    color: 'white'
+                  }}>
+                  <p style={{margin: '0'}}>{user.nickname.slice(0, 2).toUpperCase()}</p>
+                </div>  
+                <div className='NameLb'>
+                  <p> {user.nickname} </p>
+                  <p id='LbColor'>{user.coins} OCTIES</p>
+                </div>
+              </div>
+              <div className='LbPhoto' id="medal">
+                <p>{getMedal(index)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default Leaderboard;
