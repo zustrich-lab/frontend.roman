@@ -100,12 +100,12 @@ function App() {
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-          
+          setCoins(data.coins);
 
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
-          
+          setCoins(data.coins);
         }
 
         if (hasTelegramPremium === true){
