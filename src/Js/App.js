@@ -173,9 +173,9 @@ function App() {
           checkSubscription(userId);
         }
       };
-      
+  
       document.addEventListener('visibilitychange', handleVisibilityChange);
-
+  
       // Удаляем обработчик при размонтировании компонента
       return () => {
         document.removeEventListener('visibilitychange', handleVisibilityChange);
@@ -184,6 +184,7 @@ function App() {
       console.error('userId не найден в URL');
     }
   }, [checkSubscription]);
+  
 
   const coinmain = coins - referralCoins;
 
