@@ -143,20 +143,16 @@ function App() {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
       const data = response.data;
       if (response.status === 200) {
-        // Обновите состояние на основе ответа сервера
-        
         if (data.isSubscribed) {
           setSubscriptionCoins(1000);
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-          setCoins(data.coins);
-
-        }else {
+        } else {
           setSubscriptionCoins(0);
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
-          setCoins(data.coins);
         }
+        setCoins(data.coins);
       } else {
         console.error('Ошибка при проверке подписки:', data.message);
       }
@@ -164,6 +160,7 @@ function App() {
       console.error('Ошибка при проверке подписки:', error);
     }
   }, []);
+  
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
@@ -176,7 +173,6 @@ function App() {
   
       document.addEventListener('visibilitychange', handleVisibilityChange);
   
-      // Удаляем обработчик при размонтировании компонента
       return () => {
         document.removeEventListener('visibilitychange', handleVisibilityChange);
       };
@@ -184,6 +180,7 @@ function App() {
       console.error('userId не найден в URL');
     }
   }, [checkSubscription]);
+  
   
 
   const coinmain = coins - referralCoins;
