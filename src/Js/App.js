@@ -100,12 +100,12 @@ function App() {
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-          setCoins(data.coins - referralCoins);
+          setCoins(data.coins);
 
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
-          setCoins(data.coins - referralCoins);
+          setCoins(data.coins);
         }
 
         if (hasTelegramPremium === true){
@@ -152,14 +152,14 @@ function App() {
                 localStorage.setItem('Galka', 'false');
                 localStorage.setItem('Knopka', 'true');
             }
-            setCoins(data.coins - referralCoins);
+            setCoins(data.coins);
         } else {
             console.error('Ошибка при проверке подписки:', data.message);
         }
     } catch (error) {
         console.error('Ошибка при проверке подписки:', error);
     }
-}, [referralCoins]);
+}, []);
 
 
 useEffect(() => {
@@ -184,7 +184,7 @@ useEffect(() => {
   
   
 
-  //const coinmain = coins - referralCoins;
+  const coinmain = coins - referralCoins;
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
@@ -252,7 +252,7 @@ useEffect(() => {
         <img src={Octo} alt='Octo' />
       </div>
       <div className='MainCoin'>
-        <p>{coins} OCTIES</p>
+        <p>{coinmain} OCTIES</p>
       </div>
       <div className='Menu'>
         <div className='MenuBorder'>
@@ -328,7 +328,7 @@ useEffect(() => {
 
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears}/>)}
 
-      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins}/>)}
+      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coinmain}/>)}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink}/>)}
 
