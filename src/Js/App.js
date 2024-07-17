@@ -227,6 +227,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className='AppSkroll'>
       {app && <div className='blk'></div>}
       <div className="info">
         <img src={Logo} alt='Logo' />
@@ -292,6 +293,8 @@ function App() {
           </div>}
         </div>
       </div>
+    
+      </div>
 
      <div className='BTNLow'>
         <div className='LowerBTN'>
@@ -318,7 +321,7 @@ function App() {
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins}/>)}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink}/>)}
-
+    
     </div>
   );
 }
