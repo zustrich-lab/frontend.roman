@@ -136,6 +136,35 @@ function App() {
     }
   }, [hasTelegramPremium, referralCoins]);
 
+  const handleReferralLinkClick = async (referralCode) => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+  
+    try {
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/referral-link-click`, {
+        referralCode,
+        referredId: userId
+      });
+  
+      if (response.data.success) {
+        console.log('Монеты успешно начислены');
+      } else {
+        console.error('Ошибка при начислении монет:', response.data.message);
+      }
+    } catch (error) {
+      console.error('Ошибка при обработке перехода по реферальной ссылке:', error);
+    }
+  };
+  
+  // Вызовите эту функцию при переходе пользователя по реферальной ссылке
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const referralCode = params.get('referralCode');
+    if (referralCode) {
+      handleReferralLinkClick(referralCode);
+    }
+  }, []);
+  
+
   const checkSubscription = useCallback(async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
