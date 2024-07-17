@@ -26,7 +26,7 @@ import invite from '../IMG/All_Logo/Invite_png.png';
 import Join from '../IMG/All_Logo/Join.png';
 
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
-
+const userId = new URLSearchParams(window.location.search).get('userId');
 function App() {
 
   function handleHomeWithVibration() {
@@ -280,7 +280,7 @@ const Tg_Channel_Open_chek = () => {
     localStorage.setItem('FPage', 'false');
   };
 
-  const userId = new URLSearchParams(window.location.search).get('userId');
+
 
   return (
     <div className="App">
