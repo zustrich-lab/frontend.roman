@@ -70,7 +70,7 @@ function App() {
 
       return () => clearInterval(intervalId);
     }
-  }, [userId, checkSubscription]); 
+  }, [ checkSubscription]); 
 
   if (!localStorage.getItem('Galka')) { localStorage.setItem('Galka', 'false'); }
   const Galo4ka = localStorage.getItem('Galka') === 'true';
