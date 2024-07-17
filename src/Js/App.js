@@ -138,6 +138,32 @@ function App() {
     }
   }, [hasTelegramPremium, referralCoins]);
 
+  
+
+//   const checkSubscription = useCallback(async (userId) => {
+//     try {
+//         const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+//         const data = response.data;
+//         if (response.status === 200) {
+//             if (data.isSubscribed) {
+//                 setSubscriptionCoins(1000);
+//                 localStorage.setItem('Galka', 'true');
+//                 localStorage.setItem('Knopka', 'false');
+//             } else {
+//                 setSubscriptionCoins(0);
+//                 localStorage.setItem('Galka', 'false');
+//                 localStorage.setItem('Knopka', 'true');
+//             }
+//             setCoins(data.coins);
+//         } else {
+//             console.error('Ошибка при проверке подписки:', data.message);
+//         }
+//     } catch (error) {
+//         console.error('Ошибка при проверке подписки:', error);
+//     }
+// }, []);
+
+
 useEffect(() => {
   const userId = new URLSearchParams(window.location.search).get('userId');
   if (userId) {
@@ -157,28 +183,6 @@ useEffect(() => {
   }
 }, [checkSubscription]);
 
-const checkSubscription = useCallback(async () => {
-  try {
-    const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-    if (response.status === 200) {
-      setCoins(response.data.coins);
-    } else {
-      console.error('Ошибка при проверке подписки:', response.data.message);
-    }
-  } catch (error) {
-    console.error('Ошибка при проверке подписки:', error);
-  }
-}, [userId]);
-
-useEffect(() => {
-  if (userId) {
-    const intervalId = setInterval(() => {
-      checkSubscription();
-    }, 3000); // 3 секунды
-
-    return () => clearInterval(intervalId);
-  }
-}, [checkSubscription, userId]);
 
 useEffect(() => {
   const userId = new URLSearchParams(window.location.search).get('userId');
@@ -216,6 +220,29 @@ const Tg_Channel_Open_chek = () => {
     checkSubscriptionAndUpdate(userId); // Проверяем подписку после задержки
   }, 3000); // Задержка в 5 секунд для того, чтобы пользователь успел подписаться
 };
+
+const checkSubscription = useCallback(async () => {
+  try {
+    const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+    if (response.status === 200) {
+      setCoins(response.data.coins);
+    } else {
+      console.error('Ошибка при проверке подписки:', response.data.message);
+    }
+  } catch (error) {
+    console.error('Ошибка при проверке подписки:', error);
+  }
+}, [userId]);
+
+useEffect(() => {
+  if (userId) {
+    const intervalId = setInterval(() => {
+      checkSubscription();
+    }, 3000); // 3 секунды
+
+    return () => clearInterval(intervalId);
+  }
+}, [checkSubscription, userId]);
 
   useEffect(() => {
     if (window.Telegram.WebApp) {
