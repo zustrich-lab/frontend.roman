@@ -251,7 +251,7 @@ useEffect(() => {
           <p>Your Score</p>
         </div>
       </div>
-      <div className="main" onClick={(event) => {localStorage.clear();}}>
+      <div className="main">
         <img src={Octo} alt='Octo' />
       </div>
       <div className='MainCoin'>
