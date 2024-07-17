@@ -55,8 +55,8 @@ function App() {
   const Knopka = localStorage.getItem('Knopka') === 'true';
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
-  const [VisibleInvite, setVisibleInvite] = useState(false);
-  const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
+  const [VisibleInvite] = useState(false);
+  const [VisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
   const [referralCoins, setReferralCoins] = useState(0);
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
