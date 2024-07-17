@@ -140,46 +140,47 @@ function App() {
 
   const checkSubscription = useCallback(async (userId) => {
     try {
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-      const data = response.data;
-      if (response.status === 200) {
-        if (data.isSubscribed) {
-          setSubscriptionCoins(1000);
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
+        const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
+        const data = response.data;
+        if (response.status === 200) {
+            if (data.isSubscribed) {
+                setSubscriptionCoins(1000);
+                localStorage.setItem('Galka', 'true');
+                localStorage.setItem('Knopka', 'false');
+            } else {
+                setSubscriptionCoins(0);
+                localStorage.setItem('Galka', 'false');
+                localStorage.setItem('Knopka', 'true');
+            }
+            setCoins(data.coins);
         } else {
-          setSubscriptionCoins(0);
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
+            console.error('Ошибка при проверке подписки:', data.message);
         }
-        setCoins(data.coins);
-      } else {
-        console.error('Ошибка при проверке подписки:', data.message);
-      }
     } catch (error) {
-      console.error('Ошибка при проверке подписки:', error);
+        console.error('Ошибка при проверке подписки:', error);
     }
-  }, []);
-  
+}, []);
 
-  useEffect(() => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    if (userId) {
+
+useEffect(() => {
+  const userId = new URLSearchParams(window.location.search).get('userId');
+  if (userId) {
       const handleVisibilityChange = () => {
-        if (!document.hidden) {
-          checkSubscription(userId);
-        }
+          if (!document.hidden) {
+              checkSubscription(userId);
+          }
       };
-  
+
       document.addEventListener('visibilitychange', handleVisibilityChange);
-  
+
       return () => {
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
+          document.removeEventListener('visibilitychange', handleVisibilityChange);
       };
-    } else {
+  } else {
       console.error('userId не найден в URL');
-    }
-  }, [checkSubscription]);
+  }
+}, [checkSubscription]);
+
   
   
 
