@@ -144,6 +144,9 @@ function App() {
           setSubscriptionCoins(1000);
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
+        }else {
+          localStorage.setItem('Galka', 'fllse');
+          localStorage.setItem('Knopka', 'true');
         }
       } else {
         console.error('Ошибка при проверке подписки:', data.message);
