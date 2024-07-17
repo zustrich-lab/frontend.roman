@@ -139,7 +139,7 @@ function App() {
       const data = response.data;
       if (response.status === 200) {
         // Обновите состояние на основе ответа сервера
-        setCoins(data.coins);
+        //setCoins(data.coins);
         if (data.isSubscribed) {
           setSubscriptionCoins(1000);
           localStorage.setItem('Galka', 'true');
