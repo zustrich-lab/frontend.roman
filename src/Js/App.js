@@ -97,25 +97,6 @@ function App() {
         setcoinOnlyYears(accountAgeCoins);
         const subscriptionCoins = data.hasCheckedSubscription ? 1000 : 0 ;
 
-        if (data.hasCheckedSubscription) {
-          localStorage.setItem('Galka', 'true');
-          localStorage.setItem('Knopka', 'false');
-          setCoins(data.coins);
-
-        } else {
-          localStorage.setItem('Galka', 'false');
-          localStorage.setItem('Knopka', 'true');
-          setCoins(data.coins);
-        }
-
-        if (hasTelegramPremium === true){
-          setVisibleTelegramPremium(true)
-        }
-
-        if (referralCoins > 0){
-          setVisibleInvite(true)
-        }
-        
         setAccountAgeCoins(accountAgeCoins);
         setSubscriptionCoins(subscriptionCoins);
 
@@ -138,49 +119,31 @@ function App() {
 
   
 
-  const checkSubscription = useCallback(async (userId) => {
+  
+
+
+  const checkSubscriptionAndReward = async () => {
     try {
-        const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription-and-update`, { userId });
-        const data = response.data;
-        if (response.status === 200) {
-            if (data.isSubscribed) {
-                setSubscriptionCoins(1000);
-                localStorage.setItem('Galka', 'true');
-                localStorage.setItem('Knopka', 'false');
-            } else {
-                setSubscriptionCoins(0);
-                localStorage.setItem('Galka', 'false');
-                localStorage.setItem('Knopka', 'true');
-            }
-            setCoins(data.coins);
-        } else {
-            console.error('Ошибка при проверке подписки:', data.message);
-        }
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/check-subscription`, { userId });
+      if (response.data.success) {
+        setCoins(response.data.coins);
+      } else {
+        console.error(response.data.message);
+      }
     } catch (error) {
-        console.error('Ошибка при проверке подписки:', error);
+      console.error('Ошибка при проверке подписки:', error);
     }
-}, []);
+  };
 
-
-useEffect(() => {
-  const userId = new URLSearchParams(window.location.search).get('userId');
-  if (userId) {
-      const handleVisibilityChange = () => {
-          if (!document.hidden) {
-              checkSubscription(userId);
-          }
-      };
-
-      document.addEventListener('visibilitychange', handleVisibilityChange);
-
-      return () => {
-          document.removeEventListener('visibilitychange', handleVisibilityChange);
-      };
-  } else {
+  useEffect(() => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    if (userId) {
+      fetchUserData(userId);
+      checkSubscriptionAndReward(); // Проверяем подписку и награждаем пользователя
+    } else {
       console.error('userId не найден в URL');
-  }
-}, [checkSubscription]);
-
+    }
+  }, [fetchUserData]);
   
   
 
