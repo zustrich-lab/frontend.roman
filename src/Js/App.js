@@ -115,7 +115,7 @@ function App() {
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  }, [hasTelegramPremium, referralCoins]);
+  }, []);
 
   
 
@@ -143,7 +143,7 @@ function App() {
     } else {
       console.error('userId не найден в URL');
     }
-  }, [fetchUserData]);
+  }, []);
   
   
 
