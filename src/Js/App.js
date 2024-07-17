@@ -159,7 +159,7 @@ function App() {
     } catch (error) {
         console.error('Ошибка при проверке подписки:', error);
     }
-}, []);
+}, [referralCoins]);
 
 
 useEffect(() => {
