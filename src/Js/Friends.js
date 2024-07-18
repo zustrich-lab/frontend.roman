@@ -19,9 +19,16 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
         fetchReferredUsers();
     }, [referralCode]);
 
+    // const handleShareLink = () => {
+    //     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent('Check your rating and receive rewards 🐙')}`;
+    //     window.open(telegramUrl, '_blank');
+    //     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    // };
+
     const handleShareLink = () => {
-        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent('Присоединяйся к нашему приложению и получай бонусы!')}`;
-        window.open(telegramUrl, '_blank');
+        const text = "Check your rating and receive rewards 🐙";
+        const url = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent(text)}`;
+        window.open(url, '_blank');
         window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     };
 
