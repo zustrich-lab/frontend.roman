@@ -26,7 +26,6 @@ import invite from '../IMG/All_Logo/Invite_png.png';
 import Join from '../IMG/All_Logo/Join.png';
 
 const REACT_APP_BACKEND_URL = " http://82.112.241.13:3001";
-";
 const userId = new URLSearchParams(window.location.search).get('userId');
 function App() {
 
