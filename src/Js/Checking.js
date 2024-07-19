@@ -14,7 +14,7 @@ const Check = ({ setCheckOpen, setYearsOpen }) => {
   const progressRefs = useRef([]);
   const imageRefs = useRef([]);
 
-  const totalDuration = 3000; // total duration of 2 seconds
+  const totalDuration = 3000; 
   const stages = 8;
   const stageDuration = totalDuration / stages;
 
@@ -23,15 +23,15 @@ const Check = ({ setCheckOpen, setYearsOpen }) => {
       const currentWidth = parseFloat(ref.style.width) || 0;
       const targetWidth = stage * (100 / stages);
       if (currentWidth < targetWidth) {
-        const randomPause = Math.random() * (stageDuration / 2); // random pause between 0 and half of stageDuration
+        const randomPause = Math.random() * (stageDuration / 2); 
         ref.style.transition = `width ${stageDuration}ms ease-in-out`;
         setTimeout(() => {
           ref.style.width = `${targetWidth}%`;
 
           setTimeout(() => {
             animateProgress(ref, imageRef, index, stage + 1);
-          }, stageDuration + randomPause); // add pause before next stage
-        }, randomPause); // add initial pause
+          }, stageDuration + randomPause); 
+        }, randomPause); 
       } else {
         animateProgress(ref, imageRef, index, stage + 1);
       }

@@ -84,19 +84,66 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  overflow: auto;
+  overflow-y: auto;
+}
+
+.Reward {
+  height: 12%;
+  width: 90%;
+  display: flex;
+  align-items: end;
+  justify-content: start;
+  font-size: 2.1vh;
+  font-weight: bold;
+  position: relative; 
+}
+
+.EllipsSkroll {
+  position: absolute;
+  top: 0.5vh; 
+  left: 50%; 
+  transform: translateX(-50%); 
+}
+
+.EllipsSkroll img{
+  height: 1vh;
+  margin-right: 0.3vh;
+  margin-left: 0.3vh;
 }
 
 .MenuBorder{
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: start;
+  display: inline-block;
+  margin-right: 2vh;
+}
+
+.flex_menu_border{
   background: #1A1A1A;
   border-radius: 2vh;
-  width: 90%;
-  height: 27%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
+
 }
+
+#Cryptospace{
+  background: rgba(208, 108, 36, 0.5);
+}
+
+.Skroll_Menu_Border{
+  width: 90%;
+  height: 27%;
+  overflow-y: hidden;
+  white-space: nowrap;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
 .MenuBorder p{margin-left: 2vh;}
 #up{margin-top: 2.5vh; font-size: 2.1vh;}
 #dp{margin-bottom: 0.8vh; font-size: 1.8vh;}
@@ -122,15 +169,6 @@ body {
 .MenuBtn img {height:100%;margin-left: 2vh;}
 .MenuBtn p {margin-top: 0.8vh;}
 
-.Reward{
-  height: 12%;
-  width: 90%;
-  display: flex;
-  align-items: end;
-  justify-content: start;
-  font-size: 2.1vh;
-  font-weight: bold;
-}
 
 .Tasks{
   height: 61%;
@@ -262,13 +300,13 @@ button{
     font-size: 3vh;
   }
   
-  .MenuBorder{
-    height: 20vh;
+  .Skroll_Menu_Border{
+    height: 25vh;
     font-size: 4vh;
   }
 
-  #up{ font-size: 3vh;}
-  #dp{ font-size: 2vh;}
+  #up{ font-size: 4.5vh;}
+  #dp{ font-size: 3vh;}
 
   .Txt{
     font-size: 2.5vh;
