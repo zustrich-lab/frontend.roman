@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../Css/Friends.css';
 import axios from 'axios';
 
-const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomColor }) => {
+const Friends = ({ FriendsAnim, invite, referralCode, telegramLink }) => {
     const [referredUsers, setReferredUsers] = useState([]);
-    const [colorsF, setColorsF] = useState([]);
     const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
     useEffect(() => {
@@ -12,15 +11,13 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
             try {
                 const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-referred-users`, { referralCode });
                 setReferredUsers(response.data.referredUsers);
-                const newColorsF = response.data.leaderboard.map(() => getRandomColor());
-                setColorsF(newColorsF);
             } catch (error) {
                 console.error('Ошибка при получении данных о рефералах:', error);
             }
         };
 
         fetchReferredUsers();
-    }, [referralCode, getRandomColor]);
+    }, [referralCode]);
 
     const handleShareLink = () => {
         const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent('Присоединяйся к нашему приложению и получай бонусы!')}`;
@@ -28,10 +25,19 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
         window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     };
 
+    const getRandomColor = () => {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    };
+
     return (
         <div className={`Fr_Window ${FriendsAnim ? 'fade-out' : ''}`}>
             <div className='Fr_Info'>
-                <p>Invite friends <br/> and get more $OCTIES</p>
+                <p>Invite friends <br/> and get more OCTIES</p>
             </div>
             <div className='Fr_Main'>
                 <img src={invite} alt='invite'/>
@@ -49,7 +55,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
                 {referredUsers.map((user, index) => (
                     <div key={index} className='Lb_Lider'>
                         <div className='LbPhoto'  
-                        style={{ backgroundColor: colorsF[index],
+                        style={{ backgroundColor: getRandomColor(),
                             borderRadius: '50%',
                             aspectRatio: '1', 
                             height: '5.5vh', 
@@ -68,7 +74,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
 
                         <div className='LbPhoto' id='FR_Coins_frend'>
                            
-                        <p>+{user.earnedCoins} $OCTIES</p>
+                        <p>+{user.earnedCoins} OCTIES</p>
                         </div>
                     </div>
                 ))}
