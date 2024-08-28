@@ -105,7 +105,7 @@ function App() {
   const [transactionNumber, setTransactionNumber] = useState(null);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
 
-  const TG_CHANNEL_LINK = "https://t.me/octies_channel";
+  const TG_CHANNEL_LINK = "https://t.me/octies_community";
   const TG_CHANNEL_LINK2 = "https://t.me/test_sub_check2";
   const TG_CHANNEL_LINK3 = "https://t.me/+8YkeoXBKP9JkOGMy";
   // const TG_CHANNEL_LINK4 = "https://t.me/Checkcheckcheck3";
