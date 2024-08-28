@@ -640,7 +640,7 @@ const handleCheckReferrals = () => {
         </div>
       </div>
       {!isMint && <div className="main">
-        <img src={Octo} alt='Octo' />
+        <img src={Octo} alt='Octo'  onClick={(event) => {ClrLocal();}} />
       </div>}
       {!isMint &&<div className='MainCoin'>
         <div className='MainCoin'>
