@@ -594,6 +594,13 @@ const handleCheckReferrals = () => {
     setApp(false);
   };
 
+  function ClrLocal() {
+      
+    localStorage.clear();
+     window.dispatchEvent(new Event('storage'));
+
+}
+
   const handleFrends = () => {
     setIsFrendsOpen(true);
     setFriendsAnim(false);
