@@ -13,6 +13,10 @@ import Check from './Checking';
 import Years from './Years';
 import Oct from './Oct';
 
+import LoadingScreen from '../Loading/Loading.js';
+import LoadingScreenOcto from '../Loading/LoadingOcto.js';
+import LoadingScreenOctoNft from '../Loading/LoadingOctoNft.js'
+
 import TS1 from '../IMG/TaskIcon/TS1.png';
 import TS2 from '../IMG/TaskIcon/TS2.png';
 import TS3 from '../IMG/TaskIcon/TS3.png';
@@ -48,7 +52,8 @@ import Checknft from '../IMG/Nft_ref_check/chech.png';
 import ChecknftDone from '../IMG/Nft_ref_check_done/Done_ref.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
 
-const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
+
+const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
@@ -81,7 +86,6 @@ function App() {
 
   if (!localStorage.getItem('Sub')) { localStorage.setItem('Sub', 'false');}
   const Sub = localStorage.getItem('Sub') === 'true';
-
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [VisibleInvite, setVisibleInvite] = useState(false);
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
@@ -104,11 +108,25 @@ function App() {
   const [tonConnectUI] = useTonConnectUI();
   const [transactionNumber, setTransactionNumber] = useState(null);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
+
+  const [isLoadingOcto, setLoadingOcto] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+
+  useEffect(() => {
+    if (!isLoadingOcto) {
+      const timeoutId = setTimeout(() => {
+        setLoadingOctoVs(false);
+      }, 800); // 0.8 seconds delay
+
+      // Cleanup function to clear timeout if isLoadingOcto changes before timeout completes
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isLoadingOcto]);
   
 
-  const TG_CHANNEL_LINK = "https://t.me/octies_community";
-  const TG_CHANNEL_LINK2 = "https://t.me/test_sub_check2";
-  const TG_CHANNEL_LINK3 = "https://t.me/+8YkeoXBKP9JkOGMy";
+  const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
+  const TG_CHANNEL_LINK2 = "https://t.me/test_sub_check";
+  const TG_CHANNEL_LINK3 = "https://t.me/Checkcheckcheck3";//"https://t.me/+8YkeoXBKP9JkOGMy"
   // const TG_CHANNEL_LINK4 = "https://t.me/Checkcheckcheck3";
   const X_LINK = "https://x.com/Octies_GameFI";
   const Support = "https://t.me/octies_manage";
@@ -309,8 +327,8 @@ const sendTransaction = async () => {
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
+        setSubscriptionCoins(data.coinsSub);
 
-  
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
         const accountYear = accountCreationDate.getFullYear();
@@ -331,34 +349,30 @@ const sendTransaction = async () => {
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
         }
 
-        if (data.hasCheckedSubscription2) {
+        if (data.hasCheckedSubscription3) {
           localStorage.setItem('GalkaAnyTap', 'true');
           localStorage.setItem('KnopkaAnyTap', 'false');
-
         } else {
           localStorage.setItem('GalkaAnyTap', 'false');
           localStorage.setItem('KnopkaAnyTap', 'true');
         }
 
-        if (data.hasCheckedSubscription3) {
+        if (data.hasCheckedSubscription4) {
           localStorage.setItem('GalkaBlock1', 'true');
           localStorage.setItem('KnopkaBlock1', 'false');
-
         } else {
           localStorage.setItem('GalkaBlock1', 'false');
           localStorage.setItem('KnopkaBlock1', 'true');
         }
 
-        if (data.hasCheckedSubscription4) {
+        if (data.hasCheckedSubscription2) {
           localStorage.setItem('GalkaBlock2', 'true');
           localStorage.setItem('KnopkaBlock2', 'false');
-
         } else {
           localStorage.setItem('GalkaBlock2', 'false');
           localStorage.setItem('KnopkaBlock2', 'true');
@@ -370,7 +384,8 @@ const sendTransaction = async () => {
         else{
           localStorage.setItem('KnopkaNick', 'false');
         }
-
+        
+        setLoadingOcto(false);
         setAccountAgeCoins(accountAgeCoins);
   
         const referralResponse = await axios.post(`${REACT_APP_BACKEND_URL}/generate-referral`, { userId });
@@ -416,38 +431,35 @@ const handleCheckReferrals = () => {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
+        setSubscriptionCoins(data.coinsSub);
         
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
-
         } else {
           localStorage.setItem('Galka', 'false');
           localStorage.setItem('Knopka', 'true');
         }
 
-        if (data.hasCheckedSubscription2) {
+        if (data.hasCheckedSubscription3) {
           localStorage.setItem('GalkaAnyTap', 'true');
           localStorage.setItem('KnopkaAnyTap', 'false');
-
         } else {
           localStorage.setItem('GalkaAnyTap', 'false');
           localStorage.setItem('KnopkaAnyTap', 'true');
         }
 
-        if (data.hasCheckedSubscription3) {
+        if (data.hasCheckedSubscription4) {
           localStorage.setItem('GalkaBlock1', 'true');
           localStorage.setItem('KnopkaBlock1', 'false');
-
         } else {
           localStorage.setItem('GalkaBlock1', 'false');
           localStorage.setItem('KnopkaBlock1', 'true');
         }
 
-        if (data.hasCheckedSubscription4) {
+        if (data.hasCheckedSubscription2) {
           localStorage.setItem('GalkaBlock2', 'true');
           localStorage.setItem('KnopkaBlock2', 'false');
-
         } else {
           localStorage.setItem('GalkaBlock2', 'false');
           localStorage.setItem('KnopkaBlock2', 'true');
@@ -611,12 +623,15 @@ const handleCheckReferrals = () => {
     }
     return color;
   }, []);
-
   return (
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
     <div className="App">
 
       {app && <div className='blk'></div>}
+      {isLoadingOctoVs && <LoadingScreen isLoadingOcto={isLoadingOcto} />}
+      {isMint && isLoadingOctoVs && <LoadingScreenOctoNft isLoadingOcto={isLoadingOcto} />}
+      {!isMint && isLoadingOctoVs && <LoadingScreenOcto isLoadingOcto={isLoadingOcto} />}
+
       <div className="info">
         <img src={Logo} alt='Logo' />
         <div className='Txt' onClick={handleOpenStoryWithVibration}>
@@ -625,17 +640,16 @@ const handleCheckReferrals = () => {
         </div>
       </div>
       {!isMint && <div className="main">
-        <img src={Octo} alt='Octo' onClick={(event) => {localStorage.clear(); }} />
+        <img src={Octo} alt='Octo' />
       </div>}
       {!isMint &&<div className='MainCoin'>
         <div className='MainCoin'>
-  {coins === 0 ? <p>Loading...</p> : <p>{coins} $OCTIES</p>}
-</div>
-
+        {coins === 0 ? <p>Loading...</p> : <p>{coins} $OCTIES</p>}
+      </div>
       </div>}
       {isMint &&<div className='MintCoin'>
-        <img src={NFTm} alt='NFTm'  onClick={(event) => {localStorage.clear(); }} />
-        <p id='endtxt'>{coins} <span id='highlight'>{transactionNumber}</span> $OCTIES</p>
+        <img src={NFTm} alt='NFTm'/>
+        <p id='endtxt'> {coins === 0 ? <p>Loading...</p> : <p>{coins}</p>} <span id='highlight'>{transactionNumber}</span> $OCTIES</p>
       </div>}
 
       <div className='Menu'>
@@ -674,8 +688,12 @@ const handleCheckReferrals = () => {
           <div className='MenuBorder' ref={blockRefs[0]}>
             <div className='flex_menu_border'>
               <div className='rightFlex'>
-                <p id='up'>OCTIES COMMUNITY</p>
-                <p id='dp'>Home for Telegram OCs</p>
+                <div  id='up'>
+                  <p>OCTIES COMMUNITY</p>
+                </div>
+                <div  id='dp'>
+                  <p>Home for Telegram OCs</p>
+                </div> 
                 <div className='MenuBtn'>
                   {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join' />}
                   <p> {Knopka && <p id="plus">+</p>}1000 $OCTIES</p>
@@ -691,8 +709,12 @@ const handleCheckReferrals = () => {
           <div className='MenuBorder' ref={blockRefs[1]}>
             <div className='flex_menu_border'>
               <div className='rightFlex'>
-                <p id='up'>OCTIES X</p>
-                <p id='dp'>Home for X OCs</p>
+                <div  id='up'>
+                  <p>OCTIES X</p>
+                </div>
+                <div  id='dp'>
+                  <p>Home for X OCs</p>
+                </div> 
                 <div className='MenuBtn'>
                   {KnopkaX && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
                   <p> {KnopkaX && <p id="plus">+</p>}500 $OCTIES</p>
@@ -708,8 +730,12 @@ const handleCheckReferrals = () => {
           <div className='MenuBorder' ref={blockRefs[2]}>
             <div className='flex_menu_border' id='orangeBack'>
               <div className='rightFlex'>
-              <p id='up'>Тапаем <span class="emoji">🐹</span></p>
-                <p id='dp'>Потыкать и стать миллионером!</p>
+                <div  id='up'>
+                  <p>Тапаем <span class="emoji">🐹</span></p>
+                </div>
+                <div  id='dp'>
+                  <p>Потыкать и стать миллионером!</p>
+                </div> 
                 <div className='MenuBtn'>
                   {KnopkaBlock2 && <img onClick={Tg_Channel_Open_chek3} src={Join} alt='Join' />}
                   <p> {KnopkaBlock2 && <p id="plus">+</p>}750 $OCTIES</p>
@@ -725,8 +751,12 @@ const handleCheckReferrals = () => {
           <div className='MenuBorder' ref={blockRefs[3]}>
             <div className='flex_menu_border'  id='orangeBack'>
               <div className='rightFlex'>
-                <p id='up'>AnyTap Community</p>
-                <p id='dpp'>Complete tasks, earn rewards, and join <br/>the on-chain community.</p>
+                <div id='up'>
+                  <p >AnyTap Community</p>
+                </div>
+                <div id='dpp'>
+                  <p>Complete tasks, earn rewards, and join <br/>the on-chain community.</p>
+                </div>
                 <div className='MenuBtn'>
                   {KnopkaAnyTap && <img onClick={Tg_Channel_Open_chek2} src={Join} alt='Join' />}
                   <p> {KnopkaAnyTap && <p id="plus">+</p>}750 $OCTIES</p>
@@ -742,8 +772,12 @@ const handleCheckReferrals = () => {
           <div className='MenuBorder' ref={blockRefs[4]}>
             <div className='flex_menu_border' id='greenBack'>
               <div className='rightFlex'>
-                <p id='up'>Available Partner Space</p>
-                <p id='dp'>Your proposition</p>
+                <div  id='up'>
+                  <p>Available Partner Space</p>
+                </div>
+                <div  id='dp'>
+                  <p>Your proposition</p>
+                </div> 
                 <div className='MenuBtn'>
                   <img onClick={Tg_Channel_Support} src={ContactUs} alt='ContactUs' />
                   <p>+??? $OCTIES</p>
@@ -758,9 +792,12 @@ const handleCheckReferrals = () => {
           <div className='MenuBorder' ref={blockRefs[5]}>
             <div className='flex_menu_border'>
               <div className='rightFlex'>
-                <p id='up'>OCTIES NICKNAME</p>
-                <p id='dp'>Add the word “Octies” to <br/>your nickname.</p>
-                
+              <div id='up'>
+                <p>OCTIES NICKNAME</p>
+              </div>
+              <div id='dpp'>
+                <p>Add the word “Octies” to <br/>your nickname.</p>
+              </div>
                 <div className='MenuBtn'>
                   {KnopkaNick &&  <div className='nickDiv'>
                     <p><img src={nickGalka} alt=''/><span id='Greentxt'>Completed </span>300 $OCTIES</p>  
