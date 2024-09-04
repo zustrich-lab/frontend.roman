@@ -213,7 +213,7 @@ useEffect(() => {
   };
 
   checkAndUpdateMintStatus();
-}, [userId]);
+}, []);
 
 
 //________________________________________________________________Task_Swap
