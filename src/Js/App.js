@@ -195,7 +195,25 @@ const sendTransaction = async () => {
   }
 };
 
+useEffect(() => {
+  const checkAndUpdateMintStatus = async () => {
+    const isMint = localStorage.getItem('isMintNFT') === 'true';
+    if (isMint) {
+      try {
+        const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
+        if (response.data.success) {
+          console.log('Статус mint успешно обновлен.');
+        } else {
+          console.error('Ошибка сервера:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Ошибка при обновлении статуса mint:', error);
+      }
+    }
+  };
 
+  checkAndUpdateMintStatus();
+}, [userId]);
 
 
 //________________________________________________________________Task_Swap
