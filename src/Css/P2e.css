@@ -7,8 +7,19 @@
     justify-content: center;
     top: 0;
     color: white;
-    background: #000000;
+    background: url("../IMG/ComingSoon/background.jpg") no-repeat center center fixed;
+    background-size: cover;
     font-size: 5vh;
     z-index: 1001;
     animation: fade-in 0.3s forwards;
+}
+
+.P2E_Window img{
+    height: 40%;
+}
+
+@media (orientation: landscape) {
+    .P2E_Window {
+      height: 80%;
+    }
 }

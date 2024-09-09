@@ -12,3 +12,9 @@
     z-index: 1001;
     animation: fade-in 0.3s forwards;
 }
+
+@media (orientation: landscape) {
+    .NFTs_Window {
+      height: 80%;
+    }
+}
