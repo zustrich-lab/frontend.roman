@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import '../Css/App.css';
 import axios from 'axios';
-import { TonConnectUIProvider, TonConnectButton} from '@tonconnect/ui-react';
+import { TonConnectUIProvider, TonConnectButton, useTonAddress} from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
 import Friends from './Friends';
@@ -29,10 +29,11 @@ import galo4ka from '../IMG/All_Logo/galol4ka.png';
 import nickGalka from '../IMG/All_Logo/galka.png';
 import nickKr from '../IMG/All_Logo/nickNema.png';
 import Ellipse from '../IMG/All_Logo/Ellipse.png';
-import Block1 from '../IMG/All_Logo/Block1.png';
+//import Block1 from '../IMG/All_Logo/Block1.png';
 import FreePosition from '../IMG/All_Logo/freePosiction.png';
 import ContactUs from '../IMG/All_Logo/ContactUs.png';
 import AnyTapChanel from '../IMG/All_Logo/AnyTapChanel.png';
+import NewLabel from '../IMG/All_Logo/New_lable.png';
 
 import tgLogo from '../IMG/All_Logo/TgComunity.png';
 import XLogo from '../IMG/All_Logo/XCominity.png';
@@ -53,7 +54,7 @@ import ChecknftDone from '../IMG/Nft_ref_check_done/Done_ref.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
 
 
-const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
+const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
@@ -77,9 +78,9 @@ function App() {
   // const KnopkaBlock1 = localStorage.getItem('KnopkaBlock1') === 'true';
 
   if (!localStorage.getItem('GalkaBlock2')) {localStorage.setItem('GalkaBlock2', 'false');}
-  const GalkaBlock2 = localStorage.getItem('GalkaBlock2') === 'true';
+  //const GalkaBlock2 = localStorage.getItem('GalkaBlock2') === 'true';
   if (!localStorage.getItem('KnopkaBlock2')) {localStorage.setItem('KnopkaBlock2', 'true');}
-  const KnopkaBlock2 = localStorage.getItem('KnopkaBlock2') === 'true';
+  //const KnopkaBlock2 = localStorage.getItem('KnopkaBlock2') === 'true';
 
   if (!localStorage.getItem('KnopkaNick')) {localStorage.setItem('KnopkaNick', 'false');}
   const KnopkaNick = localStorage.getItem('KnopkaNick') === 'true';
@@ -109,8 +110,11 @@ function App() {
   const [transactionNumber, setTransactionNumber] = useState(null);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
 
+  const walletAddress = useTonAddress();
+
   const [isLoadingOcto, setLoadingOcto] = useState(true);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+
 
   useEffect(() => {
     if (!isLoadingOcto) {
@@ -124,9 +128,9 @@ function App() {
   }, [isLoadingOcto]);
   
 
-  const TG_CHANNEL_LINK = "https://t.me/test_sub_check2";
-  const TG_CHANNEL_LINK2 = "https://t.me/Checkcheckcheck3";//"https://t.me/test_sub_check";
-  const TG_CHANNEL_LINK3 = "https://t.me/test_sub_check";//"https://t.me/+8YkeoXBKP9JkOGMy"
+  const TG_CHANNEL_LINK = "https://t.me/octies_community";
+  const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
+  //const TG_CHANNEL_LINK3 = "https://t.me/+8YkeoXBKP9JkOGMy";
   // const TG_CHANNEL_LINK4 = "https://t.me/Checkcheckcheck3";
   const X_LINK = "https://x.com/Octies_GameFI";
   const Support = "https://t.me/octies_manage";
@@ -185,6 +189,10 @@ const sendTransaction = async () => {
     if (response.data.success) {
         setTransactionNumber(response.data.transactionNumber);
         localStorage.setItem('isMintNFT', 'true'); 
+
+        // Сохраняем флаг hasMintedNFT в базе данных
+        await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
+
         alert(`Transaction successful! You are user number ${response.data.transactionNumber}`);
     } else {
         alert('Transaction failed!');
@@ -196,29 +204,47 @@ const sendTransaction = async () => {
 };
 
 useEffect(() => {
-  const checkAndUpdateMintStatus = async () => {
-    const isMint = localStorage.getItem('isMintNFT') === 'true';
-    if (isMint) {
-      try {
-        const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
+  const userId = new URLSearchParams(window.location.search).get('userId');
+  const isMint = localStorage.getItem('isMintNFT') === 'true';
+
+  // Если isMint равен true, обновляем статус mint в базе данных
+  if (isMint && userId) {
+    axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true })
+      .then(response => {
         if (response.data.success) {
-          console.log('Статус mint успешно обновлен.');
+          console.log("Статус NFT успешно обновлён в базе данных.");
+        } else {
+          console.error("Не удалось обновить статус NFT.");
+        }
+      })
+      .catch(error => {
+        console.error("Ошибка при обновлении статуса NFT:", error);
+      });
+  }
+}, []);
+
+useEffect(() => {
+  console.log('Адрес кошелька из useTonAddress:', walletAddress);
+  if (walletAddress) {
+    // Отправляем адрес кошелька на сервер для сохранения
+    axios.post(`${REACT_APP_BACKEND_URL}/save-wallet-address`, { userId, walletAddress })
+      .then(response => {
+        if (response.data.success) {
+          console.log('Адрес кошелька успешно сохранен.');
         } else {
           console.error('Ошибка сервера:', response.data.message);
         }
-      } catch (error) {
-        console.error('Ошибка при обновлении статуса mint:', error);
-      }
-    }
-  };
-
-  checkAndUpdateMintStatus();
-}, [userId]);
-
-
+      })
+      .catch(error => {
+        console.error('Ошибка при сохранении адреса кошелька:', error);
+      });
+  } else {
+    console.error('Адрес кошелька не был получен и равен undefined');
+  }
+}, [walletAddress]);
 //________________________________________________________________Task_Swap
-  const blockRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
-  const [blockVisibility, setBlockVisibility] = useState([false, false, false, false, false, false]);
+  const blockRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
+  const [blockVisibility, setBlockVisibility] = useState([false, false, false, false, false]);
 
   useEffect(() => {
     const observerOptions = {
@@ -285,7 +311,7 @@ useEffect(() => {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-        setSubscriptionCoins(data.coinsSub)
+        //setSubscriptionCoins(data.coinsSub)
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -310,11 +336,7 @@ useEffect(() => {
     }
   }, []);
 
-  if(subscriptionCoins > 0){
-    localStorage.setItem('Sub', 'true');
-  } else {
-    localStorage.setItem('Sub', 'false');
-  }
+
 
   useEffect(() => {
     if (userId) {
@@ -348,6 +370,7 @@ useEffect(() => {
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
         setSubscriptionCoins(data.coinsSub);
+      
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
@@ -357,15 +380,17 @@ useEffect(() => {
         let accountAgeCoins = yearsOld * 500;
         if (yearsOld < 1) {
           accountAgeCoins = 300; // Минимум 300 монет для аккаунтов младше года
-      }
+        }
         setcoinOnlyYears(accountAgeCoins);
-        if (hasTelegramPremium === true) {
+        if (data.hasTelegramPremium) {
           setVisibleTelegramPremium(true);
         }
         if (referralCoins > 0) {
           setVisibleInvite(true);
         }
-        
+        if(data.hasMintedNFT){
+          localStorage.setItem('isMintNFT', 'true'); 
+        }
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
           localStorage.setItem('Knopka', 'false');
@@ -422,7 +447,13 @@ useEffect(() => {
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  }, [hasTelegramPremium, referralCoins]);
+  }, [referralCoins]);
+
+  if(subscriptionCoins > 0){
+    localStorage.setItem('Sub', 'true');
+  } else {
+    localStorage.setItem('Sub', 'false');
+  }
   
 const handleCheckReferrals = () => {
     axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
@@ -451,7 +482,7 @@ const handleCheckReferrals = () => {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-        setSubscriptionCoins(data.coinsSub);
+        //setSubscriptionCoins(data.coinsSub);
         
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -525,8 +556,6 @@ const handleCheckReferrals = () => {
     }
   }, [fetchUserData, checkSubscription]);
 
-
-  
   const Tg_Channel_Open_X = async () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     window.open(X_LINK, '_blank');
@@ -570,14 +599,14 @@ const handleCheckReferrals = () => {
     }, 3000);
   };
 
-  const Tg_Channel_Open_chek3 = () => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    window.open(TG_CHANNEL_LINK3, '_blank');
-    setTimeout(() => {
-      checkSubscriptionAndUpdate(userId);
-    }, 3000);
-  };
+  // const Tg_Channel_Open_chek3 = () => {
+  //   const userId = new URLSearchParams(window.location.search).get('userId');
+  //   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  //   window.open(TG_CHANNEL_LINK3, '_blank');
+  //   setTimeout(() => {
+  //     checkSubscriptionAndUpdate(userId);
+  //   }, 3000);
+  // };
 
   // const Tg_Channel_Open_chek4 = () => {
   //   const userId = new URLSearchParams(window.location.search).get('userId');
@@ -597,8 +626,6 @@ const handleCheckReferrals = () => {
     }, 3000);
   };
 
-
-
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
@@ -613,13 +640,6 @@ const handleCheckReferrals = () => {
     setLeaderboardAnim(true);
     setApp(false);
   };
-
-  function ClrLocal() {
-      
-    localStorage.clear();
-     window.dispatchEvent(new Event('storage'));
-
-}
 
   const handleFrends = () => {
     setIsFrendsOpen(true);
@@ -667,16 +687,16 @@ const handleCheckReferrals = () => {
         </div>
       </div>
       {!isMint && <div className="main">
-        <img src={Octo} alt='Octo'  onClick={(event) => {ClrLocal();}} />
+        <img src={Octo} alt='Octo' />
       </div>}
       {!isMint &&<div className='MainCoin'>
         <div className='MainCoin'>
-        {coins === 0 ? <p>Loading...</p> : <p>{coins} $OCTIES</p>}
+        {coins === 0 ? <p>Loading...</p> : <p>{coins.toLocaleString('en-US')} $OCTIES</p>}
       </div>
       </div>}
       {isMint &&<div className='MintCoin'>
         <img src={NFTm} alt='NFTm'/>
-        <p id='endtxt'> {coins === 0 ? <p>Loading...</p> : <p>{coins}</p>} <span id='highlight'>{transactionNumber}</span> $OCTIES</p>
+        <p id='endtxt'> {coins === 0 ? <p>Loading...</p> : <p>{coins.toLocaleString('en-US')}</p>} <span id='highlight'>{transactionNumber}</span> $OCTIES</p>
       </div>}
 
       <div className='Menu'>
@@ -713,17 +733,17 @@ const handleCheckReferrals = () => {
 
         <div className='Skroll_Menu_Border'>
           <div className='MenuBorder' ref={blockRefs[0]}>
-            <div className='flex_menu_border'>
+            <div className='flex_menu_border' id='lightGreenBack'>
               <div className='rightFlex'>
                 <div  id='up'>
-                  <p>OCTIES COMMUNITY</p>
+                  <p id='centerMain'>OCTIES COMMUNITY <img src={NewLabel} alt=''></img></p>
                 </div>
                 <div  id='dp'>
                   <p>Home for Telegram OCs</p>
                 </div> 
                 <div className='MenuBtn'>
                   {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join' />}
-                  <p> {Knopka && <p id="plus">+</p>}1000 $OCTIES</p>
+                  <p id='lightGray'> {Knopka && <p id="plus">+</p>}1,000 $OCTIES</p>
                   {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
                 </div>
               </div>
@@ -755,27 +775,6 @@ const handleCheckReferrals = () => {
           </div>
 
           <div className='MenuBorder' ref={blockRefs[2]}>
-            <div className='flex_menu_border' id='orangeBack'>
-              <div className='rightFlex'>
-                <div  id='up'>
-                  <p>Тапаем <span class="emoji">🐹</span></p>
-                </div>
-                <div  id='dp'>
-                  <p>Потыкать и стать миллионером!</p>
-                </div> 
-                <div className='MenuBtn'>
-                  {KnopkaBlock2 && <img onClick={Tg_Channel_Open_chek3} src={Join} alt='Join' />}
-                  <p> {KnopkaBlock2 && <p id="plus">+</p>}750 $OCTIES</p>
-                  {GalkaBlock2 && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
-                </div>
-              </div>
-              <div className='leftFlex'>
-                <img src={Block1} alt='Tapaem_Logo'/>
-              </div>
-            </div>
-          </div>
-
-          <div className='MenuBorder' ref={blockRefs[3]}>
             <div className='flex_menu_border'  id='orangeBack'>
               <div className='rightFlex'>
                 <div id='up'>
@@ -796,7 +795,7 @@ const handleCheckReferrals = () => {
             </div>
           </div>
 
-          <div className='MenuBorder' ref={blockRefs[4]}>
+          <div className='MenuBorder' ref={blockRefs[3]}>
             <div className='flex_menu_border' id='greenBack'>
               <div className='rightFlex'>
                 <div  id='up'>
@@ -816,7 +815,7 @@ const handleCheckReferrals = () => {
             </div>
           </div>
 
-          <div className='MenuBorder' ref={blockRefs[5]}>
+          <div className='MenuBorder' ref={blockRefs[4]}>
             <div className='flex_menu_border'>
               <div className='rightFlex'>
               <div id='up'>
@@ -848,13 +847,12 @@ const handleCheckReferrals = () => {
             <img src={Ellipse} alt='Ellips' className={blockVisibility[2] ? '' : 'img-dark'} />
             <img src={Ellipse} alt='Ellips' className={blockVisibility[3] ? '' : 'img-dark'} />
             <img src={Ellipse} alt='Ellips' className={blockVisibility[4] ? '' : 'img-dark'} />
-            <img src={Ellipse} alt='Ellips' className={blockVisibility[5] ? '' : 'img-dark'} />
           </div>
           <p>Your Rewards</p>
         </div>
         <div className='Tasks' id={isMint ? 'TaskswithoutNft' : undefined}>
 
-        {isMint && <div className='TS'>
+          {isMint && <div className='TS'>
             <div className='tsPhoto'>
               <img src={TSNFT} alt='TSNFT' /> <p>OCTIES NFT</p>
             </div>
@@ -865,10 +863,10 @@ const handleCheckReferrals = () => {
 
           {Sub && <div className='TS'>
             <div className='tsPhoto'>
-              <img src={SubTg} alt='SubTg' /> <p id='highlight'>Partner channels subs</p>
+              <img src={SubTg} alt='SubTg' /> <p>Partner channels subs</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{subscriptionCoins} $OCTIES</p>
+              <p id='highlight' >+{subscriptionCoins.toLocaleString('en-US')} $OCTIES</p>
             </div>
           </div>}
 
@@ -877,7 +875,7 @@ const handleCheckReferrals = () => {
               <img src={TS1} alt='TS1' /> <p>Account age</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{accountAgeCoins} $OCTIES</p>
+              <p>+{accountAgeCoins.toLocaleString('en-US')} $OCTIES</p>
             </div>
           </div>
 
@@ -895,7 +893,7 @@ const handleCheckReferrals = () => {
               <img src={TS3} alt='TS3' /> <p>Channel Subscription</p>
             </div>
             <div className='tsPhoto'>
-              <p>+1000 $OCTIES</p>
+              <p>+1,000 $OCTIES</p>
             </div>
           </div>}
 
@@ -904,7 +902,7 @@ const handleCheckReferrals = () => {
               <img src={TSnick} alt='TS3' /> <p>Add "Octies" to nickname</p>
             </div>
             <div className='tsPhoto'>
-              <p>+ 300 $OCTIES</p>
+              <p>+300 $OCTIES</p>
             </div>
           </div>}
 
@@ -913,7 +911,7 @@ const handleCheckReferrals = () => {
             <img src={TSX} alt='TSX' /> <p>Octies X</p>
           </div>
           <div className='tsPhoto'>
-            <p>+ 500 $OCTIES</p>
+            <p>+500 $OCTIES</p>
           </div>
         </div>}       
 
@@ -922,7 +920,7 @@ const handleCheckReferrals = () => {
               <img src={TS4} alt='TS4' /> <p>Invites</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{referralCoins} $OCTIES</p>
+              <p>+{referralCoins.toLocaleString('en-US')} $OCTIES</p>
             </div>
           </div>}
         </div>

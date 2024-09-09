@@ -5,7 +5,7 @@ import axios from 'axios';
 const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomColor }) => {
     const [referredUsers, setReferredUsers] = useState([]);
     const [colorsF, setColorsF] = useState([]);
-    const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
+    const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
     useEffect(() => {
         const fetchReferredUsers = async () => {
@@ -23,7 +23,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
     }, [referralCode, getRandomColor]);
 
     const handleShareLink = () => {
-        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}&text=${encodeURIComponent('Присоединяйся к нашему приложению и получай бонусы!')}`;
+        const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(telegramLink)}`;
         window.open(telegramUrl, '_blank');
         window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     };
@@ -43,7 +43,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
                 </div>
             </div>
             <div className='Fr_Friends'>
-                <p>{referredUsers.length} friends</p>
+                <p>{referredUsers.length.toLocaleString('en-US')} friends</p>
             </div>
             <div className='Fr_list'>
                 {referredUsers.map((user, index) => (
@@ -68,7 +68,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
 
                         <div className='LbPhoto' id='FR_Coins_frend'>
                            
-                        <p>+{user.earnedCoins} $OCTIES</p>
+                        <p>+{user.earnedCoins.toLocaleString('en-US')} $OCTIES</p>
                         </div>
                     </div>
                 ))}

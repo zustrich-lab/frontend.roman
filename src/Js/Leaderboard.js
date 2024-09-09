@@ -3,8 +3,9 @@ import '../Css/Leaderboard.css';
 import axios from 'axios';
 
 import logo from '../IMG/All_Logo/LBoard.png';
+import Octo from '../IMG/All_Logo/Octo.png';
 
-const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
+const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
 const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
   const [leaderboard, setLeaderboard] = useState([]);
@@ -13,6 +14,30 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
   const [userNickname, setUserNickname] = useState('');
   const [colorsL, setColorsL] = useState([]);
   const [userColorL, setUserColorL] = useState('');
+  
+  const [isLoadingYourInfo, setLoadingYourInfo] = useState(true);
+  const [isLoadingYourInfosup, setLoadingYourInfosup]  = useState(true);
+
+  const [isLoadingLiderInfo, setLoadingLiderInfo] = useState(true);
+  const [isLoadingLiderInfosup, setLoadingLiderInfosup]  = useState(true);
+
+  useEffect(() => {
+    if (!isLoadingYourInfosup) {
+        const timerBlue = setTimeout(() =>  setLoadingYourInfo(false), 350); 
+        return () => clearTimeout(timerBlue);
+    } else {
+      setLoadingYourInfo(true);
+    }
+}, [isLoadingYourInfosup]);
+
+  useEffect(() => {
+    if (!isLoadingLiderInfosup) {
+        const timerBlue = setTimeout(() =>   setLoadingLiderInfo(false), 350); 
+        return () => clearTimeout(timerBlue);
+    } else {
+      setLoadingYourInfo(true);
+    }
+}, [isLoadingLiderInfosup]);
 
   useEffect(() => {
     const fetchUserCount = async () => {
@@ -37,7 +62,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
           setLeaderboard(response.data.leaderboard);
           const newColorsL = response.data.leaderboard.map(() => getRandomColor());
           setColorsL(newColorsL);
-          setUserColorL(getRandomColor()); 
+          setLoadingLiderInfosup(false);
         }
       } catch (error) {
         console.error('Ошибка при загрузке лидерборда:', error);
@@ -52,6 +77,8 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
           console.log('User rank fetched successfully:', response.data.rank);
           setUserRank(response.data.rank);
           setUserNickname(response.data.nickname);
+          setUserColorL(getRandomColor()); 
+          setLoadingYourInfosup(false);
         } else {
           console.error('Error in response data:', response.data.message);
         }
@@ -100,6 +127,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
         </div>
 
         <div className='Lb_inside'>
+        {!isLoadingYourInfosup && <div className='LbNotLod fadeIn'> 
           <div className='LbPhoto'>
             <div
               style={{
@@ -120,19 +148,34 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
 
             <div className='NameLb'>
               <p>{userNickname ? `${userNickname}` : 'Loading...'}</p>
-              <p id='LbColor'>{coins} $OCTIES</p>
+              <p id='LbColor'>{coins.toLocaleString('en-US')} $OCTIES</p>
             </div>
           </div>
           <div className='LbPhoto'>
             <p id='number'>{userRank ? `#${userRank}` : '??'}</p>
           </div>
-        </div>
+          </div>}
 
-        <div className='Lb_Liders'>
-          <p>{userCount} holders</p>
-        </div>
-        <div className='Lb_list'>
-          {leaderboard.map((user, index) => (
+          {isLoadingYourInfo && <div className={`Lb_insideLod ${isLoadingYourInfosup ? '' : 'hiddenLider'}`}>
+            <img src={Octo} alt='Ellips' />
+            <img src={Octo} alt='Ellips' />
+            <img src={Octo} alt='Ellips' />
+          </div>}
+
+          </div>
+
+          
+
+        {isLoadingLiderInfo && <div className={`loading-screen_lider ${isLoadingLiderInfosup ? '' : 'hiddenLider'}`}>
+          <span className="loader"></span>
+        </div>}
+
+        {!isLoadingLiderInfosup && <div className='Lb_Liders fadeIn'>
+          <p>{userCount.toLocaleString('en-US')} holders</p>
+        </div>}
+
+        {!isLoadingLiderInfosup && <div className='Lb_list fadeIn'>
+           { leaderboard.map((user, index) => (
             <div key={user._id} className='Lb_Lider'>
               <div className='LbPhoto'>
                 <div
@@ -153,7 +196,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
                 </div>
                 <div className='NameLb'>
                   <p> {user.nickname} </p>
-                  <p id='LbColor'>{user.coins} $OCTIES</p>
+                  <p id='LbColor'>{user.coins.toLocaleString('en-US')} $OCTIES</p>
                 </div>
               </div>
               <div className='LbPhoto' id='medal'>
@@ -161,7 +204,7 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
               </div>
             </div>
           ))}
-        </div>
+        </div>}
       </div>
     </div>
   );
