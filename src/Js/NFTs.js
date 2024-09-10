@@ -49,7 +49,8 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
 
                 {!buttonVisible && (
                   <button id="friends-count">
-                    15 friends <img src={ChecknftDone} alt="Checkmark" />
+                    <p>15 friends </p>
+                    <img src={ChecknftDone} alt="Checkmark" />
                   </button> )}
 
               </div>
