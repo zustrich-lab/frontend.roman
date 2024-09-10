@@ -526,7 +526,7 @@ button{
   background-color:  #E46E19;
   color: white; 
   height: 80%;
-  width: 55%;
+  width: 30%;
   margin-left: 1.7vh;
   font-size: 1.7vh;
   font-family: MullerMedium;
@@ -537,7 +537,7 @@ button{
 .mint-button {
   background-color: #E46E19;
   color: white;
-  width: 65%; 
+  width: 50%; 
   height: 80%;
   border-radius: 1.2vh;
   font-size: 2.5vh;
