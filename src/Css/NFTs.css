@@ -78,6 +78,10 @@
   margin-top: 2vh;
 }
 
+.canMint{
+  filter: saturate(0%);
+}
+
 .marvel{height: 100%; z-index: 2; position: absolute; left: 0;}
 
 #ros{left: auto; right: 0;}

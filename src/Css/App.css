@@ -537,7 +537,17 @@ button{
   font-size: 2.5vh;
   margin-left: 1.7vh;
   font-family: MullerMedium;
-  
+}
+
+.mint-button {
+  background-color: #E46E19;
+  color: white;
+  width: 85%; 
+  height: 80%;
+  border-radius: 1vh;
+  font-size: 2.5vh;
+  margin-left: 1.7vh;
+  font-family: MullerMedium;
 }
 
 .mint-section {
