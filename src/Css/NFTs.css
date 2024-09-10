@@ -80,7 +80,7 @@
   background-color: #1A1A1A;
   border-radius: 2vh 2vh 2vh 0;
   width: 90%;
-  height: 25%;
+  height: 27%;
 }
 
 .canMint{
@@ -104,7 +104,7 @@
   align-self: end;
   width: 90%;
   position: relative;
-  height: 55%;
+  height: 40%;
 }
 
 .nft-promo2 img{
@@ -139,13 +139,13 @@
   white-space: nowrap;
   text-align: start;
   margin: 0;
-  padding-left: 20px;
-  margin-left: 1.7vh;
+  padding-left: 2vh;
+  margin-left: 3vh;
 }
 
 .custom-list li {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 2vh;
+  line-height: 2.2vh;
 }
 
 .sendButtonm{
