@@ -398,7 +398,15 @@ useEffect(() => {
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
         setSubscriptionCoins(data.coinsSub);
-      
+        
+        const preloadImage = (src) => {
+          const img = new Image();
+          img.src = src;
+      };
+      preloadImage(soon); 
+      preloadImage(PLANET); 
+      preloadImage(OctiesCosmo);
+      preloadImage(starship);
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
@@ -555,14 +563,7 @@ const handleCheckReferrals = () => {
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
     if (userId) {
-      const preloadImage = (src) => {
-        const img = new Image();
-        img.src = src;
-    };
-    preloadImage(soon); 
-    preloadImage(PLANET); 
-    preloadImage(OctiesCosmo);
-    preloadImage(starship);
+    
 
       const handleVisibilityChange = () => {
         if (!document.hidden) {
