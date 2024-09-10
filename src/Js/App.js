@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import '../Css/App.css';
 import axios from 'axios';
-import { TonConnectUIProvider, TonConnectButton, useTonAddress} from '@tonconnect/ui-react';
+import { TonConnectUIProvider,  useTonAddress} from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
 import Friends from './Friends';
@@ -113,7 +113,7 @@ function App() {
   const walletAddress = useTonAddress();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
 
   useEffect(() => {
@@ -145,7 +145,7 @@ function App() {
     if (window.TON_CONNECT_UI) {
         const tonConnectUI = new window.TON_CONNECT_UI.TonConnectUI({
             manifestUrl: 'https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json',
-            buttonRootId: 'TonMainConBtn'
+            buttonRootId: 'custom-connect-button'
         });
 
         tonConnectUI.onStatusChange((walletInfo) => {
@@ -158,6 +158,13 @@ function App() {
     }
 }, []);
 
+document.getElementById('custom-connect-button').addEventListener('click', async () => {
+  try {
+      await tonConnectUI.openModal();
+  } catch (error) {
+      console.error('Ошибка открытия модального окна:', error);
+  }
+});
 
 
 
@@ -721,7 +728,7 @@ const handleCheckReferrals = () => {
                 </div>)}
               <div className="ton-con">
                 <div className='feikton'>
-                  <TonConnectButton/>
+                <button id="custom-connect-button" class="my-custom-style">Подключить кошелек</button>
                 </div>
               </div>
             </div>
