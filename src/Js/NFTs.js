@@ -37,12 +37,12 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
             <div className='nft-buttons'>
               <div className="mint-section">
 
-                {!showNotCompleted && 
+                {buttonVisible && !showNotCompleted && 
                   <button className="referral-button" onClick={handleCheckReferrals}> 
                     Check referrals
                   </button>}
-                  
-                {showNotCompleted && (
+
+                {buttonVisible && showNotCompleted && (
                   <button id="not-completed" >
                     <img src={Checknft} alt="Not completed" />Not completed
                   </button>)}
