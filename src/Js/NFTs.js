@@ -65,7 +65,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
               <li>Utilities (specific ones are <br/>currently unknown)</li>
             </ul>
           
-              <button className='sendButtonm'>Send transaction <img src={ton55}></img></button>
+              <button className='sendButtonm'>Send transaction <img src={ton55} alt=''/></button>
            
           </div>
           <div className='rightNft2'>
