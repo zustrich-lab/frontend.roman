@@ -460,6 +460,9 @@ button{
 #highlight {
   color: #ff7f00 !important; 
 }
+#highgreen {
+  color: #27D024 !important; 
+}
 
 .nft-text p {
   white-space: normal; 
@@ -609,7 +612,7 @@ button[data-tc-connect-button="true"]{
 }
 
 button[data-tc-dropdown-button="true"] {
-  background-color: #000000; 
+  background-color: #585858; 
 }
 
 @media (orientation: landscape) {
