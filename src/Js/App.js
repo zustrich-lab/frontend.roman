@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import '../Css/App.css';
 import axios from 'axios';
-import { TonConnectUIProvider, TonConnectButton, useTonAddress} from '@tonconnect/ui-react';
+import { TonConnectUIProvider, useTonAddress} from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
 import soon from '../IMG/ComingSoon/Text_soon.png';
@@ -774,37 +774,7 @@ const handleCheckReferrals = () => {
       </div>}
 
       <div className='Menu'>
-      
-      {!isMint && <div className='nft-promo'>
-          <div className='nft-text'>
-            <h2>GET YOUR <span id='highlight'>FREE</span> NFT!</h2>
-            <p>Invite 15 friends, Connect Wallet <br/>and receive unique OCTIES NFT</p>
-            <div className='nft-buttons'>
-              {buttonVisible ? (
-                <div className="mint-section">
-                  <button className="referral-button" onClick={handleCheckReferrals}> Check referrals</button>
-                  {showNotCompleted && (
-                  <p id="not-completed">
-                    <img src={Checknft} alt="Not completed" />Not completed
-                  </p>)}
-                </div>
-              ) : (
-                <div className="mint-section">
-                  <p id="friends-count">15 friends <img src={ChecknftDone} alt="Checkmark" /></p>  
-                  <button className="mint-button" onClick={sendTransaction}>Mint</button>
-                </div>)}
-              <div className="ton-con">
-                <div className='feikton'>
-                  <TonConnectButton/>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='nft-image'>
-            <img src={Nft} alt='OCTIES NFT' /> 
-          </div>
-        </div>}
-
+  
         <div className='Skroll_Menu_Border'>
           <div className='MenuBorder' ref={blockRefs[0]}>
             <div className='flex_menu_border' id='lightGreenBack'>
@@ -1034,7 +1004,8 @@ const handleCheckReferrals = () => {
 
       {isp2eOpen && <PlayToEarn p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
 
-      {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} />}
+      {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
+      Checknft={Checknft} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}/>}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
 
