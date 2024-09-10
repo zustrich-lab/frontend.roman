@@ -65,18 +65,17 @@
   border-radius: 1.2vh; 
 }
 
-
-
-
 .nft-promo {
   display: flex;
   align-items: center;
+  align-self: start;
+  margin-left: 1.5vh;
   justify-content: space-between;
   background-color: #1A1A1A;
-  border-radius: 2vh;
+  border-radius: 2vh 2vh 2vh 0;
   width: 90%;
-  height: calc(35% - 1vh);
-  margin-bottom: 1vh;
+  height: 25%;
+  margin-top: 2vh;
 }
 
 .marvel{height: 100%; z-index: 2; position: absolute; left: 0;}

@@ -33,22 +33,20 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
             <h2>GET YOUR <span id='highlight'>FREE</span> NFT!</h2>
             <p>Invite 15 friends, Connect Wallet <br/>and receive unique OCTIES NFT</p>
             <div className='nft-buttons'>
-              {buttonVisible ? (
+              
                 <div className="mint-section">
                   <button className="referral-button" onClick={handleCheckReferrals}> Check referrals</button>
                   {showNotCompleted && (
                   <p id="not-completed">
                     <img src={Checknft} alt="Not completed" />Not completed
                   </p>)}
+                  {!buttonVisible && <p id="friends-count">15 friends <img src={ChecknftDone} alt="Checkmark" /></p>  }
                 </div>
-              ) : (
+              
                 <div className="mint-section">
-                  <p id="friends-count">15 friends <img src={ChecknftDone} alt="Checkmark" /></p>  
                   <button className="mint-button" onClick={sendTransaction}>Mint</button>
-                </div>)}
-              <div className="ton-con">
-                
-              </div>
+                </div>
+             
             </div>
           </div>
           <div className='nft-image'>
