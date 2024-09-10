@@ -14,7 +14,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
     <div className={`NFTs_Window ${NFTsAnim ? 'fade-out' : ''}`}>
       <div className='Shapka'>
         <div className='shapkaborder'>
-          <p> CREATE AN <span id='highlight'>NFT</span> OF YOUR<br/> CHARACTER OCTIES!  </p>
+          <p> CREATE AN <span id='highlight'>NFT</span> OF YOUR<br/> CHARACTER OCTIES! Andrey loh  </p>
           <img src={ton5} alt=''/>
         </div>
         <img className="marvel" src={dedpool} alt=''/>
@@ -22,7 +22,9 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
         <img src={shapka2} id="shapka2" alt=''/>
       </div>
      
-    
+      <div className='mainNft'> 
+
+     
         <div className='feikton'>
           <TonConnectButton/>
         </div>
@@ -52,6 +54,11 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
           <div className='nft-image'>
             <img src={Nft} alt='OCTIES NFT' /> 
           </div>
+        </div>
+
+        <div className='nft-promo2'>
+
+        </div>
         </div>
    
      
