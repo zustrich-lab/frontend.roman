@@ -504,7 +504,7 @@ const handleCheckReferrals = () => {
           window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
           setTimeout(() => {
             setShowNotCompleted(false);
-          }, 5000);
+          }, 1900);
         }
       })
       .catch(error => {
