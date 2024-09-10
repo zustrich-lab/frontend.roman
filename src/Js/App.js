@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import '../Css/App.css';
 import axios from 'axios';
-import { TonConnectUIProvider,  useTonAddress} from '@tonconnect/ui-react';
+import { TonConnectUIProvider, TonConnectButton, useTonAddress} from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
 import Friends from './Friends';
@@ -12,6 +12,8 @@ import First from './Firstpage';
 import Check from './Checking';
 import Years from './Years';
 import Oct from './Oct';
+import PlayToEarn from './P2e.js';
+import NFTs from './NFTs.js';
 
 import LoadingScreen from '../Loading/Loading.js';
 import LoadingScreenOcto from '../Loading/LoadingOcto.js';
@@ -42,6 +44,8 @@ import NickLogo from '../IMG/All_Logo/nick.png';
 import IconHome from '../IMG/LowerIcon/Home.png';
 import IconLeaderboard from '../IMG/LowerIcon/Leaderboard.png';
 import IconFriends from '../IMG/LowerIcon/Friends.png';
+import NFTlogo from '../IMG/LowerIcon/NFTLogo.png';
+import p2e from '../IMG/LowerIcon/p2e.png';
 
 import Logo from '../IMG/All_Logo/Logo.png';
 import Play from '../IMG/All_Logo/Play.png';
@@ -87,6 +91,19 @@ function App() {
 
   if (!localStorage.getItem('Sub')) { localStorage.setItem('Sub', 'false');}
   const Sub = localStorage.getItem('Sub') === 'true';
+
+
+  const [FriendsAnim, setFriendsAnim] = useState(false);
+  const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
+  const [p2eAnim, setp2eAnim] = useState(false);
+  const [NFTsAnim, setNFTsAnim] = useState(false);
+
+  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
+  const [isFrendsOpen, setIsFrendsOpen] = useState(false);
+  const [isp2eOpen, setIsp2eOpen] = useState(false);
+  const [NFTsOpen, setNFTsOpen] = useState(false);
+
+
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [VisibleInvite, setVisibleInvite] = useState(false);
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
@@ -96,15 +113,11 @@ function App() {
   const [accountAgeCoins, setAccountAgeCoins] = useState(0);
   const [referralCode, setReferralCode] = useState('');
   const [telegramLink, setTelegramLink] = useState('');
-  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
-  const [isFrendsOpen, setIsFrendsOpen] = useState(false);
   const [FPage, setFPage] = useState(() => localStorage.getItem('FPage') !== 'false');
   const [CheckOpen, setCheckOpen] = useState(false);
   const [YearsOpen, setYearsOpen] = useState(false);
   const [OctOpen, setOctOpen] = useState(false);
   const [Yearr, setYearr] = useState(0);
-  const [FriendsAnim, setFriendsAnim] = useState(false);
-  const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
   const [app, setApp] = useState(false);
   const [tonConnectUI] = useTonConnectUI();
   const [transactionNumber, setTransactionNumber] = useState(null);
@@ -145,7 +158,7 @@ function App() {
     if (window.TON_CONNECT_UI) {
         const tonConnectUI = new window.TON_CONNECT_UI.TonConnectUI({
             manifestUrl: 'https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json',
-            buttonRootId: 'custom-connect-button'
+            buttonRootId: 'TonMainConBtn'
         });
 
         tonConnectUI.onStatusChange((walletInfo) => {
@@ -158,13 +171,6 @@ function App() {
     }
 }, []);
 
-document.getElementById('custom-connect-button').addEventListener('click', async () => {
-  try {
-      await tonConnectUI.openModal();
-  } catch (error) {
-      console.error('Ошибка открытия модального окна:', error);
-  }
-});
 
 
 
@@ -298,6 +304,16 @@ useEffect(() => {
 
   function handleLeaderboardWithVibration() {
     handleLeaderboard();
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  }
+
+  function handleNFTsWithVibration() {
+    handleNFTs();
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  }
+
+  function handleP2EWithVibration() {
+    handleP2E();
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
 
@@ -643,25 +659,61 @@ const handleCheckReferrals = () => {
   const handleHome = () => {
     setIsLeaderboardOpen(false);
     setIsFrendsOpen(false);
+    setIsp2eOpen(false);
     setFriendsAnim(true);
+    setp2eAnim(true);
     setLeaderboardAnim(true);
+    setNFTsAnim(true);
     setApp(false);
+    setNFTsOpen(false);
   };
 
   const handleFrends = () => {
     setIsFrendsOpen(true);
     setFriendsAnim(false);
     setLeaderboardAnim(true);
+    setp2eAnim(true);
     setIsLeaderboardOpen(false);
+    setIsp2eOpen(false);
     setApp(true);
+    setNFTsAnim(true);
+    setNFTsOpen(false);
+  };
+
+  const handleP2E = () => {
+    setIsp2eOpen(true);
+    setFriendsAnim(true);
+    setp2eAnim(false);
+    setLeaderboardAnim(true);
+    setNFTsAnim(true);
+    setIsLeaderboardOpen(false);
+    setIsFrendsOpen(false);
+    setApp(true);
+    setNFTsOpen(false);
   };
 
   const handleLeaderboard = () => {
-    setIsLeaderboardOpen(true);
-    setFriendsAnim(true);
-    setLeaderboardAnim(false);
-    setIsFrendsOpen(false);
     setApp(true);
+    setIsp2eOpen(false);
+    setIsFrendsOpen(false);
+    setIsLeaderboardOpen(true);
+    setNFTsOpen(false);
+    setNFTsAnim(true);
+    setLeaderboardAnim(false);
+    setFriendsAnim(true);
+    setp2eAnim(true);
+  };
+
+  const handleNFTs = () => {
+    setApp(true);
+    setIsp2eOpen(false);
+    setIsFrendsOpen(false);
+    setIsLeaderboardOpen(false);
+    setNFTsOpen(true);
+    setNFTsAnim(false);
+    setLeaderboardAnim(true);
+    setFriendsAnim(true);
+    setp2eAnim(true);
   };
 
   const handleFirstPageClose = () => {
@@ -697,9 +749,9 @@ const handleCheckReferrals = () => {
         <img src={Octo} alt='Octo' />
       </div>}
       {!isMint &&<div className='MainCoin'>
-        <div className='MainCoin'>
+        
         {coins === 0 ? <p>Loading...</p> : <p>{coins.toLocaleString('en-US')} $OCTIES</p>}
-      </div>
+      
       </div>}
       {isMint &&<div className='MintCoin'>
         <img src={NFTm} alt='NFTm'/>
@@ -728,7 +780,7 @@ const handleCheckReferrals = () => {
                 </div>)}
               <div className="ton-con">
                 <div className='feikton'>
-                <button id="custom-connect-button" class="my-custom-style">Подключить кошелек</button>
+                  <TonConnectButton/>
                 </div>
               </div>
             </div>
@@ -935,17 +987,25 @@ const handleCheckReferrals = () => {
 
       <div className='BTNLow'>
         <div className='LowerBTN'>
-          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen) ? 'img-dark' : ''}`} onClick={handleHomeWithVibration}>
+          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen || isp2eOpen || NFTsOpen) ? 'img-dark' : ''}`} onClick={handleHomeWithVibration}>
             <img src={IconHome} alt='IconHome' />
           </div>
           <div className={`BTN ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboardWithVibration}>
             <img src={IconLeaderboard} alt='IconLeaderboard' />
           </div>
+          <div className={`BTN ${!isp2eOpen ? 'img-dark' : ''}`} onClick={handleP2EWithVibration}>
+            <img src={p2e} alt='IconFriends' />
+          </div>
           <div className={`BTN ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrendsWithVibration}>
             <img src={IconFriends} alt='IconFriends' />
           </div>
+          <div className={`BTN ${!NFTsOpen ? 'img-dark' : ''}`} onClick={handleNFTsWithVibration}>
+            <img src={NFTlogo} alt='IconFriends' />
+          </div>
         </div>
       </div>
+      
+     
 
       {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
 
@@ -956,6 +1016,10 @@ const handleCheckReferrals = () => {
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears} />)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins} getRandomColor={getRandomColor}/>)}
+
+      {isp2eOpen && <PlayToEarn p2eAnim={p2eAnim} />}
+
+      {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} />}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
 
