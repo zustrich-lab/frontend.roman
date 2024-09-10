@@ -492,7 +492,7 @@ button{
   font-family: MullerMedium;
   border-radius: 1.2vh;
   background: #484848;
-  animation: fadeOut 5s forwards;
+  animation: fadeOut 2s forwards;
 }
 
 #not-completed img {
