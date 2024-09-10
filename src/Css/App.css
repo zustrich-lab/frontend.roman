@@ -519,7 +519,6 @@ button{
   font-family: MullerMedium;
   border-radius: 1.2vh;
   background: #484848;
-  animation: fadeOut 5s forwards;
 }
 
 #friends-count img {
