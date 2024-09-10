@@ -1,11 +1,8 @@
 import React from 'react';
 import '../Css/P2e.css';
-import soon from '../IMG/ComingSoon/Text_soon.png';
-import PLANET from '../IMG/ComingSoon/PLANET.png';
-import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
-import starship from '../IMG/ComingSoon/starship.png';
 
-const PlayToEarn = ({p2eAnim}) => {
+
+const PlayToEarn = ({p2eAnim, soon, PLANET, OctiesCosmo, starship}) => {
 
   return (
     <div className={`P2E_Window ${p2eAnim ? 'fade-out' : ''}`}>

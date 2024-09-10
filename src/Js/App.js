@@ -6,6 +6,11 @@ import axios from 'axios';
 import { TonConnectUIProvider, TonConnectButton, useTonAddress} from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
+import soon from '../IMG/ComingSoon/Text_soon.png';
+import PLANET from '../IMG/ComingSoon/PLANET.png';
+import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
+import starship from '../IMG/ComingSoon/starship.png';
+
 import Friends from './Friends';
 import Leaderboard from './Leaderboard';
 import First from './Firstpage';
@@ -1017,7 +1022,7 @@ const handleCheckReferrals = () => {
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins} getRandomColor={getRandomColor}/>)}
 
-      {isp2eOpen && <PlayToEarn p2eAnim={p2eAnim} />}
+      {isp2eOpen && <PlayToEarn p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
 
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} />}
 
