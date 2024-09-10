@@ -511,11 +511,15 @@ button{
 }
 
 #friends-count {
-  font-size: 1.8vh;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  margin-left: 2.8vh;
+  color: white;
+  height: 80%;
+  width: 70%;
+  margin-left: 1.7vh;
+  font-size: 1.7vh;
+  font-family: MullerMedium;
+  border-radius: 1.2vh;
+  background: #484848;
+  animation: fadeOut 5s forwards;
 }
 
 #friends-count img {
