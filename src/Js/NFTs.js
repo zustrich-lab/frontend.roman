@@ -5,6 +5,7 @@ import shapka2 from '../IMG/NFTs/Shapka2.png';
 import dedpool from '../IMG/NFTs/dedpool.png';
 import rosomaha from '../IMG/NFTs/rosomaha.png';
 import ton5 from '../IMG/NFTs/5Ton.png';
+import ton55 from '../IMG/NFTs/Ton5.png';
 import durov from '../IMG/NFTs/durov.png';
 
 import {TonConnectButton} from '@tonconnect/ui-react';
@@ -64,7 +65,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
               <li>Utilities (specific ones are <br/>currently unknown)</li>
             </ul>
           
-              <button className='sendButtonm'>Send transaction</button>
+              <button className='sendButtonm'>Send transaction <img src={ton55}></img></button>
            
           </div>
           <div className='rightNft2'>
