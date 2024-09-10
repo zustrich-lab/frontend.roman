@@ -555,6 +555,15 @@ const handleCheckReferrals = () => {
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
     if (userId) {
+      const preloadImage = (src) => {
+        const img = new Image();
+        img.src = src;
+    };
+    preloadImage(soon); 
+    preloadImage(PLANET); 
+    preloadImage(OctiesCosmo);
+    preloadImage(starship);
+
       const handleVisibilityChange = () => {
         if (!document.hidden) {
           checkSubscription(userId);
