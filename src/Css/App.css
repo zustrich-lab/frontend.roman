@@ -691,6 +691,7 @@ button[data-tc-dropdown-button="true"] {
     display: flex;
     align-items: center;
     justify-content: start;
+    height: 50%;
   }
 
   .nft-buttons {
