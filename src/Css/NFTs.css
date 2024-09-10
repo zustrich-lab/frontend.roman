@@ -86,6 +86,7 @@
 
 .canMint{
   filter: saturate(0%);
+  touch-action: none;
 }
 
 .marvel{height: 100%; z-index: 2; position: absolute; left: 0;}
