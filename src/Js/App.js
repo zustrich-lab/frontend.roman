@@ -3,8 +3,9 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import '../Css/App.css';
 import axios from 'axios';
-import { TonConnectUIProvider, TonConnectButton, useTonAddress} from '@tonconnect/ui-react';
-import { useTonConnectUI } from '@tonconnect/ui-react';
+import { TonConnectUIProvider,  useTonAddress} from '@tonconnect/ui-react';
+//import { useTonConnectUI } from '@tonconnect/ui-react';
+import {TonConnectUI} from '@tonconnect/ui';
 
 import Friends from './Friends';
 import Leaderboard from './Leaderboard';
@@ -106,7 +107,7 @@ function App() {
   const [FriendsAnim, setFriendsAnim] = useState(false);
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
   const [app, setApp] = useState(false);
-  const [tonConnectUI] = useTonConnectUI();
+  //const [tonConnectUI] = useTonConnectUI();
   const [transactionNumber, setTransactionNumber] = useState(null);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
 
@@ -159,6 +160,18 @@ function App() {
 }, []);
 
 
+
+const tonConnectUI = new TonConnectUI({
+    manifestUrl: 'https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json'
+});
+
+document.getElementById('custom-connect-button').addEventListener('click', async () => {
+  try {
+      await tonConnectUI.openModal();
+  } catch (error) {
+      console.error('Ошибка при открытии модального окна:', error);
+  }
+});
 
 
 const sendTransaction = async () => {
@@ -721,7 +734,7 @@ const handleCheckReferrals = () => {
                 </div>)}
               <div className="ton-con">
                 <div className='feikton'>
-                  <TonConnectButton/>
+                <button id="custom-connect-button">Подключить кошелек</button>
                 </div>
               </div>
             </div>

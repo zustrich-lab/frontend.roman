@@ -499,6 +499,17 @@ button{
   border-radius: 1.2vh;
 }
 
+#custom-connect-button {
+  background-color:  #E46E19;
+  color: white; 
+  height: 80%;
+  width: calc(50% - 1.7vh);
+  margin-left: 1.7vh;
+  font-size: 1.7vh;
+  font-family: MullerMedium;
+  border-radius: 1.2vh;
+}
+
 #not-completed {
   color: red;
   width: calc(50% - 1.7vh - 0.5vh);
