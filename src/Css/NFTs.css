@@ -126,12 +126,24 @@
   white-space: nowrap;
   text-align: start;
   margin-left: 1.7vh;
+  font-size: 1.8vh;
+}
+
+.LeftNft2 h1{
+  white-space: nowrap;
+  text-align: start;
+  margin: 0;
+  margin-left: 1.7vh;
+  margin-top: 1vh;
   font-size: 2vh;
+  font-weight: 600;
+  
 }
 
 .rightNft2{
   height: 100%;
   width: 50%;
+  
 }
 
 .custom-list {
@@ -144,19 +156,20 @@
 }
 
 .custom-list li {
-  font-size: 2vh;
+  font-size: 1.8vh;
   line-height: 2.2vh;
 }
 
 .sendButtonm{
   background-color:  #E46E19;
   color: white; 
-  height: 10%;
+  height: 14%;
   width: 90%;
   margin-left: 1.7vh;
   font-size: 1.7vh;
   font-family: MullerMedium;
   border-radius: 1.2vh;
+  margin-bottom: 1vh;
 }
 
 

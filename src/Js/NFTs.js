@@ -54,7 +54,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
 
         <div className='nft-promo2'>
           <div className='LeftNft2'>
-            <p><span id='highlight'>CREATE AN NFT</span> OF YOUR<br/>CHARACTER OCTIES!</p>    
+            <h1><span id='highlight'>CREATE AN NFT</span> OF YOUR<br/>CHARACTER OCTIES!</h1>    
             <p>Currently <span id="highgreen">250</span>/250 spots available</p>
             <p>Once you submit the transaction,<br /><span id='highlight'>you will receive:</span></p>
             <ul class="custom-list">
