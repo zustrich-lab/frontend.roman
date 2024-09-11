@@ -252,6 +252,12 @@ const sendTransaction1 = async () => {
       },
     ],
   };
+  try {
+    await tonConnectUI.sendTransaction(transaction); // Использование переменной для отправки транзакции
+    alert("Transaction sent successfully!");
+  } catch (error) {
+    console.error("Error sending transaction:", error);
+  }
 };
 
 useEffect(() => {
