@@ -445,6 +445,8 @@ useEffect(() => {
         }
         if(data.hasMintedNFT){
           localStorage.setItem('isMintNFT', 'true'); 
+        }else{
+          localStorage.setItem('isMintNFT', 'false'); 
         }
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
