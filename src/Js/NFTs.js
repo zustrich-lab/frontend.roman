@@ -52,12 +52,12 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
               <div className="mint-section">
               <button
                 className={`mint-button ${isMint ? 'greenlight' : (buttonVisible ? 'canMint' : '')}`}
-
                 onClick={sendTransaction}
                 disabled={buttonVisible}
               >
-                Mint
+                {isMint ? 'MINT' : 'MINTED'}
               </button>
+
               </div>
             </div>
           </div>
