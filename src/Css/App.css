@@ -638,6 +638,8 @@ button[data-tc-connect-button="true"]{
 
 button[data-tc-dropdown-button="true"] {
   background-color: #585858; 
+  width: 100000px;
+  height: 100000px;
 }
 
 @media (orientation: landscape) {
