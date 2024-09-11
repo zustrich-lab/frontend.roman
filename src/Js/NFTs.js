@@ -85,9 +85,6 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
           </div>
          
         </div>
-
-
-
       </div>
     </div>
 

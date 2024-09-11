@@ -1041,7 +1041,7 @@ const handleCheckReferrals = () => {
       {isp2eOpen && <PlayToEarn p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
 
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
-      Checknft={Checknft} shapka2={shapka2} dedpool={dedpool}
+      Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55}
       durov={durov}/>}
 
