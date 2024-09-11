@@ -969,27 +969,41 @@ const handleCheckReferrals = () => {
           </div>}
         </div>
       </div>
-
-      <div className='BTNLow'>
-        <div className='LowerBTN'>
-          <div className={`BTN ${(isLeaderboardOpen || isFrendsOpen || isp2eOpen || NFTsOpen) ? 'img-dark' : ''}`} onClick={handleHomeWithVibration}>
-            <img src={IconHome} alt='IconHome' />
-          </div>
-          <div className={`BTN ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboardWithVibration}>
-            <img src={IconLeaderboard} alt='IconLeaderboard' />
-          </div>
-          <div className={`BTN ${!isp2eOpen ? 'img-dark' : ''}`} onClick={handleP2EWithVibration}>
-            <img src={p2e} alt='IconFriends' />
-          </div>
-          <div className={`BTN ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrendsWithVibration}>
-            <img src={IconFriends} alt='IconFriends' />
-          </div>
-          <div className={`BTN ${!NFTsOpen ? 'img-dark' : ''}`} onClick={handleNFTsWithVibration}>
-            <img src={NFTlogo} alt='IconFriends' />
-          </div>
-        </div>
-      </div>
       
+      <footer className='BTNLow'>
+        <ul className='footerItems'>
+            <li className='footerItem'>
+              <div className={`footerItemImgWrapper ${(isLeaderboardOpen || isFrendsOpen || isp2eOpen || NFTsOpen) ? 'img-dark' : ''}`} onClick={handleHomeWithVibration}>
+                <img src={IconHome} alt='IconHome'className='footerItemImg' />
+              </div>       
+              <p className={`footerItemLabel ${(isLeaderboardOpen || isFrendsOpen || isp2eOpen || NFTsOpen) ? 'img-dark' : ''}`}>Home</p>
+            </li>
+            <li className='footerItem' >
+              <div className={`footerItemImgWrapper ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboardWithVibration}>
+                <img src={IconLeaderboard} alt='IconLeaderboard' className='footerItemImg'/>
+              </div>
+              <p className={`footerItemLabel ${!isLeaderboardOpen ? 'img-dark' : ''}`}>Ranking</p>
+            </li>
+            <li className='footerItem'>
+              <div className={`footerItemImgWrapper ${!isp2eOpen ? 'img-dark' : ''}`} onClick={handleP2EWithVibration}>
+                <img src={p2e} alt='IconFriends' className='footerItemImg'/>
+              </div>
+              <p className={`footerItemLabel ${!isp2eOpen ? 'img-dark' : ''}`}>Play2Earn</p>
+            </li>
+            <li className='footerItem'>
+              <div className={`footerItemImgWrapper ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrendsWithVibration}>
+                <img src={IconFriends} alt='IconFriends' className='footerItemImg' />
+              </div>
+              <p className={`footerItemLabel ${!isFrendsOpen ? 'img-dark' : ''}`}>Friends</p>
+            </li>
+            <li className='footerItem'>
+              <div className={`footerItemImgWrapper ${!NFTsOpen ? 'img-dark' : ''}`} onClick={handleNFTsWithVibration}>
+                <img src={NFTlogo} alt='IconFriends' className='footerItemImg' />
+              </div>
+              <p className= {`footerItemLabel ${!NFTsOpen ? 'img-dark' : ''}`}>NFTs</p>
+            </li>
+          </ul>
+      </footer>
      
 
       {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
