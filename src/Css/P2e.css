@@ -130,7 +130,7 @@
     top: 0;
     bottom: 0;
     z-index: 2;
-    animation:move-background 8s linear infinite;    
+    animation:move-background 15s linear infinite;    
 }
   
 
