@@ -55,7 +55,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
                 onClick={sendTransaction}
                 disabled={buttonVisible}
               >
-                {isMint ? 'MINT' : 'MINTED'}
+                {isMint ? 'MINTED' : 'MINT'}
               </button>
 
               </div>
