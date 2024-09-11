@@ -72,8 +72,9 @@ function App() {
     // Предварительная загрузка компонентов PlayToEarn и NFTs
     import('./P2e.js');
     import('./NFTs.js');
+    import('./Friends');
   }, []);
-  
+
   if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
   const Galo4ka = localStorage.getItem('Galka') === 'true';
   if (!localStorage.getItem('Knopka')) {localStorage.setItem('Knopka', 'true');}
@@ -414,6 +415,7 @@ useEffect(() => {
       preloadImage(PLANET); 
       preloadImage(OctiesCosmo);
       preloadImage(starship);
+      preloadImage(Nft);
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
