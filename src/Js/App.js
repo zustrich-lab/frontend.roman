@@ -205,8 +205,8 @@ const sendTransaction = async () => {
     validUntil: Math.floor(Date.now() / 1000) + 600,
     messages: [
       {
-        address: "EQAI8SXHLi_y3ao5kqTFwT6rNDDzh_1UhicVR4jbwQhg-L4m", // Проверь правильность адреса
-        amount: "10000000", // Пример в наносекундах (1 TON)
+        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
+        amount: "100000", // Пример в наносекундах (1 TON)
       },
     ],
   };
@@ -517,7 +517,7 @@ const handleCheckReferrals = () => {
       .then(response => {
         const referralCount = response.data.referralCount;
 
-        if (referralCount >= 15) {
+        if (referralCount >= 0) {
           localStorage.setItem('buttonVisibleNFT', 'false'); // Меняем кнопку на "Mint NFT"
           window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
         } else {
