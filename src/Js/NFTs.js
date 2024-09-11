@@ -1,16 +1,11 @@
 import React from 'react';
 import '../Css/NFTs.css';
 
-import shapka2 from '../IMG/NFTs/Shapka2.png';
-import dedpool from '../IMG/NFTs/dedpool.png';
-import rosomaha from '../IMG/NFTs/rosomaha.png';
-import ton5 from '../IMG/NFTs/5Ton.png';
-import ton55 from '../IMG/NFTs/Ton5.png';
-import durov from '../IMG/NFTs/durov.png';
-
 import {TonConnectButton} from '@tonconnect/ui-react';
 
-const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone }) => {
+const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
+  shapka2, dedpool, rosomaha, ton5, ton55, durov
+}) => {
 
   return (
     <div className={`NFTs_Window ${NFTsAnim ? 'fade-out' : ''}`}>

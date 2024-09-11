@@ -62,6 +62,13 @@ import Checknft from '../IMG/Nft_ref_check/chech.png';
 import ChecknftDone from '../IMG/Nft_ref_check_done/Done_ref.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
 
+import shapka2 from '../IMG/NFTs/Shapka2.png';
+import dedpool from '../IMG/NFTs/dedpool.png';
+import rosomaha from '../IMG/NFTs/rosomaha.png';
+import ton5 from '../IMG/NFTs/5Ton.png';
+import ton55 from '../IMG/NFTs/Ton5.png';
+import durov from '../IMG/NFTs/durov.png';
+
 
 const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
@@ -416,7 +423,12 @@ useEffect(() => {
       preloadImage(OctiesCosmo);
       preloadImage(starship);
       preloadImage(Nft);
-      preloadImage(invite);
+      preloadImage(shapka2);
+      preloadImage(dedpool);
+      preloadImage(rosomaha);
+      preloadImage(ton5);
+      preloadImage(ton55);
+      preloadImage(durov);
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
@@ -1029,7 +1041,9 @@ const handleCheckReferrals = () => {
       {isp2eOpen && <PlayToEarn p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
 
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
-      Checknft={Checknft} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}/>}
+      Checknft={Checknft} shapka2={shapka2} dedpool={dedpool}
+      rosomaha={rosomaha} ton5={ton5} ton55={ton55}
+      durov={durov}/>}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
 
