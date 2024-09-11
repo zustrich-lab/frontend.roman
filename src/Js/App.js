@@ -205,8 +205,8 @@ const sendTransaction = async () => {
     validUntil: Math.floor(Date.now() / 1000) + 600,
     messages: [
       {
-        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
-        amount: "100000", // Пример в наносекундах (1 TON)
+        address: "EQAI8SXHLi_y3ao5kqTFwT6rNDDzh_1UhicVR4jbwQhg-L4m", // Проверь правильность адреса
+        amount: "10000000", // Пример в наносекундах (1 TON)
       },
     ],
   };
@@ -231,6 +231,27 @@ const sendTransaction = async () => {
     console.error("Error sending transaction:", error);
     alert("Failed to send transaction.");
   }
+};
+
+const sendTransaction1 = async () => {
+  window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+
+  // Проверка подключения кошелька
+  const walletInfo = tonConnectUI.walletInfo; // Получаем информацию о подключении кошелька
+  if (!walletInfo) { // Если кошелек не подключен
+    alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
+    return; // Останавливаем выполнение функции
+  }
+
+  const transaction = {
+    validUntil: Math.floor(Date.now() / 1000) + 600,
+    messages: [
+      {
+        address: "UQByKjIwjkKksvJGAGTI5cJqR74FGLjTUpo99Q1exkr16Ajj", // Проверь правильность адреса
+        amount: "5000000000", // Пример в наносекундах (1 TON)
+      },
+    ],
+  };
 };
 
 useEffect(() => {
@@ -517,7 +538,7 @@ const handleCheckReferrals = () => {
       .then(response => {
         const referralCount = response.data.referralCount;
 
-        if (referralCount >= 0) {
+        if (referralCount >= 15) {
           localStorage.setItem('buttonVisibleNFT', 'false'); // Меняем кнопку на "Mint NFT"
           window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
         } else {
@@ -1041,7 +1062,7 @@ const handleCheckReferrals = () => {
 
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
-      rosomaha={rosomaha} ton5={ton5} ton55={ton55}
+      rosomaha={rosomaha} ton5={ton5} ton55={ton55} sendTransaction1={sendTransaction1}
       durov={durov} isMint={isMint}/>}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}

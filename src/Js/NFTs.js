@@ -4,7 +4,7 @@ import '../Css/NFTs.css';
 import {TonConnectButton} from '@tonconnect/ui-react';
 
 const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, sendTransaction1
 }) => {
 
   return (
@@ -12,7 +12,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
       <div className='Shapka'>
         <div className='shapkaborder'>
           <p> CREATE AN <span id='highlight'>NFT</span> OF YOUR<br/> CHARACTER OCTIES!</p>
-          <img src={ton5} alt=''/>
+          <img src={ton5} onClick={sendTransaction1} alt=''/>
         </div>
         <img className="marvel" src={dedpool} alt=''/>
         <img className="marvel" id="ros" src={rosomaha} alt=''/>
@@ -78,7 +78,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
               <li>Utilities (specific ones are <br/>currently unknown)</li>
             </ul>
           
-              <button className='sendButtonm'>Send transaction <img src={ton55} alt=''/></button>
+              <button className='sendButtonm' onClick={sendTransaction1}>Send transaction <img src={ton55} alt=''/></button>
            
           </div>
           <div className='rightNft2'>
