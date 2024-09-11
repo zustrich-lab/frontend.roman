@@ -499,7 +499,7 @@ button{
   border-radius: 1.2vh;
 }
 
-.my-custom-button {
+.my-custom-style {
   background-color: #ff6600;
   color: white;
   border-radius: 12px;
@@ -510,7 +510,7 @@ button{
   transition: background-color 0.3s;
 }
 
-.my-custom-button:hover {
+.my-custom-style:hover {
   background-color: #ff4500;
 }
 

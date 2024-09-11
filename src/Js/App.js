@@ -150,21 +150,75 @@ function App() {
 
         tonConnectUI.onStatusChange((walletInfo) => {
             if (walletInfo) {
-                console.log('Кошелек подключен!', walletInfo);
+                console.log('Кошелек !', walletInfo);
             } else {
-                console.log('Кошелек отключен!');
+                console.log('Кошелек !');
             }
         });
     }
 }, []);
 
-document.getElementById('custom-connect-button').addEventListener('click', async () => {
-  try {
-      await tonConnectUI.openModal();
-  } catch (error) {
-      console.error('Ошибка открытия модального окна:', error);
-  }
-});
+const [isConnected, setIsConnected] = useState(false);
+
+// useEffect(() => {
+  
+//   const checkConnection = async () => {
+//       const connected = tonConnectUI.connected;
+//       setIsConnected(connected);
+//   };
+
+  
+//   const intervalId = setInterval(() => {
+//       checkConnection();
+//   }, 1000);
+
+  
+//   return () => clearInterval(intervalId);
+// }, [tonConnectUI]); 
+
+// useEffect(() => {
+ 
+//   const button = document.getElementById('custom-connect-button');
+//   if (button) {
+//     button.addEventListener('click', async () => {
+//       try {
+//         const connected = tonConnectUI.connected;
+//         if (!connected) {
+         
+//           await tonConnectUI.openModal();
+//           console.log('Кошелек подключен');
+//           setIsConnected(true); 
+//         }
+//       } catch (error) {
+//         console.error('Ошибка при открытии модального окна:', error);
+//       }
+//     });
+//   } else {
+//     console.error('Элемент с ID custom-connect-button не найден.');
+//   }
+// }, [tonConnectUI]);
+
+// useEffect(() => {
+  
+//   const button = document.getElementById('custom-connect-button');
+//   if (button) {
+//     button.addEventListener('click', async () => {
+//       try {
+//         const connected = tonConnectUI.connected; 
+//         if (connected) {
+         
+//           await tonConnectUI.disconnect();
+//           console.log('Кошелек отключен');
+//           setIsConnected(false); 
+//         }
+//       } catch (error) {
+//         console.error('Ошибка при отключении кошелька:', error);
+//       }
+//     });
+//   } else {
+//     console.error('Элемент с ID custom-connect-button не найден.');
+//   }
+// }, [isConnected, tonConnectUI]); 
 
 
 
@@ -182,8 +236,8 @@ const sendTransaction = async () => {
     validUntil: Math.floor(Date.now() / 1000) + 600,
     messages: [
       {
-        address: "EQAI8SXHLi_y3ao5kqTFwT6rNDDzh_1UhicVR4jbwQhg-L4m", // Проверь правильность адреса
-        amount: "10000000", // Пример в наносекундах (1 TON)
+        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
+        amount: "10000", // Пример в наносекундах (1 TON)
       },
     ],
   };
@@ -728,7 +782,9 @@ const handleCheckReferrals = () => {
                 </div>)}
               <div className="ton-con">
                 <div className='feikton'>
-                <button id="custom-connect-button" class="my-custom-style">Подключить кошелек</button>
+               <button id="custom-connect-button" className="my-custom-style">
+                {isConnected ? `Адрес: ${walletAddress}` : 'Подключить кошелек'}
+            </button>
                 </div>
               </div>
             </div>
