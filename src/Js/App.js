@@ -67,6 +67,13 @@ const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
+
+  useEffect(() => {
+    // Предварительная загрузка компонентов PlayToEarn и NFTs
+    import('./P2e.js');
+    import('./NFTs.js');
+  }, []);
+  
   if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
   const Galo4ka = localStorage.getItem('Galka') === 'true';
   if (!localStorage.getItem('Knopka')) {localStorage.setItem('Knopka', 'true');}
