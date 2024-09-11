@@ -191,9 +191,6 @@ function App() {
     }
 }, []);
 
-
-
-
 const sendTransaction = async () => {
   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
 
