@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import '../Css/App.css';
 import axios from 'axios';
-import { TonConnectUIProvider, TonConnectButton, useTonAddress} from '@tonconnect/ui-react';
+import { TonConnectUIProvider, useTonAddress} from '@tonconnect/ui-react';
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
 import soon from '../IMG/ComingSoon/Text_soon.png';
@@ -183,79 +183,13 @@ function App() {
 
         tonConnectUI.onStatusChange((walletInfo) => {
             if (walletInfo) {
-                console.log('Кошелек !', walletInfo);
+                console.log('Кошелек подключен!', walletInfo);
             } else {
-                console.log('Кошелек !');
+                console.log('Кошелек отключен!');
             }
         });
     }
 }, []);
-
-
-//const [isConnected, setIsConnected] = useState(false);
-
-// useEffect(() => {
-  
-//   const checkConnection = async () => {
-//       const connected = tonConnectUI.connected;
-//       setIsConnected(connected);
-//   };
-
-  
-//   const intervalId = setInterval(() => {
-//       checkConnection();
-//   }, 1000);
-
-  
-//   return () => clearInterval(intervalId);
-// }, [tonConnectUI]); 
-
-// useEffect(() => {
- 
-//   const button = document.getElementById('custom-connect-button');
-//   if (button) {
-//     button.addEventListener('click', async () => {
-//       try {
-//         const connected = tonConnectUI.connected;
-//         if (!connected) {
-         
-//           await tonConnectUI.openModal();
-//           console.log('Кошелек подключен');
-//           setIsConnected(true); 
-//         }
-//       } catch (error) {
-//         console.error('Ошибка при открытии модального окна:', error);
-//       }
-//     });
-//   } else {
-//     console.error('Элемент с ID custom-connect-button не найден.');
-//   }
-// }, [tonConnectUI]);
-
-// useEffect(() => {
-  
-//   const button = document.getElementById('custom-connect-button');
-//   if (button) {
-//     button.addEventListener('click', async () => {
-//       try {
-//         const connected = tonConnectUI.connected; 
-//         if (connected) {
-         
-//           await tonConnectUI.disconnect();
-//           console.log('Кошелек отключен');
-//           setIsConnected(false); 
-//         }
-//       } catch (error) {
-//         console.error('Ошибка при отключении кошелька:', error);
-//       }
-//     });
-//   } else {
-//     console.error('Элемент с ID custom-connect-button не найден.');
-//   }
-// }, [isConnected, tonConnectUI]); 
-
-
-
 
 const sendTransaction = async () => {
   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
@@ -271,8 +205,8 @@ const sendTransaction = async () => {
     validUntil: Math.floor(Date.now() / 1000) + 600,
     messages: [
       {
-        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
-        amount: "10000", // Пример в наносекундах (1 TON)
+        address: "EQAI8SXHLi_y3ao5kqTFwT6rNDDzh_1UhicVR4jbwQhg-L4m", // Проверь правильность адреса
+        amount: "10000000", // Пример в наносекундах (1 TON)
       },
     ],
   };
@@ -859,39 +793,7 @@ const handleCheckReferrals = () => {
       </div>}
 
       <div className='Menu'>
-
-      
-      {!isMint && <div className='nft-promo'>
-          <div className='nft-text'>
-            <h2>GET YOUR <span id='highlight'>FREE</span> NFT!</h2>
-            <p>Invite 15 friends, Connect Wallet <br/>and receive unique OCTIES NFT</p>
-            <div className='nft-buttons'>
-              {buttonVisible ? (
-                <div className="mint-section">
-                  <button className="referral-button" onClick={handleCheckReferrals}> Check referrals</button>
-                  {showNotCompleted && (
-                  <p id="not-completed">
-                    <img src={Checknft} alt="Not completed" />Not completed
-                  </p>)}
-                </div>
-              ) : (
-                <div className="mint-section">
-                  <p id="friends-count">15 friends <img src={ChecknftDone} alt="Checkmark" /></p>  
-                  <button className="mint-button" onClick={sendTransaction}>Mint</button>
-                </div>)}
-              <div className="ton-con">
-                <div className='feikton'>
-                <TonConnectButton/>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='nft-image'>
-            <img src={Nft} alt='OCTIES NFT' /> 
-          </div>
-        </div>}
-
-
+  
         <div className='Skroll_Menu_Border'>
           <div className='MenuBorder' ref={blockRefs[0]}>
             <div className='flex_menu_border' id='lightGreenBack'>

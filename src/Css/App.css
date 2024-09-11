@@ -500,21 +500,6 @@ button{
 
 
 
-.my-custom-style {
-  background-color: #ff6600;
-  color: white;
-  border-radius: 12px;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.my-custom-style:hover {
-  background-color: #ff4500;
-}
-
 #not-completed {
   color: red;
   height: 80%;
