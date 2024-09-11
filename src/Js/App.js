@@ -133,7 +133,29 @@ function App() {
   const [isLoadingOcto, setLoadingOcto] = useState(true);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
-
+  useEffect(() => {
+    const preloadImage = (src) => {
+      const img = new Image();
+      img.src = src;
+    };
+  
+    // Предзагрузка изображений
+    preloadImage(soon);
+    preloadImage(PLANET);
+    preloadImage(OctiesCosmo);
+    preloadImage(starship);
+    preloadImage(Nft);
+    preloadImage(Checknft);
+    preloadImage(ChecknftDone);
+    preloadImage(invite);
+  
+    // Предзагрузка данных для страниц
+    Leaderboard.preload(); // Предзагрузка Leaderboard
+    PlayToEarn.preload();  // Предзагрузка PlayToEarn
+    NFTs.preload();        // Предзагрузка NFTs
+    Friends.preload();     // Предзагрузка Friends
+  }, []);
+  
   useEffect(() => {
     if (!isLoadingOcto) {
       const timeoutId = setTimeout(() => {
@@ -397,16 +419,7 @@ useEffect(() => {
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
-        setSubscriptionCoins(data.coinsSub);
-        
-        const preloadImage = (src) => {
-          const img = new Image();
-          img.src = src;
-      };
-      preloadImage(soon); 
-      preloadImage(PLANET); 
-      preloadImage(OctiesCosmo);
-      preloadImage(starship);
+        setSubscriptionCoins(data.coinsSub);   
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
