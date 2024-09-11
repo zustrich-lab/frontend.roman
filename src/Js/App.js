@@ -416,6 +416,7 @@ useEffect(() => {
       preloadImage(OctiesCosmo);
       preloadImage(starship);
       preloadImage(Nft);
+      preloadImage(invite);
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
