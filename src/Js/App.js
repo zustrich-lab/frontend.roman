@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, startTransition } from 'react';
 import '../Css/App.css';
 import axios from 'axios';
 import { TonConnectUIProvider, useTonAddress} from '@tonconnect/ui-react';
@@ -11,14 +11,10 @@ import PLANET from '../IMG/ComingSoon/PLANET.png';
 import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
 import starship from '../IMG/ComingSoon/starship.png';
 
-import Friends from './Friends';
-import Leaderboard from './Leaderboard';
 import First from './Firstpage';
 import Check from './Checking';
 import Years from './Years';
 import Oct from './Oct';
-import PlayToEarn from './P2e.js';
-import NFTs from './NFTs.js';
 
 import LoadingScreen from '../Loading/Loading.js';
 import LoadingScreenOcto from '../Loading/LoadingOcto.js';
@@ -67,6 +63,25 @@ const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
+  const Leaderboard = React.lazy(() => import('./Leaderboard'));
+const PlayToEarn = React.lazy(() => import('./P2e'));
+const NFTs = React.lazy(() => import('./NFTs'));
+const Friends = React.lazy(() => import('./Friends'));
+
+// Предзагрузка динамически
+const preloadComponents = () => {
+  import('./Leaderboard');
+  import('./P2e');
+  import('./NFTs');
+  import('./Friends');
+};
+
+// Вызовите функцию предзагрузки при загрузке компонента App
+useEffect(() => {
+  preloadComponents(); // Предзагружает компоненты, как только загружается App.js
+}, []);
+
+
   if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
   const Galo4ka = localStorage.getItem('Galka') === 'true';
   if (!localStorage.getItem('Knopka')) {localStorage.setItem('Knopka', 'true');}
@@ -133,29 +148,7 @@ function App() {
   const [isLoadingOcto, setLoadingOcto] = useState(true);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
-  useEffect(() => {
-    const preloadImage = (src) => {
-      const img = new Image();
-      img.src = src;
-    };
-  
-    // Предзагрузка изображений
-    preloadImage(soon);
-    preloadImage(PLANET);
-    preloadImage(OctiesCosmo);
-    preloadImage(starship);
-    preloadImage(Nft);
-    preloadImage(Checknft);
-    preloadImage(ChecknftDone);
-    preloadImage(invite);
-  
-    // Предзагрузка данных для страниц
-    Leaderboard.preload(); // Предзагрузка Leaderboard
-    PlayToEarn.preload();  // Предзагрузка PlayToEarn
-    NFTs.preload();        // Предзагрузка NFTs
-    Friends.preload();     // Предзагрузка Friends
-  }, []);
-  
+
   useEffect(() => {
     if (!isLoadingOcto) {
       const timeoutId = setTimeout(() => {
@@ -419,7 +412,16 @@ useEffect(() => {
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
-        setSubscriptionCoins(data.coinsSub);   
+        setSubscriptionCoins(data.coinsSub);
+        
+        const preloadImage = (src) => {
+          const img = new Image();
+          img.src = src;
+      };
+      preloadImage(soon); 
+      preloadImage(PLANET); 
+      preloadImage(OctiesCosmo);
+      preloadImage(starship);
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
@@ -684,65 +686,78 @@ const handleCheckReferrals = () => {
     }
   }, []);
 
-  const handleHome = () => {
-    setIsLeaderboardOpen(false);
-    setIsFrendsOpen(false);
-    setIsp2eOpen(false);
-    setFriendsAnim(true);
-    setp2eAnim(true);
-    setLeaderboardAnim(true);
-    setNFTsAnim(true);
-    setApp(false);
-    setNFTsOpen(false);
-  };
 
-  const handleFrends = () => {
-    setIsFrendsOpen(true);
-    setFriendsAnim(false);
-    setLeaderboardAnim(true);
-    setp2eAnim(true);
-    setIsLeaderboardOpen(false);
-    setIsp2eOpen(false);
-    setApp(true);
-    setNFTsAnim(true);
-    setNFTsOpen(false);
-  };
 
-  const handleP2E = () => {
-    setIsp2eOpen(true);
-    setFriendsAnim(true);
-    setp2eAnim(false);
-    setLeaderboardAnim(true);
-    setNFTsAnim(true);
-    setIsLeaderboardOpen(false);
-    setIsFrendsOpen(false);
-    setApp(true);
-    setNFTsOpen(false);
-  };
-
-  const handleLeaderboard = () => {
-    setApp(true);
-    setIsp2eOpen(false);
-    setIsFrendsOpen(false);
-    setIsLeaderboardOpen(true);
-    setNFTsOpen(false);
-    setNFTsAnim(true);
-    setLeaderboardAnim(false);
-    setFriendsAnim(true);
-    setp2eAnim(true);
-  };
-
-  const handleNFTs = () => {
-    setApp(true);
-    setIsp2eOpen(false);
-    setIsFrendsOpen(false);
-    setIsLeaderboardOpen(false);
-    setNFTsOpen(true);
-    setNFTsAnim(false);
-    setLeaderboardAnim(true);
-    setFriendsAnim(true);
-    setp2eAnim(true);
-  };
+  function handleHome() {
+    startTransition(() => {
+      setIsLeaderboardOpen(false);
+      setIsFrendsOpen(false);
+      setIsp2eOpen(false);
+      setFriendsAnim(true);
+      setp2eAnim(true);
+      setLeaderboardAnim(true);
+      setNFTsAnim(true);
+      setApp(false);
+      setNFTsOpen(false);
+    });
+  }
+  
+  function handleLeaderboard() {
+    startTransition(() => {
+      setApp(true);
+      setIsp2eOpen(false);
+      setIsFrendsOpen(false);
+      setIsLeaderboardOpen(true);
+      setNFTsOpen(false);
+      setNFTsAnim(true);
+      setLeaderboardAnim(false);
+      setFriendsAnim(true);
+      setp2eAnim(true);
+    });
+  }
+  
+  function handleNFTs() {
+    startTransition(() => {
+      setApp(true);
+      setIsp2eOpen(false);
+      setIsFrendsOpen(false);
+      setIsLeaderboardOpen(false);
+      setNFTsOpen(true);
+      setNFTsAnim(false);
+      setLeaderboardAnim(true);
+      setFriendsAnim(true);
+      setp2eAnim(true);
+    });
+  }
+  
+  function handleP2E() {
+    startTransition(() => {
+      setIsp2eOpen(true);
+      setFriendsAnim(true);
+      setp2eAnim(false);
+      setLeaderboardAnim(true);
+      setNFTsAnim(true);
+      setIsLeaderboardOpen(false);
+      setIsFrendsOpen(false);
+      setApp(true);
+      setNFTsOpen(false);
+    });
+  }
+  
+  function handleFrends() {
+    startTransition(() => {
+      setIsFrendsOpen(true);
+      setFriendsAnim(false);
+      setLeaderboardAnim(true);
+      setp2eAnim(true);
+      setIsLeaderboardOpen(false);
+      setIsp2eOpen(false);
+      setApp(true);
+      setNFTsAnim(true);
+      setNFTsOpen(false);
+    });
+  }
+  
 
   const handleFirstPageClose = () => {
     setFPage(false);
