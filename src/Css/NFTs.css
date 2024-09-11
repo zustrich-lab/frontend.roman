@@ -89,6 +89,11 @@
   touch-action: none;
 }
 
+.greenlight{
+  background: #397446;
+  touch-action: none;
+}
+
 .marvel{height: 100%; z-index: 2; position: absolute; left: 0;}
 
 #ros{left: auto; right: 0;}

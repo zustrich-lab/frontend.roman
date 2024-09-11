@@ -4,7 +4,7 @@ import '../Css/NFTs.css';
 import {TonConnectButton} from '@tonconnect/ui-react';
 
 const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint
 }) => {
 
   return (
@@ -51,7 +51,8 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
               </div>
               <div className="mint-section">
               <button
-                className={`mint-button ${buttonVisible ? 'canMint' : ''}`}
+                className={`mint-button ${isMint ? 'greenlight' : (buttonVisible ? 'canMint' : '')}`}
+
                 onClick={sendTransaction}
                 disabled={buttonVisible}
               >
