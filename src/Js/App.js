@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import '../Css/App.css';
 import axios from 'axios';
 import { TonConnectUIProvider, useTonAddress} from '@tonconnect/ui-react';
@@ -11,14 +11,13 @@ import PLANET from '../IMG/ComingSoon/PLANET.png';
 import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
 import starship from '../IMG/ComingSoon/starship.png';
 
-import Friends from './Friends';
+
 import Leaderboard from './Leaderboard';
 import First from './Firstpage';
 import Check from './Checking';
 import Years from './Years';
 import Oct from './Oct';
-import PlayToEarn from './P2e.js';
-import NFTs from './NFTs.js';
+
 
 import LoadingScreen from '../Loading/Loading.js';
 import LoadingScreenOcto from '../Loading/LoadingOcto.js';
@@ -73,13 +72,24 @@ import durov from '../IMG/NFTs/durov.png';
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
+const LazyP2e = React.lazy(() => import('./P2e.js'));
+const LazyNFTs = React.lazy(() => import('./NFTs.js'));
+const LazyFriends = React.lazy(() => import('./Friends'));
+
 function App() {
 
+  
+
+  
   useEffect(() => {
-    // Предварительная загрузка компонентов PlayToEarn и NFTs
+    // Предзагрузка ленивых компонентов
     import('./P2e.js');
     import('./NFTs.js');
     import('./Friends');
+  }, []);
+  
+
+  useEffect(() => {
 
     const preloadImage = (src) => {
       const img = new Image();
@@ -162,7 +172,7 @@ function App() {
   const walletAddress = useTonAddress();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
 
   useEffect(() => {
@@ -1063,16 +1073,19 @@ const handleCheckReferrals = () => {
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears} />)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins} getRandomColor={getRandomColor}/>)}
+      
+      <Suspense fallback={<LoadingScreen />}>
+      
+      {isp2eOpen && <LazyP2e p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
 
-      {isp2eOpen && <PlayToEarn p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
-
-      {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
+      {NFTsOpen && <LazyNFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} sendTransaction1={sendTransaction1}
       durov={durov} isMint={isMint}/>}
 
-      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
-
+      {isFrendsOpen && (<LazyFriends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
+      
+      </Suspense>
     </div>
      </TonConnectUIProvider>
   );
