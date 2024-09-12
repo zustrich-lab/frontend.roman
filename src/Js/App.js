@@ -11,14 +11,13 @@ import PLANET from '../IMG/ComingSoon/PLANET.png';
 import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
 import starship from '../IMG/ComingSoon/starship.png';
 
-import Friends from './Friends';
+
 import Leaderboard from './Leaderboard';
 import First from './Firstpage';
 import Check from './Checking';
 import Years from './Years';
 import Oct from './Oct';
-import PlayToEarn from './P2e.js';
-import NFTs from './NFTs.js';
+
 
 import LoadingScreen from '../Loading/Loading.js';
 import LoadingScreenOcto from '../Loading/LoadingOcto.js';
@@ -75,11 +74,14 @@ const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
 
+  const LazyP2ePromise = import('./P2e.js');
+  const LazyNFTsPromise = import('./NFTs.js');
+  const LazyFriendsPromise = import('./Friends');
+
+
+
   useEffect(() => {
-    // Предварительная загрузка компонентов PlayToEarn и NFTs
-    import('./P2e.js');
-    import('./NFTs.js');
-    import('./Friends');
+    
 
     const preloadImage = (src) => {
       const img = new Image();
@@ -96,6 +98,7 @@ function App() {
   preloadImage(ton5);
   preloadImage(ton55);
   preloadImage(durov);
+  preloadImage(invite);
   }, []);
 
   if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
@@ -1064,14 +1067,14 @@ const handleCheckReferrals = () => {
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins} getRandomColor={getRandomColor}/>)}
 
-      {isp2eOpen && <PlayToEarn p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
+      {isp2eOpen && <LazyP2ePromise p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
 
-      {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
+      {NFTsOpen && <LazyNFTsPromise NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} sendTransaction1={sendTransaction1}
       durov={durov} isMint={isMint}/>}
 
-      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
+      {isFrendsOpen && (<LazyFriendsPromise FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
 
     </div>
      </TonConnectUIProvider>
