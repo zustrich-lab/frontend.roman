@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 
-import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import '../Css/App.css';
 import axios from 'axios';
 import { TonConnectUIProvider, useTonAddress} from '@tonconnect/ui-react';
@@ -11,15 +11,15 @@ import PLANET from '../IMG/ComingSoon/PLANET.png';
 import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
 import starship from '../IMG/ComingSoon/starship.png';
 
-
+import Friends from './Friends';
 import Leaderboard from './Leaderboard';
 import First from './Firstpage';
 import Check from './Checking';
 import Years from './Years';
 import Oct from './Oct';
+import PlayToEarn from './P2e.js';
+import NFTs from './NFTs.js';
 
-
-import LoadingScreenCopy from '../Loading/Loadingcopy.js';
 import LoadingScreen from '../Loading/Loading.js';
 import LoadingScreenOcto from '../Loading/LoadingOcto.js';
 import LoadingScreenOctoNft from '../Loading/LoadingOctoNft.js'
@@ -73,29 +73,13 @@ import durov from '../IMG/NFTs/durov.png';
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
-const LazyP2ePromise = import('./P2e.js');
-const LazyNFTsPromise = import('./NFTs.js');
-const LazyFriendsPromise = import('./Friends');
-
-const LazyP2e = React.lazy(() => LazyP2ePromise);
-const LazyNFTs = React.lazy(() => LazyNFTsPromise);
-const LazyFriends = React.lazy(() => LazyFriendsPromise);
-
 function App() {
 
-  
-
-  
   useEffect(() => {
-    // Предзагрузка ленивых компонентов
-    Promise.all([LazyP2ePromise, LazyNFTsPromise, LazyFriendsPromise])
-      .then(() => {
-        // Все промисы выполнены
-      });
-  }, []);
-  
-
-  useEffect(() => {
+    // Предварительная загрузка компонентов PlayToEarn и NFTs
+    import('./P2e.js');
+    import('./NFTs.js');
+    import('./Friends');
 
     const preloadImage = (src) => {
       const img = new Image();
@@ -178,7 +162,7 @@ function App() {
   const walletAddress = useTonAddress();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
 
   useEffect(() => {
@@ -1079,19 +1063,16 @@ const handleCheckReferrals = () => {
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears} />)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins} getRandomColor={getRandomColor}/>)}
-      
-      <Suspense fallback={<LoadingScreenCopy />}>
-      
-      {isp2eOpen && <LazyP2e p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
 
-      {NFTsOpen && <LazyNFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
+      {isp2eOpen && <PlayToEarn p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
+
+      {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} sendTransaction1={sendTransaction1}
       durov={durov} isMint={isMint}/>}
 
-      {isFrendsOpen && (<LazyFriends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
-      
-      </Suspense>
+      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
+
     </div>
      </TonConnectUIProvider>
   );
