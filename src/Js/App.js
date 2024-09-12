@@ -80,6 +80,22 @@ function App() {
     import('./P2e.js');
     import('./NFTs.js');
     import('./Friends');
+
+    const preloadImage = (src) => {
+      const img = new Image();
+      img.src = src;
+  };
+  preloadImage(soon); 
+  preloadImage(PLANET); 
+  preloadImage(OctiesCosmo);
+  preloadImage(starship);
+  preloadImage(Nft);
+  preloadImage(shapka2);
+  preloadImage(dedpool);
+  preloadImage(rosomaha);
+  preloadImage(ton5);
+  preloadImage(ton55);
+  preloadImage(durov);
   }, []);
 
   if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
@@ -410,22 +426,6 @@ useEffect(() => {
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
         setSubscriptionCoins(data.coinsSub);
-        
-        const preloadImage = (src) => {
-          const img = new Image();
-          img.src = src;
-      };
-      preloadImage(soon); 
-      preloadImage(PLANET); 
-      preloadImage(OctiesCosmo);
-      preloadImage(starship);
-      preloadImage(Nft);
-      preloadImage(shapka2);
-      preloadImage(dedpool);
-      preloadImage(rosomaha);
-      preloadImage(ton5);
-      preloadImage(ton55);
-      preloadImage(durov);
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
