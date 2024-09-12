@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, Suspense, lazy } from 'react';
 import '../Css/App.css';
 import axios from 'axios';
 import { TonConnectUIProvider, useTonAddress} from '@tonconnect/ui-react';
@@ -11,14 +11,13 @@ import PLANET from '../IMG/ComingSoon/PLANET.png';
 import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
 import starship from '../IMG/ComingSoon/starship.png';
 
-import Friends from './Friends';
+
 import Leaderboard from './Leaderboard';
 import First from './Firstpage';
 import Check from './Checking';
 import Years from './Years';
 import Oct from './Oct';
-import PlayToEarn from './P2e.js';
-import NFTs from './NFTs.js';
+
 
 import LoadingScreen from '../Loading/Loading.js';
 import LoadingScreenOcto from '../Loading/LoadingOcto.js';
@@ -68,6 +67,10 @@ import rosomaha from '../IMG/NFTs/rosomaha.png';
 import ton5 from '../IMG/NFTs/5Ton.png';
 import ton55 from '../IMG/NFTs/Ton5.png';
 import durov from '../IMG/NFTs/durov.png';
+
+const PlayToEarn = lazy(() => import('./P2e'));
+const NFTs = lazy(() => import('./NFTs'));
+const Friends = lazy(() => import('./Friends'));
 
 
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
@@ -162,7 +165,7 @@ function App() {
   const walletAddress = useTonAddress();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
 
   useEffect(() => {
@@ -1063,7 +1066,7 @@ const handleCheckReferrals = () => {
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears} />)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins} getRandomColor={getRandomColor}/>)}
-
+      <Suspense fallback={<div>Loading...</div>}>
       {isp2eOpen && <PlayToEarn p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
 
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
@@ -1072,7 +1075,7 @@ const handleCheckReferrals = () => {
       durov={durov} isMint={isMint}/>}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
-
+      </Suspense>
     </div>
      </TonConnectUIProvider>
   );
