@@ -70,7 +70,7 @@ import ton55 from '../IMG/NFTs/Ton5.png';
 import durov from '../IMG/NFTs/durov.png';
 
 
-const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
+const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
@@ -162,7 +162,7 @@ function App() {
   const walletAddress = useTonAddress();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
 
   useEffect(() => {
@@ -246,6 +246,33 @@ const sendTransaction = async () => {
   } catch (error) {
     console.error("Error sending transaction:", error);
     alert("Failed to send transaction.");
+  }
+};
+
+const sendTransaction1 = async () => {
+  window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+
+  // Проверка подключения кошелька
+  const walletInfo = tonConnectUI.walletInfo; // Получаем информацию о подключении кошелька
+  if (!walletInfo) { // Если кошелек не подключен
+    alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
+    return; // Останавливаем выполнение функции
+  }
+
+  const transaction = {
+    validUntil: Math.floor(Date.now() / 1000) + 600,
+    messages: [
+      {
+        address: "UQByKjIwjkKksvJGAGTI5cJqR74FGLjTUpo99Q1exkr16Ajj", // Проверь правильность адреса
+        amount: "5000000000", // Пример в наносекундах (1 TON)
+      },
+    ],
+  };
+  try {
+    await tonConnectUI.sendTransaction(transaction); // Использование переменной для отправки транзакции
+    alert("Transaction sent successfully!");
+  } catch (error) {
+    console.error("Error sending transaction:", error);
   }
 };
 
@@ -445,6 +472,8 @@ useEffect(() => {
         }
         if(data.hasMintedNFT){
           localStorage.setItem('isMintNFT', 'true'); 
+        }else{
+          localStorage.setItem('isMintNFT', 'false'); 
         }
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -1039,7 +1068,7 @@ const handleCheckReferrals = () => {
 
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
-      rosomaha={rosomaha} ton5={ton5} ton55={ton55}
+      rosomaha={rosomaha} ton5={ton5} ton55={ton55} sendTransaction1={sendTransaction1}
       durov={durov} isMint={isMint}/>}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
