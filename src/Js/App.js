@@ -19,6 +19,7 @@ import Years from './Years';
 import Oct from './Oct';
 
 
+import LoadingScreenCopy from '../Loading/Loadingcopy.js';
 import LoadingScreen from '../Loading/Loading.js';
 import LoadingScreenOcto from '../Loading/LoadingOcto.js';
 import LoadingScreenOctoNft from '../Loading/LoadingOctoNft.js'
@@ -72,9 +73,13 @@ import durov from '../IMG/NFTs/durov.png';
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
-const LazyP2e = React.lazy(() => import('./P2e.js'));
-const LazyNFTs = React.lazy(() => import('./NFTs.js'));
-const LazyFriends = React.lazy(() => import('./Friends'));
+const LazyP2ePromise = import('./P2e.js');
+const LazyNFTsPromise = import('./NFTs.js');
+const LazyFriendsPromise = import('./Friends');
+
+const LazyP2e = React.lazy(() => LazyP2ePromise);
+const LazyNFTs = React.lazy(() => LazyNFTsPromise);
+const LazyFriends = React.lazy(() => LazyFriendsPromise);
 
 function App() {
 
@@ -83,9 +88,10 @@ function App() {
   
   useEffect(() => {
     // Предзагрузка ленивых компонентов
-    import('./P2e.js');
-    import('./NFTs.js');
-    import('./Friends');
+    Promise.all([LazyP2ePromise, LazyNFTsPromise, LazyFriendsPromise])
+      .then(() => {
+        // Все промисы выполнены
+      });
   }, []);
   
 
@@ -1074,7 +1080,7 @@ const handleCheckReferrals = () => {
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins} getRandomColor={getRandomColor}/>)}
       
-      <Suspense fallback={<LoadingScreen />}>
+      <Suspense fallback={<LoadingScreenCopy />}>
       
       {isp2eOpen && <LazyP2e p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
 
