@@ -209,33 +209,33 @@ function App() {
     }
 }, []);
 
-const [timeLeft, setTimeLeft] = useState(() => {
-  // Получаем сохранённое время из localStorage, если оно есть
-  const savedTime = localStorage.getItem('timeLeft');
-  return savedTime ? parseInt(savedTime) : 300; // 300 секунд = 5 минут
-});
+// const [timeLeft, setTimeLeft] = useState(() => {
+//   // Получаем сохранённое время из localStorage, если оно есть
+//   const savedTime = localStorage.getItem('timeLeft');
+//   return savedTime ? parseInt(savedTime) : 300; // 300 секунд = 5 минут
+// });
 
-const [isRunning, setIsRunning] = useState(false);
+// const [isRunning, setIsRunning] = useState(false);
 
-useEffect(() => {
-  // Сохраняем оставшееся время в localStorage при каждом изменении
-  localStorage.setItem('timeLeft', timeLeft);
-}, [timeLeft]);
+// useEffect(() => {
+//   // Сохраняем оставшееся время в localStorage при каждом изменении
+//   localStorage.setItem('timeLeft', timeLeft);
+// }, [timeLeft]);
 
-useEffect(() => {
-  let timer;
-  if (isRunning && timeLeft > 0) {
-    // Запускаем таймер, который будет уменьшать время каждую секунду
-    timer = setInterval(() => {
-      setTimeLeft((prevTime) => prevTime - 1);
-    }, 1000);
-  } else if (timeLeft === 0) {
-    // Если время закончилось, остановить таймер
-    setIsRunning(false);
-  }
+// useEffect(() => {
+//   let timer;
+//   if (isRunning && timeLeft > 0) {
+//     // Запускаем таймер, который будет уменьшать время каждую секунду
+//     timer = setInterval(() => {
+//       setTimeLeft((prevTime) => prevTime - 1);
+//     }, 1000);
+//   } else if (timeLeft === 0) {
+//     // Если время закончилось, остановить таймер
+//     setIsRunning(false);
+//   }
   
-  return () => clearInterval(timer); // Очищаем таймер при размонтировании компонента
-}, [isRunning, timeLeft]);
+//   return () => clearInterval(timer); // Очищаем таймер при размонтировании компонента
+// }, [isRunning, timeLeft]);
 
 // const handleStart = () => {
 //   setIsRunning(true);
@@ -320,25 +320,25 @@ const sendTransaction1 = async () => {
 };
 
 
-useEffect(() => {
-  const userId = new URLSearchParams(window.location.search).get('userId');
-  const isMint = localStorage.getItem('isMintNFT') === 'true';
+// useEffect(() => {
+//   const userId = new URLSearchParams(window.location.search).get('userId');
+//   const isMint = localStorage.getItem('isMintNFT') === 'true';
 
-  // Если isMint равен true, обновляем статус mint в базе данных
-  if (isMint && userId) {
-    axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true })
-      .then(response => {
-        if (response.data.success) {
-          console.log("Статус NFT успешно обновлён в базе данных.");
-        } else {
-          console.error("Не удалось обновить статус NFT.");
-        }
-      })
-      .catch(error => {
-        console.error("Ошибка при обновлении статуса NFT:", error);
-      });
-  }
-}, []);
+//   // Если isMint равен true, обновляем статус mint в базе данных
+//   if (isMint && userId) {
+//     axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true })
+//       .then(response => {
+//         if (response.data.success) {
+//           console.log("Статус NFT успешно обновлён в базе данных.");
+//         } else {
+//           console.error("Не удалось обновить статус NFT.");
+//         }
+//       })
+//       .catch(error => {
+//         console.error("Ошибка при обновлении статуса NFT:", error);
+//       });
+//   }
+// }, []);
 
 useEffect(() => {
   console.log('Адрес кошелька из useTonAddress:', walletAddress);
