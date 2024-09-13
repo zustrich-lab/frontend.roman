@@ -3,6 +3,14 @@ import '../Css/Friends.css';
 import axios from 'axios';
 
 const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomColor }) => {
+
+    useEffect(() => {
+        // Предварительная загрузка компонентов PlayToEarn и NFTs
+        import('./P2e.js');
+        import('./NFTs.js');
+        import('./Friends');
+      }, []);
+      
     const [referredUsers, setReferredUsers] = useState([]);
     const [colorsF, setColorsF] = useState([]);
     const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
