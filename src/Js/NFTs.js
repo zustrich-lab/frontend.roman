@@ -48,12 +48,12 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
       await tonConnectUI.sendTransaction(transaction);
   
       // Если транзакция успешна, выводим сообщение и изменяем состояние таймера
-      alert("Transaction sent successfully!");
+  //    alert("Transaction sent successfully!");
       settimerforsent(true);
     } catch (error) {
       // Если возникла ошибка при отправке транзакции, логируем её и обновляем состояние
       console.error("Error sending transaction:", error);
-      alert("Failed to send transaction.");
+    // alert("Failed to send transaction.");
       settimerforsent(false); // Обнуляем таймер в случае ошибки
     }
   };
