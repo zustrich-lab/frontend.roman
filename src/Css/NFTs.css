@@ -198,7 +198,22 @@
   margin-bottom: 1vh;
   position: relative;
   margin-bottom: 1vh;
-  animation: shadowPulse 1.5s infinite;
+  animation: shadowPulseBlue 1.5s infinite;
+}
+
+@keyframes shadowPulseBlue {
+  0% {
+    box-shadow: 
+                0 0 1.5vh 0.4vh #067CFB;
+  }
+  50% {
+    box-shadow: 
+                0 0 2vh 0 #067CFB;
+  }
+  100% {
+    box-shadow: 
+                0 0 1.5vh 0.4vh #067CFB;
+  }
 }
 
 .sendButtonm img{
