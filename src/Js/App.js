@@ -210,47 +210,47 @@ function App() {
     }
 }, []);
 
-// const [timeLeft, setTimeLeft] = useState(() => {
-//   // Получаем сохранённое время из localStorage, если оно есть
-//   const savedTime = localStorage.getItem('timeLeft');
-//   return savedTime ? parseInt(savedTime) : 300; // 300 секунд = 5 минут
-// });
+const [timeLeft, setTimeLeft] = useState(() => {
+  // Получаем сохранённое время из localStorage, если оно есть
+  const savedTime = localStorage.getItem('timeLeft');
+  return savedTime ? parseInt(savedTime) : 300; // 300 секунд = 5 минут
+});
 
-// const [isRunning, setIsRunning] = useState(false);
+const [isRunning, setIsRunning] = useState(false);
 
-// useEffect(() => {
-//   // Сохраняем оставшееся время в localStorage при каждом изменении
-//   localStorage.setItem('timeLeft', timeLeft);
-// }, [timeLeft]);
+useEffect(() => {
+  // Сохраняем оставшееся время в localStorage при каждом изменении
+  localStorage.setItem('timeLeft', timeLeft);
+}, [timeLeft]);
 
-// useEffect(() => {
-//   let timer;
-//   if (isRunning && timeLeft > 0) {
-//     // Запускаем таймер, который будет уменьшать время каждую секунду
-//     timer = setInterval(() => {
-//       setTimeLeft((prevTime) => prevTime - 1);
-//     }, 1000);
-//   } else if (timeLeft === 0) {
-//     // Если время закончилось, остановить таймер
-//     setIsRunning(false);
-//   }
+useEffect(() => {
+  let timer;
+  if (isRunning && timeLeft > 0) {
+    // Запускаем таймер, который будет уменьшать время каждую секунду
+    timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+  } else if (timeLeft === 0) {
+    // Если время закончилось, остановить таймер
+    setIsRunning(false);
+  }
   
-//   return () => clearInterval(timer); // Очищаем таймер при размонтировании компонента
-// }, [isRunning, timeLeft]);
+  return () => clearInterval(timer); // Очищаем таймер при размонтировании компонента
+}, [isRunning, timeLeft]);
 
-// const handleStart = () => {
-//   setIsRunning(true);
-// };
+const handleStart = () => {
+  setIsRunning(true);
+};
 
-// const handlePause = () => {
-//   setIsRunning(false);
-// };
+const handlePause = () => {
+  setIsRunning(false);
+};
 
-// const handleReset = () => {
-//   setIsRunning(false);
-//   setTimeLeft(300); // Сбросить на 5 минут
-//   localStorage.removeItem('timeLeft'); // Удалить сохранённое время
-// };
+const handleReset = () => {
+  setIsRunning(false);
+  setTimeLeft(300); // Сбросить на 5 минут
+  localStorage.removeItem('timeLeft'); // Удалить сохранённое время
+};
 
 const sendTransaction = async () => {
   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
@@ -307,8 +307,8 @@ const sendTransaction1 = async () => {
     validUntil: Math.floor(Date.now() / 1000) + 600,
     messages: [
       {
-        address: "UQByKjIwjkKksvJGAGTI5cJqR74FGLjTUpo99Q1exkr16Ajj", // Проверь правильность адреса
-        amount: "5000000000", // Пример в наносекундах (1 TON)
+        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
+        amount: "10000", // Пример в наносекундах (1 TON)
       },
     ],
   };
@@ -919,12 +919,12 @@ const handleCheckReferrals = () => {
               <div className='leftFlex'>
                 <img src={XLogo} alt='XLogo'/>
               </div>
-              {/* <div>
+              <div>
       <h1>Осталось времени: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}</h1>
       <button onClick={handleStart} disabled={isRunning}>Запустить</button>
       <button onClick={handlePause} disabled={!isRunning}>Пауза</button>
       <button onClick={handleReset}>Сбросить</button>
-    </div> */}
+    </div>
             </div>
           </div>
 
