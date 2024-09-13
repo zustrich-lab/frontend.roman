@@ -13,13 +13,19 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
   const [tonConnectUI] = useTonConnectUI();
 
   const [timerforsent, settimerforsent] = useState(false);
-
+  const Form = "https://forms.gle/6Aj8HmxT7wFkmwFh8";
 
   const sendTransactionFunc = () => {
     if(buttonVisible  &&  !isMint){
       sendTransaction();
     }
   };
+
+  const Tg_Form_Window = () => {
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(Form, '_blank');
+  };
+
 
   const sendTransaction1 = async () => {
     try {

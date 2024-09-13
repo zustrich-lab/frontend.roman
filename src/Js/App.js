@@ -185,7 +185,7 @@ function App() {
   // const TG_CHANNEL_LINK4 = "https://t.me/Checkcheckcheck3";
   const X_LINK = "https://x.com/Octies_GameFI";
   const Support = "https://t.me/octies_manage";
-  const Form = "https://forms.gle/6Aj8HmxT7wFkmwFh8";
+
 
   if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
   const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
@@ -730,14 +730,7 @@ const handleCheckReferrals = () => {
     }, 3000);
   };
 
-  const Tg_Form_Window = () => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    window.open(Form, '_blank');
-    setTimeout(() => {
-      checkSubscriptionAndUpdate(userId);
-    }, 3000);
-  };
+
 
   
 
@@ -1106,7 +1099,7 @@ const handleCheckReferrals = () => {
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} 
-      durov={durov} isMint={isMint} alert={alert} setalert={setalert} Tg_Form_Window={Tg_Form_Window} 
+      durov={durov} isMint={isMint} alert={alert} setalert={setalert} 
        />}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
