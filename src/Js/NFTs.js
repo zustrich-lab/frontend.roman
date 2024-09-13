@@ -7,7 +7,7 @@ import { useTonConnectUI } from '@tonconnect/ui-react';
 
 
 const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, Tg_Form_Window
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert
 }) => {
 
   const [tonConnectUI] = useTonConnectUI();
