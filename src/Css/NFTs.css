@@ -180,6 +180,7 @@
   font-family: MullerMedium;
   border-radius: 1.2vh;
   position: relative;
+  margin-bottom: 1vh;
 }
 
 .FillButtonm{
@@ -196,17 +197,13 @@
   border-radius: 1.2vh;
   margin-bottom: 1vh;
   position: relative;
+  margin-bottom: 1vh;
 }
 
 .sendButtonm img{
   height: 65%;
   margin-left: 1.7vh;
   position: relative;
-}
-
-#timerBTN{
-  margin-bottom: 1vh;
-  font-size: 1.2vh;
 }
 
 @media (orientation: landscape) {
