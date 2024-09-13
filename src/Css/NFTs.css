@@ -204,7 +204,7 @@
 @keyframes shadowPulseBlue {
   0% {
     box-shadow: 
-                0 0 1.5vh 0.4vh #067CFB;
+                0 0 1vh 0.4vh #067CFB;
   }
   50% {
     box-shadow: 
@@ -212,7 +212,7 @@
   }
   100% {
     box-shadow: 
-                0 0 1.5vh 0.4vh #067CFB;
+                0 0 1vh 0.4vh #067CFB;
   }
 }
 

@@ -23,13 +23,10 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
     }
   };
 
-  const Tg_Form_Window = async () => {
+  const Tg_Form_Window = () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     window.open(Form, '_blank');
-    
-    setTimeout(async () => {
-      localStorage.setItem('forsent', 'false');
-  }, 10000);
+    localStorage.setItem('forsent', 'false');
   };
 
 
