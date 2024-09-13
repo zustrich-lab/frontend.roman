@@ -221,19 +221,19 @@ useEffect(() => {
   return () => clearInterval(timer); // Очищаем таймер при размонтировании компонента
 }, [isRunning, timeLeft]);
 
-const handleStart = () => {
-  setIsRunning(true);
-};
+// const handleStart = () => {
+//   setIsRunning(true);
+// };
 
-const handlePause = () => {
-  setIsRunning(false);
-};
+// const handlePause = () => {
+//   setIsRunning(false);
+// };
 
-const handleReset = () => {
-  setIsRunning(false);
-  setTimeLeft(300); // Сбросить на 5 минут
-  localStorage.removeItem('timeLeft'); // Удалить сохранённое время
-};
+// const handleReset = () => {
+//   setIsRunning(false);
+//   setTimeLeft(300); // Сбросить на 5 минут
+//   localStorage.removeItem('timeLeft'); // Удалить сохранённое время
+// };
 
 const sendTransaction = async () => {
   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
@@ -241,7 +241,7 @@ const sendTransaction = async () => {
   // Проверка подключения кошелька
   const walletInfo = tonConnectUI.walletInfo; // Получаем информацию о подключении кошелька
   if (!walletInfo) { // Если кошелек не подключен
-    alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
+    setalert(true);
     return; // Останавливаем выполнение функции
   }
 
@@ -284,11 +284,6 @@ const sendTransaction1 = async () => {
   const walletInfo = tonConnectUI.walletInfo; // Получаем информацию о подключении кошелька
   if (!walletInfo) { // Если кошелек не подключен
     setalert(true);
-    const timeoutalert = setTimeout(() => {
-      setalert(false);
-    }, 2000); // 0.8 seconds delay
-
-    return () => clearTimeout( timeoutalert );
   }
 
   const transaction = {
@@ -1126,7 +1121,7 @@ const handleCheckReferrals = () => {
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} sendTransaction1={sendTransaction1}
-      durov={durov} isMint={isMint} alert={alert}/>}
+      durov={durov} isMint={isMint} alert={alert} setalert={setalert}/>}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
 
