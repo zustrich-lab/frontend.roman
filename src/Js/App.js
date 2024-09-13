@@ -285,8 +285,9 @@ const [isActive, setIsActive] = useState(false);
 useEffect(() => {
   // Проверяем, был ли таймер уже запущен
   const startTime = localStorage.getItem('startTime');
+  const currentTime = Math.floor(Date.now() / 1000);
+
   if (startTime) {
-    const currentTime = Math.floor(Date.now() / 1000);
     const timePassed = currentTime - parseInt(startTime);
     const remainingTime = 300 - timePassed;
     if (remainingTime > 0) {
@@ -300,10 +301,12 @@ useEffect(() => {
 
 // Функция для запуска таймера
 const startTimer = () => {
-  const currentTime = Math.floor(Date.now() / 1000);
-  localStorage.setItem('startTime', currentTime);
-  setTimeLeft(300);
-  setIsActive(true);
+  if (!isActive) {
+    const currentTime = Math.floor(Date.now() / 1000);
+    localStorage.setItem('startTime', currentTime);
+    setTimeLeft(300);
+    setIsActive(true);
+  }
 };
 
 // useEffect для обновления таймера каждую секунду
@@ -327,6 +330,7 @@ const formatTime = (time) => {
   const seconds = time % 60;
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
+
 
 useEffect(() => {
   const userId = new URLSearchParams(window.location.search).get('userId');
