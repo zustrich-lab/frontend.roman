@@ -140,6 +140,8 @@ function App() {
   const [isFrendsOpen, setIsFrendsOpen] = useState(false);
   const [isp2eOpen, setIsp2eOpen] = useState(false);
   const [NFTsOpen, setNFTsOpen] = useState(false);
+  const [alert, setalert] = useState(false);
+
 
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
@@ -164,7 +166,7 @@ function App() {
   const walletAddress = useTonAddress();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
 
   useEffect(() => {
@@ -257,8 +259,12 @@ const sendTransaction1 = async () => {
   // Проверка подключения кошелька
   const walletInfo = tonConnectUI.walletInfo; // Получаем информацию о подключении кошелька
   if (!walletInfo) { // Если кошелек не подключен
-    alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
-    return; // Останавливаем выполнение функции
+    setalert(true);
+    const timeoutalert = setTimeout(() => {
+      setalert(false);
+    }, 2000); // 0.8 seconds delay
+
+    return () => clearTimeout( timeoutalert );
   }
 
   const transaction = {
@@ -1071,7 +1077,7 @@ const handleCheckReferrals = () => {
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} sendTransaction1={sendTransaction1}
-      durov={durov} isMint={isMint}/>}
+      durov={durov} isMint={isMint} alert={alert}/>}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
 
