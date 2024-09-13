@@ -139,7 +139,7 @@ function App() {
   const [isp2eOpen, setIsp2eOpen] = useState(false);
   const [NFTsOpen, setNFTsOpen] = useState(false);
   const [alert, setalert] = useState(false);
-  const [timerforsent, settimerforsent] = useState(false);
+
 
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
@@ -1105,9 +1105,9 @@ const handleCheckReferrals = () => {
 
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
-      rosomaha={rosomaha} ton5={ton5} ton55={ton55} sendTransaction1={sendTransaction1}
+      rosomaha={rosomaha} ton5={ton5} ton55={ton55} 
       durov={durov} isMint={isMint} alert={alert} setalert={setalert} Tg_Form_Window={Tg_Form_Window} 
-      timerforsent={timerforsent} />}
+       />}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
 
