@@ -9,7 +9,6 @@ function AlertNft({rosomaha, setalert}) {
                 <div className='Nft50'>
                     <h1>ERROR</h1>
                     <p>Please connect your TON<br/> wallet before submitting<br/> the transaction.</p>
-                    
                 </div>
                 <div className='Nft50' id='NFt50Photo'>
                 <img src={rosomaha} alt=''/>
