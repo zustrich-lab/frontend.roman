@@ -308,7 +308,7 @@ const sendTransaction1 = async () => {
     messages: [
       {
         address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
-        amount: "10000", // Пример в наносекундах (1 TON)
+        amount: "10000000", // Пример в наносекундах (1 TON)
       },
     ],
   };
