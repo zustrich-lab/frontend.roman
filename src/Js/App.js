@@ -146,7 +146,7 @@ function App() {
   const walletAddress = useTonAddress();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
 
   useEffect(() => {
@@ -258,6 +258,56 @@ const sendTransaction1 = async () => {
   } catch (error) {
     console.error("Error sending transaction:", error);
   }
+};
+
+
+const [timeLeft, setTimeLeft] = useState(0);
+const [isActive, setIsActive] = useState(false);
+
+useEffect(() => {
+  // Проверяем, был ли таймер уже запущен
+  const startTime = localStorage.getItem('startTime');
+  if (startTime) {
+    const currentTime = Math.floor(Date.now() / 1000);
+    const timePassed = currentTime - parseInt(startTime);
+    const remainingTime = 300 - timePassed;
+    if (remainingTime > 0) {
+      setTimeLeft(remainingTime);
+      setIsActive(true);
+    } else {
+      localStorage.removeItem('startTime');
+    }
+  }
+}, []);
+
+// Функция для запуска таймера
+const startTimer = () => {
+  const currentTime = Math.floor(Date.now() / 1000);
+  localStorage.setItem('startTime', currentTime);
+  setTimeLeft(300);
+  setIsActive(true);
+};
+
+// useEffect для обновления таймера каждую секунду
+useEffect(() => {
+  let timer = null;
+
+  if (isActive && timeLeft > 0) {
+    timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+  } else if (timeLeft === 0) {
+    setIsActive(false);
+    localStorage.removeItem('startTime'); // Удаляем время из Local Storage
+  }
+
+  return () => clearInterval(timer); // Очищаем интервал при размонтировании
+}, [isActive, timeLeft]);
+
+const formatTime = (time) => {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
 useEffect(() => {
@@ -860,6 +910,13 @@ const handleCheckReferrals = () => {
                   {Galo4kaX && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
                 </div>
               </div>
+              <div>
+      <h1>Таймер: {formatTime(timeLeft)}</h1>
+      <button onClick={startTimer} disabled={isActive}>
+        Запустить таймер на 5 минут
+      </button>
+    </div>
+  
               <div className='leftFlex'>
                 <img src={XLogo} alt='XLogo'/>
               </div>
