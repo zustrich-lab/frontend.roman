@@ -1,14 +1,16 @@
 import React from 'react';
 import '../Css/NFTs.css';
 
+import AlertNft from '../Alert/Alert.js';
 import {TonConnectButton} from '@tonconnect/ui-react';
 
 const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, sendTransaction1
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, sendTransaction1, alert, setalert
 }) => {
 
   return (
     <div className={`NFTs_Window ${NFTsAnim ? 'fade-out' : ''}`}>
+      {alert && <AlertNft rosomaha={rosomaha} setalert={setalert}/>}
       <div className='Shapka'>
         <div className='shapkaborder'>
           <p> CREATE AN <span id='highlight'>NFT</span> OF YOUR<br/> CHARACTER OCTIES!</p>
@@ -53,7 +55,6 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
               <button
                 className={`mint-button ${isMint ? 'greenlight' : (buttonVisible ? 'canMint' : '')}`}
                 onClick={sendTransaction}
-                disabled={buttonVisible}
               >
                 {isMint ? 'MINTED' : 'MINT'}
               </button>

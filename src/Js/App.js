@@ -76,7 +76,23 @@ const userId = new URLSearchParams(window.location.search).get('userId');
 function App() {
 
   useEffect(() => {
-    // Предварительная загрузка компонентов PlayToEarn и NFTs
+    const preloadImage = (src) => {
+      const img = new Image();
+      img.src = src;
+  };
+  preloadImage(soon); 
+  preloadImage(PLANET); 
+  preloadImage(OctiesCosmo);
+  preloadImage(starship);
+  preloadImage(Nft);
+  preloadImage(shapka2);
+  preloadImage(dedpool);
+  preloadImage(rosomaha);
+  preloadImage(ton5);
+  preloadImage(ton55);
+  preloadImage(durov);
+  preloadImage(invite);
+
     import('./P2e.js');
     import('./NFTs.js');
     import('./Friends');
@@ -122,6 +138,8 @@ function App() {
   const [isFrendsOpen, setIsFrendsOpen] = useState(false);
   const [isp2eOpen, setIsp2eOpen] = useState(false);
   const [NFTsOpen, setNFTsOpen] = useState(false);
+  const [alert, setalert] = useState(false);
+
 
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
@@ -146,7 +164,7 @@ function App() {
   const walletAddress = useTonAddress();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
 
   useEffect(() => {
@@ -239,7 +257,7 @@ const sendTransaction = async () => {
   // Проверка подключения кошелька
   const walletInfo = tonConnectUI.walletInfo; // Получаем информацию о подключении кошелька
   if (!walletInfo) { // Если кошелек не подключен
-    alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
+    setalert(true);
     return; // Останавливаем выполнение функции
   }
 
@@ -281,8 +299,7 @@ const sendTransaction1 = async () => {
   // Проверка подключения кошелька
   const walletInfo = tonConnectUI.walletInfo; // Получаем информацию о подключении кошелька
   if (!walletInfo) { // Если кошелек не подключен
-    alert("First ‘Connect Wallet’ to you can call ‘Mint’ function");
-    return; // Останавливаем выполнение функции
+    setalert(true);
   }
 
   const transaction = {
@@ -303,25 +320,25 @@ const sendTransaction1 = async () => {
 };
 
 
-useEffect(() => {
-  const userId = new URLSearchParams(window.location.search).get('userId');
-  const isMint = localStorage.getItem('isMintNFT') === 'true';
+// useEffect(() => {
+//   const userId = new URLSearchParams(window.location.search).get('userId');
+//   const isMint = localStorage.getItem('isMintNFT') === 'true';
 
-  // Если isMint равен true, обновляем статус mint в базе данных
-  if (isMint && userId) {
-    axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true })
-      .then(response => {
-        if (response.data.success) {
-          console.log("Статус NFT успешно обновлён в базе данных.");
-        } else {
-          console.error("Не удалось обновить статус NFT.");
-        }
-      })
-      .catch(error => {
-        console.error("Ошибка при обновлении статуса NFT:", error);
-      });
-  }
-}, []);
+//   // Если isMint равен true, обновляем статус mint в базе данных
+//   if (isMint && userId) {
+//     axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true })
+//       .then(response => {
+//         if (response.data.success) {
+//           console.log("Статус NFT успешно обновлён в базе данных.");
+//         } else {
+//           console.error("Не удалось обновить статус NFT.");
+//         }
+//       })
+//       .catch(error => {
+//         console.error("Ошибка при обновлении статуса NFT:", error);
+//       });
+//   }
+// }, []);
 
 useEffect(() => {
   console.log('Адрес кошелька из useTonAddress:', walletAddress);
@@ -1120,7 +1137,7 @@ const handleCheckReferrals = () => {
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} sendTransaction1={sendTransaction1}
-      durov={durov} isMint={isMint}/>}
+      durov={durov} isMint={isMint} alert={alert} setalert={setalert}/>}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
 
