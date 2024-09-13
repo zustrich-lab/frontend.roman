@@ -70,18 +70,36 @@ import ton55 from '../IMG/NFTs/Ton5.png';
 import durov from '../IMG/NFTs/durov.png';
 
 
+
+  const preloadImage = (src) => {
+    const img = new Image();
+    img.src = src;
+};
+preloadImage(soon); 
+preloadImage(PLANET); 
+preloadImage(OctiesCosmo);
+preloadImage(starship);
+preloadImage(Nft);
+preloadImage(shapka2);
+preloadImage(dedpool);
+preloadImage(rosomaha);
+preloadImage(ton5);
+preloadImage(ton55);
+preloadImage(durov);
+preloadImage(invite);
+
+
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
-
   useEffect(() => {
     // Предварительная загрузка компонентов PlayToEarn и NFTs
     import('./P2e.js');
     import('./NFTs.js');
     import('./Friends');
   }, []);
-
+ 
   if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
   const Galo4ka = localStorage.getItem('Galka') === 'true';
   if (!localStorage.getItem('Knopka')) {localStorage.setItem('Knopka', 'true');}
@@ -487,22 +505,6 @@ useEffect(() => {
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
         setSubscriptionCoins(data.coinsSub);
-        
-        const preloadImage = (src) => {
-          const img = new Image();
-          img.src = src;
-      };
-      preloadImage(soon); 
-      preloadImage(PLANET); 
-      preloadImage(OctiesCosmo);
-      preloadImage(starship);
-      preloadImage(Nft);
-      preloadImage(shapka2);
-      preloadImage(dedpool);
-      preloadImage(rosomaha);
-      preloadImage(ton5);
-      preloadImage(ton55);
-      preloadImage(durov);
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
