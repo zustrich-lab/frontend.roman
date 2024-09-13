@@ -8,6 +8,12 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
   shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, sendTransaction1, alert, setalert
 }) => {
 
+  const sendTransactionFunc = () => {
+    if(buttonVisible  &&  !isMint){
+      sendTransaction();
+    }
+  };
+
   return (
     <div className={`NFTs_Window ${NFTsAnim ? 'fade-out' : ''}`}>
       {alert && <AlertNft rosomaha={rosomaha} setalert={setalert}/>}
@@ -34,17 +40,17 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
             <div className='nft-buttons'>
               <div className="mint-section">
 
-                {buttonVisible && !showNotCompleted && 
+                {!buttonVisible && !showNotCompleted && 
                   <button className="referral-button" onClick={handleCheckReferrals}> 
                     Check referrals
                   </button>}
 
-                {buttonVisible && showNotCompleted && (
+                {!buttonVisible && showNotCompleted && (
                   <button id="not-completed" >
                     <img src={Checknft} alt="Not completed" />Not completed
                   </button>)}
 
-                {!buttonVisible && (
+                {buttonVisible && (
                   <button id="friends-count">
                     <p>15 friends </p>
                     <img src={ChecknftDone} alt="Checkmark" />
@@ -53,8 +59,8 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
               </div>
               <div className="mint-section">
               <button
-                className={`mint-button ${isMint ? 'greenlight' : (buttonVisible ? 'canMint' : '')}`}
-                onClick={sendTransaction}
+                className={`mint-button ${isMint ? 'greenlight' : (!buttonVisible ? 'canMint' : '')}`}
+                onClick={sendTransactionFunc}
               >
                 {isMint ? 'MINTED' : 'MINT'}
               </button>

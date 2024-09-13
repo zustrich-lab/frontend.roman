@@ -186,7 +186,7 @@ function App() {
   const X_LINK = "https://x.com/Octies_GameFI";
   const Support = "https://t.me/octies_manage";
 
-  if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'true');}
+  if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
   const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
   const [showNotCompleted, setShowNotCompleted] = useState(false);
   if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
@@ -605,7 +605,7 @@ const handleCheckReferrals = () => {
         const referralCount = response.data.referralCount;
 
         if (referralCount >= 15) {
-          localStorage.setItem('buttonVisibleNFT', 'false'); // Меняем кнопку на "Mint NFT"
+          localStorage.setItem('buttonVisibleNFT', 'true'); // Меняем кнопку на "Mint NFT"
           window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
         } else {
           setShowNotCompleted(true);
@@ -744,24 +744,6 @@ const handleCheckReferrals = () => {
       checkSubscriptionAndUpdate(userId);
     }, 3000);
   };
-
-  // const Tg_Channel_Open_chek3 = () => {
-  //   const userId = new URLSearchParams(window.location.search).get('userId');
-  //   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-  //   window.open(TG_CHANNEL_LINK3, '_blank');
-  //   setTimeout(() => {
-  //     checkSubscriptionAndUpdate(userId);
-  //   }, 3000);
-  // };
-
-  // const Tg_Channel_Open_chek4 = () => {
-  //   const userId = new URLSearchParams(window.location.search).get('userId');
-  //   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-  //   window.open(TG_CHANNEL_LINK4, '_blank');
-  //   setTimeout(() => {
-  //     checkSubscriptionAndUpdate(userId);
-  //   }, 3000);
-  // };
 
   const Tg_Channel_Support = () => {
     const userId = new URLSearchParams(window.location.search).get('userId');
