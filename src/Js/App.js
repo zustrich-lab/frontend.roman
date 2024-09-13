@@ -163,7 +163,7 @@ function App() {
 
   const walletAddress = useTonAddress();
 
-  const [isLoadingOcto, setLoadingOcto] = useState(true);
+  const [isLoadingOcto, setLoadingOcto] = useState(false);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
 
