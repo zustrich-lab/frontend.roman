@@ -266,8 +266,8 @@ const sendTransaction = async () => {
     validUntil: Math.floor(Date.now() / 1000) + 600,
     messages: [
       {
-        address: "EQAI8SXHLi_y3ao5kqTFwT6rNDDzh_1UhicVR4jbwQhg-L4m", // Проверь правильность адреса
-        amount: "10000000", // Пример в наносекундах (1 TON)
+        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
+        amount: "100000", // Пример в наносекундах (1 TON)
       },
     ],
   };
@@ -295,30 +295,29 @@ const sendTransaction = async () => {
 };
 
 const sendTransaction1 = async () => {
+  window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+
+  // Проверка подключения кошелька
+  const walletInfo = tonConnectUI.walletInfo; // Получаем информацию о подключении кошелька
+  if (!walletInfo) { // Если кошелек не подключен
+    setalert(true);
+  }
+
+  const transaction = {
+    validUntil: Math.floor(Date.now() / 1000) + 600,
+    messages: [
+      {
+        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
+        amount: "1000000", // Пример в наносекундах (1 TON)
+      },
+    ],
+  };
   try {
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-
-    const walletInfo = tonConnectUI.walletInfo;
-    if (!walletInfo) {
-      setalert(true);
-      throw new Error("Кошелек не подключен");
-    }
-
-    const transaction = {
-      validUntil: Math.floor(Date.now() / 1000) + 600,
-      messages: [
-        {
-          address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
-          amount: "10000000", // Пример в наносекундах (1 TON)
-        },
-      ],
-    };
-
-    await tonConnectUI.sendTransaction(transaction);
-    alert("Транзакция успешно отправлена!");
+    await tonConnectUI.sendTransaction(transaction); // Использование переменной для отправки транзакции
+    alert("Transaction sent successfully!");
     settimerforsent(true);
   } catch (error) {
-    console.error("Ошибка при отправке транзакции:", error.message, error.stack);
+    console.error("Error sending transaction:", error);
     settimerforsent(false);
   }
 };
