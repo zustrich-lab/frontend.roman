@@ -15,7 +15,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
   if (!localStorage.getItem('forsent')) {localStorage.setItem('forsent', 'false');}
  
 
-  const [timerforsent, settimerforsent] = useState(localStorage.getItem('forsent')) === 'true' ;
+  const [timerforsent, settimerforsent] = useState(localStorage.getItem('forsent')) ;
   const Form = "https://forms.gle/6Aj8HmxT7wFkmwFh8";
 
   const sendTransactionFunc = () => {
