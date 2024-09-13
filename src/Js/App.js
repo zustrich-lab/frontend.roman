@@ -293,42 +293,7 @@ const sendTransaction = async () => {
     alert("Failed to send transaction.");
   }
 };
-const sendTransaction1 = async () => {
-  try {
-    // Делаем тактильный отклик в Telegram WebApp
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
 
-    // Проверка, подключен ли кошелёк
-    const walletInfo = tonConnectUI.walletInfo; 
-    if (!walletInfo) {
-      setalert(true); // Если кошелёк не подключен, устанавливаем состояние alert
-      return; // Останавливаем выполнение, так как транзакцию нет смысла отправлять
-    }
-
-    // Конфигурация транзакции
-    const transaction = {
-      validUntil: Math.floor(Date.now() / 1000) + 600, // Действует 10 минут
-      messages: [
-        {
-          address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Убедитесь в правильности адреса
-          amount: "1000000", // Пример суммы в наносекундах (0.001 TON)
-        },
-      ],
-    };
-
-    // Отправляем транзакцию с помощью tonConnectUI
-    await tonConnectUI.sendTransaction(transaction);
-
-    // Если транзакция успешна, выводим сообщение и изменяем состояние таймера
-    alert("Transaction sent successfully!");
-    settimerforsent(true);
-  } catch (error) {
-    // Если возникла ошибка при отправке транзакции, логируем её и обновляем состояние
-    console.error("Error sending transaction:", error);
-    alert("Failed to send transaction.");
-    settimerforsent(false); // Обнуляем таймер в случае ошибки
-  }
-};
 
 
 // useEffect(() => {
