@@ -76,7 +76,23 @@ const userId = new URLSearchParams(window.location.search).get('userId');
 function App() {
 
   useEffect(() => {
-    // Предварительная загрузка компонентов PlayToEarn и NFTs
+    const preloadImage = (src) => {
+      const img = new Image();
+      img.src = src;
+  };
+  preloadImage(soon); 
+  preloadImage(PLANET); 
+  preloadImage(OctiesCosmo);
+  preloadImage(starship);
+  preloadImage(Nft);
+  preloadImage(shapka2);
+  preloadImage(dedpool);
+  preloadImage(rosomaha);
+  preloadImage(ton5);
+  preloadImage(ton55);
+  preloadImage(durov);
+  preloadImage(invite);
+
     import('./P2e.js');
     import('./NFTs.js');
     import('./Friends');
@@ -148,7 +164,7 @@ function App() {
   const walletAddress = useTonAddress();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
 
   useEffect(() => {

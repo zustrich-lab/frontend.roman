@@ -6,6 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: fade-in 0.5s forwards;
     
 }
 
@@ -15,6 +16,7 @@
     display: flex;
     height: 20%;
     border: 0.3vh solid #E10000;
+    animation: alertanim 0.3s forwards;
 }
 
 .Nft50{
@@ -49,3 +51,11 @@
     right: 0;
     bottom: 0;
 }
+
+@keyframes alertanim {
+    from {
+      margin-bottom: 50vh;
+    }
+    to {
+        margin-bottom: 0vh;
+    }}

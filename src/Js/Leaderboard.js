@@ -8,13 +8,6 @@ import Octo from '../IMG/All_Logo/Octo.png';
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 
 const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
-
-  useEffect(() => {
-    // Предварительная загрузка компонентов PlayToEarn и NFTs
-    import('./P2e.js');
-    import('./NFTs.js');
-    import('./Friends');
-  }, []);
   
   const [leaderboard, setLeaderboard] = useState([]);
   const [userRank, setUserRank] = useState(null);

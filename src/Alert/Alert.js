@@ -3,9 +3,6 @@ import '../Alert/AlertNft.css';
 
 function AlertNft({rosomaha, setalert}) {
     
-
-   
-
     return (
         <div className="mainAlert" onClick={(event) => {  setalert(false); }}>
            <div className='AlertBorder'>
