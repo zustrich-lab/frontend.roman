@@ -1,16 +1,73 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../Css/NFTs.css';
 
 import AlertNft from '../Alert/Alert.js';
 import {TonConnectButton} from '@tonconnect/ui-react';
+import { useTonConnectUI } from '@tonconnect/ui-react';
+
 
 const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, sendTransaction1, alert, setalert, Tg_Form_Window, timerforsent
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert
 }) => {
+
+  const [tonConnectUI] = useTonConnectUI();
+
+  if (!localStorage.getItem('forsent')) {localStorage.setItem('forsent', 'false');}
+ 
+
+  const [timerforsent, settimerforsent] = useState(localStorage.getItem('forsent')) === 'true' ;
+  const Form = "https://forms.gle/6Aj8HmxT7wFkmwFh8";
 
   const sendTransactionFunc = () => {
     if(buttonVisible  &&  !isMint){
       sendTransaction();
+    }
+  };
+
+  const Tg_Form_Window = () => {
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(Form, '_blank');
+    settimerforsent(false);
+    localStorage.setItem('forsent', 'false');
+  };
+
+
+  const sendTransaction1 = async () => {
+    try {
+      // Делаем тактильный отклик в Telegram WebApp
+      window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  
+      // Проверка, подключен ли кошелёк
+      const walletInfo = tonConnectUI.walletInfo; 
+      if (!walletInfo) {
+        setalert(true); // Если кошелёк не подключен, устанавливаем состояние alert
+        return; // Останавливаем выполнение, так как транзакцию нет смысла отправлять
+      }
+  
+      // Конфигурация транзакции
+      const transaction = {
+        validUntil: Math.floor(Date.now() / 1000) + 600, // Действует 10 минут
+        messages: [
+          {
+            address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Убедитесь в правильности адреса
+            amount: "1000000", // Пример суммы в наносекундах (0.001 TON)
+          },
+        ],
+      };
+  
+      // Отправляем транзакцию с помощью tonConnectUI
+      await tonConnectUI.sendTransaction(transaction);
+  
+      // Если транзакция успешна, выводим сообщение и изменяем состояние таймера
+  //    alert("Transaction sent successfully!");
+      settimerforsent(true);
+      localStorage.setItem('forsent', 'true');
+    } catch (error) {
+      // Если возникла ошибка при отправке транзакции, логируем её и обновляем состояние
+      console.error("Error sending transaction:", error);
+    // alert("Failed to send transaction.");
+      settimerforsent(false);
+      localStorage.setItem('forsent', 'false'); // Обнуляем таймер в случае ошибки
     }
   };
 
@@ -88,6 +145,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
             { !timerforsent && <button className='sendButtonm' onClick={sendTransaction1}>Send transaction <img src={ton55} alt=''/></button>}
             { timerforsent && <button className='FillButtonm' onClick={Tg_Form_Window}>Fill out the form</button>}
              
+
           </div>
           <div className='rightNft2'>
             <img src={durov} alt=''/>

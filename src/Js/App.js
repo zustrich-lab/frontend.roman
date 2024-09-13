@@ -139,7 +139,7 @@ function App() {
   const [isp2eOpen, setIsp2eOpen] = useState(false);
   const [NFTsOpen, setNFTsOpen] = useState(false);
   const [alert, setalert] = useState(false);
-  const [timerforsent, settimerforsent] = useState(false);
+
 
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
@@ -185,7 +185,7 @@ function App() {
   // const TG_CHANNEL_LINK4 = "https://t.me/Checkcheckcheck3";
   const X_LINK = "https://x.com/Octies_GameFI";
   const Support = "https://t.me/octies_manage";
-  const Form = "https://forms.gle/6Aj8HmxT7wFkmwFh8";
+
 
   if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
   const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
@@ -210,47 +210,47 @@ function App() {
     }
 }, []);
 
-// const [timeLeft, setTimeLeft] = useState(() => {
-//   // Получаем сохранённое время из localStorage, если оно есть
-//   const savedTime = localStorage.getItem('timeLeft');
-//   return savedTime ? parseInt(savedTime) : 300; // 300 секунд = 5 минут
-// });
+const [timeLeft, setTimeLeft] = useState(() => {
+  // Получаем сохранённое время из localStorage, если оно есть
+  const savedTime = localStorage.getItem('timeLeft');
+  return savedTime ? parseInt(savedTime) : 300; // 300 секунд = 5 минут
+});
 
-// const [isRunning, setIsRunning] = useState(false);
+const [isRunning, setIsRunning] = useState(false);
 
-// useEffect(() => {
-//   // Сохраняем оставшееся время в localStorage при каждом изменении
-//   localStorage.setItem('timeLeft', timeLeft);
-// }, [timeLeft]);
+useEffect(() => {
+  // Сохраняем оставшееся время в localStorage при каждом изменении
+  localStorage.setItem('timeLeft', timeLeft);
+}, [timeLeft]);
 
-// useEffect(() => {
-//   let timer;
-//   if (isRunning && timeLeft > 0) {
-//     // Запускаем таймер, который будет уменьшать время каждую секунду
-//     timer = setInterval(() => {
-//       setTimeLeft((prevTime) => prevTime - 1);
-//     }, 1000);
-//   } else if (timeLeft === 0) {
-//     // Если время закончилось, остановить таймер
-//     setIsRunning(false);
-//   }
+useEffect(() => {
+  let timer;
+  if (isRunning && timeLeft > 0) {
+    // Запускаем таймер, который будет уменьшать время каждую секунду
+    timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+  } else if (timeLeft === 0) {
+    // Если время закончилось, остановить таймер
+    setIsRunning(false);
+  }
   
-//   return () => clearInterval(timer); // Очищаем таймер при размонтировании компонента
-// }, [isRunning, timeLeft]);
+  return () => clearInterval(timer); // Очищаем таймер при размонтировании компонента
+}, [isRunning, timeLeft]);
 
-// const handleStart = () => {
-//   setIsRunning(true);
-// };
+const handleStart = () => {
+  setIsRunning(true);
+};
 
-// const handlePause = () => {
-//   setIsRunning(false);
-// };
+const handlePause = () => {
+  setIsRunning(false);
+};
 
-// const handleReset = () => {
-//   setIsRunning(false);
-//   setTimeLeft(300); // Сбросить на 5 минут
-//   localStorage.removeItem('timeLeft'); // Удалить сохранённое время
-// };
+const handleReset = () => {
+  setIsRunning(false);
+  setTimeLeft(300); // Сбросить на 5 минут
+  localStorage.removeItem('timeLeft'); // Удалить сохранённое время
+};
 
 const sendTransaction = async () => {
   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
@@ -266,7 +266,7 @@ const sendTransaction = async () => {
     validUntil: Math.floor(Date.now() / 1000) + 600,
     messages: [
       {
-        address: "EQAI8SXHLi_y3ao5kqTFwT6rNDDzh_1UhicVR4jbwQhg-L4m", // Проверь правильность адреса
+        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
         amount: "10000000", // Пример в наносекундах (1 TON)
       },
     ],
@@ -294,33 +294,6 @@ const sendTransaction = async () => {
   }
 };
 
-const sendTransaction1 = async () => {
-  window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-
-  // Проверка подключения кошелька
-  const walletInfo = tonConnectUI.walletInfo; // Получаем информацию о подключении кошелька
-  if (!walletInfo) { // Если кошелек не подключен
-    setalert(true);
-  }
-
-  const transaction = {
-    validUntil: Math.floor(Date.now() / 1000) + 600,
-    messages: [
-      {
-        address: "UQByKjIwjkKksvJGAGTI5cJqR74FGLjTUpo99Q1exkr16Ajj", // Проверь правильность адреса
-        amount: "5000000000", // Пример в наносекундах (1 TON)
-      },
-    ],
-  };
-  try {
-    await tonConnectUI.sendTransaction(transaction); // Использование переменной для отправки транзакции
-    alert("Transaction sent successfully!");
-    settimerforsent(true);
-  } catch (error) {
-    console.error("Error sending transaction:", error);
-    settimerforsent(false);
-  }
-};
 
 
 // useEffect(() => {
@@ -607,7 +580,7 @@ const handleCheckReferrals = () => {
       .then(response => {
         const referralCount = response.data.referralCount;
 
-        if (referralCount >= 15) {
+        if (referralCount >= 3) {
           localStorage.setItem('buttonVisibleNFT', 'true'); // Меняем кнопку на "Mint NFT"
           window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
         } else {
@@ -757,14 +730,7 @@ const handleCheckReferrals = () => {
     }, 3000);
   };
 
-  const Tg_Form_Window = () => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    window.open(Form, '_blank');
-    setTimeout(() => {
-      checkSubscriptionAndUpdate(userId);
-    }, 3000);
-  };
+
 
   
 
@@ -921,12 +887,12 @@ const handleCheckReferrals = () => {
               <div className='leftFlex'>
                 <img src={XLogo} alt='XLogo'/>
               </div>
-              {/* <div>
+              <div>
       <h1>Осталось времени: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}</h1>
       <button onClick={handleStart} disabled={isRunning}>Запустить</button>
       <button onClick={handlePause} disabled={!isRunning}>Пауза</button>
       <button onClick={handleReset}>Сбросить</button>
-    </div> */}
+    </div>
             </div>
           </div>
 
@@ -1132,9 +1098,9 @@ const handleCheckReferrals = () => {
 
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
-      rosomaha={rosomaha} ton5={ton5} ton55={ton55} sendTransaction1={sendTransaction1}
-      durov={durov} isMint={isMint} alert={alert} setalert={setalert} Tg_Form_Window={Tg_Form_Window} 
-      timerforsent={timerforsent} />}
+      rosomaha={rosomaha} ton5={ton5} ton55={ton55} 
+      durov={durov} isMint={isMint} alert={alert} setalert={setalert} 
+       />}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
 
