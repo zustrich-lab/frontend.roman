@@ -70,36 +70,18 @@ import ton55 from '../IMG/NFTs/Ton5.png';
 import durov from '../IMG/NFTs/durov.png';
 
 
-
-  const preloadImage = (src) => {
-    const img = new Image();
-    img.src = src;
-};
-preloadImage(soon); 
-preloadImage(PLANET); 
-preloadImage(OctiesCosmo);
-preloadImage(starship);
-preloadImage(Nft);
-preloadImage(shapka2);
-preloadImage(dedpool);
-preloadImage(rosomaha);
-preloadImage(ton5);
-preloadImage(ton55);
-preloadImage(durov);
-preloadImage(invite);
-
-
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
+
   useEffect(() => {
     // Предварительная загрузка компонентов PlayToEarn и NFTs
     import('./P2e.js');
     import('./NFTs.js');
     import('./Friends');
   }, []);
- 
+
   if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
   const Galo4ka = localStorage.getItem('Galka') === 'true';
   if (!localStorage.getItem('Knopka')) {localStorage.setItem('Knopka', 'true');}
@@ -209,6 +191,48 @@ function App() {
     }
 }, []);
 
+const [timeLeft, setTimeLeft] = useState(() => {
+  // Получаем сохранённое время из localStorage, если оно есть
+  const savedTime = localStorage.getItem('timeLeft');
+  return savedTime ? parseInt(savedTime) : 300; // 300 секунд = 5 минут
+});
+
+const [isRunning, setIsRunning] = useState(false);
+
+useEffect(() => {
+  // Сохраняем оставшееся время в localStorage при каждом изменении
+  localStorage.setItem('timeLeft', timeLeft);
+}, [timeLeft]);
+
+useEffect(() => {
+  let timer;
+  if (isRunning && timeLeft > 0) {
+    // Запускаем таймер, который будет уменьшать время каждую секунду
+    timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+  } else if (timeLeft === 0) {
+    // Если время закончилось, остановить таймер
+    setIsRunning(false);
+  }
+  
+  return () => clearInterval(timer); // Очищаем таймер при размонтировании компонента
+}, [isRunning, timeLeft]);
+
+const handleStart = () => {
+  setIsRunning(true);
+};
+
+const handlePause = () => {
+  setIsRunning(false);
+};
+
+const handleReset = () => {
+  setIsRunning(false);
+  setTimeLeft(300); // Сбросить на 5 минут
+  localStorage.removeItem('timeLeft'); // Удалить сохранённое время
+};
+
 const sendTransaction = async () => {
   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
 
@@ -276,59 +300,6 @@ const sendTransaction1 = async () => {
   } catch (error) {
     console.error("Error sending transaction:", error);
   }
-};
-
-
-const [timeLeft, setTimeLeft] = useState(0);
-const [isActive, setIsActive] = useState(false);
-
-useEffect(() => {
-  // Проверяем, был ли таймер уже запущен
-  const startTime = localStorage.getItem('startTime');
-  const currentTime = Math.floor(Date.now() / 1000);
-
-  if (startTime) {
-    const timePassed = currentTime - parseInt(startTime);
-    const remainingTime = 300 - timePassed;
-    if (remainingTime > 0) {
-      setTimeLeft(remainingTime);
-      setIsActive(true);
-    } else {
-      localStorage.removeItem('startTime');
-    }
-  }
-}, []);
-
-// Функция для запуска таймера
-const startTimer = () => {
-  if (!isActive) {
-    const currentTime = Math.floor(Date.now() / 1000);
-    localStorage.setItem('startTime', currentTime);
-    setTimeLeft(300);
-    setIsActive(true);
-  }
-};
-
-// useEffect для обновления таймера каждую секунду
-useEffect(() => {
-  let timer = null;
-
-  if (isActive && timeLeft > 0) {
-    timer = setInterval(() => {
-      setTimeLeft((prevTime) => prevTime - 1);
-    }, 1000);
-  } else if (timeLeft === 0) {
-    setIsActive(false);
-    localStorage.removeItem('startTime'); // Удаляем время из Local Storage
-  }
-
-  return () => clearInterval(timer); // Очищаем интервал при размонтировании
-}, [isActive, timeLeft]);
-
-const formatTime = (time) => {
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
 
@@ -509,6 +480,22 @@ useEffect(() => {
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
         setSubscriptionCoins(data.coinsSub);
+        
+        const preloadImage = (src) => {
+          const img = new Image();
+          img.src = src;
+      };
+      preloadImage(soon); 
+      preloadImage(PLANET); 
+      preloadImage(OctiesCosmo);
+      preloadImage(starship);
+      preloadImage(Nft);
+      preloadImage(shapka2);
+      preloadImage(dedpool);
+      preloadImage(rosomaha);
+      preloadImage(ton5);
+      preloadImage(ton55);
+      preloadImage(durov);
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
@@ -901,6 +888,8 @@ const handleCheckReferrals = () => {
             </div>
           </div>
 
+          
+
           <div className='MenuBorder' ref={blockRefs[1]}>
             <div className='flex_menu_border'>
               <div className='rightFlex'>
@@ -916,16 +905,15 @@ const handleCheckReferrals = () => {
                   {Galo4kaX && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
                 </div>
               </div>
-              <div>
-      <h1>Таймер: {formatTime(timeLeft)}</h1>
-      <button onClick={startTimer} disabled={isActive}>
-        Запустить таймер на 5 минут
-      </button>
-    </div>
-  
               <div className='leftFlex'>
                 <img src={XLogo} alt='XLogo'/>
               </div>
+              <div>
+      <h1>Осталось времени: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}</h1>
+      <button onClick={handleStart} disabled={isRunning}>Запустить</button>
+      <button onClick={handlePause} disabled={!isRunning}>Пауза</button>
+      <button onClick={handleReset}>Сбросить</button>
+    </div>
             </div>
           </div>
 
