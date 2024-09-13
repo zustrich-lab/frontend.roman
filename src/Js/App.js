@@ -303,16 +303,17 @@ const sendTransaction1 = async () => {
     setalert(true);
   }
 
-  const transaction = {
-    validUntil: Math.floor(Date.now() / 1000) + 600,
-    messages: [
-      {
-        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
-        amount: "1000000", // Пример в наносекундах (1 TON)
-      },
-    ],
-  };
+ 
   try {
+    const transaction = {
+      validUntil: Math.floor(Date.now() / 1000) + 600,
+      messages: [
+        {
+          address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
+          amount: "1000000", // Пример в наносекундах (1 TON)
+        },
+      ],
+    };
     await tonConnectUI.sendTransaction(transaction); // Использование переменной для отправки транзакции
     alert("Transaction sent successfully!");
     settimerforsent(true);
