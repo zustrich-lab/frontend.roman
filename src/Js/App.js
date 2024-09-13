@@ -539,7 +539,7 @@ const handleCheckReferrals = () => {
       .then(response => {
         const referralCount = response.data.referralCount;
 
-        if (referralCount >= 3) {
+        if (referralCount >= 15) {
           localStorage.setItem('buttonVisibleNFT', 'true'); // Меняем кнопку на "Mint NFT"
           window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
         } else {
