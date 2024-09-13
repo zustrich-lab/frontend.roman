@@ -2,9 +2,9 @@ import React from 'react';
 import '../Alert/AlertNft.css';
 
 function AlertNft({rosomaha, setalert}) {
-    
+
     return (
-        <div className="mainAlert" onClick={(event) => {  setalert(false); }}>
+        <div className="mainAlert" onClick={(event) => {  setalert(false) }}>
            <div className='AlertBorder'>
                 <div className='Nft50'>
                     <h1>ERROR</h1>
