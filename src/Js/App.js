@@ -70,36 +70,18 @@ import ton55 from '../IMG/NFTs/Ton5.png';
 import durov from '../IMG/NFTs/durov.png';
 
 
-
-  const preloadImage = (src) => {
-    const img = new Image();
-    img.src = src;
-};
-preloadImage(soon); 
-preloadImage(PLANET); 
-preloadImage(OctiesCosmo);
-preloadImage(starship);
-preloadImage(Nft);
-preloadImage(shapka2);
-preloadImage(dedpool);
-preloadImage(rosomaha);
-preloadImage(ton5);
-preloadImage(ton55);
-preloadImage(durov);
-preloadImage(invite);
-
-
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
+
   useEffect(() => {
     // Предварительная загрузка компонентов PlayToEarn и NFTs
     import('./P2e.js');
     import('./NFTs.js');
     import('./Friends');
   }, []);
- 
+
   if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
   const Galo4ka = localStorage.getItem('Galka') === 'true';
   if (!localStorage.getItem('Knopka')) {localStorage.setItem('Knopka', 'true');}
@@ -211,6 +193,48 @@ function App() {
     }
 }, []);
 
+const [timeLeft, setTimeLeft] = useState(() => {
+  // Получаем сохранённое время из localStorage, если оно есть
+  const savedTime = localStorage.getItem('timeLeft');
+  return savedTime ? parseInt(savedTime) : 300; // 300 секунд = 5 минут
+});
+
+const [isRunning, setIsRunning] = useState(false);
+
+useEffect(() => {
+  // Сохраняем оставшееся время в localStorage при каждом изменении
+  localStorage.setItem('timeLeft', timeLeft);
+}, [timeLeft]);
+
+useEffect(() => {
+  let timer;
+  if (isRunning && timeLeft > 0) {
+    // Запускаем таймер, который будет уменьшать время каждую секунду
+    timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+  } else if (timeLeft === 0) {
+    // Если время закончилось, остановить таймер
+    setIsRunning(false);
+  }
+  
+  return () => clearInterval(timer); // Очищаем таймер при размонтировании компонента
+}, [isRunning, timeLeft]);
+
+const handleStart = () => {
+  setIsRunning(true);
+};
+
+const handlePause = () => {
+  setIsRunning(false);
+};
+
+const handleReset = () => {
+  setIsRunning(false);
+  setTimeLeft(300); // Сбросить на 5 минут
+  localStorage.removeItem('timeLeft'); // Удалить сохранённое время
+};
+
 const sendTransaction = async () => {
   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
 
@@ -283,6 +307,7 @@ const sendTransaction1 = async () => {
     console.error("Error sending transaction:", error);
   }
 };
+
 
 useEffect(() => {
   const userId = new URLSearchParams(window.location.search).get('userId');
@@ -461,6 +486,22 @@ useEffect(() => {
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
         setSubscriptionCoins(data.coinsSub);
+        
+        const preloadImage = (src) => {
+          const img = new Image();
+          img.src = src;
+      };
+      preloadImage(soon); 
+      preloadImage(PLANET); 
+      preloadImage(OctiesCosmo);
+      preloadImage(starship);
+      preloadImage(Nft);
+      preloadImage(shapka2);
+      preloadImage(dedpool);
+      preloadImage(rosomaha);
+      preloadImage(ton5);
+      preloadImage(ton55);
+      preloadImage(durov);
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
@@ -853,6 +894,8 @@ const handleCheckReferrals = () => {
             </div>
           </div>
 
+          
+
           <div className='MenuBorder' ref={blockRefs[1]}>
             <div className='flex_menu_border'>
               <div className='rightFlex'>
@@ -871,6 +914,12 @@ const handleCheckReferrals = () => {
               <div className='leftFlex'>
                 <img src={XLogo} alt='XLogo'/>
               </div>
+              {/* <div>
+      <h1>Осталось времени: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}</h1>
+      <button onClick={handleStart} disabled={isRunning}>Запустить</button>
+      <button onClick={handlePause} disabled={!isRunning}>Пауза</button>
+      <button onClick={handleReset}>Сбросить</button>
+    </div> */}
             </div>
           </div>
 
