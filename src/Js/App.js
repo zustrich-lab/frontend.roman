@@ -185,6 +185,7 @@ function App() {
   // const TG_CHANNEL_LINK4 = "https://t.me/Checkcheckcheck3";
   const X_LINK = "https://x.com/Octies_GameFI";
   const Support = "https://t.me/octies_manage";
+  const Form = "https://forms.gle/6Aj8HmxT7wFkmwFh8";
 
   if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'true');}
   const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
@@ -771,6 +772,17 @@ const handleCheckReferrals = () => {
       checkSubscriptionAndUpdate(userId);
     }, 3000);
   };
+
+  const Tg_Form_Window = () => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(Form, '_blank');
+    setTimeout(() => {
+      checkSubscriptionAndUpdate(userId);
+    }, 3000);
+  };
+
+  
 
   useEffect(() => {
     if (window.Telegram.WebApp) {
