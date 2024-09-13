@@ -5,7 +5,7 @@ import AlertNft from '../Alert/Alert.js';
 import {TonConnectButton} from '@tonconnect/ui-react';
 
 const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, sendTransaction1, alert, setalert
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, sendTransaction1, alert, setalert, Tg_Form_Window
 }) => {
 
   const sendTransactionFunc = () => {
@@ -85,8 +85,9 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
               <li>Utilities (specific ones are <br/>currently unknown)</li>
             </ul>
           
-              <button className='sendButtonm' onClick={sendTransaction1}>Send transaction <img src={ton55} alt=''/></button>
-           
+            {buttonVisible && <button className='sendButtonm' onClick={sendTransaction1}>Send transaction <img src={ton55} alt=''/></button>}
+            {!buttonVisible && <button className='FillButtonm' onClick={Tg_Form_Window}>Fill out the form</button>}
+              <p id='timerBTN'>The button will be available for</p>
           </div>
           <div className='rightNft2'>
             <img src={durov} alt=''/>

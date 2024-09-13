@@ -164,7 +164,7 @@ function App() {
   const walletAddress = useTonAddress();
 
   const [isLoadingOcto, setLoadingOcto] = useState(false);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
 
   useEffect(() => {
@@ -1131,7 +1131,7 @@ const handleCheckReferrals = () => {
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} sendTransaction1={sendTransaction1}
-      durov={durov} isMint={isMint} alert={alert} setalert={setalert}/>}
+      durov={durov} isMint={isMint} alert={alert} setalert={setalert} Tg_Form_Window={Tg_Form_Window}/>}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
 
