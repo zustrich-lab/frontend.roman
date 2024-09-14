@@ -268,7 +268,7 @@ useEffect(() => {
   };
 
   fetchAvailableSpots();
-}, []);
+}, [updatedSpots]);
 
 
 
