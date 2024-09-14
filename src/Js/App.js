@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import '../Css/App.css';
+import { TonConnectUIProvider, useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
 import axios from 'axios';
-import { TonConnectUIProvider, useTonAddress} from '@tonconnect/ui-react';
-import { useTonConnectUI } from '@tonconnect/ui-react';
+import '../Css/App.css';
 //import pages
 import First from './Firstpage';
 import Check from './Checking';
@@ -15,6 +14,8 @@ import NFTs from './NFTs.js';
 import LoadingScreen from '../Loading/Loading.js';
 import LoadingScreenOcto from '../Loading/LoadingOcto.js';
 import LoadingScreenOctoNft from '../Loading/LoadingOctoNft.js'
+//import image Friends
+import invite from '../IMG/All_Logo/Invite_png.png';
 //import image p2e
 import soon from '../IMG/ComingSoon/Text_soon.png';
 import PLANET from '../IMG/ComingSoon/PLANET.png';
@@ -28,6 +29,8 @@ import ton5 from '../IMG/NFTs/5Ton.png';
 import ton55 from '../IMG/NFTs/Ton5.png';
 import durov from '../IMG/NFTs/durov.png';
 import Nft from '../IMG/Nft_ref/Nft_ref.png';
+import Checknft from '../IMG/Nft_ref_check/chech.png';
+import ChecknftDone from '../IMG/Nft_ref_check_done/Done_ref.png';
 //import image Lower
 import IconHome from '../IMG/LowerIcon/Home.png';
 import IconLeaderboard from '../IMG/LowerIcon/Leaderboard.png';
@@ -43,31 +46,24 @@ import Reward_X from '../IMG/TaskIcon/TSX.png';
 import Reward_PartnerChanels from '../IMG/TaskIcon/Other_Tg.png';
 import Reward_NFT from '../IMG/TaskIcon/TS_NFT.png';
 import Reward_Nick from '../IMG/TaskIcon/TS_nick.png';
-
-
+//import image SwapTask
+import AnyTapChanel from '../IMG/All_Logo/AnyTapChanel.png';
+import tgLogo from '../IMG/All_Logo/TgComunity.png';
+import XLogo from '../IMG/All_Logo/XCominity.png';
+import FreePosition from '../IMG/All_Logo/freePosiction.png';
+import NickLogo from '../IMG/All_Logo/nick.png';
+//import image SupportSwapTask
 import galo4ka from '../IMG/All_Logo/galol4ka.png';
 import nickGalka from '../IMG/All_Logo/galka.png';
 import nickKr from '../IMG/All_Logo/nickNema.png';
-import Ellipse from '../IMG/All_Logo/Ellipse.png';
-import FreePosition from '../IMG/All_Logo/freePosiction.png';
 import ContactUs from '../IMG/All_Logo/ContactUs.png';
-import AnyTapChanel from '../IMG/All_Logo/AnyTapChanel.png';
+import Join from '../IMG/All_Logo/Join.png';
 import NewLabel from '../IMG/All_Logo/New_lable.png';
-
-import tgLogo from '../IMG/All_Logo/TgComunity.png';
-import XLogo from '../IMG/All_Logo/XCominity.png';
-import NickLogo from '../IMG/All_Logo/nick.png';
-
-
-
+//import image Main
+import Ellipse from '../IMG/All_Logo/Ellipse.png';
 import Logo from '../IMG/All_Logo/Logo.png';
 import Play from '../IMG/All_Logo/Play.png';
 import Octo from '../IMG/All_Logo/Octo.png';
-import invite from '../IMG/All_Logo/Invite_png.png';
-import Join from '../IMG/All_Logo/Join.png';
-
-import Checknft from '../IMG/Nft_ref_check/chech.png';
-import ChecknftDone from '../IMG/Nft_ref_check_done/Done_ref.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
 
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
@@ -702,14 +698,12 @@ const handleCheckReferrals = () => {
     }, 3000);
   };
 
-
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.expand();
     }
   }, []);
-
 
   const handleFirstPageClose = () => {
     setFPage(false);
@@ -768,11 +762,11 @@ const handleCheckReferrals = () => {
                 <div className='MenuBtn'>
                   {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join' />}
                   <p id='lightGray'> {Knopka && <p id="plus">+</p>}1,000 $OCTIES</p>
-                  {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                  {Galo4ka && <img id="galo4ka" src={galo4ka} alt='' />}
                 </div>
               </div>
               <div className='leftFlex'>
-                <img src={tgLogo} alt='tgLogo'/>
+                <img src={tgLogo} alt=''/>
               </div>
             </div>
           </div>
@@ -791,11 +785,11 @@ const handleCheckReferrals = () => {
                 <div className='MenuBtn'>
                   {KnopkaX && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
                   <p> {KnopkaX && <p id="plus">+</p>}500 $OCTIES</p>
-                  {Galo4kaX && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                  {Galo4kaX && <img id="galo4ka" src={galo4ka} alt='' />}
                 </div>
               </div>
               <div className='leftFlex'>
-                <img src={XLogo} alt='XLogo'/>
+                <img src={XLogo} alt=''/>
               </div>
             </div>
           </div>
@@ -812,11 +806,11 @@ const handleCheckReferrals = () => {
                 <div className='MenuBtn'>
                   {KnopkaAnyTap && <img onClick={Tg_Channel_Open_chek2} src={Join} alt='Join' />}
                   <p> {KnopkaAnyTap && <p id="plus">+</p>}750 $OCTIES</p>
-                  {GalkaAnyTap && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                  {GalkaAnyTap && <img id="galo4ka" src={galo4ka} alt='' />}
                 </div>
               </div>
               <div className='leftFlex'>
-                <img src={AnyTapChanel} alt='XLogo'/>
+                <img src={AnyTapChanel} alt=''/>
               </div>
             </div>
           </div>
@@ -836,7 +830,7 @@ const handleCheckReferrals = () => {
                 </div>
               </div>
               <div className='leftFlex'>
-                <img src={FreePosition} alt='XLogo'/>
+                <img src={FreePosition} alt=''/>
               </div>
             </div>
           </div>
@@ -860,7 +854,7 @@ const handleCheckReferrals = () => {
                 </div>
               </div>
               <div className='leftFlex' id='nick'>
-                <img src={NickLogo} alt='NickLogo'/>
+                <img src={NickLogo} alt=''/>
               </div>
              </div>
           </div>      
