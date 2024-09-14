@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import '../Css/NFTs.css';
+import axios from 'axios';
 
 import AlertNft from '../Alert/Alert.js';
 import {TonConnectButton} from '@tonconnect/ui-react';
@@ -10,7 +11,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
   shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, updatedSpots
 }) => {
 
-
+  const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
   const [tonConnectUI] = useTonConnectUI();
 
   const [timerforsent, settimerforsent] = useState(false);
