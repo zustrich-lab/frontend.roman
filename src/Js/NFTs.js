@@ -11,6 +11,8 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
 
   const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
   const [tonConnectUI] = useTonConnectUI();
+  const userId = new URLSearchParams(window.location.search).get('userId');
+
 
   if (!localStorage.getItem('forsent')) {localStorage.setItem('forsent', 'false');}
   const timerforsent= localStorage.getItem('forsent') === 'true';
@@ -56,10 +58,9 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
             const updatedSpots = response.data.availableSpots;
 
             document.getElementById("highgreen").textContent = updatedSpots;
-
             localStorage.setItem('forsent', 'true');
 
-            const specialResponse = await axios.post(`${REACT_APP_BACKEND_URL}/special-transaction-success`, { userId: walletInfo.address });
+            const specialResponse = await axios.post(`${REACT_APP_BACKEND_URL}/special-transaction-success`, { userId });
             if (specialResponse.data.success) {
                 console.log('Special transaction recorded successfully.');
             } else {
