@@ -10,6 +10,22 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
   shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert
 }) => {
 
+  useEffect(() => {
+    const fetchAvailableSpots = async () => {
+        try {
+            const response = await axios.get(`${REACT_APP_BACKEND_URL}/current-spots`);
+            if (response.data.success) {
+                const updatedSpots = response.data.availableSpots;
+                document.getElementById("highgreen").textContent = updatedSpots;
+            }
+        } catch (error) {
+            console.error("Ошибка при получении количества мест:", error);
+        }
+    };
+
+    fetchAvailableSpots();
+}, []);
+
   const [tonConnectUI] = useTonConnectUI();
 
   const [timerforsent, settimerforsent] = useState(false);
@@ -29,40 +45,48 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
 
   const sendTransaction1 = async () => {
     try {
-      // Делаем тактильный отклик в Telegram WebApp
-      window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-  
-      // Проверка, подключен ли кошелёк
-      const walletInfo = tonConnectUI.walletInfo; 
-      if (!walletInfo) {
-        setalert(true); // Если кошелёк не подключен, устанавливаем состояние alert
-        return; // Останавливаем выполнение, так как транзакцию нет смысла отправлять
-      }
-  
-      // Конфигурация транзакции
-      const transaction = {
-        validUntil: Math.floor(Date.now() / 1000) + 600, // Действует 10 минут
-        messages: [
-          {
-            address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Убедитесь в правильности адреса
-            amount: "1000000", // Пример суммы в наносекундах (0.001 TON)
-          },
-        ],
-      };
-  
-      // Отправляем транзакцию с помощью tonConnectUI
-      await tonConnectUI.sendTransaction(transaction);
-  
-      // Если транзакция успешна, выводим сообщение и изменяем состояние таймера
-  //    alert("Transaction sent successfully!");
-      settimerforsent(true);
+        // Делаем тактильный отклик в Telegram WebApp
+        window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+
+        // Проверка, подключен ли кошелёк
+        const walletInfo = tonConnectUI.walletInfo; 
+        if (!walletInfo) {
+            setalert(true); // Если кошелёк не подключен, устанавливаем состояние alert
+            return;
+        }
+
+        // Конфигурация транзакции
+        const transaction = {
+            validUntil: Math.floor(Date.now() / 1000) + 600, // Действует 10 минут
+            messages: [
+                {
+                    address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG",
+                    amount: "1000000", // Пример суммы в наносекундах (0.001 TON)
+                },
+            ],
+        };
+
+        // Отправляем транзакцию с помощью tonConnectUI
+        await tonConnectUI.sendTransaction(transaction);
+
+        // Если транзакция успешна, запросите обновленное количество мест
+        const response = await axios.post(`${REACT_APP_BACKEND_URL}/transaction-success`);
+        if (response.data.success) {
+            const updatedSpots = response.data.availableSpots;
+
+            // Обновляем количество доступных мест в интерфейсе
+            document.getElementById("highgreen").textContent = updatedSpots;
+
+            // Сохраняем успешный статус транзакции
+            settimerforsent(true);
+        } else {
+            console.error("Failed to update available spots.");
+        }
     } catch (error) {
-      // Если возникла ошибка при отправке транзакции, логируем её и обновляем состояние
-      console.error("Error sending transaction:", error);
-    // alert("Failed to send transaction.");
-      settimerforsent(false); // Обнуляем таймер в случае ошибки
+        console.error("Error sending transaction:", error);
+        settimerforsent(false);
     }
-  };
+};
 
   return (
     <div className={`NFTs_Window ${NFTsAnim ? 'fade-out' : ''}`}>
