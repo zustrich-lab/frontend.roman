@@ -14,7 +14,9 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
   const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
   const [tonConnectUI] = useTonConnectUI();
 
-  const [timerforsent, settimerforsent] = useState(false);
+  if (!localStorage.getItem('forsent')) {localStorage.setItem('forsent', 'false');}
+ 
+  const timerforsent= localStorage.getItem('forsent') === 'true';
   const Form = "https://forms.gle/6Aj8HmxT7wFkmwFh8";
 
   const sendTransactionFunc = () => {
@@ -26,6 +28,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
   const Tg_Form_Window = () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     window.open(Form, '_blank');
+    localStorage.setItem('forsent', 'false');
   };
 
 
@@ -54,6 +57,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
 
         // Отправляем транзакцию с помощью tonConnectUI
         await tonConnectUI.sendTransaction(transaction);
+        
 
         // Если транзакция успешна, запросите обновленное количество мест
         const response = await axios.post(`${REACT_APP_BACKEND_URL}/transaction-success`);
@@ -64,13 +68,13 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
             document.getElementById("highgreen").textContent = updatedSpots;
 
             // Сохраняем успешный статус транзакции
-            settimerforsent(true);
+            localStorage.setItem('forsent', 'true');
         } else {
             console.error("Failed to update available spots.");
         }
     } catch (error) {
         console.error("Error sending transaction:", error);
-        settimerforsent(false);
+        localStorage.setItem('forsent', 'false');
     }
 };
 
