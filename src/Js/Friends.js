@@ -31,6 +31,7 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
 
     return (
         <div className={`Fr_Window ${FriendsAnim ? 'fade-out' : ''}`}>
+             
             <div className='Fr_Info'>
                 <p>Invite friends <br/> and get more $OCTIES</p>
             </div>
@@ -72,9 +73,12 @@ const Friends = ({ FriendsAnim, invite, referralCode, telegramLink, getRandomCol
                         <p>+{user.earnedCoins.toLocaleString('en-US')} $OCTIES</p>
                         </div>
                     </div>
+                    
                 ))}
 
             </div>
+
+            
         </div>
     );
 };

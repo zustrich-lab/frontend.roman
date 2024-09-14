@@ -46,6 +46,7 @@ import Reward_X from '../IMG/TaskIcon/TSX.png';
 import Reward_PartnerChanels from '../IMG/TaskIcon/Other_Tg.png';
 import Reward_NFT from '../IMG/TaskIcon/TS_NFT.png';
 import Reward_Nick from '../IMG/TaskIcon/TS_nick.png';
+import Reward_pass from '../IMG/TaskIcon/passStar.png';
 //import image SwapTask
 import AnyTapChanel from '../IMG/All_Logo/AnyTapChanel.png';
 import tgLogo from '../IMG/All_Logo/TgComunity.png';
@@ -65,6 +66,7 @@ import Logo from '../IMG/All_Logo/Logo.png';
 import Play from '../IMG/All_Logo/Play.png';
 import Octo from '../IMG/All_Logo/Octo.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
+import pass from '../IMG/All_Logo/pass.png';
 
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
@@ -153,7 +155,7 @@ function App() {
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
   const walletAddress = useTonAddress();
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
   useEffect(() => {
     if (!isLoadingOcto) {
@@ -808,6 +810,15 @@ const handleCheckReferrals = () => {
           <p>Your Rewards</p>
         </div>
         <div className='Tasks' id={isMint ? 'TaskswithoutNft' : undefined}>
+          
+          <div className='TS'>
+            <div className='tsPhoto'>
+              <img src={Reward_pass} alt='' /> <p>Unique pass</p>
+            </div>
+            <div className='tsPhoto'>
+              <p id='highpink' ><img src={pass} id='pass' alt='' />+1 PASS</p>
+            </div>
+          </div>
 
           {isMint && <div className='TS'>
             <div className='tsPhoto'>
