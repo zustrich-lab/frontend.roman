@@ -102,20 +102,24 @@ function App() {
   const Galo4kaX = localStorage.getItem('GalkaX') === 'true';
   if (!localStorage.getItem('KnopkaX')) {localStorage.setItem('KnopkaX', 'true');}
   const KnopkaX = localStorage.getItem('KnopkaX') === 'true';
-
   if (!localStorage.getItem('GalkaAnyTap')) {localStorage.setItem('GalkaAnyTap', 'false');}
   const GalkaAnyTap = localStorage.getItem('GalkaAnyTap') === 'true';
   if (!localStorage.getItem('KnopkaAnyTap')) {localStorage.setItem('KnopkaAnyTap', 'true');}
   const KnopkaAnyTap = localStorage.getItem('KnopkaAnyTap') === 'true';
-
-  if (!localStorage.getItem('GalkaBlock2')) {localStorage.setItem('GalkaBlock2', 'false');}
-  if (!localStorage.getItem('KnopkaBlock2')) {localStorage.setItem('KnopkaBlock2', 'true');}
-
   if (!localStorage.getItem('KnopkaNick')) {localStorage.setItem('KnopkaNick', 'false');}
   const KnopkaNick = localStorage.getItem('KnopkaNick') === 'true';
-
   if (!localStorage.getItem('Sub')) { localStorage.setItem('Sub', 'false');}
   const Sub = localStorage.getItem('Sub') === 'true';
+  if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
+  const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
+  const [showNotCompleted, setShowNotCompleted] = useState(false);
+  if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
+  const isMint = localStorage.getItem('isMintNFT') === 'true';
+
+  const TG_CHANNEL_LINK = "https://t.me/octies_community";
+  const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
+  const X_LINK = "https://x.com/Octies_GameFI";
+  const Support = "https://t.me/octies_manage";
 
   const [FriendsAnim, setFriendsAnim] = useState(false);
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
@@ -147,12 +151,9 @@ function App() {
   const [tonConnectUI] = useTonConnectUI();
   const [transactionNumber, setTransactionNumber] = useState(null);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
-
   const walletAddress = useTonAddress();
-
   const [isLoadingOcto, setLoadingOcto] = useState(true);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
-
 
   useEffect(() => {
     if (!isLoadingOcto) {
@@ -163,17 +164,6 @@ function App() {
       return () => clearTimeout(timeoutId);
     }
   }, [isLoadingOcto]);
-  
-  const TG_CHANNEL_LINK = "https://t.me/octies_community";
-  const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
-  const X_LINK = "https://x.com/Octies_GameFI";
-  const Support = "https://t.me/octies_manage";
-
-  if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
-  const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
-  const [showNotCompleted, setShowNotCompleted] = useState(false);
-  if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
-  const isMint = localStorage.getItem('isMintNFT') === 'true';
  
   useEffect(() => {
     if (window.TON_CONNECT_UI) {
@@ -466,7 +456,7 @@ useEffect(() => {
         setYearr(yearsOld);
         let accountAgeCoins = yearsOld * 500;
         if (yearsOld < 1) {
-          accountAgeCoins = 300; // Минимум 300 монет для аккаунтов младше года
+          setAccountAgeCoins(300); 
         }
         setcoinOnlyYears(accountAgeCoins);
         if (data.hasTelegramPremium) {
@@ -494,22 +484,6 @@ useEffect(() => {
         } else {
           localStorage.setItem('GalkaAnyTap', 'false');
           localStorage.setItem('KnopkaAnyTap', 'true');
-        }
-
-        if (data.hasCheckedSubscription4) {
-          localStorage.setItem('GalkaBlock1', 'true');
-          localStorage.setItem('KnopkaBlock1', 'false');
-        } else {
-          localStorage.setItem('GalkaBlock1', 'false');
-          localStorage.setItem('KnopkaBlock1', 'true');
-        }
-
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('GalkaBlock2', 'true');
-          localStorage.setItem('KnopkaBlock2', 'false');
-        } else {
-          localStorage.setItem('GalkaBlock2', 'false');
-          localStorage.setItem('KnopkaBlock2', 'true');
         }
 
         if (data.hasNicknameBonus){
@@ -586,22 +560,6 @@ const handleCheckReferrals = () => {
         } else {
           localStorage.setItem('GalkaAnyTap', 'false');
           localStorage.setItem('KnopkaAnyTap', 'true');
-        }
-
-        if (data.hasCheckedSubscription4) {
-          localStorage.setItem('GalkaBlock1', 'true');
-          localStorage.setItem('KnopkaBlock1', 'false');
-        } else {
-          localStorage.setItem('GalkaBlock1', 'false');
-          localStorage.setItem('KnopkaBlock1', 'true');
-        }
-
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('GalkaBlock2', 'true');
-          localStorage.setItem('KnopkaBlock2', 'false');
-        } else {
-          localStorage.setItem('GalkaBlock2', 'false');
-          localStorage.setItem('KnopkaBlock2', 'true');
         }
      
       } else {
@@ -748,8 +706,8 @@ const handleCheckReferrals = () => {
       </div>}
 
       <div className='Menu'>
-  
         <div className='Skroll_Menu_Border'>
+          
           <div className='MenuBorder' ref={blockRefs[0]}>
             <div className='flex_menu_border' id='lightGreenBack'>
               <div className='rightFlex'>
@@ -770,8 +728,6 @@ const handleCheckReferrals = () => {
               </div>
             </div>
           </div>
-
-          
 
           <div className='MenuBorder' ref={blockRefs[1]}>
             <div className='flex_menu_border'>
