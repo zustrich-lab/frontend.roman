@@ -156,6 +156,7 @@ function App() {
   const [YearsOpen, setYearsOpen] = useState(false);
   const [OctOpen, setOctOpen] = useState(false);
   const [Yearr, setYearr] = useState(0);
+  const [updatedSpots, setupdatedSpots] = useState(0);
   const [app, setApp] = useState(false);
   const [tonConnectUI] = useTonConnectUI();
   const [transactionNumber, setTransactionNumber] = useState(null);
@@ -252,6 +253,23 @@ const sendTransaction = async () => {
     alert("Failed to send transaction.");
   }
 };
+
+useEffect(() => {
+  const fetchAvailableSpots = async () => {
+      try {
+          const response = await axios.get(`${REACT_APP_BACKEND_URL}/current-spots`);
+          if (response.data.success) {
+               setupdatedSpots = response.data.availableSpots;
+              document.getElementById("highgreen").textContent = updatedSpots;
+          }
+      } catch (error) {
+          console.error("Ошибка при получении количества мест:", error);
+      }
+  };
+
+  fetchAvailableSpots();
+}, []);
+
 
 
 
@@ -1052,7 +1070,7 @@ const handleCheckReferrals = () => {
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} 
-      durov={durov} isMint={isMint} alert={alert} setalert={setalert} 
+      durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
        />}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}

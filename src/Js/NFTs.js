@@ -7,24 +7,9 @@ import { useTonConnectUI } from '@tonconnect/ui-react';
 
 
 const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, updatedSpots
 }) => {
 
-  useEffect(() => {
-    const fetchAvailableSpots = async () => {
-        try {
-            const response = await axios.get(`${REACT_APP_BACKEND_URL}/current-spots`);
-            if (response.data.success) {
-                const updatedSpots = response.data.availableSpots;
-                document.getElementById("highgreen").textContent = updatedSpots;
-            }
-        } catch (error) {
-            console.error("Ошибка при получении количества мест:", error);
-        }
-    };
-
-    fetchAvailableSpots();
-}, []);
 
   const [tonConnectUI] = useTonConnectUI();
 
@@ -150,7 +135,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
         <div className='nft-promo2'>
           <div className='LeftNft2'>
             <h1><span id='highlight'>CREATE AN NFT</span> OF YOUR<br/>CHARACTER OCTIES!</h1>    
-            <p>Currently <span id="highgreen">250</span>/250 spots available</p>
+            <p>Currently <span id="highgreen">{updatedSpots}</span>/250 spots available</p>
             <p>Once you submit the transaction,<br /><span id='highlight'>you will receive:</span></p>
             <ul class="custom-list">
               <li>1 NFT of a unique OCTIES <br/> character, which you <br/> can design yourself</li>
