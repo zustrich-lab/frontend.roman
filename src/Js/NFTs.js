@@ -1,11 +1,9 @@
 import React from 'react';
-import '../Css/NFTs.css';
+import {TonConnectButton, useTonConnectUI} from '@tonconnect/ui-react';
 import axios from 'axios';
+import '../Css/NFTs.css';
 
 import AlertNft from '../Alert/Alert.js';
-import {TonConnectButton} from '@tonconnect/ui-react';
-import { useTonConnectUI } from '@tonconnect/ui-react';
-
 
 const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
   shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, updatedSpots
@@ -15,8 +13,8 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
   const [tonConnectUI] = useTonConnectUI();
 
   if (!localStorage.getItem('forsent')) {localStorage.setItem('forsent', 'false');}
- 
   const timerforsent= localStorage.getItem('forsent') === 'true';
+
   const Form = "https://forms.gle/6Aj8HmxT7wFkmwFh8";
 
   const sendTransactionFunc = () => {
@@ -34,40 +32,31 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
 
   const sendTransaction1 = async () => {
     try {
-        // Делаем тактильный отклик в Telegram WebApp
         window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-
-        // Проверка, подключен ли кошелёк
         const walletInfo = tonConnectUI.walletInfo; 
         if (!walletInfo) {
-            setalert(true); // Если кошелёк не подключен, устанавливаем состояние alert
+            setalert(true); 
             return;
         }
 
-        // Конфигурация транзакции
         const transaction = {
-            validUntil: Math.floor(Date.now() / 1000) + 600, // Действует 10 минут
+            validUntil: Math.floor(Date.now() / 1000) + 600, 
             messages: [
                 {
                     address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG",
-                    amount: "1000000", // Пример суммы в наносекундах (0.001 TON)
+                    amount: "1000000", 
                 },
             ],
         };
 
-        // Отправляем транзакцию с помощью tonConnectUI
         await tonConnectUI.sendTransaction(transaction);
         
-
-        // Если транзакция успешна, запросите обновленное количество мест
         const response = await axios.post(`${REACT_APP_BACKEND_URL}/transaction-success`);
         if (response.data.success) {
             const updatedSpots = response.data.availableSpots;
 
-            // Обновляем количество доступных мест в интерфейсе
             document.getElementById("highgreen").textContent = updatedSpots;
 
-            // Сохраняем успешный статус транзакции
             localStorage.setItem('forsent', 'true');
         } else {
             console.error("Failed to update available spots.");
@@ -89,7 +78,6 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
         <img className="marvel" src={dedpool} alt=''/>
         <img className="marvel" id="ros" src={rosomaha} alt=''/>
         <img src={shapka2} id="shapka2" alt=''/>
-       
       </div>
      
       <div className='mainNft'> 
