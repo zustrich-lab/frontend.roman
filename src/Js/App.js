@@ -451,6 +451,7 @@ useEffect(() => {
         if (referralCoins > 0) {
           setVisibleInvite(true);
         }
+
         if(data.hasMintedNFT){
           localStorage.setItem('isMintNFT', 'true'); 
         }else{
@@ -814,14 +815,14 @@ const handleCheckReferrals = () => {
         </div>
         <div className='Tasks' id={isMint ? 'TaskswithoutNft' : undefined}>
           
-          <div className='TS'>
+          {Ton5Succes > 0 &&(<div className='TS'>
             <div className='tsPhoto'>
               <img src={Reward_pass} alt='' /> <p>Unique pass</p>
             </div>
             <div className='tsPhoto'>
               <p id='highpink' ><img src={pass} id='pass' alt='' />+{Ton5Succes} PASS</p>
             </div>
-          </div>
+          </div>)}
 
           {isMint && <div className='TS'>
             <div className='tsPhoto'>
