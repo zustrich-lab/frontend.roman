@@ -259,7 +259,7 @@ useEffect(() => {
       try {
           const response = await axios.get(`${REACT_APP_BACKEND_URL}/current-spots`);
           if (response.data.success) {
-               setupdatedSpots = response.data.availableSpots;
+               setupdatedSpots(response.data.availableSpots);
               document.getElementById("highgreen").textContent = updatedSpots;
           }
       } catch (error) {
