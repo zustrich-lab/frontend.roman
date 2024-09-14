@@ -34,7 +34,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
     try {
         window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
         const walletInfo = tonConnectUI.walletInfo; 
-        if (!walletInfo || !walletInfo.account) { // Checking if walletInfo and the account are available
+        if (!walletInfo) {
             setalert(true); 
             return;
         }
@@ -51,7 +51,6 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
 
         await tonConnectUI.sendTransaction(transaction);
         
-        // Sending a request to indicate a successful transaction
         const response = await axios.post(`${REACT_APP_BACKEND_URL}/transaction-success`);
         if (response.data.success) {
             const updatedSpots = response.data.availableSpots;
@@ -59,21 +58,6 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
             document.getElementById("highgreen").textContent = updatedSpots;
 
             localStorage.setItem('forsent', 'true');
-
-            // Get the userId from walletInfo
-            const userId = walletInfo.account; // Use the wallet address as the userId
-
-            // Send a request to the special-transaction-success endpoint
-            const specialResponse = await axios.post(`${REACT_APP_BACKEND_URL}/special-transaction-success`, {
-                userId: userId // Passing the wallet address as the userId
-            });
-
-            if (specialResponse.data.success) {
-                console.log("Special transaction counter updated successfully.");
-            } else {
-                console.error("Failed to update special transaction counter.");
-            }
-
         } else {
             console.error("Failed to update available spots.");
         }
