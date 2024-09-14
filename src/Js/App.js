@@ -377,6 +377,7 @@ useEffect(() => {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
+        setTon5Succes(data.specialTransactionCounter);
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -532,6 +533,7 @@ const handleCheckReferrals = () => {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
+        setTon5Succes(data.specialTransactionCounter);
         
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
