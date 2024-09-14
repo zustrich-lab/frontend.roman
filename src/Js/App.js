@@ -182,7 +182,6 @@ function App() {
     }
 }, []);
 
-
 const sendTransaction = async () => {
   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
 
@@ -375,7 +374,6 @@ useEffect(() => {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-        //setSubscriptionCoins(data.coinsSub)
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -421,7 +419,6 @@ useEffect(() => {
     }
 }, []);
 
-
   const fetchUserData = useCallback(async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
@@ -432,22 +429,6 @@ useEffect(() => {
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
         setSubscriptionCoins(data.coinsSub);
-        
-        const preloadImage = (src) => {
-          const img = new Image();
-          img.src = src;
-      };
-      preloadImage(soon); 
-      preloadImage(PLANET); 
-      preloadImage(OctiesCosmo);
-      preloadImage(starship);
-      preloadImage(Nft);
-      preloadImage(shapka2);
-      preloadImage(dedpool);
-      preloadImage(rosomaha);
-      preloadImage(ton5);
-      preloadImage(ton55);
-      preloadImage(durov);
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
@@ -707,7 +688,7 @@ const handleCheckReferrals = () => {
 
       <div className='Menu'>
         <div className='Skroll_Menu_Border'>
-          
+
           <div className='MenuBorder' ref={blockRefs[0]}>
             <div className='flex_menu_border' id='lightGreenBack'>
               <div className='rightFlex'>
