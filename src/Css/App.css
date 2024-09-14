@@ -354,8 +354,6 @@ button{
   font-size: 1.8vh;
 }
 
-
-
 .footerItemImgWrapper img {
   height: 3.2vh;
 }
@@ -399,7 +397,6 @@ button{
   padding-bottom: 0;
   margin: 0;
 }
-
 
 @font-face {
   font-family: Muller;
@@ -474,12 +471,10 @@ button{
   white-space: nowrap;
 }
 
-#highlight {
-  color: #ff7f00 !important; 
-}
-#highgreen {
-  color: #27D024 !important; 
-}
+#highlight {color: #ff7f00 !important; }
+#highgreen {color: #27D024 !important; }
+#highpink {color: #F7667A !important; position: relative; }
+
 
 .nft-text p {
   white-space: normal; 
@@ -597,6 +592,13 @@ button[data-tc-connect-button="true"]{
 
 #nickContainer{
   height: 20%;
+}
+
+#pass{
+height: 6vh;
+position: absolute;
+left: -6.8vh;
+top: -2.3vh;
 }
 
 .nickDiv {

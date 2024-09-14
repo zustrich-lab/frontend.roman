@@ -144,13 +144,11 @@
   margin-top: 1vh;
   font-size: 2vh;
   font-weight: 600;
-  
 }
 
 .rightNft2{
   height: 100%;
   width: 0%;
-  
 }
 
 .custom-list {
@@ -202,18 +200,9 @@
 }
 
 @keyframes shadowPulseBlue {
-  0% {
-    box-shadow: 
-                0 0 1vh 0.4vh #067CFB;
-  }
-  50% {
-    box-shadow: 
-                0 0 2vh 0 #067CFB;
-  }
-  100% {
-    box-shadow: 
-                0 0 1vh 0.4vh #067CFB;
-  }
+  0%  {box-shadow: 0 0 1vh 0.4vh #067CFB;}
+  50% {box-shadow: 0 0 2vh 0 #067CFB;}
+  100%{box-shadow: 0 0 1vh 0.4vh #067CFB;}
 }
 
 .sendButtonm img{

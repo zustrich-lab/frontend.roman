@@ -165,8 +165,6 @@ const Leaderboard = ({ LeaderboardAnim, userId, coins, getRandomColor}) => {
 
           </div>
 
-          
-
         {isLoadingLiderInfo && <div className={`loading-screen_lider ${isLoadingLiderInfosup ? '' : 'hiddenLider'}`}>
           <span className="loader"></span>
         </div>}

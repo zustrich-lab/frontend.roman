@@ -1,74 +1,72 @@
-// eslint-disable-next-line
-
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import '../Css/App.css';
+import { TonConnectUIProvider, useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
 import axios from 'axios';
-import { TonConnectUIProvider, useTonAddress} from '@tonconnect/ui-react';
-import { useTonConnectUI } from '@tonconnect/ui-react';
-
-import soon from '../IMG/ComingSoon/Text_soon.png';
-import PLANET from '../IMG/ComingSoon/PLANET.png';
-import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
-import starship from '../IMG/ComingSoon/starship.png';
-
-import Friends from './Friends';
-import Leaderboard from './Leaderboard';
+import '../Css/App.css';
+//import pages
 import First from './Firstpage';
 import Check from './Checking';
 import Years from './Years';
 import Oct from './Oct';
+import Leaderboard from './Leaderboard';
 import PlayToEarn from './P2e.js';
+import Friends from './Friends';
 import NFTs from './NFTs.js';
-
 import LoadingScreen from '../Loading/Loading.js';
 import LoadingScreenOcto from '../Loading/LoadingOcto.js';
 import LoadingScreenOctoNft from '../Loading/LoadingOctoNft.js'
-
-import TS1 from '../IMG/TaskIcon/TS1.png';
-import TS2 from '../IMG/TaskIcon/TS2.png';
-import TS3 from '../IMG/TaskIcon/TS3.png';
-import TS4 from '../IMG/TaskIcon/TS4.png';
-import TSX from '../IMG/TaskIcon/TSX.png';
-import SubTg from '../IMG/TaskIcon/Other_Tg.png';
-import TSNFT from '../IMG/TaskIcon/TS_NFT.png';
-import TSnick from '../IMG/TaskIcon/TS_nick.png';
-import galo4ka from '../IMG/All_Logo/galol4ka.png';
-import nickGalka from '../IMG/All_Logo/galka.png';
-import nickKr from '../IMG/All_Logo/nickNema.png';
-import Ellipse from '../IMG/All_Logo/Ellipse.png';
-//import Block1 from '../IMG/All_Logo/Block1.png';
-import FreePosition from '../IMG/All_Logo/freePosiction.png';
-import ContactUs from '../IMG/All_Logo/ContactUs.png';
-import AnyTapChanel from '../IMG/All_Logo/AnyTapChanel.png';
-import NewLabel from '../IMG/All_Logo/New_lable.png';
-
-import tgLogo from '../IMG/All_Logo/TgComunity.png';
-import XLogo from '../IMG/All_Logo/XCominity.png';
-import NickLogo from '../IMG/All_Logo/nick.png';
-
-import IconHome from '../IMG/LowerIcon/Home.png';
-import IconLeaderboard from '../IMG/LowerIcon/Leaderboard.png';
-import IconFriends from '../IMG/LowerIcon/Friends.png';
-import NFTlogo from '../IMG/LowerIcon/NFTLogo.png';
-import p2e from '../IMG/LowerIcon/p2e.png';
-
-import Logo from '../IMG/All_Logo/Logo.png';
-import Play from '../IMG/All_Logo/Play.png';
-import Octo from '../IMG/All_Logo/Octo.png';
+//import image Friends
 import invite from '../IMG/All_Logo/Invite_png.png';
-import Join from '../IMG/All_Logo/Join.png';
-import Nft from '../IMG/Nft_ref/Nft_ref.png';
-import Checknft from '../IMG/Nft_ref_check/chech.png';
-import ChecknftDone from '../IMG/Nft_ref_check_done/Done_ref.png';
-import NFTm from '../IMG/All_Logo/NFTmint.png';
-
+//import image p2e
+import soon from '../IMG/ComingSoon/Text_soon.png';
+import PLANET from '../IMG/ComingSoon/PLANET.png';
+import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
+import starship from '../IMG/ComingSoon/starship.png';
+//import image NFT
 import shapka2 from '../IMG/NFTs/Shapka2.png';
 import dedpool from '../IMG/NFTs/dedpool.png';
 import rosomaha from '../IMG/NFTs/rosomaha.png';
 import ton5 from '../IMG/NFTs/5Ton.png';
 import ton55 from '../IMG/NFTs/Ton5.png';
 import durov from '../IMG/NFTs/durov.png';
-
+import Nft from '../IMG/Nft_ref/Nft_ref.png';
+import Checknft from '../IMG/Nft_ref_check/chech.png';
+import ChecknftDone from '../IMG/Nft_ref_check_done/Done_ref.png';
+//import image Lower
+import IconHome from '../IMG/LowerIcon/Home.png';
+import IconLeaderboard from '../IMG/LowerIcon/Leaderboard.png';
+import IconFriends from '../IMG/LowerIcon/Friends.png';
+import NFTlogo from '../IMG/LowerIcon/NFTLogo.png';
+import p2e from '../IMG/LowerIcon/p2e.png';
+//import image Reward
+import Reward_Age from '../IMG/TaskIcon/TS1.png';
+import Reward_Premium from '../IMG/TaskIcon/TS2.png';
+import Reward_Chanel  from '../IMG/TaskIcon/TS3.png';
+import Reward_Invite from '../IMG/TaskIcon/TS4.png';
+import Reward_X from '../IMG/TaskIcon/TSX.png';
+import Reward_PartnerChanels from '../IMG/TaskIcon/Other_Tg.png';
+import Reward_NFT from '../IMG/TaskIcon/TS_NFT.png';
+import Reward_Nick from '../IMG/TaskIcon/TS_nick.png';
+import Reward_pass from '../IMG/TaskIcon/passStar.png';
+//import image SwapTask
+import AnyTapChanel from '../IMG/All_Logo/AnyTapChanel.png';
+import tgLogo from '../IMG/All_Logo/TgComunity.png';
+import XLogo from '../IMG/All_Logo/XCominity.png';
+import FreePosition from '../IMG/All_Logo/freePosiction.png';
+import NickLogo from '../IMG/All_Logo/nick.png';
+//import image SupportSwapTask
+import galo4ka from '../IMG/All_Logo/galol4ka.png';
+import nickGalka from '../IMG/All_Logo/galka.png';
+import nickKr from '../IMG/All_Logo/nickNema.png';
+import ContactUs from '../IMG/All_Logo/ContactUs.png';
+import Join from '../IMG/All_Logo/Join.png';
+import NewLabel from '../IMG/All_Logo/New_lable.png';
+//import image Main
+import Ellipse from '../IMG/All_Logo/Ellipse.png';
+import Logo from '../IMG/All_Logo/Logo.png';
+import Play from '../IMG/All_Logo/Play.png';
+import Octo from '../IMG/All_Logo/Octo.png';
+import NFTm from '../IMG/All_Logo/NFTmint.png';
+import pass from '../IMG/All_Logo/pass.png';
 
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
@@ -106,28 +104,24 @@ function App() {
   const Galo4kaX = localStorage.getItem('GalkaX') === 'true';
   if (!localStorage.getItem('KnopkaX')) {localStorage.setItem('KnopkaX', 'true');}
   const KnopkaX = localStorage.getItem('KnopkaX') === 'true';
-
   if (!localStorage.getItem('GalkaAnyTap')) {localStorage.setItem('GalkaAnyTap', 'false');}
   const GalkaAnyTap = localStorage.getItem('GalkaAnyTap') === 'true';
   if (!localStorage.getItem('KnopkaAnyTap')) {localStorage.setItem('KnopkaAnyTap', 'true');}
   const KnopkaAnyTap = localStorage.getItem('KnopkaAnyTap') === 'true';
-
-  // if (!localStorage.getItem('GalkaBlock1')) {localStorage.setItem('GalkaBlock1', 'false');}
-  // const GalkaBlock1 = localStorage.getItem('GalkaBlock1') === 'true';
-  // if (!localStorage.getItem('KnopkaBlock1')) {localStorage.setItem('KnopkaBlock1', 'true');}
-  // const KnopkaBlock1 = localStorage.getItem('KnopkaBlock1') === 'true';
-
-  if (!localStorage.getItem('GalkaBlock2')) {localStorage.setItem('GalkaBlock2', 'false');}
-  //const GalkaBlock2 = localStorage.getItem('GalkaBlock2') === 'true';
-  if (!localStorage.getItem('KnopkaBlock2')) {localStorage.setItem('KnopkaBlock2', 'true');}
-  //const KnopkaBlock2 = localStorage.getItem('KnopkaBlock2') === 'true';
-
   if (!localStorage.getItem('KnopkaNick')) {localStorage.setItem('KnopkaNick', 'false');}
   const KnopkaNick = localStorage.getItem('KnopkaNick') === 'true';
-
   if (!localStorage.getItem('Sub')) { localStorage.setItem('Sub', 'false');}
   const Sub = localStorage.getItem('Sub') === 'true';
+  if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
+  const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
+  const [showNotCompleted, setShowNotCompleted] = useState(false);
+  if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
+  const isMint = localStorage.getItem('isMintNFT') === 'true';
 
+  const TG_CHANNEL_LINK = "https://t.me/octies_community";
+  const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
+  const X_LINK = "https://x.com/Octies_GameFI";
+  const Support = "https://t.me/octies_manage";
 
   const [FriendsAnim, setFriendsAnim] = useState(false);
   const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
@@ -140,12 +134,11 @@ function App() {
   const [NFTsOpen, setNFTsOpen] = useState(false);
   const [alert, setalert] = useState(false);
 
-
-
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [VisibleInvite, setVisibleInvite] = useState(false);
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
+  const [Ton5Succes, setTon5Succes] = useState(0);
   const [referralCoins, setReferralCoins] = useState(0);
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
   const [accountAgeCoins, setAccountAgeCoins] = useState(0);
@@ -161,38 +154,19 @@ function App() {
   const [tonConnectUI] = useTonConnectUI();
   const [transactionNumber, setTransactionNumber] = useState(null);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
-
   const walletAddress = useTonAddress();
-
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
-
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
   useEffect(() => {
     if (!isLoadingOcto) {
       const timeoutId = setTimeout(() => {
         setLoadingOctoVs(false);
-      }, 800); // 0.8 seconds delay
+      }, 800);
 
-      // Cleanup function to clear timeout if isLoadingOcto changes before timeout completes
       return () => clearTimeout(timeoutId);
     }
   }, [isLoadingOcto]);
-  
-
-  const TG_CHANNEL_LINK = "https://t.me/octies_community";
-  const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
-  //const TG_CHANNEL_LINK3 = "https://t.me/+8YkeoXBKP9JkOGMy";
-  // const TG_CHANNEL_LINK4 = "https://t.me/Checkcheckcheck3";
-  const X_LINK = "https://x.com/Octies_GameFI";
-  const Support = "https://t.me/octies_manage";
-
-
-  if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
-  const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
-  const [showNotCompleted, setShowNotCompleted] = useState(false);
-  if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
-  const isMint = localStorage.getItem('isMintNFT') === 'true';
  
   useEffect(() => {
     if (window.TON_CONNECT_UI) {
@@ -211,23 +185,21 @@ function App() {
     }
 }, []);
 
-
 const sendTransaction = async () => {
   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
 
-  // Проверка подключения кошелька
-  const walletInfo = tonConnectUI.walletInfo; // Получаем информацию о подключении кошелька
-  if (!walletInfo) { // Если кошелек не подключен
+  const walletInfo = tonConnectUI.walletInfo; 
+  if (!walletInfo) { 
     setalert(true);
-    return; // Останавливаем выполнение функции
+    return; 
   }
 
   const transaction = {
     validUntil: Math.floor(Date.now() / 1000) + 600,
     messages: [
       {
-        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", // Проверь правильность адреса
-        amount: "10000000", // Пример в наносекундах (1 TON)
+        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", 
+        amount: "10000000", 
       },
     ],
   };
@@ -240,8 +212,6 @@ const sendTransaction = async () => {
     if (response.data.success) {
         setTransactionNumber(response.data.transactionNumber);
         localStorage.setItem('isMintNFT', 'true'); 
-
-        // Сохраняем флаг hasMintedNFT в базе данных
         await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
 
         alert(`Transaction successful! You are user number ${response.data.transactionNumber}`);
@@ -270,33 +240,9 @@ useEffect(() => {
   fetchAvailableSpots();
 }, [updatedSpots]);
 
-
-
-
-// useEffect(() => {
-//   const userId = new URLSearchParams(window.location.search).get('userId');
-//   const isMint = localStorage.getItem('isMintNFT') === 'true';
-
-//   // Если isMint равен true, обновляем статус mint в базе данных
-//   if (isMint && userId) {
-//     axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true })
-//       .then(response => {
-//         if (response.data.success) {
-//           console.log("Статус NFT успешно обновлён в базе данных.");
-//         } else {
-//           console.error("Не удалось обновить статус NFT.");
-//         }
-//       })
-//       .catch(error => {
-//         console.error("Ошибка при обновлении статуса NFT:", error);
-//       });
-//   }
-// }, []);
-
 useEffect(() => {
   console.log('Адрес кошелька из useTonAddress:', walletAddress);
   if (walletAddress) {
-    // Отправляем адрес кошелька на сервер для сохранения
     axios.post(`${REACT_APP_BACKEND_URL}/save-wallet-address`, { userId, walletAddress })
       .then(response => {
         if (response.data.success) {
@@ -355,27 +301,67 @@ useEffect(() => {
   //_______________________________________________________________________________________
 
   function handleHomeWithVibration() {
-    handleHome();
+    setIsLeaderboardOpen(false);
+    setIsFrendsOpen(false);
+    setIsp2eOpen(false);
+    setFriendsAnim(true);
+    setp2eAnim(true);
+    setLeaderboardAnim(true);
+    setNFTsAnim(true);
+    setApp(false);
+    setNFTsOpen(false);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
 
   function handleLeaderboardWithVibration() {
-    handleLeaderboard();
+    setApp(true);
+    setIsp2eOpen(false);
+    setIsFrendsOpen(false);
+    setIsLeaderboardOpen(true);
+    setNFTsOpen(false);
+    setNFTsAnim(true);
+    setLeaderboardAnim(false);
+    setFriendsAnim(true);
+    setp2eAnim(true);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
 
   function handleNFTsWithVibration() {
-    handleNFTs();
+    setApp(true);
+    setIsp2eOpen(false);
+    setIsFrendsOpen(false);
+    setIsLeaderboardOpen(false);
+    setNFTsOpen(true);
+    setNFTsAnim(false);
+    setLeaderboardAnim(true);
+    setFriendsAnim(true);
+    setp2eAnim(true);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
 
   function handleP2EWithVibration() {
-    handleP2E();
+    setIsp2eOpen(true);
+    setFriendsAnim(true);
+    setp2eAnim(false);
+    setLeaderboardAnim(true);
+    setNFTsAnim(true);
+    setIsLeaderboardOpen(false);
+    setIsFrendsOpen(false);
+    setApp(true);
+    setNFTsOpen(false);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
 
   function handleFrendsWithVibration() {
-    handleFrends();
+    setIsFrendsOpen(true);
+    setFriendsAnim(false);
+    setLeaderboardAnim(true);
+    setp2eAnim(true);
+    setIsLeaderboardOpen(false);
+    setIsp2eOpen(false);
+    setApp(true);
+    setNFTsAnim(true);
+    setNFTsOpen(false);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
 
@@ -391,7 +377,6 @@ useEffect(() => {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-        //setSubscriptionCoins(data.coinsSub)
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -416,8 +401,6 @@ useEffect(() => {
     }
   }, []);
 
-
-
   useEffect(() => {
     if (userId) {
       const intervalId = setInterval(() => {
@@ -439,33 +422,18 @@ useEffect(() => {
     }
 }, []);
 
-
   const fetchUserData = useCallback(async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
       if (response.status === 200) {
         setCoins(data.coins);
+        setTon5Succes(data.specialTransactionCounter);
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
         setSubscriptionCoins(data.coinsSub);
-        
-        const preloadImage = (src) => {
-          const img = new Image();
-          img.src = src;
-      };
-      preloadImage(soon); 
-      preloadImage(PLANET); 
-      preloadImage(OctiesCosmo);
-      preloadImage(starship);
-      preloadImage(Nft);
-      preloadImage(shapka2);
-      preloadImage(dedpool);
-      preloadImage(rosomaha);
-      preloadImage(ton5);
-      preloadImage(ton55);
-      preloadImage(durov);
+
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
@@ -474,7 +442,7 @@ useEffect(() => {
         setYearr(yearsOld);
         let accountAgeCoins = yearsOld * 500;
         if (yearsOld < 1) {
-          accountAgeCoins = 300; // Минимум 300 монет для аккаунтов младше года
+          setAccountAgeCoins(300); 
         }
         setcoinOnlyYears(accountAgeCoins);
         if (data.hasTelegramPremium) {
@@ -502,22 +470,6 @@ useEffect(() => {
         } else {
           localStorage.setItem('GalkaAnyTap', 'false');
           localStorage.setItem('KnopkaAnyTap', 'true');
-        }
-
-        if (data.hasCheckedSubscription4) {
-          localStorage.setItem('GalkaBlock1', 'true');
-          localStorage.setItem('KnopkaBlock1', 'false');
-        } else {
-          localStorage.setItem('GalkaBlock1', 'false');
-          localStorage.setItem('KnopkaBlock1', 'true');
-        }
-
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('GalkaBlock2', 'true');
-          localStorage.setItem('KnopkaBlock2', 'false');
-        } else {
-          localStorage.setItem('GalkaBlock2', 'false');
-          localStorage.setItem('KnopkaBlock2', 'true');
         }
 
         if (data.hasNicknameBonus){
@@ -558,7 +510,7 @@ const handleCheckReferrals = () => {
         const referralCount = response.data.referralCount;
 
         if (referralCount >= 15) {
-          localStorage.setItem('buttonVisibleNFT', 'true'); // Меняем кнопку на "Mint NFT"
+          localStorage.setItem('buttonVisibleNFT', 'true'); 
           window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
         } else {
           setShowNotCompleted(true);
@@ -579,7 +531,6 @@ const handleCheckReferrals = () => {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
-        //setSubscriptionCoins(data.coinsSub);
         
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -595,22 +546,6 @@ const handleCheckReferrals = () => {
         } else {
           localStorage.setItem('GalkaAnyTap', 'false');
           localStorage.setItem('KnopkaAnyTap', 'true');
-        }
-
-        if (data.hasCheckedSubscription4) {
-          localStorage.setItem('GalkaBlock1', 'true');
-          localStorage.setItem('KnopkaBlock1', 'false');
-        } else {
-          localStorage.setItem('GalkaBlock1', 'false');
-          localStorage.setItem('KnopkaBlock1', 'true');
-        }
-
-        if (data.hasCheckedSubscription2) {
-          localStorage.setItem('GalkaBlock2', 'true');
-          localStorage.setItem('KnopkaBlock2', 'false');
-        } else {
-          localStorage.setItem('GalkaBlock2', 'false');
-          localStorage.setItem('KnopkaBlock2', 'true');
         }
      
       } else {
@@ -707,76 +642,12 @@ const handleCheckReferrals = () => {
     }, 3000);
   };
 
-
-
-  
-
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.expand();
     }
   }, []);
-
-  const handleHome = () => {
-    setIsLeaderboardOpen(false);
-    setIsFrendsOpen(false);
-    setIsp2eOpen(false);
-    setFriendsAnim(true);
-    setp2eAnim(true);
-    setLeaderboardAnim(true);
-    setNFTsAnim(true);
-    setApp(false);
-    setNFTsOpen(false);
-  };
-
-  const handleFrends = () => {
-    setIsFrendsOpen(true);
-    setFriendsAnim(false);
-    setLeaderboardAnim(true);
-    setp2eAnim(true);
-    setIsLeaderboardOpen(false);
-    setIsp2eOpen(false);
-    setApp(true);
-    setNFTsAnim(true);
-    setNFTsOpen(false);
-  };
-
-  const handleP2E = () => {
-    setIsp2eOpen(true);
-    setFriendsAnim(true);
-    setp2eAnim(false);
-    setLeaderboardAnim(true);
-    setNFTsAnim(true);
-    setIsLeaderboardOpen(false);
-    setIsFrendsOpen(false);
-    setApp(true);
-    setNFTsOpen(false);
-  };
-
-  const handleLeaderboard = () => {
-    setApp(true);
-    setIsp2eOpen(false);
-    setIsFrendsOpen(false);
-    setIsLeaderboardOpen(true);
-    setNFTsOpen(false);
-    setNFTsAnim(true);
-    setLeaderboardAnim(false);
-    setFriendsAnim(true);
-    setp2eAnim(true);
-  };
-
-  const handleNFTs = () => {
-    setApp(true);
-    setIsp2eOpen(false);
-    setIsFrendsOpen(false);
-    setIsLeaderboardOpen(false);
-    setNFTsOpen(true);
-    setNFTsAnim(false);
-    setLeaderboardAnim(true);
-    setFriendsAnim(true);
-    setp2eAnim(true);
-  };
 
   const handleFirstPageClose = () => {
     setFPage(false);
@@ -821,8 +692,8 @@ const handleCheckReferrals = () => {
       </div>}
 
       <div className='Menu'>
-  
         <div className='Skroll_Menu_Border'>
+
           <div className='MenuBorder' ref={blockRefs[0]}>
             <div className='flex_menu_border' id='lightGreenBack'>
               <div className='rightFlex'>
@@ -835,16 +706,14 @@ const handleCheckReferrals = () => {
                 <div className='MenuBtn'>
                   {Knopka && <img onClick={Tg_Channel_Open_chek} src={Join} alt='Join' />}
                   <p id='lightGray'> {Knopka && <p id="plus">+</p>}1,000 $OCTIES</p>
-                  {Galo4ka && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                  {Galo4ka && <img id="galo4ka" src={galo4ka} alt='' />}
                 </div>
               </div>
               <div className='leftFlex'>
-                <img src={tgLogo} alt='tgLogo'/>
+                <img src={tgLogo} alt=''/>
               </div>
             </div>
           </div>
-
-          
 
           <div className='MenuBorder' ref={blockRefs[1]}>
             <div className='flex_menu_border'>
@@ -858,11 +727,11 @@ const handleCheckReferrals = () => {
                 <div className='MenuBtn'>
                   {KnopkaX && <img onClick={Tg_Channel_Open_X} src={Join} alt='Join' />}
                   <p> {KnopkaX && <p id="plus">+</p>}500 $OCTIES</p>
-                  {Galo4kaX && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                  {Galo4kaX && <img id="galo4ka" src={galo4ka} alt='' />}
                 </div>
               </div>
               <div className='leftFlex'>
-                <img src={XLogo} alt='XLogo'/>
+                <img src={XLogo} alt=''/>
               </div>
             </div>
           </div>
@@ -879,11 +748,11 @@ const handleCheckReferrals = () => {
                 <div className='MenuBtn'>
                   {KnopkaAnyTap && <img onClick={Tg_Channel_Open_chek2} src={Join} alt='Join' />}
                   <p> {KnopkaAnyTap && <p id="plus">+</p>}750 $OCTIES</p>
-                  {GalkaAnyTap && <img id="galo4ka" src={galo4ka} alt='galo4ka' />}
+                  {GalkaAnyTap && <img id="galo4ka" src={galo4ka} alt='' />}
                 </div>
               </div>
               <div className='leftFlex'>
-                <img src={AnyTapChanel} alt='XLogo'/>
+                <img src={AnyTapChanel} alt=''/>
               </div>
             </div>
           </div>
@@ -903,7 +772,7 @@ const handleCheckReferrals = () => {
                 </div>
               </div>
               <div className='leftFlex'>
-                <img src={FreePosition} alt='XLogo'/>
+                <img src={FreePosition} alt=''/>
               </div>
             </div>
           </div>
@@ -927,7 +796,7 @@ const handleCheckReferrals = () => {
                 </div>
               </div>
               <div className='leftFlex' id='nick'>
-                <img src={NickLogo} alt='NickLogo'/>
+                <img src={NickLogo} alt=''/>
               </div>
              </div>
           </div>      
@@ -944,10 +813,19 @@ const handleCheckReferrals = () => {
           <p>Your Rewards</p>
         </div>
         <div className='Tasks' id={isMint ? 'TaskswithoutNft' : undefined}>
+          
+          <div className='TS'>
+            <div className='tsPhoto'>
+              <img src={Reward_pass} alt='' /> <p>Unique pass</p>
+            </div>
+            <div className='tsPhoto'>
+              <p id='highpink' ><img src={pass} id='pass' alt='' />+{Ton5Succes} PASS</p>
+            </div>
+          </div>
 
           {isMint && <div className='TS'>
             <div className='tsPhoto'>
-              <img src={TSNFT} alt='TSNFT' /> <p>OCTIES NFT</p>
+              <img src={Reward_NFT} alt='' /> <p>OCTIES NFT</p>
             </div>
             <div className='tsPhoto'>
               <p id='highlight' >+1 NFT</p>
@@ -956,7 +834,7 @@ const handleCheckReferrals = () => {
 
           {Sub && <div className='TS'>
             <div className='tsPhoto'>
-              <img src={SubTg} alt='SubTg' /> <p>Partner channels subs</p>
+              <img src={Reward_PartnerChanels} alt='' /> <p>Partner channels subs</p>
             </div>
             <div className='tsPhoto'>
               <p id='highlight' >+{subscriptionCoins.toLocaleString('en-US')} $OCTIES</p>
@@ -965,7 +843,7 @@ const handleCheckReferrals = () => {
 
           <div className='TS'>
             <div className='tsPhoto'>
-              <img src={TS1} alt='TS1' /> <p>Account age</p>
+              <img src={Reward_Age} alt='' /> <p>Account age</p>
             </div>
             <div className='tsPhoto'>
               <p>+{accountAgeCoins.toLocaleString('en-US')} $OCTIES</p>
@@ -974,7 +852,7 @@ const handleCheckReferrals = () => {
 
           {VisibleTelegramPremium && <div className='TS'>
             <div className='tsPhoto'>
-              <img src={TS2} alt='TS2' /> <p>Telegram Premium</p>
+              <img src={Reward_Premium} alt='' /> <p>Telegram Premium</p>
             </div>
             <div className='tsPhoto'>
               <p>+{hasTelegramPremium ? 500 : 0} $OCTIES</p>
@@ -983,7 +861,7 @@ const handleCheckReferrals = () => {
 
           {Galo4ka && <div className='TS'>
             <div className='tsPhoto'>
-              <img src={TS3} alt='TS3' /> <p>Channel Subscription</p>
+              <img src={Reward_Chanel} alt='' /> <p>Channel Subscription</p>
             </div>
             <div className='tsPhoto'>
               <p>+1,000 $OCTIES</p>
@@ -992,7 +870,7 @@ const handleCheckReferrals = () => {
 
           {KnopkaNick && <div className='TS'>
             <div className='tsPhoto'>
-              <img src={TSnick} alt='TS3' /> <p>Add "Octies" to nickname</p>
+              <img src={Reward_Nick} alt='' /> <p>Add "Octies" to nickname</p>
             </div>
             <div className='tsPhoto'>
               <p>+300 $OCTIES</p>
@@ -1001,7 +879,7 @@ const handleCheckReferrals = () => {
 
           {Galo4kaX && <div className='TS'>
           <div className='tsPhoto'>
-            <img src={TSX} alt='TSX' /> <p>Octies X</p>
+            <img src={Reward_X} alt='' /> <p>Octies X</p>
           </div>
           <div className='tsPhoto'>
             <p>+500 $OCTIES</p>
@@ -1010,7 +888,7 @@ const handleCheckReferrals = () => {
 
           {VisibleInvite && <div className='TS'>
             <div className='tsPhoto'>
-              <img src={TS4} alt='TS4' /> <p>Invites</p>
+              <img src={Reward_Invite} alt='TS4' /> <p>Invites</p>
             </div>
             <div className='tsPhoto'>
               <p>+{referralCoins.toLocaleString('en-US')} $OCTIES</p>
@@ -1054,13 +932,9 @@ const handleCheckReferrals = () => {
           </ul>
       </footer>
      
-
       {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
-
       {CheckOpen && (<Check setCheckOpen={setCheckOpen} setYearsOpen={setYearsOpen} />)}
-
       {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen} Yearr={Yearr} />)}
-
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears} />)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins} getRandomColor={getRandomColor}/>)}
@@ -1070,7 +944,7 @@ const handleCheckReferrals = () => {
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} 
-      durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
+      durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots} 
        />}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
