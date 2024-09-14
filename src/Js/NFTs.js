@@ -58,6 +58,13 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
             document.getElementById("highgreen").textContent = updatedSpots;
 
             localStorage.setItem('forsent', 'true');
+
+            const specialResponse = await axios.post(`${REACT_APP_BACKEND_URL}/special-transaction-success`, { userId: walletInfo.address });
+            if (specialResponse.data.success) {
+                console.log('Special transaction recorded successfully.');
+            } else {
+                console.error('Failed to record special transaction.');
+            }
         } else {
             console.error("Failed to update available spots.");
         }
