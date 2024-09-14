@@ -151,7 +151,7 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
           
             {!timerforsent && <button className='sendButtonm' onClick={sendTransaction1}>Send transaction <img src={ton55} alt=''/></button>}
             {timerforsent && <button className='FillButtonm' onClick={Tg_Form_Window}>Fill out the form</button>}
-              <p id='timerBTN'>The button will be available for</p>
+          
           </div>
           <div className='rightNft2'>
             <img src={durov} alt=''/>
