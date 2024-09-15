@@ -227,6 +227,12 @@
   position: relative;
 }
 
+.sendButtonm1 img{
+  height: 65%;
+  margin-left: 1.7vh;
+  position: relative;
+}
+
 @media (orientation: landscape) {
     .NFTs_Window {height: 80%;}
 }
