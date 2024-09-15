@@ -94,7 +94,7 @@ const sendTransactionrefil = async () => {
           ],
       };
 
-     // await tonConnectUI.sendTransaction(transaction);
+      await tonConnectUI.sendTransaction(transaction);
   } catch (error) {
       console.error("Error sending transaction:", error);
       localStorage.setItem('forsent', 'false');
