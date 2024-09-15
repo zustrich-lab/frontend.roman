@@ -88,13 +88,13 @@ const sendTransactionrefil = async () => {
           validUntil: Math.floor(Date.now() / 1000) + 600, 
           messages: [
               {
-                  address: " EQACWu9QvWiu_T1YFrLTZBhm7QPtUUf45RVK_lH-iCmvoo-J",
+                  address: "EQACWu9QvWiu_T1YFrLTZBhm7QPtUUf45RVK_lH-iCmvoo-J",
                   amount: "10000000", 
               },
           ],
       };
 
-      await tonConnectUI.sendTransaction(transaction);
+     // await tonConnectUI.sendTransaction(transaction);
   } catch (error) {
       console.error("Error sending transaction:", error);
       localStorage.setItem('forsent', 'false');
