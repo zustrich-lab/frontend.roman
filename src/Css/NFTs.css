@@ -181,6 +181,22 @@
   margin-bottom: 1vh;
 }
 
+.sendButtonm1{
+  background-color:  #397446;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; 
+  height: 14%;
+  width: 54%;
+  margin-left: 1.7vh;
+  font-size: 1.7vh;
+  font-family: MullerMedium;
+  border-radius: 1.2vh;
+  position: relative;
+  margin-bottom: 1vh;
+}
+
 .FillButtonm{
   background-color: #067CFB;
   display: flex;
