@@ -84,23 +84,33 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
             localStorage.setItem('KnopkaX', 'false');
             localStorage.setItem('GalkaX', 'true');
             try {
-                const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId, amount: 500 });
-                if (response.data.success) {
-                    setCoins(response.data.coins);
-                    if (response.data.hasReceivedTwitterReward) {
-                        localStorage.setItem('hasReceivedTwitterReward', 'true');
-                         setCoins(response.data.coins);
-                    }
-                } else {
-                    console.error('Ошибка при обновлении монет:', response.data.message);
-                }
-            } catch (error) {
-                console.error('Ошибка при обновлении монет:', error);
-            }
+              const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId, amount: 500 });
+              console.log('Ответ сервера:', response);
+              if (response.data.success) {
+                  setCoins(response.data.coins);
+              } else {
+                  console.error('Ошибка сервера:', response.data.message);
+              }
+          } catch (error) {
+              console.error('Ошибка при обновлении монет:', error.response || error.message || error);
+          }
         }
     }, 5000);
 };
 
+
+// try {
+//   const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId, amount: 500 });
+//   if (response.data.success) {
+//       setCoins(response.data.coins);
+//       if (response.data.hasReceivedTwitterReward) {
+//           localStorage.setItem('hasReceivedTwitterReward', 'true');
+//            setCoins(response.data.coins);
+//       }
+//   } else {
+//       console.error('Ошибка при обновлении монет:', response.data.message);
+//   }
+// }
 //________________________________________________________________Task_Swap
 const blockRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
 const [blockVisibility, setBlockVisibility] = useState([false, false, false, false, false]);
