@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback} from 'react';
-import { TonConnectUIProvider, useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
+import { TonConnectUIProvider, useTonAddress } from '@tonconnect/ui-react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../Css/App.css';
@@ -90,7 +90,7 @@ function App() {
 
   const [alert, setalert] = useState(false);
 
-  const tonConnectUI = useTonConnectUI();
+  //const tonConnectUI = useTonConnectUI();
   const location = useLocation();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
@@ -143,44 +143,44 @@ function App() {
     }
 }, []);
 
-const sendTransaction = async () => {
-  window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+// const sendTransaction = async () => {
+//   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
 
-  const walletInfo = tonConnectUI.walletInfo; 
-  if (!walletInfo) { 
-    setalert(true);
-    return; 
-  }
+//   const walletInfo = tonConnectUI.walletInfo; 
+//   if (!walletInfo) { 
+//     setalert(true);
+//     return; 
+//   }
 
-  const transaction = {
-    validUntil: Math.floor(Date.now() / 1000) + 600,
-    messages: [
-      {
-        address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", 
-        amount: "10000000", 
-      },
-    ],
-  };
+//   const transaction = {
+//     validUntil: Math.floor(Date.now() / 1000) + 600,
+//     messages: [
+//       {
+//         address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", 
+//         amount: "10000000", 
+//       },
+//     ],
+//   };
 
-  try {
-    await tonConnectUI.sendTransaction(transaction);
+//   try {
+//     await tonConnectUI.sendTransaction(transaction);
 
-    const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
+//     const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
 
-    if (response.data.success) {
-        setTransactionNumber(response.data.transactionNumber);
-        localStorage.setItem('isMintNFT', 'true'); 
-        await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
+//     if (response.data.success) {
+//         setTransactionNumber(response.data.transactionNumber);
+//         localStorage.setItem('isMintNFT', 'true'); 
+//         await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
 
-        alert(`Transaction successful! You are user number ${response.data.transactionNumber}`);
-    } else {
-        alert('Transaction failed!');
-    }
-  } catch (error) {
-    console.error("Error sending transaction:", error);
-    alert("Failed to send transaction.");
-  }
-};
+//         alert(`Transaction successful! You are user number ${response.data.transactionNumber}`);
+//     } else {
+//         alert('Transaction failed!');
+//     }
+//   } catch (error) {
+//     console.error("Error sending transaction:", error);
+//     alert("Failed to send transaction.");
+//   }
+// };
 
 useEffect(() => {
   const fetchAvailableSpots = async () => {
@@ -479,7 +479,7 @@ const handleCheckReferrals = () => {
         <Route path="/friends" element={<Friends invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>} />
 
         <Route path="/nfts" element={<NFTs showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
-                              Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
+                              Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} 
                               rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}/>}/>
       </Routes>
 
