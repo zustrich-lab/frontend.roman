@@ -91,7 +91,7 @@ function App() {
   const [alert, setalert] = useState(false);
 
   const tonConnectUI = useTonConnectUI();
-  const location = useLocation();
+  const locationRoat = useLocation();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
@@ -497,34 +497,34 @@ const handleCheckReferrals = () => {
       <footer className='BTNLow'>
         <ul className='footerItems'>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${(location.pathname !== "/") ? 'img-dark' : ''}`}  to="/" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              <Link className={`footerItemImgWrapper ${(locationRoat.pathname !== "/") ? 'img-dark' : ''}`}  to="/" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={IconHome} alt='IconHome'className='footerItemImg' />
               </ Link>       
-              <p className={`footerItemLabel ${(location.pathname !== "/") ? 'img-dark' : ''}`}>Home</p>
+              <p className={`footerItemLabel ${(locationRoat.pathname !== "/") ? 'img-dark' : ''}`}>Home</p>
             </li>
             <li className='footerItem' >
-              < Link className={`footerItemImgWrapper ${location.pathname !== "/leaderboard" ? 'img-dark' : ''}`} to="/leaderboard" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              < Link className={`footerItemImgWrapper ${locationRoat.pathname !== "/leaderboard" ? 'img-dark' : ''}`} to="/leaderboard" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={IconLeaderboard} alt='IconLeaderboard' className='footerItemImg'/>
               </ Link>
-              <p className={`footerItemLabel ${location.pathname !== "/leaderboard" ? 'img-dark' : ''}`}>Ranking</p>
+              <p className={`footerItemLabel ${locationRoat.pathname !== "/leaderboard" ? 'img-dark' : ''}`}>Ranking</p>
             </li>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${location.pathname !== "/playtoearn" ? 'img-dark' : ''}`} to="/playtoearn" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}}>
+              <Link className={`footerItemImgWrapper ${locationRoat.pathname !== "/playtoearn" ? 'img-dark' : ''}`} to="/playtoearn" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}}>
                 <img src={p2e} alt='IconFriends' className='footerItemImg'/>
               </Link>
-              <p className={`footerItemLabel ${location.pathname !== "/playtoearn" ? 'img-dark' : ''}`}>Play2Earn</p>
+              <p className={`footerItemLabel ${locationRoat.pathname !== "/playtoearn" ? 'img-dark' : ''}`}>Play2Earn</p>
             </li>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${location.pathname !== "/friends" ? 'img-dark' : ''}`} to="/friends" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              <Link className={`footerItemImgWrapper ${locationRoat.pathname !== "/friends" ? 'img-dark' : ''}`} to="/friends" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={IconFriends} alt='IconFriends' className='footerItemImg' />
               </Link>
-              <p className={`footerItemLabel ${location.pathname !== "/friends" ? 'img-dark' : ''}`}>Friends</p>
+              <p className={`footerItemLabel ${locationRoat.pathname !== "/friends" ? 'img-dark' : ''}`}>Friends</p>
             </li>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${location.pathname !== "/nfts" ? 'img-dark' : ''}`} to="/nfts" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              <Link className={`footerItemImgWrapper ${locationRoat.pathname !== "/nfts" ? 'img-dark' : ''}`} to="/nfts" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={NFTlogo} alt='IconFriends' className='footerItemImg' />
               </Link>
-              <p className= {`footerItemLabel ${location.pathname !== "/nfts" ? 'img-dark' : ''}`}>NFTs</p>
+              <p className= {`footerItemLabel ${locationRoat.pathname !== "/nfts" ? 'img-dark' : ''}`}>NFTs</p>
             </li>
           </ul>
       </footer>
