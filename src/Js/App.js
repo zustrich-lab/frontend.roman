@@ -87,9 +87,8 @@ function App() {
   const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
   const [showNotCompleted, setShowNotCompleted] = useState(false);
   if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
-  // const isMint = localStorage.getItem('isMintNFT') === 'true';
+  const isMint = localStorage.getItem('isMintNFT') === 'true';
 
-  const isMint = true;
   const TG_CHANNEL_LINK = "https://t.me/octies_community";
   const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
   const X_LINK = "https://x.com/Octies_GameFI";
