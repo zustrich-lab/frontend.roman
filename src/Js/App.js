@@ -90,6 +90,12 @@ function App() {
 
   const [alert, setalert] = useState(false);
 
+  const tonConnectUI = useTonConnectUI();
+  const location = useLocation();
+
+  const [isLoadingOcto, setLoadingOcto] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [coins, setCoins] = useState(0);
   const [Ton5Succes, setTon5Succes] = useState(0);
@@ -104,13 +110,11 @@ function App() {
   const [OctOpen, setOctOpen] = useState(false);
   const [Yearr, setYearr] = useState(0);
   const [updatedSpots, setupdatedSpots] = useState(0);
-  const [tonConnectUI] = useTonConnectUI();
   const [transactionNumber, setTransactionNumber] = useState(null);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
   const walletAddress = useTonAddress();
-  const [isLoadingOcto, setLoadingOcto] = useState(false);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
-  const location = useLocation();
+  
+  
 
   useEffect(() => {
     if (!isLoadingOcto) {
