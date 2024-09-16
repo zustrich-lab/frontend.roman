@@ -395,10 +395,11 @@ const handleCheckReferrals = () => {
   };
 
   useEffect(() => {
+    const userId = new URLSearchParams(window.location.search).get('userId'); // Извлекаем userId внутри useEffect
     if (userId) {
-      fetchUserData(userId); // Выполнение запроса
+      fetchUserData(userId); // Выполняем запрос данных
     }
-  }, [userId, fetchUserData]);
+  }, [fetchUserData]);
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
