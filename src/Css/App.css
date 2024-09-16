@@ -209,19 +209,6 @@ button{
   color: #BBBBBB;
 }
 
-#centerMain{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#centerMain img {
-  height: 2.2vh;
-  margin-bottom: 1.5vh;
-  margin-left: 0.8vh;
-  filter: drop-shadow(0 0 0.8vh black);
-}
-
 .flex_menu_border{
   background: #1A1A1A;
   border-radius: 2vh;

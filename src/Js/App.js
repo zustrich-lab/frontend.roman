@@ -59,7 +59,6 @@ import nickGalka from '../IMG/All_Logo/galka.png';
 import nickKr from '../IMG/All_Logo/nickNema.png';
 import ContactUs from '../IMG/All_Logo/ContactUs.png';
 import Join from '../IMG/All_Logo/Join.png';
-import NewLabel from '../IMG/All_Logo/New_lable.png';
 //import image Main
 import Ellipse from '../IMG/All_Logo/Ellipse.png';
 import Logo from '../IMG/All_Logo/Logo.png';
@@ -695,7 +694,7 @@ const handleCheckReferrals = () => {
             <div className='flex_menu_border' id='lightGreenBack'>
               <div className='rightFlex'>
                 <div  id='up'>
-                  <p id='centerMain'>OCTIES COMMUNITY <img src={NewLabel} alt=''></img></p>
+                  <p>OCTIES COMMUNITY</p>
                 </div>
                 <div  id='dp'>
                   <p>Home for Telegram OCs</p>
