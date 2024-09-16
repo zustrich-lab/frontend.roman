@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback} from 'react';
 import { TonConnectUIProvider, useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
-import { Routes, Route, Link, useLocation, BrowserRouter } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../Css/App.css';
 //import pages
@@ -44,7 +44,7 @@ const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
-
+  
   useEffect(() => {
     const preloadImage = (src) => {
       const img = new Image();
@@ -91,7 +91,7 @@ function App() {
   const [alert, setalert] = useState(false);
 
   const tonConnectUI = useTonConnectUI();
-  const locationRoat = useLocation();
+  const location = useLocation();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
@@ -321,14 +321,6 @@ useEffect(() => {
         else{
           localStorage.setItem('KnopkaNick', 'false');
         }
-        if (data.hasReceivedTwitterReward){
-          localStorage.setItem('GalkaX', 'true');
-          localStorage.setItem('KnopkaX', 'false');
-        }
-        else{
-          localStorage.setItem('GalkaX', 'false');
-          localStorage.setItem('KnopkaX', 'true');
-        }
         
         setLoadingOcto(false);
         setAccountAgeCoins(accountAgeCoins);
@@ -402,12 +394,6 @@ const handleCheckReferrals = () => {
     }
   };
 
-  useEffect(() => {
-    const userId = new URLSearchParams(window.location.search).get('userId'); // Извлекаем userId внутри useEffect
-    if (userId) {
-      fetchUserData(userId); // Выполняем запрос данных
-    }
-  }, [fetchUserData]);
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
@@ -470,7 +456,7 @@ const handleCheckReferrals = () => {
       {isLoadingOctoVs && <LoadingScreen isLoadingOcto={isLoadingOcto} />}
       {isMint && isLoadingOctoVs && <LoadingScreenOctoNft isLoadingOcto={isLoadingOcto} />}
       {!isMint && isLoadingOctoVs && <LoadingScreenOcto isLoadingOcto={isLoadingOcto} />}
-      <BrowserRouter >
+
       <Routes>
         <Route path="/" element={ <Home Galo4ka={Galo4ka} Knopka={Knopka} Galo4kaX={Galo4kaX} KnopkaX={KnopkaX}  GalkaAnyTap={GalkaAnyTap} KnopkaAnyTap={KnopkaAnyTap}
                                   KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes} hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} 
@@ -488,7 +474,7 @@ const handleCheckReferrals = () => {
                               Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
                               rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}/>}/>
       </Routes>
-      
+
       {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
       {CheckOpen && (<Check setCheckOpen={setCheckOpen} setYearsOpen={setYearsOpen} />)}
       {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen} Yearr={Yearr} />)}
@@ -497,41 +483,38 @@ const handleCheckReferrals = () => {
       <footer className='BTNLow'>
         <ul className='footerItems'>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${(locationRoat.pathname !== "/") ? 'img-dark' : ''}`}  to="/" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              <Link className={`footerItemImgWrapper ${(location.pathname !== "/") ? 'img-dark' : ''}`}  to="/" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={IconHome} alt='IconHome'className='footerItemImg' />
               </ Link>       
-              <p className={`footerItemLabel ${(locationRoat.pathname !== "/") ? 'img-dark' : ''}`}>Home</p>
+              <p className={`footerItemLabel ${(location.pathname !== "/") ? 'img-dark' : ''}`}>Home</p>
             </li>
             <li className='footerItem' >
-              < Link className={`footerItemImgWrapper ${locationRoat.pathname !== "/leaderboard" ? 'img-dark' : ''}`} to="/leaderboard" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              < Link className={`footerItemImgWrapper ${location.pathname !== "/leaderboard" ? 'img-dark' : ''}`} to="/leaderboard" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={IconLeaderboard} alt='IconLeaderboard' className='footerItemImg'/>
               </ Link>
-              <p className={`footerItemLabel ${locationRoat.pathname !== "/leaderboard" ? 'img-dark' : ''}`}>Ranking</p>
+              <p className={`footerItemLabel ${location.pathname !== "/leaderboard" ? 'img-dark' : ''}`}>Ranking</p>
             </li>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${locationRoat.pathname !== "/playtoearn" ? 'img-dark' : ''}`} to="/playtoearn" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}}>
+              <Link className={`footerItemImgWrapper ${location.pathname !== "/playtoearn" ? 'img-dark' : ''}`} to="/playtoearn" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}}>
                 <img src={p2e} alt='IconFriends' className='footerItemImg'/>
               </Link>
-              <p className={`footerItemLabel ${locationRoat.pathname !== "/playtoearn" ? 'img-dark' : ''}`}>Play2Earn</p>
+              <p className={`footerItemLabel ${location.pathname !== "/playtoearn" ? 'img-dark' : ''}`}>Play2Earn</p>
             </li>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${locationRoat.pathname !== "/friends" ? 'img-dark' : ''}`} to="/friends" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              <Link className={`footerItemImgWrapper ${location.pathname !== "/friends" ? 'img-dark' : ''}`} to="/friends" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={IconFriends} alt='IconFriends' className='footerItemImg' />
               </Link>
-              <p className={`footerItemLabel ${locationRoat.pathname !== "/friends" ? 'img-dark' : ''}`}>Friends</p>
+              <p className={`footerItemLabel ${location.pathname !== "/friends" ? 'img-dark' : ''}`}>Friends</p>
             </li>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${locationRoat.pathname !== "/nfts" ? 'img-dark' : ''}`} to="/nfts" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              <Link className={`footerItemImgWrapper ${location.pathname !== "/nfts" ? 'img-dark' : ''}`} to="/nfts" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={NFTlogo} alt='IconFriends' className='footerItemImg' />
               </Link>
-              <p className= {`footerItemLabel ${locationRoat.pathname !== "/nfts" ? 'img-dark' : ''}`}>NFTs</p>
+              <p className= {`footerItemLabel ${location.pathname !== "/nfts" ? 'img-dark' : ''}`}>NFTs</p>
             </li>
           </ul>
       </footer>
-    
-      </BrowserRouter>
     </div>
-    
      </TonConnectUIProvider>
   );
 }
