@@ -396,9 +396,9 @@ const handleCheckReferrals = () => {
 
   useEffect(() => {
     if (userId) {
-      fetchUserData(userId);
+      fetchUserData(userId); // Выполнение запроса
     }
-  }, [userId]);
+  }, [userId, fetchUserData]);
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
