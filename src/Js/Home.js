@@ -79,7 +79,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
   const Tg_Channel_Open_X = async () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    console.log('Отправляемый userId:', userId);  // Логируем userId на клиенте
+    console.log('Отправляемый userId:', userId1);  // Логируем userId на клиенте
     window.open(X_LINK, '_blank');
     setTimeout(async () => {
       if (localStorage.getItem('KnopkaX') === 'true') {
