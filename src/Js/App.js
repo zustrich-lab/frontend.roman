@@ -395,6 +395,14 @@ const handleCheckReferrals = () => {
   };
 
   useEffect(() => {
+    if (userId) {
+      fetchUserData(userId);
+      checkSubscriptionAndUpdate(userId);
+      handleCheckReferrals();
+    }
+  }, [userId]);
+
+  useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
     if (userId) {
     
