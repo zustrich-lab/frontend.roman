@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {TonConnectButton, useTonConnectUI} from '@tonconnect/ui-react';
 import axios from 'axios';
 import '../Css/NFTs.css';
@@ -12,7 +12,7 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
   const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
   const [tonConnectUI] = useTonConnectUI();
   const userId = new URLSearchParams(window.location.search).get('userId');
-
+  const [setTransactionNumber] = useState(null);
 
   if (!localStorage.getItem('forsent')) {localStorage.setItem('forsent', 'false');}
   const timerforsent= localStorage.getItem('forsent') === 'true';
