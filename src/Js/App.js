@@ -40,7 +40,7 @@ import IconFriends from '../IMG/LowerIcon/Friends.png';
 import NFTlogo from '../IMG/LowerIcon/NFTLogo.png';
 import p2e from '../IMG/LowerIcon/p2e.png';
 
-const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
+const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
@@ -320,6 +320,14 @@ useEffect(() => {
         }
         else{
           localStorage.setItem('KnopkaNick', 'false');
+        }
+        if (data.hasReceivedTwitterReward){
+          localStorage.setItem('GalkaX', 'true');
+          localStorage.setItem('KnopkaX', 'false');
+        }
+        else{
+          localStorage.setItem('GalkaX', 'false');
+          localStorage.setItem('KnopkaX', 'true');
         }
         
         setLoadingOcto(false);
