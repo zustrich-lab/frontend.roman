@@ -42,6 +42,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
   const X_LINK = "https://x.com/Octies_GameFI";
   const Support = "https://t.me/octies_manage";
+  const userId1 = new URLSearchParams(window.location.search).get('userId');
 
   function handleOpenStoryWithVibration() {
     setYearsOpen(true);
@@ -78,29 +79,43 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
   const Tg_Channel_Open_X = async () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    console.log('Отправляемый userId:', userId1);  // Логируем userId на клиенте
     window.open(X_LINK, '_blank');
     setTimeout(async () => {
-        if (localStorage.getItem('KnopkaX') === 'true') {
-            localStorage.setItem('KnopkaX', 'false');
-            localStorage.setItem('GalkaX', 'true');
-            try {
-                const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId, amount: 500 });
-                if (response.data.success) {
-                    setCoins(response.data.coins);
-                    if (response.data.hasReceivedTwitterReward) {
-                        localStorage.setItem('hasReceivedTwitterReward', 'true');
-                         setCoins(response.data.coins);
-                    }
-                } else {
-                    console.error('Ошибка при обновлении монет:', response.data.message);
-                }
-            } catch (error) {
-                console.error('Ошибка при обновлении монет:', error);
+      if (localStorage.getItem('KnopkaX') === 'true') {
+        localStorage.setItem('KnopkaX', 'false');
+        localStorage.setItem('GalkaX', 'true');
+        try {
+          const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId: userId1, amount: 500 });
+          if (response.data.success) {
+            setCoins(response.data.coins);
+            if (response.data.hasReceivedTwitterReward) {
+              localStorage.setItem('hasReceivedTwitterReward', 'true');
+              setCoins(response.data.coins);
             }
+          } else {
+            console.error('Ошибка при обновлении монет:', response.data.message);
+          }
+        } catch (error) {
+          console.error('Ошибка при обновлении монет:', error);
         }
+      }
     }, 5000);
-};
+  };
 
+
+// try {
+//   const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId, amount: 500 });
+//   if (response.data.success) {
+//       setCoins(response.data.coins);
+//       if (response.data.hasReceivedTwitterReward) {
+//           localStorage.setItem('hasReceivedTwitterReward', 'true');
+//            setCoins(response.data.coins);
+//       }
+//   } else {
+//       console.error('Ошибка при обновлении монет:', response.data.message);
+//   }
+// }
 //________________________________________________________________Task_Swap
 const blockRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
 const [blockVisibility, setBlockVisibility] = useState([false, false, false, false, false]);
