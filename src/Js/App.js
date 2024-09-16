@@ -535,7 +535,7 @@ const handleCheckReferrals = () => {
       <footer className='BTNLow'>
         <ul className='footerItems'>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${(location.pathname !== "/") ? 'img-dark' : ''}`}  to="/" onClick={window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}>
+              <Link className={`footerItemImgWrapper ${(location.pathname !== "/") ? 'img-dark' : ''}`}  to="/">
                 <img src={IconHome} alt='IconHome'className='footerItemImg' />
               </ Link>       
               <p className={`footerItemLabel ${(location.pathname !== "/") ? 'img-dark' : ''}`}>Home</p>
