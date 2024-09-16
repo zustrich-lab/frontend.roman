@@ -488,7 +488,7 @@ const handleCheckReferrals = () => {
                               Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
                               rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}/>}/>
       </Routes>
-      </BrowserRouter>
+      
       {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
       {CheckOpen && (<Check setCheckOpen={setCheckOpen} setYearsOpen={setYearsOpen} />)}
       {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen} Yearr={Yearr} />)}
@@ -528,7 +528,10 @@ const handleCheckReferrals = () => {
             </li>
           </ul>
       </footer>
+    
+      </BrowserRouter>
     </div>
+    
      </TonConnectUIProvider>
   );
 }
