@@ -137,6 +137,7 @@ function App() {
   const [VisibleInvite, setVisibleInvite] = useState(false);
   const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
+  const [Ton5Succes, setTon5Succes] = useState(0);
   const [referralCoins, setReferralCoins] = useState(0);
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
   const [accountAgeCoins, setAccountAgeCoins] = useState(0);
@@ -375,6 +376,7 @@ useEffect(() => {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
+        setTon5Succes(data.specialTransactionCounter);
 
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -426,10 +428,12 @@ useEffect(() => {
       const data = response.data;
       if (response.status === 200) {
         setCoins(data.coins);
+        setTon5Succes(data.specialTransactionCounter);
         setReferralCoins(data.referralCoins);
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
         setSubscriptionCoins(data.coinsSub);
+
 
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
@@ -447,6 +451,7 @@ useEffect(() => {
         if (referralCoins > 0) {
           setVisibleInvite(true);
         }
+
         if(data.hasMintedNFT){
           localStorage.setItem('isMintNFT', 'true'); 
         }else{
@@ -527,6 +532,7 @@ const handleCheckReferrals = () => {
       if (response.status === 200) {
         const data = response.data;
         setCoins(data.coins);
+        setTon5Succes(data.specialTransactionCounter);
         
         if (data.hasCheckedSubscription) {
           localStorage.setItem('Galka', 'true');
@@ -810,14 +816,14 @@ const handleCheckReferrals = () => {
         </div>
         <div className='Tasks' id={isMint ? 'TaskswithoutNft' : undefined}>
           
-          <div className='TS'>
+          {Ton5Succes > 0 &&(<div className='TS'>
             <div className='tsPhoto'>
               <img src={Reward_pass} alt='' /> <p>Unique pass</p>
             </div>
             <div className='tsPhoto'>
-              <p id='highpink' ><img src={pass} id='pass' alt='' />+1 PASS</p>
+              <p id='highpink' ><img src={pass} id='pass' alt='' />+{Ton5Succes} PASS</p>
             </div>
-          </div>
+          </div>)}
 
           {isMint && <div className='TS'>
             <div className='tsPhoto'>
@@ -940,7 +946,7 @@ const handleCheckReferrals = () => {
       {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} 
-      durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
+      durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots} 
        />}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}

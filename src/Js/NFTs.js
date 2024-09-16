@@ -11,6 +11,8 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
 
   const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
   const [tonConnectUI] = useTonConnectUI();
+  const userId = new URLSearchParams(window.location.search).get('userId');
+
 
   if (!localStorage.getItem('forsent')) {localStorage.setItem('forsent', 'false');}
   const timerforsent= localStorage.getItem('forsent') === 'true';
@@ -56,8 +58,14 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
             const updatedSpots = response.data.availableSpots;
 
             document.getElementById("highgreen").textContent = updatedSpots;
-
             localStorage.setItem('forsent', 'true');
+
+            const specialResponse = await axios.post(`${REACT_APP_BACKEND_URL}/special-transaction-success`, { userId });
+            if (specialResponse.data.success) {
+                console.log('Special transaction recorded successfully.');
+            } else {
+                console.error('Failed to record special transaction.');
+            }
         } else {
             console.error("Failed to update available spots.");
         }
@@ -65,6 +73,32 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
         console.error("Error sending transaction:", error);
         localStorage.setItem('forsent', 'false');
     }
+};
+
+const sendTransactionrefil = async () => {
+  try {
+      window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+      const walletInfo = tonConnectUI.walletInfo; 
+      if (!walletInfo) {
+          setalert(true); 
+          return;
+      }
+
+      const transaction = {
+          validUntil: Math.floor(Date.now() / 1000) + 600, 
+          messages: [
+              {
+                  address: "EQACWu9QvWiu_T1YFrLTZBhm7QPtUUf45RVK_lH-iCmvoo-J",
+                  amount: "10000000", 
+              },
+          ],
+      };
+
+      await tonConnectUI.sendTransaction(transaction);
+  } catch (error) {
+      console.error("Error sending transaction:", error);
+      localStorage.setItem('forsent', 'false');
+  }
 };
 
   return (
@@ -136,10 +170,9 @@ const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisi
             <ul class="custom-list">
               <li>Utilities (specific ones are <br/>currently unknown)</li>
             </ul>
-          
+            <button className='sendButtonm1' onClick={sendTransactionrefil}>Mint Nft  <img src={ton55} alt=''/></button>
             {!timerforsent && <button className='sendButtonm' onClick={sendTransaction1}>Send transaction <img src={ton55} alt=''/></button>}
             {timerforsent && <button className='FillButtonm' onClick={Tg_Form_Window}>Fill out the form</button>}
-          
           </div>
           <div className='rightNft2'>
             <img src={durov} alt=''/>
