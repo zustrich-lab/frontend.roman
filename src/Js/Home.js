@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 import '../Css/App.css';
 
 //import image Reward
@@ -33,9 +34,73 @@ import pass from '../IMG/All_Logo/pass.png';
 
 function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, KnopkaNick, 
     Ton5Succes, hasTelegramPremium, accountAgeCoins, transactionNumber,
-    Tg_Channel_Open_chek, Tg_Channel_Open_chek2,  Tg_Channel_Support, Tg_Channel_Open_X , coins, setYearsOpen, isMint, subscriptionCoins, referralCoins
+     coins, setYearsOpen, isMint, subscriptionCoins, referralCoins, REACT_APP_BACKEND_URL,  userId, checkSubscriptionAndUpdate , setCoins
 
  }) {
+
+  const TG_CHANNEL_LINK = "https://t.me/octies_community";
+  const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
+  const X_LINK = "https://x.com/Octies_GameFI";
+  const Support = "https://t.me/octies_manage";
+
+  function handleOpenStoryWithVibration() {
+    setYearsOpen(true);
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  }
+
+
+  const Tg_Channel_Open_chek = () => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(TG_CHANNEL_LINK, '_blank');
+    setTimeout(() => {
+      checkSubscriptionAndUpdate(userId);
+    }, 3000);
+  };
+
+  const Tg_Channel_Open_chek2 = () => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(TG_CHANNEL_LINK2, '_blank');
+    setTimeout(() => {
+      checkSubscriptionAndUpdate(userId);
+    }, 3000);
+  };
+
+  const Tg_Channel_Support = () => {
+    const userId = new URLSearchParams(window.location.search).get('userId');
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(Support, '_blank');
+    setTimeout(() => {
+      checkSubscriptionAndUpdate(userId);
+    }, 3000);
+  };
+
+  const Tg_Channel_Open_X = async () => {
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    window.open(X_LINK, '_blank');
+    setTimeout(async () => {
+        if (localStorage.getItem('KnopkaX') === 'true') {
+            localStorage.setItem('KnopkaX', 'false');
+            localStorage.setItem('GalkaX', 'true');
+            try {
+                const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId, amount: 500 });
+                if (response.data.success) {
+                    setCoins(response.data.coins);
+                    if (response.data.hasReceivedTwitterReward) {
+                        localStorage.setItem('hasReceivedTwitterReward', 'true');
+                         setCoins(response.data.coins);
+                    }
+                } else {
+                    console.error('Ошибка при обновлении монет:', response.data.message);
+                }
+            } catch (error) {
+                console.error('Ошибка при обновлении монет:', error);
+            }
+        }
+    }, 5000);
+};
+
 //________________________________________________________________Task_Swap
 const blockRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
 const [blockVisibility, setBlockVisibility] = useState([false, false, false, false, false]);
@@ -77,11 +142,6 @@ useEffect(() => {
   };
 }, );
 //_______________________________________________________________________________________
-
-function handleOpenStoryWithVibration() {
-    setYearsOpen(true);
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-  }
 
     return (
         <div className="mainHome">

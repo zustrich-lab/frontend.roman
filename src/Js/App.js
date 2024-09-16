@@ -88,11 +88,6 @@ function App() {
   if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
   const isMint = localStorage.getItem('isMintNFT') === 'true';
 
-  const TG_CHANNEL_LINK = "https://t.me/octies_community";
-  const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
-  const X_LINK = "https://x.com/Octies_GameFI";
-  const Support = "https://t.me/octies_manage";
-
   const [alert, setalert] = useState(false);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
@@ -116,58 +111,6 @@ function App() {
   const [isLoadingOcto, setLoadingOcto] = useState(false);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
   const location = useLocation();
-
-  const Tg_Channel_Open_chek = () => {
-      const userId = new URLSearchParams(window.location.search).get('userId');
-      window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-      window.open(TG_CHANNEL_LINK, '_blank');
-      setTimeout(() => {
-        checkSubscriptionAndUpdate(userId);
-      }, 3000);
-    };
-  
-    const Tg_Channel_Open_chek2 = () => {
-      const userId = new URLSearchParams(window.location.search).get('userId');
-      window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-      window.open(TG_CHANNEL_LINK2, '_blank');
-      setTimeout(() => {
-        checkSubscriptionAndUpdate(userId);
-      }, 3000);
-    };
-  
-    const Tg_Channel_Support = () => {
-      const userId = new URLSearchParams(window.location.search).get('userId');
-      window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-      window.open(Support, '_blank');
-      setTimeout(() => {
-        checkSubscriptionAndUpdate(userId);
-      }, 3000);
-    };
-
-    const Tg_Channel_Open_X = async () => {
-      window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-      window.open(X_LINK, '_blank');
-      setTimeout(async () => {
-          if (localStorage.getItem('KnopkaX') === 'true') {
-              localStorage.setItem('KnopkaX', 'false');
-              localStorage.setItem('GalkaX', 'true');
-              try {
-                  const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId, amount: 500 });
-                  if (response.data.success) {
-                      setCoins(response.data.coins);
-                      if (response.data.hasReceivedTwitterReward) {
-                          localStorage.setItem('hasReceivedTwitterReward', 'true');
-                           setCoins(response.data.coins);
-                      }
-                  } else {
-                      console.error('Ошибка при обновлении монет:', response.data.message);
-                  }
-              } catch (error) {
-                  console.error('Ошибка при обновлении монет:', error);
-              }
-          }
-      }, 5000);
-  };
 
   useEffect(() => {
     if (!isLoadingOcto) {
@@ -512,9 +455,9 @@ const handleCheckReferrals = () => {
       <Routes>
         <Route path="/" element={ <Home Galo4ka={Galo4ka} Knopka={Knopka} Galo4kaX={Galo4kaX} KnopkaX={KnopkaX}  GalkaAnyTap={GalkaAnyTap} KnopkaAnyTap={KnopkaAnyTap}
                                   KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes} hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} 
-                                  transactionNumber={transactionNumber}Tg_Channel_Open_chek={Tg_Channel_Open_chek} Tg_Channel_Open_chek2={Tg_Channel_Open_chek2}  
-                                  Tg_Channel_Support={ Tg_Channel_Support} Tg_Channel_Open_X={Tg_Channel_Open_X } coins={coins} setYearsOpen={setYearsOpen} isMint={isMint} 
-                                  subscriptionCoins={subscriptionCoins} referralCoins={referralCoins}/>} />
+                                  transactionNumber={transactionNumber} coins={coins} setYearsOpen={setYearsOpen} isMint={isMint} 
+                                  subscriptionCoins={subscriptionCoins} referralCoins={referralCoins} REACT_APP_BACKEND_URL={REACT_APP_BACKEND_URL} checkSubscriptionAndUpdate={checkSubscriptionAndUpdate }/>} 
+                                  userId={userId}  setCoins={ setCoins}/>
 
         <Route path="/leaderboard" element={<Leaderboard userId={userId} coins={coins} getRandomColor={getRandomColor}/>} />
 
