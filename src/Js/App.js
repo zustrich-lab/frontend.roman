@@ -480,6 +480,13 @@ useEffect(() => {
         else{
           localStorage.setItem('KnopkaNick', 'false');
         }
+        if (data.hasReceivedTwitterReward) {
+          localStorage.setItem('GalkaX', 'true');
+          localStorage.setItem('KnopkaX', 'false');
+        } else {
+          localStorage.setItem('GalkaX', 'false');
+          localStorage.setItem('KnopkaX', 'true');
+        }
         
         setLoadingOcto(false);
         setAccountAgeCoins(accountAgeCoins);
