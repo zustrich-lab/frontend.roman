@@ -626,12 +626,10 @@ const handleCheckReferrals = () => {
       Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
       rosomaha={rosomaha} ton5={ton5} ton55={ton55} 
       durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots} 
-       />}
+      />}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
 
-
-      
       <footer className='BTNLow'>
         <ul className='footerItems'>
             <li className='footerItem'>
