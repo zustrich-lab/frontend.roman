@@ -72,7 +72,7 @@ const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
 
 function App() {
-
+  
   useEffect(() => {
     const preloadImage = (src) => {
       const img = new Image();
@@ -558,6 +558,7 @@ const handleCheckReferrals = () => {
       console.error('Ошибка при проверке подписки:', error);
     }
   };
+
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
