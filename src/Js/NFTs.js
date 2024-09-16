@@ -5,7 +5,7 @@ import '../Css/NFTs.css';
 
 import AlertNft from '../Alert/Alert.js';
 
-const NFTs = ({NFTsAnim, showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
+const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
   shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, updatedSpots
 }) => {
 
@@ -102,7 +102,7 @@ const sendTransactionrefil = async () => {
 };
 
   return (
-    <div className={`NFTs_Window ${NFTsAnim ? 'fade-out' : ''}`}>
+    <div className='NFTs_Window'  >
       {alert && <AlertNft rosomaha={rosomaha} setalert={setalert}/>}
       <div className='Shapka'>
         <div className='shapkaborder'>

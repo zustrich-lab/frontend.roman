@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback} from 'react';
 import { TonConnectUIProvider, useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../Css/App.css';
 //import pages
@@ -92,15 +93,6 @@ function App() {
   const X_LINK = "https://x.com/Octies_GameFI";
   const Support = "https://t.me/octies_manage";
 
-  const [FriendsAnim, setFriendsAnim] = useState(false);
-  const [LeaderboardAnim, setLeaderboardAnim] = useState(false);
-  const [p2eAnim, setp2eAnim] = useState(false);
-  const [NFTsAnim, setNFTsAnim] = useState(false);
-
-  const [isLeaderboardOpen, setIsLeaderboardOpen] = useState(false);
-  const [isFrendsOpen, setIsFrendsOpen] = useState(false);
-  const [isp2eOpen, setIsp2eOpen] = useState(false);
-  const [NFTsOpen, setNFTsOpen] = useState(false);
   const [alert, setalert] = useState(false);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
@@ -117,13 +109,13 @@ function App() {
   const [OctOpen, setOctOpen] = useState(false);
   const [Yearr, setYearr] = useState(0);
   const [updatedSpots, setupdatedSpots] = useState(0);
-  const [app, setApp] = useState(false);
   const [tonConnectUI] = useTonConnectUI();
   const [transactionNumber, setTransactionNumber] = useState(null);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
   const walletAddress = useTonAddress();
-  const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOcto, setLoadingOcto] = useState(false);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
+  const location = useLocation();
 
   const Tg_Channel_Open_chek = () => {
       const userId = new URLSearchParams(window.location.search).get('userId');
@@ -278,71 +270,6 @@ useEffect(() => {
   }
 }, [walletAddress]);
 
-  function handleHomeWithVibration() {
-    setIsLeaderboardOpen(false);
-    setIsFrendsOpen(false);
-    setIsp2eOpen(false);
-    setFriendsAnim(true);
-    setp2eAnim(true);
-    setLeaderboardAnim(true);
-    setNFTsAnim(true);
-    setApp(false);
-    setNFTsOpen(false);
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-  }
-
-  function handleLeaderboardWithVibration() {
-    setApp(true);
-    setIsp2eOpen(false);
-    setIsFrendsOpen(false);
-    setIsLeaderboardOpen(true);
-    setNFTsOpen(false);
-    setNFTsAnim(true);
-    setLeaderboardAnim(false);
-    setFriendsAnim(true);
-    setp2eAnim(true);
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-  }
-
-  function handleNFTsWithVibration() {
-    setApp(true);
-    setIsp2eOpen(false);
-    setIsFrendsOpen(false);
-    setIsLeaderboardOpen(false);
-    setNFTsOpen(true);
-    setNFTsAnim(false);
-    setLeaderboardAnim(true);
-    setFriendsAnim(true);
-    setp2eAnim(true);
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-  }
-
-  function handleP2EWithVibration() {
-    setIsp2eOpen(true);
-    setFriendsAnim(true);
-    setp2eAnim(false);
-    setLeaderboardAnim(true);
-    setNFTsAnim(true);
-    setIsLeaderboardOpen(false);
-    setIsFrendsOpen(false);
-    setApp(true);
-    setNFTsOpen(false);
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-  }
-
-  function handleFrendsWithVibration() {
-    setIsFrendsOpen(true);
-    setFriendsAnim(false);
-    setLeaderboardAnim(true);
-    setp2eAnim(true);
-    setIsLeaderboardOpen(false);
-    setIsp2eOpen(false);
-    setApp(true);
-    setNFTsAnim(true);
-    setNFTsOpen(false);
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-  }
-
   const checkSubscription = useCallback(async () => {
     if (!userId) return;
     try {
@@ -465,7 +392,7 @@ useEffect(() => {
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  }, [referralCoins]);
+  }, []);
   
 const handleCheckReferrals = () => {
     axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
@@ -578,28 +505,27 @@ const handleCheckReferrals = () => {
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
     <div className="App">
 
-      {app && <div className='blk'></div>}
       {isLoadingOctoVs && <LoadingScreen isLoadingOcto={isLoadingOcto} />}
       {isMint && isLoadingOctoVs && <LoadingScreenOctoNft isLoadingOcto={isLoadingOcto} />}
       {!isMint && isLoadingOctoVs && <LoadingScreenOcto isLoadingOcto={isLoadingOcto} />}
 
-      <Home Galo4ka={Galo4ka} Knopka={Knopka} Galo4kaX={Galo4kaX} KnopkaX={KnopkaX}  GalkaAnyTap={GalkaAnyTap} KnopkaAnyTap={KnopkaAnyTap}
-      KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes}
-      hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} transactionNumber={transactionNumber}
-      Tg_Channel_Open_chek={Tg_Channel_Open_chek} Tg_Channel_Open_chek2={Tg_Channel_Open_chek2}  Tg_Channel_Support={ Tg_Channel_Support} Tg_Channel_Open_X={Tg_Channel_Open_X } 
-      coins={coins} setYearsOpen={setYearsOpen} isMint={isMint} subscriptionCoins={subscriptionCoins} referralCoins={referralCoins}/>
+      <Routes>
+        <Route path="/" element={ <Home Galo4ka={Galo4ka} Knopka={Knopka} Galo4kaX={Galo4kaX} KnopkaX={KnopkaX}  GalkaAnyTap={GalkaAnyTap} KnopkaAnyTap={KnopkaAnyTap}
+                                  KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes} hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} 
+                                  transactionNumber={transactionNumber}Tg_Channel_Open_chek={Tg_Channel_Open_chek} Tg_Channel_Open_chek2={Tg_Channel_Open_chek2}  
+                                  Tg_Channel_Support={ Tg_Channel_Support} Tg_Channel_Open_X={Tg_Channel_Open_X } coins={coins} setYearsOpen={setYearsOpen} isMint={isMint} 
+                                  subscriptionCoins={subscriptionCoins} referralCoins={referralCoins}/>} />
 
-      {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins} getRandomColor={getRandomColor}/>)}
+        <Route path="/leaderboard" element={<Leaderboard userId={userId} coins={coins} getRandomColor={getRandomColor}/>} />
 
-      {isp2eOpen && <PlayToEarn p2eAnim={p2eAnim} soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>}
+        <Route path="/playtoearn" element={<PlayToEarn soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>} />
 
-      {NFTsOpen && <NFTs NFTsAnim={NFTsAnim} showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
-      Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
-      rosomaha={rosomaha} ton5={ton5} ton55={ton55} 
-      durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots} 
-      />}
+        <Route path="/friends" element={<Friends invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>} />
 
-      {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
+        <Route path="/nfts" element={<NFTs showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
+                              Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} sendTransaction={sendTransaction}
+                              rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}/>}/>
+      </Routes>
 
       {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
       {CheckOpen && (<Check setCheckOpen={setCheckOpen} setYearsOpen={setYearsOpen} />)}
@@ -609,34 +535,34 @@ const handleCheckReferrals = () => {
       <footer className='BTNLow'>
         <ul className='footerItems'>
             <li className='footerItem'>
-              <div className={`footerItemImgWrapper ${(isLeaderboardOpen || isFrendsOpen || isp2eOpen || NFTsOpen) ? 'img-dark' : ''}`} onClick={handleHomeWithVibration}>
+              <Link className={`footerItemImgWrapper ${(location.pathname !== "/") ? 'img-dark' : ''}`}  to="/" onClick={window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}>
                 <img src={IconHome} alt='IconHome'className='footerItemImg' />
-              </div>       
-              <p className={`footerItemLabel ${(isLeaderboardOpen || isFrendsOpen || isp2eOpen || NFTsOpen) ? 'img-dark' : ''}`}>Home</p>
+              </ Link>       
+              <p className={`footerItemLabel ${(location.pathname !== "/") ? 'img-dark' : ''}`}>Home</p>
             </li>
             <li className='footerItem' >
-              <div className={`footerItemImgWrapper ${!isLeaderboardOpen ? 'img-dark' : ''}`} onClick={handleLeaderboardWithVibration}>
+              < Link className={`footerItemImgWrapper ${location.pathname !== "/leaderboard" ? 'img-dark' : ''}`} to="/leaderboard" onClick={window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}>
                 <img src={IconLeaderboard} alt='IconLeaderboard' className='footerItemImg'/>
-              </div>
-              <p className={`footerItemLabel ${!isLeaderboardOpen ? 'img-dark' : ''}`}>Ranking</p>
+              </ Link>
+              <p className={`footerItemLabel ${location.pathname !== "/leaderboard" ? 'img-dark' : ''}`}>Ranking</p>
             </li>
             <li className='footerItem'>
-              <div className={`footerItemImgWrapper ${!isp2eOpen ? 'img-dark' : ''}`} onClick={handleP2EWithVibration}>
+              <Link className={`footerItemImgWrapper ${location.pathname !== "/playtoearn" ? 'img-dark' : ''}`} to="/playtoearn" onClick={window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}>
                 <img src={p2e} alt='IconFriends' className='footerItemImg'/>
-              </div>
-              <p className={`footerItemLabel ${!isp2eOpen ? 'img-dark' : ''}`}>Play2Earn</p>
+              </Link>
+              <p className={`footerItemLabel ${location.pathname !== "/playtoearn" ? 'img-dark' : ''}`}>Play2Earn</p>
             </li>
             <li className='footerItem'>
-              <div className={`footerItemImgWrapper ${!isFrendsOpen ? 'img-dark' : ''}`} onClick={handleFrendsWithVibration}>
+              <Link className={`footerItemImgWrapper ${location.pathname !== "/friends" ? 'img-dark' : ''}`} to="/friends" onClick={window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}>
                 <img src={IconFriends} alt='IconFriends' className='footerItemImg' />
-              </div>
-              <p className={`footerItemLabel ${!isFrendsOpen ? 'img-dark' : ''}`}>Friends</p>
+              </Link>
+              <p className={`footerItemLabel ${location.pathname !== "/friends" ? 'img-dark' : ''}`}>Friends</p>
             </li>
             <li className='footerItem'>
-              <div className={`footerItemImgWrapper ${!NFTsOpen ? 'img-dark' : ''}`} onClick={handleNFTsWithVibration}>
+              <Link className={`footerItemImgWrapper ${location.pathname !== "/nfts" ? 'img-dark' : ''}`} to="/nfts" onClick={window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}>
                 <img src={NFTlogo} alt='IconFriends' className='footerItemImg' />
-              </div>
-              <p className= {`footerItemLabel ${!NFTsOpen ? 'img-dark' : ''}`}>NFTs</p>
+              </Link>
+              <p className= {`footerItemLabel ${location.pathname !== "/nfts" ? 'img-dark' : ''}`}>NFTs</p>
             </li>
           </ul>
       </footer>

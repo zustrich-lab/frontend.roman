@@ -2,10 +2,10 @@ import React from 'react';
 import '../Css/P2e.css';
 
 
-const PlayToEarn = ({p2eAnim, soon, PLANET, OctiesCosmo, starship}) => {
+const PlayToEarn = ({soon, PLANET, OctiesCosmo, starship}) => {
 
   return (
-    <div className={`P2E_Window ${p2eAnim ? 'fade-out' : ''}`}>
+    <div className='P2E_Window' >
       <div class="background-container">
       <div class="clouds"></div>
         <div class="stars"></div>
