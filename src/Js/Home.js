@@ -42,6 +42,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
   const X_LINK = "https://x.com/Octies_GameFI";
   const Support = "https://t.me/octies_manage";
+  const userId1 = new URLSearchParams(window.location.search).get('userId');
 
   function handleOpenStoryWithVibration() {
     setYearsOpen(true);
@@ -85,7 +86,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
         localStorage.setItem('KnopkaX', 'false');
         localStorage.setItem('GalkaX', 'true');
         try {
-          const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId, amount: 500 });
+          const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId1, amount: 500 });
           if (response.data.success) {
             setCoins(response.data.coins);
             if (response.data.hasReceivedTwitterReward) {
