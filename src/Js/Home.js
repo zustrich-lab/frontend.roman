@@ -78,25 +78,29 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
   const Tg_Channel_Open_X = async () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    console.log('Отправляемый userId:', userId);  // Логируем userId на клиенте
     window.open(X_LINK, '_blank');
     setTimeout(async () => {
-        if (localStorage.getItem('KnopkaX') === 'true') {
-            localStorage.setItem('KnopkaX', 'false');
-            localStorage.setItem('GalkaX', 'true');
-            try {
-              const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId, amount: 500 });
-              console.log('Ответ сервера:', response);
-              if (response.data.success) {
-                  setCoins(response.data.coins);
-              } else {
-                  console.error('Ошибка сервера:', response.data.message);
-              }
-          } catch (error) {
-              console.error('Ошибка при обновлении монет:', error.response || error.message || error);
+      if (localStorage.getItem('KnopkaX') === 'true') {
+        localStorage.setItem('KnopkaX', 'false');
+        localStorage.setItem('GalkaX', 'true');
+        try {
+          const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins`, { userId, amount: 500 });
+          if (response.data.success) {
+            setCoins(response.data.coins);
+            if (response.data.hasReceivedTwitterReward) {
+              localStorage.setItem('hasReceivedTwitterReward', 'true');
+              setCoins(response.data.coins);
+            }
+          } else {
+            console.error('Ошибка при обновлении монет:', response.data.message);
           }
+        } catch (error) {
+          console.error('Ошибка при обновлении монет:', error);
         }
+      }
     }, 5000);
-};
+  };
 
 
 // try {
