@@ -81,8 +81,6 @@ function App() {
   const KnopkaAnyTap = localStorage.getItem('KnopkaAnyTap') === 'true';
   if (!localStorage.getItem('KnopkaNick')) {localStorage.setItem('KnopkaNick', 'false');}
   const KnopkaNick = localStorage.getItem('KnopkaNick') === 'true';
-  if (!localStorage.getItem('Sub')) { localStorage.setItem('Sub', 'false');}
-  const Sub = localStorage.getItem('Sub') === 'true';
   if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
   const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
   const [showNotCompleted, setShowNotCompleted] = useState(false);
@@ -106,8 +104,6 @@ function App() {
   const [alert, setalert] = useState(false);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
-  const [VisibleInvite, setVisibleInvite] = useState(false);
-  const [VisibleTelegramPremium, setVisibleTelegramPremium] = useState(false);
   const [coins, setCoins] = useState(0);
   const [Ton5Succes, setTon5Succes] = useState(0);
   const [referralCoins, setReferralCoins] = useState(0);
@@ -180,8 +176,6 @@ function App() {
           }
       }, 5000);
   };
-
-
 
   useEffect(() => {
     if (!isLoadingOcto) {
@@ -349,8 +343,6 @@ useEffect(() => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   }
 
-
-
   const checkSubscription = useCallback(async () => {
     if (!userId) return;
     try {
@@ -427,12 +419,6 @@ useEffect(() => {
           setAccountAgeCoins(300); 
         }
         setcoinOnlyYears(accountAgeCoins);
-        if (data.hasTelegramPremium) {
-          setVisibleTelegramPremium(true);
-        }
-        if (referralCoins > 0) {
-          setVisibleInvite(true);
-        }
 
         if(data.hasMintedNFT){
           localStorage.setItem('isMintNFT', 'true'); 
@@ -480,12 +466,6 @@ useEffect(() => {
       console.error('Ошибка при получении данных пользователя:', error);
     }
   }, [referralCoins]);
-
-  if(subscriptionCoins > 0){
-    localStorage.setItem('Sub', 'true');
-  } else {
-    localStorage.setItem('Sub', 'false');
-  }
   
 const handleCheckReferrals = () => {
     axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
@@ -574,8 +554,6 @@ const handleCheckReferrals = () => {
     }
   }, [fetchUserData, checkSubscription]);
 
-  
-
   useEffect(() => {
     if (window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
@@ -606,17 +584,10 @@ const handleCheckReferrals = () => {
       {!isMint && isLoadingOctoVs && <LoadingScreenOcto isLoadingOcto={isLoadingOcto} />}
 
       <Home Galo4ka={Galo4ka} Knopka={Knopka} Galo4kaX={Galo4kaX} KnopkaX={KnopkaX}  GalkaAnyTap={GalkaAnyTap} KnopkaAnyTap={KnopkaAnyTap}
-      KnopkaNick={KnopkaNick} Sub={Sub} VisibleInvite={VisibleInvite} VisibleTelegramPremium={VisibleTelegramPremium} Ton5Succes={Ton5Succes}
+      KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes}
       hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} transactionNumber={transactionNumber}
       Tg_Channel_Open_chek={Tg_Channel_Open_chek} Tg_Channel_Open_chek2={Tg_Channel_Open_chek2}  Tg_Channel_Support={ Tg_Channel_Support} Tg_Channel_Open_X={Tg_Channel_Open_X } 
       coins={coins} setYearsOpen={setYearsOpen} isMint={isMint} subscriptionCoins={subscriptionCoins} referralCoins={referralCoins}/>
-
-
-
-      {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
-      {CheckOpen && (<Check setCheckOpen={setCheckOpen} setYearsOpen={setYearsOpen} />)}
-      {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen} Yearr={Yearr} />)}
-      {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears} />)}
 
       {isLeaderboardOpen && (<Leaderboard LeaderboardAnim={LeaderboardAnim} userId={userId} coins={coins} getRandomColor={getRandomColor}/>)}
 
@@ -629,6 +600,11 @@ const handleCheckReferrals = () => {
       />}
 
       {isFrendsOpen && (<Friends FriendsAnim={FriendsAnim} invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>)}
+
+      {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
+      {CheckOpen && (<Check setCheckOpen={setCheckOpen} setYearsOpen={setYearsOpen} />)}
+      {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen} Yearr={Yearr} />)}
+      {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears} />)}
 
       <footer className='BTNLow'>
         <ul className='footerItems'>

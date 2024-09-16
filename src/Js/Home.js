@@ -31,7 +31,7 @@ import Octo from '../IMG/All_Logo/Octo.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
 import pass from '../IMG/All_Logo/pass.png';
 
-function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, KnopkaNick, Sub , VisibleInvite, VisibleTelegramPremium,
+function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, KnopkaNick, 
     Ton5Succes, hasTelegramPremium, accountAgeCoins, transactionNumber,
     Tg_Channel_Open_chek, Tg_Channel_Open_chek2,  Tg_Channel_Support, Tg_Channel_Open_X , coins, setYearsOpen, isMint, subscriptionCoins, referralCoins
 
@@ -246,7 +246,7 @@ function handleOpenStoryWithVibration() {
             </div>
           </div>}
 
-          {Sub && <div className='TS'>
+          {subscriptionCoins > 0 && <div className='TS'>
             <div className='tsPhoto'>
               <img src={Reward_PartnerChanels} alt='' /> <p>Partner channels subs</p>
             </div>
@@ -264,7 +264,7 @@ function handleOpenStoryWithVibration() {
             </div>
           </div>
 
-          {VisibleTelegramPremium && <div className='TS'>
+          {hasTelegramPremium && <div className='TS'>
             <div className='tsPhoto'>
               <img src={Reward_Premium} alt='' /> <p>Telegram Premium</p>
             </div>
@@ -300,7 +300,7 @@ function handleOpenStoryWithVibration() {
           </div>
         </div>}       
 
-          {VisibleInvite && <div className='TS'>
+          {referralCoins > 0 && <div className='TS'>
             <div className='tsPhoto'>
               <img src={Reward_Invite} alt='TS4' /> <p>Invites</p>
             </div>
