@@ -452,21 +452,24 @@ const handleCheckReferrals = () => {
   }, []);
 
   useEffect(() => {
- 
-    
-    // Navigate to the main page
     navigateOcties("/");
-  
-    // Fetch the user data
-
-      
-   
-    
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
+
+  useEffect(() => {
+    let userId = new URLSearchParams(window.location.search).get('userId');
+    if (!userId) {
+      userId = localStorage.getItem('userId');
+    }
+    if (userId) {
+      localStorage.setItem('userId', userId);
+      fetchUserData(userId);
+    } else {
+      console.error('userId не найден');
+    }
   }, [fetchUserData]);
   
-  fetchUserData();
-
   return (
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
     <div className="App">
