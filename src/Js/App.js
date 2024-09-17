@@ -459,13 +459,13 @@ const handleCheckReferrals = () => {
   
     // Fetch the user data
 
-      fetchUserData();
+      
    
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchUserData]);
   
-  
+  fetchUserData();
 
   return (
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
