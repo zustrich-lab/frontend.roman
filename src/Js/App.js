@@ -452,19 +452,12 @@ const handleCheckReferrals = () => {
   }, []);
 
   useEffect(() => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
+ 
     
     // Navigate to the main page
     navigateOcties("/");
-  
-    // Fetch the user data
-    if (userId) {
-      fetchUserData(userId);
-    } else {
-      console.error('UserId not found in URL');
-    }
-    
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchUserData(userId);
+
   }, [fetchUserData]);
   
   
