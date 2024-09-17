@@ -156,7 +156,7 @@ function App() {
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
   const walletAddress = useTonAddress();
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
   useEffect(() => {
     if (!isLoadingOcto) {
