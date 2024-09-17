@@ -271,6 +271,25 @@ useEffect(() => {
     }
 }, []);
 
+useEffect(() => {
+  const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
+  const savedUserId = localStorage.getItem('userId');
+
+  let userId;
+
+  if (userIdFromURL) {
+    userId = userIdFromURL;
+    localStorage.setItem('userId', userId); // Сохраняем userId для последующего использования
+  } else if (savedUserId) {
+    userId = savedUserId; // Берем userId из localStorage, если он был сохранен
+  } else {
+    console.error('userId не найден');
+    return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
+  }
+
+  fetchUserData(userId); // Вызываем функцию с userId
+}, [fetchUserData]);
+
   const fetchUserData = useCallback(async (userId) => {
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
@@ -457,18 +476,7 @@ const handleCheckReferrals = () => {
   }, []);
   
 
-  useEffect(() => {
-    let userId = new URLSearchParams(window.location.search).get('userId');
-    if (!userId) {
-      userId = localStorage.getItem('userId');
-    }
-    if (userId) {
-      localStorage.setItem('userId', userId);
-      fetchUserData(userId);
-    } else {
-      console.error('userId не найден');
-    }
-  }, [fetchUserData]);
+
   return (
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
     <div className="App">
