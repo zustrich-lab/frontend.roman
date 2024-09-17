@@ -96,7 +96,6 @@ const Leaderboard = ({ userId, coins, getRandomColor}) => {
     }
   }, [userId, getRandomColor]);
 
-
   const getMedal = (index) => {
     switch (index) {
       case 0:
@@ -109,8 +108,6 @@ const Leaderboard = ({ userId, coins, getRandomColor}) => {
         return `#${index + 1}`;
     }
   };
-
-  
 
   return (
     <div className={'Lb_Window'}>

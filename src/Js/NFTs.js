@@ -168,7 +168,7 @@ const sendTransactionrefil = async () => {
               <li>1 NFT of a unique OCTIES <br/> character, which you <br/> can design yourself</li>
             </ul>
             <ul class="custom-list">
-              <li>Secret pass granting access<br/> to unique features & utilities</li>
+              <li>Utilities (specific ones are <br/>currently unknown)</li>
             </ul>
             <button className='sendButtonm1' onClick={sendTransactionrefil}>Mint Nft  <img src={ton55} alt=''/></button>
             {!timerforsent && <button className='sendButtonm' onClick={sendTransaction1}>Send transaction <img src={ton55} alt=''/></button>}
