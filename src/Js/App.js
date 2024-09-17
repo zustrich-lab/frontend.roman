@@ -452,11 +452,13 @@ const handleCheckReferrals = () => {
   }, []);
 
   useEffect(() => {
-    if (performance.getEntriesByType("navigation")[0].type === "reload") {
+    if (performance.getEntriesByType.type === "reload") {
       // Это сработает только при полной перезагрузке страницы
       if (locationOcties.pathname !== "/") {
         // Сбрасываем на главную страницу
         navigateOcties("/", { replace: true });
+        fetchUserData();
+      } else {
         fetchUserData();
       }
     }
