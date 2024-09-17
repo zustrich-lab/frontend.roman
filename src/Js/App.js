@@ -42,26 +42,8 @@ import p2e from '../IMG/LowerIcon/p2e.png';
 
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
-const savedUserId = localStorage.getItem('userId');
 
 function App() {
-
-  useEffect(() => {
-    const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
-    
-  
-    let userId;
-  
-    if (userIdFromURL) {
-      userId = userIdFromURL;
-      localStorage.setItem('userId', userId); // Сохраняем userId для последующего использования
-    } else if (savedUserId) {
-      userId = savedUserId; // Берем userId из localStorage, если он был сохранен
-    } else {
-      console.error('userId не найден');
-      return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
-    }
-  }, []);
   
   useEffect(() => {
     const preloadImage = (src) => {
@@ -365,7 +347,24 @@ useEffect(() => {
     }
   }, []);
   
+  useEffect(() => {
+    const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
+    const savedUserId = localStorage.getItem('userId');
   
+    let userId;
+  
+    if (userIdFromURL) {
+      userId = userIdFromURL;
+      localStorage.setItem('userId', userId); // Сохраняем userId для последующего использования
+    } else if (savedUserId) {
+      userId = savedUserId; // Берем userId из localStorage, если он был сохранен
+    } else {
+      console.error('userId не найден');
+      return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
+    }
+ 
+    fetchUserData(userId); // Вызываем функцию с userId
+  }, [fetchUserData]);
 
   
 const handleCheckReferrals = () => {
