@@ -291,6 +291,10 @@ useEffect(() => {
 }, [fetchUserData]);
 
   const fetchUserData = useCallback(async (userId) => {
+    if (!userId) {
+      console.error('userId не передан');
+      return;
+    }
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
