@@ -456,7 +456,7 @@ const handleCheckReferrals = () => {
     
     // Navigate to the main page
     navigateOcties("/");
-    fetchUserData(userId);
+    fetchUserData();
 
   }, [fetchUserData]);
   
