@@ -459,7 +459,7 @@ const handleCheckReferrals = () => {
   
     // Fetch the user data
 
-      fetchUserData(userId);
+      fetchUserData();
    
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
