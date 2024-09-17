@@ -456,8 +456,13 @@ const handleCheckReferrals = () => {
     
     // Navigate to the main page
     navigateOcties("/");
-    fetchUserData();
+  
+    // Fetch the user data
 
+      fetchUserData(userId);
+   
+    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchUserData]);
   
   
