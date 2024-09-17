@@ -183,21 +183,22 @@ const sendTransaction = async () => {
   }
 };
 
-useEffect(() => {
-  const fetchAvailableSpots = async () => {
-      try {
-          const response = await axios.get(`${REACT_APP_BACKEND_URL}/current-spots`);
-          if (response.data.success) {
-               setupdatedSpots(response.data.availableSpots);
-              document.getElementById("highgreen").textContent = updatedSpots;
-          }
-      } catch (error) {
-          console.error("Ошибка при получении количества мест:", error);
-      }
-  };
+const fetchAvailableSpots = async () => {
+  try {
+    const response = await axios.get(`${REACT_APP_BACKEND_URL}/current-spots`);
+    if (response.data.success) {
+      setupdatedSpots(response.data.availableSpots);
+      document.getElementById("highgreen").textContent = response.data.availableSpots; // Используем актуальные данные
+    }
+  } catch (error) {
+    console.error("Ошибка при получении количества мест:", error);
+  }
+};
 
+useEffect(() => {
   fetchAvailableSpots();
-}, [updatedSpots]);
+}, []); // Пустой массив зависимостей означает, что этот код выполнится только при монтировании компонента
+
 
 useEffect(() => {
   console.log('Адрес кошелька из useTonAddress:', walletAddress);
