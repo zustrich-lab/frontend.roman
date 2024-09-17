@@ -42,8 +42,26 @@ import p2e from '../IMG/LowerIcon/p2e.png';
 
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 const userId = new URLSearchParams(window.location.search).get('userId');
+const savedUserId = localStorage.getItem('userId');
 
 function App() {
+
+  useEffect(() => {
+    const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
+    
+  
+    let userId;
+  
+    if (userIdFromURL) {
+      userId = userIdFromURL;
+      localStorage.setItem('userId', userId); // Сохраняем userId для последующего использования
+    } else if (savedUserId) {
+      userId = savedUserId; // Берем userId из localStorage, если он был сохранен
+    } else {
+      console.error('userId не найден');
+      return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
+    }
+  }, []);
   
   useEffect(() => {
     const preloadImage = (src) => {
@@ -183,22 +201,21 @@ const sendTransaction = async () => {
   }
 };
 
-const fetchAvailableSpots = async () => {
-  try {
-    const response = await axios.get(`${REACT_APP_BACKEND_URL}/current-spots`);
-    if (response.data.success) {
-      setupdatedSpots(response.data.availableSpots);
-      document.getElementById("highgreen").textContent = response.data.availableSpots; // Используем актуальные данные
-    }
-  } catch (error) {
-    console.error("Ошибка при получении количества мест:", error);
-  }
-};
-
 useEffect(() => {
-  fetchAvailableSpots();
-}, []); // Пустой массив зависимостей означает, что этот код выполнится только при монтировании компонента
+  const fetchAvailableSpots = async () => {
+      try {
+          const response = await axios.get(`${REACT_APP_BACKEND_URL}/current-spots`);
+          if (response.data.success) {
+               setupdatedSpots(response.data.availableSpots);
+              document.getElementById("highgreen").textContent = updatedSpots;
+          }
+      } catch (error) {
+          console.error("Ошибка при получении количества мест:", error);
+      }
+  };
 
+  fetchAvailableSpots();
+}, [updatedSpots]);
 
 useEffect(() => {
   console.log('Адрес кошелька из useTonAddress:', walletAddress);
@@ -348,25 +365,7 @@ useEffect(() => {
     }
   }, []);
   
-  useEffect(() => {
-    const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
-    const savedUserId = localStorage.getItem('userId');
-    
-    let userId;
   
-    if (userIdFromURL) {
-      userId = userIdFromURL;
-      localStorage.setItem('userId', userId); // Сохраняем userId для последующего использования
-    } else if (savedUserId) {
-      userId = savedUserId; // Берем userId из localStorage, если он был сохранен
-    } else {
-      console.error('userId не найден');
-      return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
-    }
-    
-    fetchAvailableSpots();
-    fetchUserData(userId); // Вызываем функцию с userId
-  }, [fetchUserData]);
 
   
 const handleCheckReferrals = () => {

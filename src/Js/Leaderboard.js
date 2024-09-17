@@ -96,6 +96,7 @@ const Leaderboard = ({ userId, coins, getRandomColor}) => {
     }
   }, [userId, getRandomColor]);
 
+
   const getMedal = (index) => {
     switch (index) {
       case 0:
