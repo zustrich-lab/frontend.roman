@@ -457,7 +457,7 @@ const handleCheckReferrals = () => {
       if (locationOcties.pathname !== "/") {
         // Сбрасываем на главную страницу
         navigateOcties("/", { replace: true });
-        fetchUserData;
+        fetchUserData();
       }
     }
   }, [locationOcties, navigateOcties, fetchUserData]);
