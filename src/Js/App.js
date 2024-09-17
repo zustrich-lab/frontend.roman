@@ -453,12 +453,11 @@ const handleCheckReferrals = () => {
 
   useEffect(() => {
     if (performance.getEntriesByType("navigation")[0].type === "reload") {
-      // Это сработает только при полной перезагрузке страницы
-      if (location.pathname !== "/") {
-        // Сбрасываем на главную страницу
+      
+      
         navigate("/", { replace: true });
         fetchUserData();
-      }
+      
     }
   }, [location, navigate, fetchUserData]);
 
