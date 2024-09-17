@@ -451,14 +451,10 @@ const handleCheckReferrals = () => {
     return color;
   }, []);
 
- 
-   
-
-    useEffect(() => {
-      if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
-        navigateOcties("/");   // Перенаправление на главную страницу
-      }
-    }, [navigate]);
+  useEffect(() => {
+    navigateOcties("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
 
   return (
