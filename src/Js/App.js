@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback} from 'react';
 import { TonConnectUIProvider, useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, useNavigate  } from 'react-router-dom';
 import axios from 'axios';
 import '../Css/App.css';
 //import pages
@@ -91,10 +91,11 @@ function App() {
   const [alert, setalert] = useState(false);
 
   const tonConnectUI = useTonConnectUI();
-  const location = useLocation();
+  const locationOcties = useLocation();
+  const navigateOcties = useNavigate();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [coins, setCoins] = useState(0);
@@ -114,7 +115,7 @@ function App() {
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
   const walletAddress = useTonAddress();
   
-  
+ 
 
   useEffect(() => {
     if (!isLoadingOcto) {
@@ -270,7 +271,12 @@ useEffect(() => {
     }
 }, []);
 
+
   const fetchUserData = useCallback(async (userId) => {
+    if (!userId) {
+      console.error('userId не передан');
+      return;
+    }
     try {
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
       const data = response.data;
@@ -340,6 +346,26 @@ useEffect(() => {
       console.error('Ошибка при получении данных пользователя:', error);
     }
   }, []);
+  
+  useEffect(() => {
+    const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
+    const savedUserId = localStorage.getItem('userId');
+  
+    let userId;
+  
+    if (userIdFromURL) {
+      userId = userIdFromURL;
+      localStorage.setItem('userId', userId); // Сохраняем userId для последующего использования
+    } else if (savedUserId) {
+      userId = savedUserId; // Берем userId из localStorage, если он был сохранен
+    } else {
+      console.error('userId не найден');
+      return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
+    }
+ 
+    fetchUserData(userId); // Вызываем функцию с userId
+  }, [fetchUserData]);
+
   
 const handleCheckReferrals = () => {
     axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
@@ -449,6 +475,14 @@ const handleCheckReferrals = () => {
     }
     return color;
   }, []);
+
+  useEffect(() => {
+    navigateOcties("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
+
+
   return (
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
     <div className="App">
@@ -483,34 +517,34 @@ const handleCheckReferrals = () => {
       <footer className='BTNLow'>
         <ul className='footerItems'>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${(location.pathname !== "/") ? 'img-dark' : ''}`}  to="/" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              <Link className={`footerItemImgWrapper ${(locationOcties.pathname !== "/") ? 'img-dark' : ''}`}  to="/" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={IconHome} alt='IconHome'className='footerItemImg' />
               </ Link>       
-              <p className={`footerItemLabel ${(location.pathname !== "/") ? 'img-dark' : ''}`}>Home</p>
+              <p className={`footerItemLabel ${(locationOcties.pathname !== "/") ? 'img-dark' : ''}`}>Home</p>
             </li>
             <li className='footerItem' >
-              < Link className={`footerItemImgWrapper ${location.pathname !== "/leaderboard" ? 'img-dark' : ''}`} to="/leaderboard" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              < Link className={`footerItemImgWrapper ${locationOcties.pathname !== "/leaderboard" ? 'img-dark' : ''}`} to="/leaderboard" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={IconLeaderboard} alt='IconLeaderboard' className='footerItemImg'/>
               </ Link>
-              <p className={`footerItemLabel ${location.pathname !== "/leaderboard" ? 'img-dark' : ''}`}>Ranking</p>
+              <p className={`footerItemLabel ${locationOcties.pathname !== "/leaderboard" ? 'img-dark' : ''}`}>Ranking</p>
             </li>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${location.pathname !== "/playtoearn" ? 'img-dark' : ''}`} to="/playtoearn" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}}>
+              <Link className={`footerItemImgWrapper ${locationOcties.pathname !== "/playtoearn" ? 'img-dark' : ''}`} to="/playtoearn" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}}>
                 <img src={p2e} alt='IconFriends' className='footerItemImg'/>
               </Link>
-              <p className={`footerItemLabel ${location.pathname !== "/playtoearn" ? 'img-dark' : ''}`}>Play2Earn</p>
+              <p className={`footerItemLabel ${locationOcties.pathname !== "/playtoearn" ? 'img-dark' : ''}`}>Play2Earn</p>
             </li>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${location.pathname !== "/friends" ? 'img-dark' : ''}`} to="/friends" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              <Link className={`footerItemImgWrapper ${locationOcties.pathname !== "/friends" ? 'img-dark' : ''}`} to="/friends" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={IconFriends} alt='IconFriends' className='footerItemImg' />
               </Link>
-              <p className={`footerItemLabel ${location.pathname !== "/friends" ? 'img-dark' : ''}`}>Friends</p>
+              <p className={`footerItemLabel ${locationOcties.pathname !== "/friends" ? 'img-dark' : ''}`}>Friends</p>
             </li>
             <li className='footerItem'>
-              <Link className={`footerItemImgWrapper ${location.pathname !== "/nfts" ? 'img-dark' : ''}`} to="/nfts" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
+              <Link className={`footerItemImgWrapper ${locationOcties.pathname !== "/nfts" ? 'img-dark' : ''}`} to="/nfts" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >
                 <img src={NFTlogo} alt='IconFriends' className='footerItemImg' />
               </Link>
-              <p className= {`footerItemLabel ${location.pathname !== "/nfts" ? 'img-dark' : ''}`}>NFTs</p>
+              <p className= {`footerItemLabel ${locationOcties.pathname !== "/nfts" ? 'img-dark' : ''}`}>NFTs</p>
             </li>
           </ul>
       </footer>
