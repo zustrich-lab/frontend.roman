@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback} from 'react';
 import { TonConnectUIProvider, useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, useNavigate  } from 'react-router-dom';
 import axios from 'axios';
 import '../Css/App.css';
 //import pages
@@ -92,7 +92,7 @@ function App() {
 
   const tonConnectUI = useTonConnectUI();
   const locationOcties = useLocation();
-
+  const navigateOcties = useNavigate();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
@@ -452,9 +452,13 @@ const handleCheckReferrals = () => {
   }, []);
 
  
-    if (performance.getEntriesByType.type === "reload") {
-        fetchUserData();
-    }
+   
+
+    useEffect(() => {
+      if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+        navigateOcties("/");   // Перенаправление на главную страницу
+      }
+    }, [navigate]);
   
 
   return (
