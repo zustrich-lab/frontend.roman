@@ -58,12 +58,8 @@ function App() {
       console.error('userId не найден');
       return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
     }
- 
-    
   }, []);
 
-
-  
   useEffect(() => {
     const preloadImage = (src) => {
       const img = new Image();
@@ -114,7 +110,7 @@ function App() {
   const navigateOcties = useNavigate();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [coins, setCoins] = useState(0);
