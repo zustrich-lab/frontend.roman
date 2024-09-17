@@ -109,6 +109,10 @@ const Leaderboard = ({ userId, coins, getRandomColor}) => {
     }
   };
 
+  if (performance.getEntriesByType.type === "reload") {
+    fetchUserData();
+  }
+
   return (
     <div className={'Lb_Window'}>
       <div className='lb_Info'>

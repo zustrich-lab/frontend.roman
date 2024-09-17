@@ -38,6 +38,10 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
  }) {
 
+  if (performance.getEntriesByType.type === "reload") {
+    fetchUserData();
+  }
+
   const TG_CHANNEL_LINK = "https://t.me/octies_community";
   const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
   const X_LINK = "https://x.com/Octies_GameFI";
