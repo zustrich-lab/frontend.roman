@@ -115,15 +115,7 @@ function App() {
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
   const walletAddress = useTonAddress();
   
-  useEffect(() => {
-    if (performance.getEntriesByType("navigation")[0].type === "reload") {
-      // Это сработает только при полной перезагрузке страницы
-      if (location.pathname !== "/") {
-        // Сбрасываем на главную страницу
-        navigate("/", { replace: true });
-      }
-    }
-  }, [location, navigate]);
+ 
 
   useEffect(() => {
     if (!isLoadingOcto) {
@@ -458,6 +450,18 @@ const handleCheckReferrals = () => {
     }
     return color;
   }, []);
+
+  useEffect(() => {
+    if (performance.getEntriesByType("navigation")[0].type === "reload") {
+      // Это сработает только при полной перезагрузке страницы
+      if (location.pathname !== "/") {
+        // Сбрасываем на главную страницу
+        navigate("/", { replace: true });
+        fetchUserData();
+      }
+    }
+  }, [location, navigate, fetchUserData]);
+
   return (
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
     <div className="App">
