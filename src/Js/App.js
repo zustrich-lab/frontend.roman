@@ -95,7 +95,7 @@ function App() {
   const navigateOcties = useNavigate();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [coins, setCoins] = useState(0);
@@ -451,12 +451,16 @@ const handleCheckReferrals = () => {
     return color;
   }, []);
 
-  useEffect(() => {
+ 
     if (performance.getEntriesByType.type === "reload") {
+      // Это сработает только при полной перезагрузке страницы
+      if (locationOcties.pathname === "/") {
+        // Сбрасываем на главную страницу
         navigateOcties("/", { replace: true });
         fetchUserData();
+      }
     }
-  }, [ navigateOcties, fetchUserData]);
+  
 
   return (
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
