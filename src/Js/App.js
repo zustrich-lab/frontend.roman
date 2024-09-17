@@ -362,7 +362,8 @@ useEffect(() => {
       console.error('userId не найден');
       return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
     }
-  
+    
+    fetchAvailableSpots();
     fetchUserData(userId); // Вызываем функцию с userId
   }, [fetchUserData]);
 
