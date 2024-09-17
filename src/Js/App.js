@@ -453,11 +453,7 @@ const handleCheckReferrals = () => {
 
  
     if (performance.getEntriesByType.type === "reload") {
-      // Это сработает только при полной перезагрузке страницы
-    
-        navigateOcties("/");
         fetchUserData();
-      
     }
   
 
