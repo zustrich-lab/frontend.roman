@@ -454,11 +454,10 @@ const handleCheckReferrals = () => {
  
     if (performance.getEntriesByType.type === "reload") {
       // Это сработает только при полной перезагрузке страницы
-      if (locationOcties.pathname === "/") {
-        // Сбрасываем на главную страницу
-        navigateOcties("/", { replace: true });
+    
+        navigateOcties("/");
         fetchUserData();
-      }
+      
     }
   
 
