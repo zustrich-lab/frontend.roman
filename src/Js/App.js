@@ -19,10 +19,10 @@ import LoadingScreenOctoNft from '../Loading/LoadingOctoNft.js'
 //import image Friends
 import invite from '../IMG/All_Logo/Invite_png.png';
 //import image p2e
-const soon = images('../IMG/ComingSoon/Text_soon.png');
-const PLANET = images('../IMG/ComingSoon/PLANET.png');
-const OctiesCosmo = images('../IMG/ComingSoon/OctiesCosmo.png');
-const starship = images('../IMG/ComingSoon/starship.png');
+import soon from '../IMG/ComingSoon/Text_soon.png';
+import PLANET from '../IMG/ComingSoon/PLANET.png';
+import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
+import starship from '../IMG/ComingSoon/starship.png';
 //import image NFT
 import shapka2 from '../IMG/NFTs/Shapka2.png';
 import dedpool from '../IMG/NFTs/dedpool.png';
@@ -65,7 +65,10 @@ function App() {
       const img = new Image();
       img.src = src;
   };
-
+  preloadImage(soon); 
+  preloadImage(PLANET); 
+  preloadImage(OctiesCosmo);
+  preloadImage(starship);
   preloadImage(Nft);
   preloadImage(shapka2);
   preloadImage(dedpool);
