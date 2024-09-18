@@ -45,7 +45,6 @@ const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 let userId;
 
 function App() {
-
   useEffect(() => {
     
     import('./Home');
