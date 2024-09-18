@@ -75,32 +75,6 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
     }
 };
 
-const sendTransactionrefil = async () => {
-  try {
-      window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-      const walletInfo = tonConnectUI.walletInfo; 
-      if (!walletInfo) {
-          setalert(true); 
-          return;
-      }
-
-      const transaction = {
-          validUntil: Math.floor(Date.now() / 1000) + 600, 
-          messages: [
-              {
-                  address: "EQACWu9QvWiu_T1YFrLTZBhm7QPtUUf45RVK_lH-iCmvoo-J",
-                  amount: "10000000", 
-              },
-          ],
-      };
-
-      await tonConnectUI.sendTransaction(transaction);
-  } catch (error) {
-      console.error("Error sending transaction:", error);
-      localStorage.setItem('forsent', 'false');
-  }
-};
-
   return (
     <div className='NFTs_Window'  >
       {alert && <AlertNft rosomaha={rosomaha} setalert={setalert}/>}
@@ -170,7 +144,6 @@ const sendTransactionrefil = async () => {
             <ul class="custom-list">
               <li>Secret pass granting access<br/> to unique features & utilities</li>
             </ul>
-            <button className='sendButtonm1' onClick={sendTransactionrefil}>Mint Nft  <img src={ton55} alt=''/></button>
             {!timerforsent && <button className='sendButtonm' onClick={sendTransaction1}>Send transaction <img src={ton55} alt=''/></button>}
             {timerforsent && <button className='FillButtonm' onClick={Tg_Form_Window}>Fill out the form</button>}
           </div>
