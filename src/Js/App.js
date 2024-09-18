@@ -78,9 +78,15 @@ function App() {
   preloadImage(durov);
   preloadImage(invite);
 
+  }, []);
+
+  useEffect(() => {
+    
+    import('./Home');
+    import('./Leaderboard');
     import('./P2e.js');
-    import('./NFTs.js');
     import('./Friends');
+    import('./NFTs.js');
   }, []);
 
   if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
