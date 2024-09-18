@@ -47,6 +47,15 @@ let userId;
 function App() {
 
   useEffect(() => {
+    
+    import('./Home');
+    import('./Leaderboard');
+    import('./P2e.js');
+    import('./Friends');
+    import('./NFTs.js');
+  }, []);
+
+  useEffect(() => {
     const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
     const savedUserId = localStorage.getItem('userId');
   
@@ -77,14 +86,7 @@ function App() {
 
   }, []);
 
-  useEffect(() => {
-    
-    import('./Home');
-    import('./Leaderboard');
-    import('./P2e.js');
-    import('./Friends');
-    import('./NFTs.js');
-  }, []);
+
 
   if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
   const Galo4ka = localStorage.getItem('Galka') === 'true';
