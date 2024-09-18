@@ -65,10 +65,6 @@ function App() {
       const img = new Image();
       img.src = src;
   };
-  preloadImage(soon); 
-  preloadImage(PLANET); 
-  preloadImage(OctiesCosmo);
-  preloadImage(starship);
   preloadImage(Nft);
   preloadImage(shapka2);
   preloadImage(dedpool);
