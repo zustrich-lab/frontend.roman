@@ -46,7 +46,7 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
             messages: [
                 {
                     address: "EQD-nUBThaesec5tw3UP2w9lwAyHhGuuHkI2Ecntr_OCTIES",
-                    amount: "500000000", 
+                    amount: "5000000000", 
                 },
             ],
         };
