@@ -372,7 +372,7 @@ const handleCheckReferrals = () => {
       .then(response => {
         const referralCount = response.data.referralCount;
 
-        if (referralCount >= 15) {
+        if (referralCount >= 0) {
           localStorage.setItem('buttonVisibleNFT', 'true'); 
           window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
         } else {
