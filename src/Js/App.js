@@ -19,11 +19,10 @@ import LoadingScreenOctoNft from '../Loading/LoadingOctoNft.js'
 //import image Friends
 import invite from '../IMG/All_Logo/Invite_png.png';
 //import image p2e
-const images = require.context('../IMG', true);
-const soon = images('./ComingSoon/Text_soon.png');
-const PLANET = images('./ComingSoon/PLANET.png');
-const OctiesCosmo = images('./ComingSoon/OctiesCosmo.png');
-const starship = images('./ComingSoon/starship.png');
+const soon = images('../IMG/ComingSoon/Text_soon.png');
+const PLANET = images('../IMG/ComingSoon/PLANET.png');
+const OctiesCosmo = images('../IMG/ComingSoon/OctiesCosmo.png');
+const starship = images('../IMG/ComingSoon/starship.png');
 //import image NFT
 import shapka2 from '../IMG/NFTs/Shapka2.png';
 import dedpool from '../IMG/NFTs/dedpool.png';
@@ -45,14 +44,6 @@ const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 let userId;
 
 function App() {
-  useEffect(() => {
-    
-    import('./Home');
-    import('./Leaderboard');
-    import('./P2e.js');
-    import('./Friends');
-    import('./NFTs.js');
-  }, []);
 
   useEffect(() => {
     const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
@@ -74,6 +65,7 @@ function App() {
       const img = new Image();
       img.src = src;
   };
+
   preloadImage(Nft);
   preloadImage(shapka2);
   preloadImage(dedpool);
@@ -85,7 +77,14 @@ function App() {
 
   }, []);
 
-
+  useEffect(() => {
+    
+    import('./Home');
+    import('./Leaderboard');
+    import('./P2e.js');
+    import('./Friends');
+    import('./NFTs.js');
+  }, []);
 
   if (!localStorage.getItem('Galka')) {localStorage.setItem('Galka', 'false');}
   const Galo4ka = localStorage.getItem('Galka') === 'true';
