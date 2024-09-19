@@ -50,7 +50,7 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
       ],
     };
   
-    try {
+  
       await tonConnectUI.sendTransaction(transaction);
   
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
@@ -66,7 +66,7 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
         //else {
       //     //alert('Transaction failed!');
       // }
-    } catch (error) {
+     else{
       console.error("Error sending transaction:", error);
       //alert("Failed to send transaction.");
     }
