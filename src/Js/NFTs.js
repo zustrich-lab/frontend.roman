@@ -56,12 +56,12 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
       // Check if REACT_APP_BACKEND_URL is properly set
       console.log(REACT_APP_BACKEND_URL);
       
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId: userId });
     
       if (response.data.success) {
         setTransactionNumber(response.data.transactionNumber);
         localStorage.setItem('isMintNFT', 'true');
-        await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
+        await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId: userId, hasMintedNFT: true });
       } 
     } catch (error) {
       if (error.response) {
