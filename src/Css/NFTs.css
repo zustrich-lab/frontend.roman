@@ -215,6 +215,7 @@
   animation: shadowPulseBlue 1.5s infinite;
 }
 
+
 #redElipse{
   top: 2vh;
   position: absolute;
@@ -227,17 +228,20 @@
   animation: shadowPulseRed 1.2s infinite ;
 }
 
+
 @keyframes shadowPulseBlue {
   0%  {box-shadow: 0 0 1vh 0.4vh #067CFB;}
   50% {box-shadow: 0 0 2vh 0 #067CFB;}
   100%{box-shadow: 0 0 1vh 0.4vh #067CFB;}
 }
 
+
 @keyframes shadowPulseRed {
   0%  {box-shadow: 0 0 2vh 0.6vh #940000;}
   50% {box-shadow: 0 0 1vh 0 #940000;}
   100%{box-shadow: 0 0 2vh 0.6vh #940000;}
 }
+
 
 .sendButtonm img{
   height: 65%;
