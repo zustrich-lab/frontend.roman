@@ -1,0 +1,195 @@
+.Lb_Window {
+    width: 100%;
+    height: 90%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+    color: white;
+    background: #000000;
+    z-index: 1003;
+    overflow: scroll;
+    animation: fade-in 0.3s forwards;
+    overflow: scroll;
+}
+
+.lb_Info{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4.5vh;
+}
+
+.Lb_Menu{
+    width: 88%;
+    height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.Lb_inside{
+    background: rgba(208, 108, 36, 55% );
+    width: 100%;
+    height: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3vh;
+    border-radius: 2vh ;
+    overflow: hidden;
+    position: relative;
+}
+
+.LbPhoto{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.LbPhoto p{
+    font-size: 1.8vh;
+    margin-right: 2vh;
+}
+
+#number{margin: 2vh;}
+
+#LbColor{
+    color: rgba(255, 255, 255, 65% );
+    margin-top: 1vh;
+    display: inline-block;
+    font-size: 1.9vh;
+}
+
+.LbBorder{
+    background: #1A1A1A;
+    border-radius: 2vh;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+
+.Lb_Logo{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1.5vh;
+}
+.Lb_Logo img{
+    height:  70%;
+}
+
+.Lb_Text{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 2.6vw;
+}
+
+.Lb_Liders{
+    width: 100%;
+    height: calc(8% - 0.5vh);
+    display: flex;
+    align-items: end;
+    justify-content: start;
+    font-size: 2.2vh;
+    margin-bottom: 0.5vh;
+}
+
+.Lb_list{
+    width: 100%;
+    height: 45%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Lb_Lider{
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#medal img {
+    height: 35%;
+}
+
+.NameLb{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1;
+}
+
+.LbNotLod{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.Lb_insideLod img {
+    height: 40%;
+    margin-right: 1vh;
+    margin-left: 1vh;
+    opacity: 20%;
+    animation: opacityChange 0.7s infinite alternate;
+}
+
+.Lb_insideLod img:nth-child(1) {animation-delay: 0s;}
+.Lb_insideLod img:nth-child(2) {animation-delay: 0.2s;}
+.Lb_insideLod img:nth-child(3) {animation-delay: 0.5s;}
+
+@keyframes opacityChange {
+    from {opacity: 100%;}
+    to {opacity: 20%;}
+}
+
+.Lb_insideLod {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.hiddenLider {animation: fadeOut 0.35s ease-in-out forwards;}
+.fadeIn {animation: fadeIn 0.35s ease-in-out forwards;}
+  
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+  
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (orientation: landscape) {
+    .Lb_Window {
+      height: 80%;
+    }
+
+    .Lb_Text p{
+        font-size: 2vh;
+    }
+  }
