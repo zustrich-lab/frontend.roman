@@ -60,13 +60,15 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
           localStorage.setItem('isMintNFT', 'true'); 
           await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
   
-          alert(`Transaction successful! You are user number ${response.data.transactionNumber}`);
-      } else {
-          alert('Transaction failed!');
-      }
+          //alert(`Transaction successful! You are user number ${response.data.transactionNumber}`);
+      
+        } 
+        //else {
+      //     //alert('Transaction failed!');
+      // }
     } catch (error) {
       console.error("Error sending transaction:", error);
-      alert("Failed to send transaction.");
+      //alert("Failed to send transaction.");
     }
   };
 
