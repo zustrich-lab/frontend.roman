@@ -34,13 +34,13 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
   const sendTransaction = async () => {
     try {
       window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    
+      
       const walletInfo = tonConnectUI.walletInfo;
       if (!walletInfo) { 
         setalert(true);
         return; 
       }
-    
+      
       const transaction = {
         validUntil: Math.floor(Date.now() / 1000) + 600,
         messages: [
@@ -50,19 +50,22 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
           },
         ],
       };
-    
-      await tonConnectUI.sendTransaction(transaction);
-    
-      // Check if REACT_APP_BACKEND_URL is properly set
-      console.log(REACT_APP_BACKEND_URL);
       
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId: userId });
-    
+      await tonConnectUI.sendTransaction(transaction);
+      
+      // Log userId to ensure it's correct
+      console.log("User ID:", userId);
+      
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
+      
       if (response.data.success) {
         setTransactionNumber(response.data.transactionNumber);
         localStorage.setItem('isMintNFT', 'true');
-        await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId: userId, hasMintedNFT: true });
-      } 
+        await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
+      } else {
+        console.log("Transaction failed:", response.data.message);
+      }
+      
     } catch (error) {
       if (error.response) {
         console.error("Response error data:", error.response.data);
