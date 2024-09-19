@@ -5,8 +5,8 @@ import '../Css/NFTs.css';
 
 import AlertNft from '../Alert/Alert.js';
 
-const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft, sendTransaction, ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, updatedSpots
+const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft,  ChecknftDone ,
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, updatedSpots, setTransactionNumber
 }) => {
 
   const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
@@ -29,6 +29,45 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     window.open(Form, '_blank');
     localStorage.setItem('forsent', 'false');
+  };
+
+  const sendTransaction = async () => {
+    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  
+    const walletInfo = tonConnectUI.walletInfo; 
+    if (!walletInfo) { 
+      setalert(true);
+      return; 
+    }
+  
+    const transaction = {
+      validUntil: Math.floor(Date.now() / 1000) + 600,
+      messages: [
+        {
+          address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", 
+          amount: "10000000", 
+        },
+      ],
+    };
+  
+    try {
+      await tonConnectUI.sendTransaction(transaction);
+  
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
+  
+      if (response.data.success) {
+          setTransactionNumber(response.data.transactionNumber);
+          localStorage.setItem('isMintNFT', 'true'); 
+          await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
+  
+          alert(`Transaction successful! You are user number ${response.data.transactionNumber}`);
+      } else {
+          alert('Transaction failed!');
+      }
+    } catch (error) {
+      console.error("Error sending transaction:", error);
+      alert("Failed to send transaction.");
+    }
   };
 
 
