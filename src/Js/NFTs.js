@@ -32,43 +32,47 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
   };
 
   const sendTransaction = async () => {
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-  
-    const walletInfo = tonConnectUI.walletInfo; 
-    if (!walletInfo) { 
-      setalert(true);
-      return; 
-    }
-  
-    const transaction = {
-      validUntil: Math.floor(Date.now() / 1000) + 600,
-      messages: [
-        {
-          address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG", 
-          amount: "10000000", 
-        },
-      ],
-    };
-  
     try {
+      window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    
+      const walletInfo = tonConnectUI.walletInfo;
+      if (!walletInfo) { 
+        setalert(true);
+        return; 
+      }
+    
+      const transaction = {
+        validUntil: Math.floor(Date.now() / 1000) + 600,
+        messages: [
+          {
+            address: "UQC-ZK_dPpZ15VaL-kwyXT1jTCYDTQricz8RxvXT0VmdbRYG",
+            amount: "10000000",
+          },
+        ],
+      };
+    
       await tonConnectUI.sendTransaction(transaction);
-  
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
-  
-      if (response.data.success) {
-          setTransactionNumber(response.data.transactionNumber);
-          localStorage.setItem('isMintNFT', 'true'); 
-          await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
-  
-          //alert(`Transaction successful! You are user number ${response.data.transactionNumber}`);
+    
+      // Check if REACT_APP_BACKEND_URL is properly set
+      console.log(REACT_APP_BACKEND_URL);
       
-        } 
-        //else {
-      //     //alert('Transaction failed!');
-      // }
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
+    
+      if (response.data.success) {
+        setTransactionNumber(response.data.transactionNumber);
+        localStorage.setItem('isMintNFT', 'true');
+        await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
+      } 
     } catch (error) {
-      console.error("Error sending transaction:", error);
-      //alert("Failed to send transaction.");
+      if (error.response) {
+        console.error("Response error data:", error.response.data);
+        console.error("Response error status:", error.response.status);
+        console.error("Response headers:", error.response.headers);
+      } else if (error.request) {
+        console.error("Request error:", error.request);
+      } else {
+        console.error("General error:", error.message);
+      }
     }
   };
 
