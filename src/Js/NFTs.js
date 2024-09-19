@@ -56,12 +56,12 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
       // Log userId to ensure it's correct
       console.log("User ID:", userId1);
       
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId1 });
       
       if (response.data.success) {
         setTransactionNumber(response.data.transactionNumber);
         localStorage.setItem('isMintNFT', 'true');
-        await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
+        await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId1, hasMintedNFT: true });
       } else {
         console.log("Transaction failed:", response.data.message);
       }
