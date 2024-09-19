@@ -6,7 +6,7 @@ import '../Css/NFTs.css';
 import AlertNft from '../Alert/Alert.js';
 
 const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft,  ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, updatedSpots, setTransactionNumber,userId1
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, updatedSpots, setTransactionNumber, userId
 }) => {
 
   const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
@@ -54,14 +54,14 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
       await tonConnectUI.sendTransaction(transaction);
       
       // Log userId to ensure it's correct
-      console.log("User ID:", userId1);
+      console.log("User ID:", userId);
       
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId1 });
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
       
       if (response.data.success) {
         setTransactionNumber(response.data.transactionNumber);
         localStorage.setItem('isMintNFT', 'true');
-        await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId1, hasMintedNFT: true });
+        await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
       } else {
         console.log("Transaction failed:", response.data.message);
       }
@@ -108,7 +108,7 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
             document.getElementById("highgreen").textContent = updatedSpots;
             localStorage.setItem('forsent', 'true');
 
-            const specialResponse = await axios.post(`${REACT_APP_BACKEND_URL}/special-transaction-success`, { userId1 });
+            const specialResponse = await axios.post(`${REACT_APP_BACKEND_URL}/special-transaction-success`, { userId });
             if (specialResponse.data.success) {
                 console.log('Special transaction recorded successfully.');
             } else {
