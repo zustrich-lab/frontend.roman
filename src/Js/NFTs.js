@@ -32,6 +32,7 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
   };
 
   const sendTransaction = async () => {
+    try {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   
     const walletInfo = tonConnectUI.walletInfo; 
@@ -50,7 +51,7 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
       ],
     };
   
-  
+
       await tonConnectUI.sendTransaction(transaction);
   
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
@@ -61,14 +62,13 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
           await axios.post(`${REACT_APP_BACKEND_URL}/update-mint-status`, { userId, hasMintedNFT: true });
   
           //alert(`Transaction successful! You are user number ${response.data.transactionNumber}`);
-      
-        } 
-        //else {
-      //     //alert('Transaction failed!');
-      // }
-     else{
-      console.error("Error sending transaction:");
-      //alert("Failed to send transaction.");
+      } 
+      //else {
+        // alert('Transaction failed!');
+     // }
+    } catch (error) {
+      console.error("Error sending transaction:", error);
+    //  alert("Failed to send transaction.");
     }
   };
 
