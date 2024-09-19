@@ -67,7 +67,7 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
       //     //alert('Transaction failed!');
       // }
      else{
-      console.error("Error sending transaction:", error);
+      console.error("Error sending transaction:");
       //alert("Failed to send transaction.");
     }
   };
