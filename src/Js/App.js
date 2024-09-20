@@ -116,7 +116,7 @@ function App() {
   const navigateOcties = useNavigate();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [coins, setCoins] = useState(0);
@@ -489,7 +489,7 @@ const handleCheckReferrals = () => {
         <Route path="/friends" element={<Friends invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>} />
 
         <Route path="/nfts" element={<NFTs showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
-                              Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} setTransactionNumber={setTransactionNumber} userId1={userId}
+                              Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} setTransactionNumber={setTransactionNumber} userId={userId}
                               rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}/>}/>
       </Routes>
 

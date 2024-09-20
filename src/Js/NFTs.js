@@ -6,12 +6,12 @@ import '../Css/NFTs.css';
 import AlertNft from '../Alert/Alert.js';
 
 const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft,  ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, updatedSpots, setTransactionNumber,userId1
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, updatedSpots, setTransactionNumber, userId
 }) => {
 
   const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
   const [tonConnectUI] = useTonConnectUI();
-  const userId = new URLSearchParams(window.location.search).get('userId');
+
 
 
   if (!localStorage.getItem('forsent')) {localStorage.setItem('forsent', 'false');}
@@ -54,7 +54,7 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
       await tonConnectUI.sendTransaction(transaction);
       
       // Log userId to ensure it's correct
-      console.log("User ID:", userId1);
+      console.log("User ID:", userId);
       
       const response = await axios.post(`${REACT_APP_BACKEND_URL}/record-transaction`, { userId });
       
