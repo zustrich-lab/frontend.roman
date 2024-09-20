@@ -201,7 +201,9 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
           </div>
         </div>
 
-        <div class="switch3">
+       
+      </div>
+      <div class="switch3">
             <input type="radio" id="switch3-radio1" name="radio"/>
             <label for="switch3-radio1">AVAILABLE</label>
         
@@ -211,7 +213,6 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
             <input type="radio" id="switch3-radio3" name="radio"/>
             <label for="switch3-radio3">MISSED</label>
           </div>
-      </div>
     </div>
 
 );
