@@ -2,11 +2,11 @@ import React from 'react';
 import '../Css/NFTs.css';
 
 
-const ComplatedNFT = ({Nft, ChecknftDone}) => {
+const ComplatedNFT = ({Nft, ChecknftDone, isMint}) => {
 
   return (
     <div className='mainNftComplated'> 
-       <div className='nft-promo'>
+       {isMint && (<div className='nft-promo'>
          <div className='nft-text'>
            <h2>GET YOUR <span id='highlight'>FREE</span> NFT!</h2>
            <p>Invite 15 friends, Connect Wallet <br/>and receive unique OCTIES NFT</p>
@@ -28,7 +28,7 @@ const ComplatedNFT = ({Nft, ChecknftDone}) => {
          <div className='nft-image'>
            <img src={Nft} alt='OCTIES NFT' /> 
          </div>
-       </div>
+       </div>)}
   </div>
   );
 };

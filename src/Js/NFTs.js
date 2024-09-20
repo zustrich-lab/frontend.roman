@@ -181,9 +181,9 @@ const handleComplatedNFT = () => {
           />)}
 
 
-        {VisibleComplatedNFT && (<ComplatedNFT ChecknftDone={ChecknftDone} Nft={Nft} />)}
+        {VisibleComplatedNFT && (<ComplatedNFT ChecknftDone={ChecknftDone} Nft={Nft} isMint={isMint} />)}
 
-        {VisibleMissedNFT && (<MissedNFT Checknft={Checknft} Nft={Nft}/>)}
+        {VisibleMissedNFT && (<MissedNFT Checknft={Checknft} Nft={Nft} isMint={isMint}/>)}
 
        
       <div className="switch3">
