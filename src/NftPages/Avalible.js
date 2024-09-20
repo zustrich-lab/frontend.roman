@@ -12,7 +12,7 @@ const AvalibleNFT = ( {buttonVisible, showNotCompleted, isMint, ChecknftDone, se
     <div className='mainNft'> 
        
 
-    <div className='nft-promo'>
+    {/* <div className='nft-promo'>
       <div className='nft-text'>
         <h2>GET YOUR <span id='highlight'>FREE</span> NFT!</h2>
         <p>Invite 15 friends, Connect Wallet <br/>and receive unique OCTIES NFT</p>
@@ -26,7 +26,7 @@ const AvalibleNFT = ( {buttonVisible, showNotCompleted, isMint, ChecknftDone, se
 
             {!buttonVisible && showNotCompleted && (
               <button id="not-completed" >
-                <img src={Checknft} alt="Not completed" />Not completed
+                <img src={Checknft} alt="Not completed" /><p>Not completed</p>
               </button>)}
 
             {buttonVisible && (
@@ -50,7 +50,7 @@ const AvalibleNFT = ( {buttonVisible, showNotCompleted, isMint, ChecknftDone, se
       <div className='nft-image'>
         <img src={Nft} alt='OCTIES NFT' /> 
       </div>
-    </div>
+    </div> */}
 
     <div className='nft-promo2'>
       <div className='LeftNft2'>

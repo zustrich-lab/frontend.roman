@@ -181,14 +181,11 @@ const handleComplatedNFT = () => {
           />)}
 
 
-        {VisibleComplatedNFT && (<ComplatedNFT/>)}
+        {VisibleComplatedNFT && (<ComplatedNFT ChecknftDone={ChecknftDone} Nft={Nft} />)}
 
-        {VisibleMissedNFT && (<MissedNFT/>)}
+        {VisibleMissedNFT && (<MissedNFT Checknft={Checknft} Nft={Nft}/>)}
 
        
-
-
-
       <div className="switch3">
         <input type="radio" id="switch3-radio1" name="radio" />
           <label htmlFor="switch3-radio1" onClick={handleAvalibleNFT}> AVALIBLE</label>

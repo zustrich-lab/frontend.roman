@@ -101,7 +101,9 @@
 
 
 
-
+#redlight{
+  background: #FF3B3B;
+}
 
 
 .nft-promo2{
@@ -315,8 +317,6 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background: red;
-
 }
 
 .mainNftComplated{
@@ -325,8 +325,6 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background: blue;
-
 }
 
 @media (orientation: landscape) {
