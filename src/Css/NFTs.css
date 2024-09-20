@@ -256,20 +256,23 @@
 }
 /* ///// Switch*/
 
-.switch3-container h5{
-  margin-bottom: .7rem;
-}
+
 .switch3
 {
   
   position: relative;
-  height:50px;
+  height: 5.5%;
+  width: 90%;
   display:flex;
-  justify-content:space-around;
+  align-items: center;
+  flex-direction: row;
+  justify-content:space-between;
+  background: #4F4F4F;
+  border-radius: 1vh;
 }
 .switch3 label{
-  padding: 1rem;
   z-index:1;
+  font-size: 1.7vh;
 }
 .switch3::before{
   content: '';
@@ -277,12 +280,20 @@
   left:0;
   width: 34%;
   height: 100%;
-  background: #14142a;
-  border: 1px solid #fff;
-  border-radius: 12px;
+  background: #2C2C2C;
+  border-radius: 1vh;
   opacity: .5;
   transition: .5s left ease;
 }
+
+.switch3 label{
+  height: 100%;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#switch3-radio1, #switch3-radio2, #switch3-radio3{visibility: hidden; position: absolute;}
 
 .switch3:has(#switch3-radio1:checked)::before{
   left: 0%;
