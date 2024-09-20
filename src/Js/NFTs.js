@@ -199,7 +199,18 @@ const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Check
           <div className='rightNft2'>
             <img src={durov} alt=''/>
           </div>
-         
+
+          <div class="switch3">
+            <input type="radio" id="switch3-radio1" name="radio"/>
+            <label for="switch3-radio1">FrontEnd</label>
+        
+            <input type="radio" id="switch3-radio2" name="radio"/>
+            <label for="switch3-radio2">BackEnd</label>
+        
+            <input type="radio" id="switch3-radio3" name="radio"/>
+            <label for="switch3-radio3">FullStack</label>
+          </div>
+   
         </div>
       </div>
     </div>
