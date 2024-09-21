@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
   width: 100%;
 }
 
@@ -313,6 +314,7 @@
 
 .mainNftMissed{
   height: 92.5%;
+  background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -321,10 +323,30 @@
 
 .mainNftComplated{
   height: 92.5%;
+  background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+
+#NFTPAGEImg{
+  height: 55%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.NftpageDiv{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  font-size: 3vh;
+  margin-top: 25vh;
+}
+.NftpageDiv p{
+  filter: drop-shadow( 0 0 2vh  #fff)
 }
 
 @media (orientation: landscape) {

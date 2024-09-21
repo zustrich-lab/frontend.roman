@@ -2,7 +2,7 @@ import React from 'react';
 import '../Css/NFTs.css';
 
 
-const MissedNFT = ({Nft, Checknft, isMint }) => {
+const MissedNFT = ({Nft, Checknft, isMint, missed }) => {
 
     return (
         <div className='mainNftMissed'> 
@@ -26,6 +26,12 @@ const MissedNFT = ({Nft, Checknft, isMint }) => {
                     <img src={Nft} alt='OCTIES NFT' /> 
                 </div>
             </div>)}
+            {isMint && (
+                <div className='NftpageDiv'>
+                     <p>You are a true reptilian! <br/> You have no missed tasks</p>
+                    <img id="NFTPAGEImg" src={missed} alt='' />  
+                </div>
+            )}
         </div>
     );
 };

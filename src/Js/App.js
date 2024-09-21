@@ -24,6 +24,8 @@ import PLANET from '../IMG/ComingSoon/PLANET.png';
 import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
 import starship from '../IMG/ComingSoon/starship.png';
 //import image NFT
+import missed from '../IMG/NFTs/Missed.png';
+import complated from '../IMG/NFTs/Complated.png';
 import shapka2 from '../IMG/NFTs/Shapka2.png';
 import dedpool from '../IMG/NFTs/dedpool.png';
 import rosomaha from '../IMG/NFTs/rosomaha.png';
@@ -39,6 +41,7 @@ import IconLeaderboard from '../IMG/LowerIcon/Leaderboard.png';
 import IconFriends from '../IMG/LowerIcon/Friends.png';
 import NFTlogo from '../IMG/LowerIcon/NFTLogo.png';
 import p2e from '../IMG/LowerIcon/p2e.png';
+
 
 const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
 let userId;
@@ -77,6 +80,8 @@ function App() {
   preloadImage(ton55);
   preloadImage(durov);
   preloadImage(invite);
+  preloadImage(complated);
+  preloadImage(missed);
 
   }, []);
 
@@ -116,7 +121,7 @@ function App() {
   const navigateOcties = useNavigate();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [coins, setCoins] = useState(0);
@@ -490,7 +495,8 @@ const handleCheckReferrals = () => {
 
         <Route path="/nfts" element={<NFTs showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
                               Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} setTransactionNumber={setTransactionNumber} userId={userId}
-                              rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}/>}>
+                              rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
+                              missed={missed} complated={complated}/>}>
 
         </Route>
                               
