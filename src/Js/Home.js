@@ -114,6 +114,8 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
       if (localStorage.getItem('KnopkaBee') === 'true') {
         localStorage.setItem('KnopkaBee', 'false');
         localStorage.setItem('Galo4kaBee', 'true');
+        setGalo4kaBee(true);
+        setKnopkaBee(false);
         try {
           const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins-bot`, { userId: userId, amount: 700 });
           if (response.data.success) {
@@ -121,6 +123,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
             if (response.data.hasBotSub) {
               localStorage.setItem('hasBotSub', 'true');
               setCoins(response.data.coins);
+              console.log('Отправляемый userId:', успех);  
             }
           } else {
             console.error('Ошибка при обновлении монет:', response.data.message);
