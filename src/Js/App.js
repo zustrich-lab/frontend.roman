@@ -114,6 +114,13 @@ function App() {
   if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
   const isMint = localStorage.getItem('isMintNFT') === 'true';
 
+  if (!localStorage.getItem('Galo4kaBee')) {localStorage.setItem('Galo4kaBee', 'false');}
+  const [Galo4kaBee, setGalo4kaBee] = useState(localStorage.getItem('Galo4kaBee') === 'true')
+
+  if (!localStorage.getItem('KnopkaBee')) {localStorage.setItem('KnopkaBee', 'true');}
+  const [KnopkaBee, setKnopkaBee] = useState(localStorage.getItem('KnopkaBee') === 'true')
+
+
   const [alert, setalert] = useState(false);
 
   //const tonConnectUI = useTonConnectUI();
@@ -140,8 +147,6 @@ function App() {
   const [transactionNumber, setTransactionNumber] = useState(null);
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
   const walletAddress = useTonAddress();
-  
- 
 
   useEffect(() => {
     if (!isLoadingOcto) {
@@ -485,7 +490,7 @@ const handleCheckReferrals = () => {
                                   KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes} hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} 
                                   transactionNumber={transactionNumber} coins={coins} setYearsOpen={setYearsOpen} isMint={isMint} 
                                   subscriptionCoins={subscriptionCoins} referralCoins={referralCoins} REACT_APP_BACKEND_URL={REACT_APP_BACKEND_URL} checkSubscriptionAndUpdate={checkSubscriptionAndUpdate }
-                                  userId={userId}  setCoins={ setCoins}/>}/>
+                                  userId={userId}  setCoins={ setCoins} Galo4kaBee={Galo4kaBee} setGalo4kaBee={setGalo4kaBee} KnopkaBee={KnopkaBee} setKnopkaBee={setKnopkaBee}/>}/>
 
         <Route path="/leaderboard" element={<Leaderboard userId={userId} coins={coins} getRandomColor={getRandomColor}/>} />
 
