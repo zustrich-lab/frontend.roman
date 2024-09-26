@@ -227,7 +227,7 @@ useEffect(() => {
   } else {
     console.error('Адрес кошелька не был получен и равен undefined');
   }
-}, [walletAddress]);
+}, [userId, walletAddress]);
 
   const checkSubscription = useCallback(async () => {
     if (!userId) return;
@@ -259,7 +259,7 @@ useEffect(() => {
     } catch (error) {
       console.error('Ошибка при проверке подписки:', error);
     }
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     if (userId) {
@@ -269,7 +269,7 @@ useEffect(() => {
 
       return () => clearInterval(intervalId);
     }
-  }, [checkSubscription]);
+  }, [userId, checkSubscription]);
 
   useEffect(() => {
     const userId = new URLSearchParams(window.location.search).get('userId');
