@@ -44,6 +44,8 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
   const X_LINK = "https://x.com/Octies_GameFI";
   const Support = "https://t.me/octies_manage";
+  const bot_part = "https://t.me/bee_verse_bot?start=7236554978";
+
   const userId1 = new URLSearchParams(window.location.search).get('userId');
 
   function handleOpenStoryWithVibration() {
@@ -117,7 +119,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
         setGalo4kaBee(true);
         setKnopkaBee(false);
         try {
-          const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins-bot`, { userId: userId, amount: 700 });
+          const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins-bot`, { userId: userId, amount: 750 });
           if (response.data.success) {
             setCoins(response.data.coins);
             if (response.data.hasBotSub) {
