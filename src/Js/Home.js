@@ -111,7 +111,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   const Tg_Bot_Bee = async () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
     console.log('Отправляемый userId:', userId);  
-    window.open(X_LINK, '_blank');
+    window.open(bot_part, '_blank');
     setTimeout(async () => {
       if (localStorage.getItem('KnopkaBee') === 'true') {
         localStorage.setItem('KnopkaBee', 'false');
