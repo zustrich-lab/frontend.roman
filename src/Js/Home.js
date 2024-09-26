@@ -108,18 +108,39 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   
   const Tg_Bot_Bee = async () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+    console.log('Отправляемый userId:', userId1);  
+    window.open(X_LINK, '_blank');
     setTimeout(async () => {
       if (localStorage.getItem('KnopkaBee') === 'true') {
         localStorage.setItem('KnopkaBee', 'false');
         localStorage.setItem('Galo4kaBee', 'true');
-        setGalo4kaBee(true);
-        setKnopkaBee(false);
+        try {
+          const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins-bot`, { userId: userId1, amount: 700 });
+          if (response.data.success) {
+            setCoins(response.data.coins);
+            if (response.data.hasBotSub) {
+              localStorage.setItem('hasBotSub', 'true');
+              setCoins(response.data.coins);
+            }
+          } else {
+            console.error('Ошибка при обновлении монет:', response.data.message);
+          }
+        } catch (error) {
+          console.error('Ошибка при обновлении монет:', error);
+        }
       }
     }, 5000);
+   
   };
+  // window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  // setTimeout(async () => {
+    
+  //     setGalo4kaBee(true);
+  //     setKnopkaBee(false);
+    
+  // }, 5000);
 
-
-//________________________________________________________________Task_Swap
+//_______________________________________________________________Task_Swap
 const blockRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
 const [blockVisibility, setBlockVisibility] = useState([false, false, false, false, false, false]);
 
