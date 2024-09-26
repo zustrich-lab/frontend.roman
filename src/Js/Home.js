@@ -123,7 +123,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
             if (response.data.hasBotSub) {
               localStorage.setItem('hasBotSub', 'true');
               setCoins(response.data.coins);
-              console.log('Отправляемый userId:', успех);  
+              console.log('Отправляемый userId:успех');  
             }
           } else {
             console.error('Ошибка при обновлении монет:', response.data.message);
