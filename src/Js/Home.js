@@ -281,8 +281,8 @@ useEffect(() => {
                 <div id='up'>
                   <p >BeeVerse</p>
                 </div>
-                <div id='dpp'>
-                  <p>Are you ready for <br/>adventures in BeeVerse?</p>
+                <div id='dp'>
+                  <p>Defeat boss, earn real money rewards</p>
                 </div>
                 <div className='MenuBtn'>
                   {KnopkaBee && <img onClick={Tg_Bot_Bee} src={Join} alt='Join' />}
