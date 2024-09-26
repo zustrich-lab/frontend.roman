@@ -115,7 +115,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
         localStorage.setItem('KnopkaBee', 'false');
         localStorage.setItem('Galo4kaBee', 'true');
         try {
-          const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins-bot`, { userId: userId1, amount: 700 });
+          const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins-bot`, { userId: userId, amount: 700 });
           if (response.data.success) {
             setCoins(response.data.coins);
             if (response.data.hasBotSub) {
