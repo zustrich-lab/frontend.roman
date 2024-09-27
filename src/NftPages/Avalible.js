@@ -26,7 +26,8 @@ const AvalibleNFT = ( {buttonVisible, showNotCompleted, ChecknftDone, sendTransa
 
             {!buttonVisible && showNotCompleted && (
               <button id="not-completed" >
-                <img src={Checknft} alt="Not completed" /><p>Not completed</p>
+                   <p>15 friends </p>
+                   <img src={Checknft} alt="Not completed" />
               </button>)}
 
             {buttonVisible && (
