@@ -570,7 +570,7 @@ button{
   margin-top: 0.2vh;
 }
 
-#not-completed , #not-completed-missed img {
+#not-completed img, #not-completed-missed img {
   margin-left: 0.5vh;
   height: 2.5vh;
   margin-right: 0.5vh; 
