@@ -1,9 +1,10 @@
 import React from 'react';
 import '../Css/NFTs.css';
+import NFtV2 from '../IMG/NFTs/NftV2.png';
 
 
 const AvalibleNFT = ( {buttonVisible, showNotCompleted, isMint, ChecknftDone, sendTransactionFunc, Checknft, sendTransaction1,
-    handleCheckReferrals, timerforsent, updatedSpots, Tg_Form_Window, Nft, durov, ton55
+    handleCheckReferrals, timerforsent, updatedSpots, Tg_Form_Window, durov, ton55, isMintv2
  }) => {
 
 
@@ -11,11 +12,10 @@ const AvalibleNFT = ( {buttonVisible, showNotCompleted, isMint, ChecknftDone, se
   return (
     <div className='mainNft'> 
        
-
-    {/* <div className='nft-promo'>
+       {!isMintv2 && <div className='nft-promo'>
       <div className='nft-text'>
-        <h2>GET YOUR <span id='highlight'>FREE</span> NFT!</h2>
-        <p>Invite 15 friends, Connect Wallet <br/>and receive unique OCTIES NFT</p>
+        <h2>GET YOUR <span id='highlight'>REFERRAL</span> NFT!</h2>
+        <p>Invite 15 friends <br/> & Connect Wallet <span id='highlight'>v.2</span></p>
         <div className='nft-buttons'>
           <div className="mint-section">
 
@@ -38,21 +38,19 @@ const AvalibleNFT = ( {buttonVisible, showNotCompleted, isMint, ChecknftDone, se
           </div>
           <div className="mint-section">
           <button
-            className={`mint-button ${isMint ? 'greenlight' : (!buttonVisible ? 'canMint' : '')}`}
-            onClick={sendTransactionFunc}
-          >
-            {isMint ? 'MINTED' : 'MINT'}
+            className={`mint-button ${!buttonVisible ? 'canMint' : ''}`}
+            onClick={sendTransactionFunc}> MINT
           </button>
 
           </div>
         </div>
       </div>
       <div className='nft-image'>
-        <img src={Nft} alt='OCTIES NFT' /> 
+        <img src={NFtV2} alt='OCTIES NFT' /> 
       </div>
-    </div> */}
+    </div>}
 
-    <div className='nft-promo2'>
+    <div className={`nft-promo2 ${!isMintv2 ? '' : 'nft-promoV2'}`}>
       <div className='LeftNft2'>
         <div alt='' id='redElipse'/>
         <h1><span id='highlight'>CREATE AN NFT</span> OF YOUR<br/>CHARACTER OCTIES!</h1>    

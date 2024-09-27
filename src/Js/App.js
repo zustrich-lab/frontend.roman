@@ -128,8 +128,6 @@ function App() {
   if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
   const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
   const [showNotCompleted, setShowNotCompleted] = useState(false);
-  if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
-  const isMint = localStorage.getItem('isMintNFT') === 'true';
 
   if (!localStorage.getItem('Galo4kaBee')) {localStorage.setItem('Galo4kaBee', 'false');}
   const [Galo4kaBee, setGalo4kaBee] = useState(localStorage.getItem('Galo4kaBee') === 'true')
@@ -137,6 +135,10 @@ function App() {
   if (!localStorage.getItem('KnopkaBee')) {localStorage.setItem('KnopkaBee', 'true');}
   const [KnopkaBee, setKnopkaBee] = useState(localStorage.getItem('KnopkaBee') === 'true')
 
+  if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
+  const isMint = localStorage.getItem('isMintNFT') === 'true';
+  if (!localStorage.getItem('isMintNFTv2')) {localStorage.setItem('isMintNFTv2', 'false');}
+  const isMintv2 = localStorage.getItem('isMintNFTv2') === 'true';
 
   const [alert, setalert] = useState(false);
 
@@ -144,7 +146,7 @@ function App() {
   const locationOcties = useLocation();
   const navigateOcties = useNavigate();
 
-  const [isLoadingOcto, setLoadingOcto] = useState(true);
+  const [isLoadingOcto, setLoadingOcto] = useState(false);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
@@ -534,7 +536,7 @@ const handleCheckReferrals = () => {
 
         <Route path="/nfts" element={<NFTs showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
                               Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} setTransactionNumber={setTransactionNumber} userId={userId}
-                              rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
+                              rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} isMintv2={isMintv2} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
                               missed={missed} complated={complated}/>}>
 
         </Route>
