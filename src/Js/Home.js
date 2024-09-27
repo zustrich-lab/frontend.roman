@@ -1,17 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import '../Css/App.css';
+import { Reward_Age, Reward_Premium, Reward_Chanel,
+         Reward_Invite, Reward_X, Reward_PartnerChanels,
+         Reward_NFT, Reward_Nick, Reward_pass,
+         Reward_pass_ticket} from "../IMG/Reward_icon";
 
-//import image Reward
-import Reward_Age from '../IMG/TaskIcon/TS1.png';
-import Reward_Premium from '../IMG/TaskIcon/TS2.png';
-import Reward_Chanel  from '../IMG/TaskIcon/TS3.png';
-import Reward_Invite from '../IMG/TaskIcon/TS4.png';
-import Reward_X from '../IMG/TaskIcon/TSX.png';
-import Reward_PartnerChanels from '../IMG/TaskIcon/Other_Tg.png';
-import Reward_NFT from '../IMG/TaskIcon/TS_NFT.png';
-import Reward_Nick from '../IMG/TaskIcon/TS_nick.png';
-import Reward_pass from '../IMG/TaskIcon/passStar.png';
+
 //import image SwapTask
 import AnyTapChanel from '../IMG/All_Logo/AnyTapChanel.png';
 import tgLogo from '../IMG/All_Logo/TgComunity.png';
@@ -30,7 +25,6 @@ import Logo from '../IMG/All_Logo/Logo.png';
 import Play from '../IMG/All_Logo/Play.png';
 import Octo from '../IMG/All_Logo/Octo.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
-import pass from '../IMG/All_Logo/pass.png';
 import beeVerse from '../IMG/All_Logo/BeeVerse.png';
 
 function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, KnopkaNick, 
@@ -359,7 +353,7 @@ useEffect(() => {
               <img src={Reward_pass} alt='' /> <p>Unique pass</p>
             </div>
             <div className='tsPhoto'>
-              <p id='highpink' ><img src={pass} id='pass' alt='' />+{Ton5Succes} PASS</p>
+              <p id='highpink' ><img src={Reward_pass_ticket} id='pass' alt='' />+{Ton5Succes} PASS</p>
             </div>
           </div>)}
 

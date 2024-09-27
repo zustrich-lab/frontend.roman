@@ -1,8 +1,9 @@
 import React from 'react';
 import '../Css/P2e.css';
+import { P2e_Soon, P2e_OctiesCosmo,
+         P2e_Planet, P2e_starship} from "../IMG/ComingSoon";
 
-
-const PlayToEarn = ({soon, PLANET, OctiesCosmo, starship}) => {
+const PlayToEarn = () => {
 
   return (
     <div className='P2E_Window' >
@@ -11,10 +12,10 @@ const PlayToEarn = ({soon, PLANET, OctiesCosmo, starship}) => {
         <div class="stars"></div>
         <div class="twinkling"></div>
       </div>
-      <img src={soon} id='soontext'alt=''/>
-      <img src={OctiesCosmo} id='cosmo'alt=''/>
-      <img src={starship} id='starship'alt=''/>
-      <img src={PLANET} id='planet' alt=''/>
+      <img src={P2e_Soon} id='soontext'alt=''/>
+      <img src={P2e_OctiesCosmo} id='cosmo'alt=''/>
+      <img src={P2e_starship} id='starship'alt=''/>
+      <img src={P2e_Planet} id='planet' alt=''/>
     </div>
 );
 };

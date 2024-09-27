@@ -18,11 +18,6 @@ import LoadingScreenOcto from '../Loading/LoadingOcto.js';
 import LoadingScreenOctoNft from '../Loading/LoadingOctoNft.js'
 //import image Friends
 import invite from '../IMG/All_Logo/Invite_png.png';
-//import image p2e
-import soon from '../IMG/ComingSoon/Text_soon.png';
-import PLANET from '../IMG/ComingSoon/PLANET.png';
-import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
-import starship from '../IMG/ComingSoon/starship.png';
 //import image NFT
 import missed from '../IMG/NFTs/Missed.png';
 import complated from '../IMG/NFTs/Complated.png';
@@ -44,10 +39,6 @@ import p2e from '../IMG/LowerIcon/p2e.png';
 
 
 const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
-
-
-
-
 
 function App() {
 
@@ -85,10 +76,6 @@ function App() {
       const img = new Image();
       img.src = src;
   };
-  preloadImage(soon); 
-  preloadImage(PLANET); 
-  preloadImage(OctiesCosmo);
-  preloadImage(starship);
   preloadImage(Nft);
   preloadImage(shapka2);
   preloadImage(dedpool);
@@ -530,7 +517,7 @@ const handleCheckReferrals = () => {
 
         <Route path="/leaderboard" element={<Leaderboard userId={userId} coins={coins} getRandomColor={getRandomColor}/>} />
 
-        <Route path="/playtoearn" element={<PlayToEarn soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>} />
+        <Route path="/playtoearn" element={<PlayToEarn/>} />
 
         <Route path="/friends" element={<Friends invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>} />
 
