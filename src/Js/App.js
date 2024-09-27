@@ -338,7 +338,24 @@ useEffect(() => {
         else{
           localStorage.setItem('KnopkaNick', 'false');
         }
-        
+        if (data.hasReceivedTwitterReward) {
+          localStorage.setItem('GalkaX', 'true');
+          localStorage.setItem('KnopkaX', 'false');
+        } else {
+          localStorage.setItem('GalkaX', 'false');
+          localStorage.setItem('KnopkaX', 'true');
+        }
+        if (data.hasBotSub) {
+          localStorage.setItem('Galo4kaBee', 'true');
+          localStorage.setItem('KnopkaBee', 'false');
+          setGalo4kaBee(true);
+          setKnopkaBee(false);
+        } else {
+          localStorage.setItem('Galo4kaBee', 'false');
+          localStorage.setItem('KnopkaBee', 'true');
+          setGalo4kaBee(false);
+          setKnopkaBee(true);
+        }
         setLoadingOcto(false);
         setAccountAgeCoins(accountAgeCoins);
   
