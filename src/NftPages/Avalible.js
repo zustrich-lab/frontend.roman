@@ -3,7 +3,7 @@ import '../Css/NFTs.css';
 import NFtV2 from '../IMG/NFTs/NftV2.png';
 
 
-const AvalibleNFT = ( {buttonVisible, showNotCompleted, isMint, ChecknftDone, sendTransactionFunc, Checknft, sendTransaction1,
+const AvalibleNFT = ( {buttonVisible, showNotCompleted, ChecknftDone, sendTransactionFunc, Checknft, sendTransaction1,
     handleCheckReferrals, timerforsent, updatedSpots, Tg_Form_Window, durov, ton55, isMintv2
  }) => {
 

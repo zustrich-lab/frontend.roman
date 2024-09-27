@@ -166,7 +166,6 @@ const handleComplatedNFT = () => {
       {VisibleAvalibleNFT && (<AvalibleNFT 
           buttonVisible={buttonVisible} 
           showNotCompleted={showNotCompleted} 
-          isMint={isMint} 
           isMintv2={isMintv2}
           sendTransactionFunc={sendTransactionFunc} 
           Checknft={Checknft}
