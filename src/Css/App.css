@@ -496,7 +496,11 @@ button{
 
 
 #not-completed {
-  color: red;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
   height: 80%;
   width: 100%;
   margin-left: 1.7vh;
