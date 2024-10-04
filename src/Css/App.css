@@ -496,11 +496,7 @@ button{
 
 
 #not-completed {
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
+  color: red;
   height: 80%;
   width: 100%;
   margin-left: 1.7vh;
@@ -570,7 +566,7 @@ button{
   margin-top: 0.2vh;
 }
 
-#not-completed img, #not-completed-missed img {
+#not-completed , #not-completed-missed img {
   margin-left: 0.5vh;
   height: 2.5vh;
   margin-right: 0.5vh; 
