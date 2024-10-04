@@ -133,7 +133,7 @@ function App() {
   const locationOcties = useLocation();
   const navigateOcties = useNavigate();
 
-  const [isLoadingOcto, setLoadingOcto] = useState(false);
+  const [isLoadingOcto, setLoadingOcto] = useState(true);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
