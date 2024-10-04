@@ -13,17 +13,11 @@ import Leaderboard from './Leaderboard';
 import PlayToEarn from './P2e.js';
 import Friends from './Friends';
 import NFTs from './NFTs.js';
-import Qr from '../Loading/DesktopQR.js';
 import LoadingScreen from '../Loading/Loading.js';
 import LoadingScreenOcto from '../Loading/LoadingOcto.js';
 import LoadingScreenOctoNft from '../Loading/LoadingOctoNft.js'
 //import image Friends
 import invite from '../IMG/All_Logo/Invite_png.png';
-//import image p2e
-import soon from '../IMG/ComingSoon/Text_soon.png';
-import PLANET from '../IMG/ComingSoon/PLANET.png';
-import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
-import starship from '../IMG/ComingSoon/starship.png';
 //import image NFT
 import missed from '../IMG/NFTs/Missed.png';
 import complated from '../IMG/NFTs/Complated.png';
@@ -44,30 +38,9 @@ import NFTlogo from '../IMG/LowerIcon/NFTLogo.png';
 import p2e from '../IMG/LowerIcon/p2e.png';
 
 
-const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
-
+const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
 
 function App() {
-
- 
-
-  useEffect(() => {
-    const userAgent = navigator.userAgent; // Define userAgent
-
-    if (
-      userAgent.match(/Mobile/i) ||
-      userAgent.match(/Android/i) ||
-      userAgent.match(/iPhone/i) ||
-      userAgent.match(/iPad/i)
-    ) {
-      navigateOcties("/loading");
-    } else {
-      navigateOcties("/qr");
-    }
-  }, );
-
- 
-  
 
   const [userId, setUserId] = useState(null); // Используем useState для хранения userId
 
@@ -103,10 +76,6 @@ function App() {
       const img = new Image();
       img.src = src;
   };
-  preloadImage(soon); 
-  preloadImage(PLANET); 
-  preloadImage(OctiesCosmo);
-  preloadImage(starship);
   preloadImage(Nft);
   preloadImage(shapka2);
   preloadImage(dedpool);
@@ -146,8 +115,6 @@ function App() {
   if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
   const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
   const [showNotCompleted, setShowNotCompleted] = useState(false);
-  if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
-  const isMint = localStorage.getItem('isMintNFT') === 'true';
 
   if (!localStorage.getItem('Galo4kaBee')) {localStorage.setItem('Galo4kaBee', 'false');}
   const [Galo4kaBee, setGalo4kaBee] = useState(localStorage.getItem('Galo4kaBee') === 'true')
@@ -155,6 +122,10 @@ function App() {
   if (!localStorage.getItem('KnopkaBee')) {localStorage.setItem('KnopkaBee', 'true');}
   const [KnopkaBee, setKnopkaBee] = useState(localStorage.getItem('KnopkaBee') === 'true')
 
+  if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
+  const isMint = localStorage.getItem('isMintNFT') === 'true';
+  if (!localStorage.getItem('isMintNFTv2')) {localStorage.setItem('isMintNFTv2', 'false');}
+  const isMintv2 = localStorage.getItem('isMintNFTv2') === 'true';
 
   const [alert, setalert] = useState(false);
 
@@ -162,7 +133,7 @@ function App() {
   const locationOcties = useLocation();
   const navigateOcties = useNavigate();
 
-  const [isLoadingOcto, setLoadingOcto] = useState(true);
+  const [isLoadingOcto, setLoadingOcto] = useState(false);
   const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
@@ -356,7 +327,24 @@ useEffect(() => {
         else{
           localStorage.setItem('KnopkaNick', 'false');
         }
-        
+        if (data.hasReceivedTwitterReward) {
+          localStorage.setItem('GalkaX', 'true');
+          localStorage.setItem('KnopkaX', 'false');
+        } else {
+          localStorage.setItem('GalkaX', 'false');
+          localStorage.setItem('KnopkaX', 'true');
+        }
+        if (data.hasBotSub) {
+          localStorage.setItem('Galo4kaBee', 'true');
+          localStorage.setItem('KnopkaBee', 'false');
+          setGalo4kaBee(true);
+          setKnopkaBee(false);
+        } else {
+          localStorage.setItem('Galo4kaBee', 'false');
+          localStorage.setItem('KnopkaBee', 'true');
+          setGalo4kaBee(false);
+          setKnopkaBee(true);
+        }
         setLoadingOcto(false);
         setAccountAgeCoins(accountAgeCoins);
   
@@ -528,22 +516,20 @@ const handleCheckReferrals = () => {
                                   userId={userId}  setCoins={ setCoins} Galo4kaBee={Galo4kaBee} setGalo4kaBee={setGalo4kaBee} KnopkaBee={KnopkaBee} setKnopkaBee={setKnopkaBee}/>}/>
 
         <Route path="/leaderboard" element={<Leaderboard userId={userId} coins={coins} getRandomColor={getRandomColor}/>} />
-        <Route path="/qr" element={<Qr/>}/>
 
-        <Route path="/playtoearn" element={<PlayToEarn soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>} />
+        <Route path="/playtoearn" element={<PlayToEarn/>} />
 
         <Route path="/friends" element={<Friends invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>} />
 
         <Route path="/nfts" element={<NFTs showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
                               Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} setTransactionNumber={setTransactionNumber} userId={userId}
-                              rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
+                              rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} isMintv2={isMintv2} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
                               missed={missed} complated={complated}/>}>
 
         </Route>
                               
       </Routes>         
 
-     
       {FPage && (<First onClose={handleFirstPageClose} setCheckOpen={setCheckOpen} />)}
       {CheckOpen && (<Check setCheckOpen={setCheckOpen} setYearsOpen={setYearsOpen} />)}
       {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen} Yearr={Yearr} />)}

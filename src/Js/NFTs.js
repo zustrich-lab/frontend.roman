@@ -11,7 +11,7 @@ import MissedNFT from '../NftPages/Missed.js';
 
 
 const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft,  ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, alert, setalert, updatedSpots, setTransactionNumber, userId, missed, complated
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, isMintv2,alert, setalert, updatedSpots, setTransactionNumber, userId, missed, complated
 }) => {
 
   const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
@@ -166,7 +166,7 @@ const handleComplatedNFT = () => {
       {VisibleAvalibleNFT && (<AvalibleNFT 
           buttonVisible={buttonVisible} 
           showNotCompleted={showNotCompleted} 
-          isMint={isMint} 
+          isMintv2={isMintv2}
           sendTransactionFunc={sendTransactionFunc} 
           Checknft={Checknft}
           sendTransaction1={sendTransaction1} 
@@ -181,7 +181,7 @@ const handleComplatedNFT = () => {
           />)}
 
 
-        {VisibleComplatedNFT && (<ComplatedNFT ChecknftDone={ChecknftDone} Nft={Nft} isMint={isMint} complated={complated}/>)}
+        {VisibleComplatedNFT && (<ComplatedNFT ChecknftDone={ChecknftDone} Nft={Nft} isMint={isMint} isMintv2={isMintv2} complated={complated}/>)}
 
         {VisibleMissedNFT && (<MissedNFT Checknft={Checknft} Nft={Nft} isMint={isMint} missed={missed}/>)}
 
