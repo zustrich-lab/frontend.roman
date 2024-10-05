@@ -251,6 +251,33 @@
   margin-left: 0;
 }
 
+#friends-count {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 80%;
+  width: 100%;
+  margin-left: 1.7vh;
+  margin-right: 1.7vh;
+  font-size: 1.7vh;
+  font-family: MullerMedium;
+  border-radius: 1.2vh;
+  background: #484848;
+}
+
+#friends-count p{
+  font-size: 1.5vh;
+  margin-top: 0.2vh;
+  margin-left: 0;
+}
+
+#friends-count img {
+  margin-left: 0.5vh;
+  height: 2.2vh;
+}
+
 .Referal5Ton{
    display: flex;
    align-items: center;
