@@ -196,31 +196,26 @@ button{
   0% {
     box-shadow: inset 0 0 0 0.1vh rgba(103, 159, 56, 1),
                 inset 0 0 10vh 0.8vh rgba(0, 0, 0, 0.5),
-                0 0 1.5vh 0.4vh rgba(103, 159, 56, 1);
+                0 0 2vh 0 rgba(103, 159, 56, 1);
   }
   50% {
     box-shadow: inset 0 0 0 0.1vh rgba(103, 159, 56, 1),
                 inset 0 0 10vh 0.8vh rgba(0, 0, 0, 0.5),
-                0 0 2vh 0 rgba(103, 159, 56, 0.8);
+                0 0 0.1vh 0 rgba(103, 159, 56, 0.8);
   }
   100% {
     box-shadow: inset 0 0 0 0.1vh rgba(103, 159, 56, 1),
                 inset 0 0 10vh 0.8vh rgba(0, 0, 0, 0.5),
-                0 0 1.5vh 0.4vh rgba(103, 159, 56, 1);
+                0 0 2vh 0vh rgba(103, 159, 56, 1);
   }
 }
 
 #lightGreenBack {
   background: rgba(103, 159, 56, 1);
-  box-shadow: inset 0 0 0 0.1vh rgba(103, 159, 56, 1),
-              inset 0 0 10vh 0.8vh rgba(0, 0, 0, 0.5),
-              0 0 1.5vh 0.4vh rgba(103, 159, 56, 1);
   animation: shadowPulse 1.5s infinite;
 }
 
-#lightGray{
-  color: #BBBBBB;
-}
+#lightGray{color: #BBBBBB;}
 
 .flex_menu_border{
   background: #1A1A1A;
@@ -259,7 +254,7 @@ button{
   border-radius: 2vh;
 }
 
-.MenuBorder p{margin-left: 1.7vh;}
+
 
 .emoji{
   position: absolute;
@@ -278,6 +273,7 @@ button{
 
 #up p{
   padding-top: 1.7vh;
+  margin-left: 1.7vh;
 }
 
 #dp {
@@ -286,6 +282,7 @@ button{
   text-align: left;
   display: flex;
   align-items: center;
+  margin-left: 1.7vh;
 }
 
 #dpp {
@@ -295,6 +292,7 @@ button{
   display: flex;
   align-items: center;
   padding-top: 0.7vh;
+  margin-left: 1.7vh;
 }
 
 .MenuBtn{
@@ -305,6 +303,10 @@ button{
   align-items: center;
   color: #9F9F9F;
   font-size: 1.8vh;
+}
+
+.MenuBtn p{
+  margin-left: 1.7vh;
 }
 
 .MenuBorder button {
@@ -319,7 +321,7 @@ button{
 .MenuBtn img {height:4vh;margin-left: 1.7vh;}
 
 .Tasks{
-  height: 66%;
+  height: 41%;
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -494,10 +496,6 @@ button{
   height: 50%;
 }
 
-
-
-
-
 .nft-image img {
   right: 0;
   height: 100%;
@@ -648,8 +646,66 @@ button[data-tc-dropdown-button="true"] {
   height: 10vh;
 }
 
+.AdsGramBorder{
+  height: calc(25% - 0.5vh - 0.2vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  background: #1A1A1A;
+  border-radius: 2vh;
+  margin-bottom: 0.5vh;
+  border: 0.2vh solid #B50101;
+}
+
+#rightFlexAds{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: relative;
+  
+}
+
+#upAds{
+  padding-top: 1vh;
+  font-size: 2.1vh;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  position: relative;
+  margin-left: 1.7vh;
+}
+
+#dpAds{
+  font-size: 1.7vh;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  margin-left: 1.7vh;
+}
+
+#AdsMenu {
+  height: auto;
+  padding-bottom: 1vh;
+ 
+}
+
+#telefon{
+  position: absolute;
+  height: 100%;
+  right: -2vh;
+}
+
+#AdsMenu img{
+  height: 3vh;
+}
+
 @media (orientation: landscape) {
 
+  .AdsGramBorder{
+      height: 45%;
+  }
   .leftFlex{
     align-items: center;
     justify-content: end;
@@ -659,6 +715,10 @@ button[data-tc-dropdown-button="true"] {
     height: 55%;
     padding-right: 1vh;
     padding-top: 0;
+  }
+
+  #AdsMenu img{
+    height: 5vh;
   }
 
   .BTNLow {
@@ -681,7 +741,7 @@ button[data-tc-dropdown-button="true"] {
   }
   
   .Tasks{
-    height: 45%;
+    height: 5%;
   }
 
   .Reward{
@@ -689,7 +749,7 @@ button[data-tc-dropdown-button="true"] {
   }
 
   .Skroll_Menu_Border{
-    height: 50%;
+    height: 45%;
   }
 
   .mainHome{
@@ -712,6 +772,14 @@ button[data-tc-dropdown-button="true"] {
      }
   
   #dp {
+    font-size: 3vh;
+  }
+
+  #upAds{
+    font-size: 4vh;
+  }
+  
+  #dpAds{
     font-size: 3vh;
   }
 

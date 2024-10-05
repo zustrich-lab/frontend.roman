@@ -20,6 +20,8 @@ import nickGalka from '../IMG/All_Logo/galka.png';
 import nickKr from '../IMG/All_Logo/nickNema.png';
 import ContactUs from '../IMG/All_Logo/ContactUs.png';
 import Join from '../IMG/All_Logo/Join.png';
+import Watch from '../IMG/All_Logo/watch.png';
+import racketaMain from '../IMG/All_Logo/karandash_in_hand.png';
 //import image Main
 import Ellipse from '../IMG/All_Logo/Ellipse.png';
 import Logo from '../IMG/All_Logo/Logo.png';
@@ -205,6 +207,25 @@ useEffect(() => {
       </div>}
 
       <div className='Menu'>
+
+        <div className='AdsGramBorder'>
+        
+            
+              <div className='rightFlex' id='rightFlexAds'>
+                <div id='upAds'>
+                  <p>DAILY QUEST <span id='highgreen'>20</span>/20</p>
+                </div>
+                <div  id='dpAds'>
+                  <p>Watch ads to farm $OCTIES and earn a <br/>special reward by viewing all 20 daily!</p>
+                </div> 
+                <div className='MenuBtn' id='AdsMenu'>
+                <img onClick={Tg_Channel_Open_X} src={Watch} alt='' />
+                <p>+35 $OCTIES for<span id='highlight'> view </span></p>   
+                </div>
+                <img src={racketaMain} id='telefon' alt=''/>
+              </div>
+          
+        </div>
         <div className='Skroll_Menu_Border'>
 
           <div className='MenuBorder' ref={blockRefs[0]}>
