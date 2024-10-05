@@ -20,21 +20,18 @@ const AvalibleNFT = ( {buttonVisible, showNotCompleted, ChecknftDone, sendTransa
         <div className='nft-buttons'>
           <div className="mint-section">
 
-            {/* {!buttonVisible && !showNotCompleted && 
+             {!buttonVisible && !showNotCompleted && 
               <button className="referral-button" onClick={handleCheckReferrals}> 
                 Check referrals
-              </button>} */}
+              </button>} 
 
-            {!buttonVisible && (
+            {!buttonVisible && showNotCompleted && (
               <div className="mint-section">
               <button id="not-completed" >
                    <p>15 friends </p>
                    <img src={Checknft} alt="Not completed" />
               </button>
-              <p id='or'>OR</p>
-              <button className='Referal5Ton'>
-                <img src={TonRef1} alt=''/>
-              </button>
+              
             </div>
             )}
 
@@ -43,6 +40,11 @@ const AvalibleNFT = ( {buttonVisible, showNotCompleted, ChecknftDone, sendTransa
                 <p>15 friends </p>
                 <img src={ChecknftDone} alt="Checkmark" />
               </button> )}
+
+              <p id='or'>OR</p>
+              <button className='Referal5Ton'>
+                <img src={TonRef1} alt=''/>
+              </button>
 
           </div>
           <div className="mint-section">
