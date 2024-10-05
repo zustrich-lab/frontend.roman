@@ -252,7 +252,7 @@
    height: 80%;
    width: 80%;
    margin-left: 1.7vh;
-   margin-right: 1.7vh;
+   margin-right: 1vh;
    font-family: MullerMedium;
    border-radius: 1.2vh;
    background: #484848;
@@ -269,9 +269,9 @@
    align-items: center;
    justify-content: center;
    height: 80%;
-   width: 50%;
+   width: 40%;
 
-   margin-left: 1.7vh;
+   margin-left: 1vh;
    margin-right: 1.7vh;
    border-radius: 1.2vh;
    background: #0088CC;
