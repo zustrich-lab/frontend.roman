@@ -31,7 +31,7 @@ const AvalibleNFT = ( {buttonVisible, showNotCompleted, ChecknftDone, sendTransa
                    <p>15 friends </p>
                    <img src={Checknft} alt="Not completed" />
               </button>
-              <p id='or'>Or</p>
+              <p id='or'>OR</p>
               <button className='Referal5Ton'>
                 <img src={TonRef1} alt=''/>
               </button>
