@@ -4,7 +4,8 @@ import '../Css/App.css';
 import { Reward_Age, Reward_Premium, Reward_Chanel,
          Reward_Invite, Reward_X, Reward_PartnerChanels,
          Reward_NFT, Reward_Nick, Reward_pass,
-         Reward_pass_ticket} from "../IMG/Reward_icon";
+         Reward_pass_ticket,  Reward_hz_sho_ce_kakoito_karandash,
+         Reward_racketa} from "../IMG/Reward_icon";
 
 
 //import image SwapTask
@@ -348,6 +349,16 @@ useEffect(() => {
         </div>
         <div className='Tasks' id={isMint ? 'TaskswithoutNft' : undefined}>
           
+        <div className='TS'>
+            <div className='tsPhoto'>
+              <img src={Reward_hz_sho_ce_kakoito_karandash} alt='' /> <p>Special reward</p>
+            </div>
+            <div className='tsPhoto'>
+              <p id='highpurple' ><img src={Reward_racketa} id='pass' alt='' />+ 1 ADS</p>
+            </div>
+          </div>
+
+
           {Ton5Succes > 0 &&(<div className='TS'>
             <div className='tsPhoto'>
               <img src={Reward_pass} alt='' /> <p>Unique pass</p>
