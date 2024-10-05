@@ -354,7 +354,7 @@ useEffect(() => {
               <img src={Reward_hz_sho_ce_kakoito_karandash} alt='' /> <p>Special reward</p>
             </div>
             <div className='tsPhoto'>
-              <p id='highpurple' ><img src={Reward_racketa} id='pass' alt='' />+ 1 ADS</p>
+              <p id='highpurple' ><img src={Reward_racketa} id='Reward_racketa' alt='' />+ 1 ADS</p>
             </div>
           </div>
 
