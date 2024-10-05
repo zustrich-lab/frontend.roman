@@ -229,6 +229,58 @@
   animation: shadowPulseBlue 1.5s infinite;
 }
 
+ #not-completed {
+  /* color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 80%;
+  width: 100%;
+  margin-left: 1.7vh;
+  margin-right: 1.7vh;
+  font-size: 1.7vh;
+  font-family: MullerMedium;
+  border-radius: 1.2vh;
+  background: #484848;
+   animation: fadeOut 2s forwards; */
+   color: white;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: row;
+   height: 80%;
+   width: 80%;
+   margin-left: 1.7vh;
+   margin-right: 1.7vh;
+   font-family: MullerMedium;
+   border-radius: 1.2vh;
+   background: #484848;
+}  
+
+#not-completed p{
+  font-size: 1.5vh;
+  margin-left: 0;
+}
+
+.Referal5Ton{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 80%;
+   width: 50%;
+
+   margin-left: 1.7vh;
+   margin-right: 1.7vh;
+   border-radius: 1.2vh;
+   background: #0088CC;
+}
+
+.Referal5Ton img {
+  height: 3vh;
+  margin: 0;
+  padding: 0;
+}
 
 #redElipse{
   top: 2vh;

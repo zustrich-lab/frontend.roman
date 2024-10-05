@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Css/NFTs.css';
 import NFtV2 from '../IMG/NFTs/NftV2.png';
+import TonRef1 from '../IMG/Nft_ref/1tonRef.png';
 
 
 const AvalibleNFT = ( {buttonVisible, showNotCompleted, ChecknftDone, sendTransactionFunc, Checknft, sendTransaction1,
@@ -19,16 +20,23 @@ const AvalibleNFT = ( {buttonVisible, showNotCompleted, ChecknftDone, sendTransa
         <div className='nft-buttons'>
           <div className="mint-section">
 
-            {!buttonVisible && !showNotCompleted && 
+            {/* {!buttonVisible && !showNotCompleted && 
               <button className="referral-button" onClick={handleCheckReferrals}> 
                 Check referrals
-              </button>}
+              </button>} */}
 
-            {!buttonVisible && showNotCompleted && (
+            {!buttonVisible && (
+              <div className="mint-section">
               <button id="not-completed" >
                    <p>15 friends </p>
                    <img src={Checknft} alt="Not completed" />
-              </button>)}
+              </button>
+              <p id='or'>Or</p>
+              <button className='Referal5Ton'>
+                <img src={TonRef1} alt=''/>
+              </button>
+            </div>
+            )}
 
             {buttonVisible && (
               <button id="friends-count">

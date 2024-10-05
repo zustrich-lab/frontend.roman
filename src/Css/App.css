@@ -495,22 +495,6 @@ button{
 
 
 
-#not-completed {
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  height: 80%;
-  width: 100%;
-  margin-left: 1.7vh;
-  margin-right: 1.7vh;
-  font-size: 1.7vh;
-  font-family: MullerMedium;
-  border-radius: 1.2vh;
-  background: #484848;
-  animation: fadeOut 2s forwards;
-}
 
 
 .nft-image img {
@@ -548,6 +532,10 @@ button{
   height: 2.5vh;
 }
 
+#or{
+margin: 0;
+}
+
 #not-completed-missed
 {
   color: white;
@@ -571,9 +559,9 @@ button{
 }
 
 #not-completed img, #not-completed-missed img {
-  margin-left: 0.5vh;
-  height: 2.5vh;
-  margin-right: 0.5vh; 
+  margin-left: 0.7vh;
+  height: 2.2vh;
+ 
 }
 
 .referral-button {
