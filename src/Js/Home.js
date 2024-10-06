@@ -41,8 +41,8 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   const TG_CHANNEL_LINK = "https://t.me/octies_community";
   const TG_CHANNEL_LINK2 = "https://t.me/any_tap";
   const X_LINK = "https://x.com/Octies_GameFI";
-  const Support = "https://t.me/octies_manage";
-  const bot_part = "https://t.me/bee_verse_bot?start=7236554978";
+  // const Support = "https://t.me/octies_manage";
+  // const bot_part = "https://t.me/bee_verse_bot?start=7236554978";
 
   const userId1 = new URLSearchParams(window.location.search).get('userId');
 
@@ -70,14 +70,14 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
     }, 3000);
   };
 
-  const Tg_Channel_Support = () => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    window.open(Support, '_blank');
-    setTimeout(() => {
-      checkSubscriptionAndUpdate(userId);
-    }, 3000);
-  };
+  // const Tg_Channel_Support = () => {
+  //   const userId = new URLSearchParams(window.location.search).get('userId');
+  //   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  //   window.open(Support, '_blank');
+  //   setTimeout(() => {
+  //     checkSubscriptionAndUpdate(userId);
+  //   }, 3000);
+  // };
 
   const Tg_Channel_Open_X = async () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
@@ -105,36 +105,42 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
     }, 5000);
   };
 
-  
-  const Tg_Bot_Bee = async () => {
+  const Open_Ads = async () => {
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
-    console.log('Отправляемый userId:', userId);  
-    window.open(bot_part, '_blank');
-    setTimeout(async () => {
-      if (localStorage.getItem('KnopkaBee') === 'true') {
-        localStorage.setItem('KnopkaBee', 'false');
-        localStorage.setItem('Galo4kaBee', 'true');
-        setGalo4kaBee(true);
-        setKnopkaBee(false);
-        try {
-          const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins-bot`, { userId: userId, amount: 750 });
-          if (response.data.success) {
-            setCoins(response.data.coins);
-            if (response.data.hasBotSub) {
-              localStorage.setItem('hasBotSub', 'true');
-              setCoins(response.data.coins);
-              console.log('Отправляемый userId:успех');  
-            }
-          } else {
-            console.error('Ошибка при обновлении монет:', response.data.message);
-          }
-        } catch (error) {
-          console.error('Ошибка при обновлении монет:', error);
-        }
-      }
-    }, 5000);
    
+    setTimeout(async () => {
+     
+    }, 5000);
   };
+
+  
+  // const Tg_Bot_Bee = async () => {
+  //   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  //   console.log('Отправляемый userId:', userId);  
+  //   window.open(bot_part, '_blank');
+  //   setTimeout(async () => {
+  //     if (localStorage.getItem('KnopkaBee') === 'true') {
+  //       localStorage.setItem('KnopkaBee', 'false');
+  //       localStorage.setItem('Galo4kaBee', 'true');
+  //       setGalo4kaBee(true);
+  //       setKnopkaBee(false);
+  //       try {
+  //         const response = await axios.post(`${REACT_APP_BACKEND_URL}/update-coins-bot`, { userId: userId, amount: 750 });
+  //         if (response.data.success) {
+  //           setCoins(response.data.coins);
+  //           if (response.data.hasBotSub) {
+  //             localStorage.setItem('hasBotSub', 'true');
+  //             setCoins(response.data.coins);
+  //             console.log('Отправляемый userId:успех');  
+  //           }
+  //         } else {
+  //           console.error('Ошибка при обновлении монет:', response.data.message);
+  //         }
+  //       } catch (error) {
+  //         console.error('Ошибка при обновлении монет:', error);
+  //       }
+  //     }
+  //   }, 5000);};
   // window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
   // setTimeout(async () => {
     
@@ -240,7 +246,7 @@ const [date, setDate] = useState(new Date());
                   <p>Watch ads to farm $OCTIES and earn a <br/>special reward by viewing all 20 daily!</p>
                 </div> 
                 <div className='MenuBtn' id='AdsMenu'>
-                <img onClick={Tg_Channel_Open_X} src={Watch} alt='' />
+                <img onClick={Open_Ads} src={Watch} alt='' />
                 <p>+35 $OCTIES for<span id='highlight'> view </span></p>   
                 </div>
                 <img src={racketaMain} id='telefon' alt=''/>
@@ -312,7 +318,7 @@ const [date, setDate] = useState(new Date());
             </div>
           </div>
           
-          <div className='MenuBorder' ref={blockRefs[3]}>
+          {/* <div className='MenuBorder' ref={blockRefs[3]}>
             <div className='flex_menu_border'  id='orangeBack'>
               <div className='rightFlex'>
                 <div id='up'>
@@ -351,9 +357,9 @@ const [date, setDate] = useState(new Date());
                 <img src={FreePosition} alt=''/>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          <div className='MenuBorder' ref={blockRefs[5]}>
+          <div className='MenuBorder' ref={blockRefs[3]}>
             <div className='flex_menu_border'>
               <div className='rightFlex'>
               <div id='up'>
@@ -384,8 +390,8 @@ const [date, setDate] = useState(new Date());
             <img src={Ellipse} alt='Ellips' className={blockVisibility[1] ? '' : 'img-dark'} />
             <img src={Ellipse} alt='Ellips' className={blockVisibility[2] ? '' : 'img-dark'} />
             <img src={Ellipse} alt='Ellips' className={blockVisibility[3] ? '' : 'img-dark'} />
-            <img src={Ellipse} alt='Ellips' className={blockVisibility[4] ? '' : 'img-dark'} />
-            <img src={Ellipse} alt='Ellips' className={blockVisibility[5] ? '' : 'img-dark'} />
+            {/* <img src={Ellipse} alt='Ellips' className={blockVisibility[4] ? '' : 'img-dark'} />
+            <img src={Ellipse} alt='Ellips' className={blockVisibility[5] ? '' : 'img-dark'} /> */}
           </div>
           <p>Your Rewards</p>
         </div>
