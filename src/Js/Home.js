@@ -29,6 +29,7 @@ import Play from '../IMG/All_Logo/Play.png';
 import Octo from '../IMG/All_Logo/Octo.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
 import beeVerse from '../IMG/All_Logo/BeeVerse.png';
+import clock from '../IMG/All_Logo/clock.png';
 
 function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, KnopkaNick, 
     Ton5Succes, hasTelegramPremium, accountAgeCoins, transactionNumber,
@@ -182,6 +183,18 @@ useEffect(() => {
     });
   };
 }, );
+
+const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    // Set the interval to update the time every second
+    const timer = setInterval(() => {
+      setDate(new Date());
+    }, 1000);
+
+    // Cleanup the timer when the component unmounts
+    return () => clearInterval(timer);
+  }, []);
 //_______________________________________________________________________________________
 
     return (
@@ -213,7 +226,15 @@ useEffect(() => {
             
               <div className='rightFlex' id='rightFlexAds'>
                 <div id='upAds'>
-                  <p>DAILY QUEST <span id='highgreen'>20</span>/20</p>
+                  <div className='ForClock'>
+                    <p>DAILY QUEST <span id='highgreen'>20</span>/20</p>
+                    <div className='Dailytimer'>
+                      <img src={clock} alt=''/>
+                      <p>{date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                    </div>
+                   
+                  </div>
+                  
                 </div>
                 <div  id='dpAds'>
                   <p>Watch ads to farm $OCTIES and earn a <br/>special reward by viewing all 20 daily!</p>

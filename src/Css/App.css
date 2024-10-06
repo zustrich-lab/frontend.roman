@@ -670,11 +670,16 @@ button[data-tc-dropdown-button="true"] {
 #upAds{
   padding-top: 1vh;
   font-size: 2.1vh;
+  width: calc(100% - 1.7vh);
   display: flex;
   align-items: center;
   text-align: left;
   position: relative;
   margin-left: 1.7vh;
+}
+
+#upAds p{
+  margin-top: 0.5vh;
 }
 
 #dpAds{
@@ -699,6 +704,35 @@ button[data-tc-dropdown-button="true"] {
 
 #AdsMenu img{
   height: 3vh;
+}
+
+.ForClock{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.Dailytimer{
+  background: #74BF7D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50vh;
+  margin-left: 3.4vh;
+}
+
+.Dailytimer p{
+  color: #000000;
+  font-size: 2vh;
+  font-family: MullerMedium;
+  margin-right: 1vh ;
+}
+
+
+.Dailytimer img{
+  height: 2.2vh;
+  margin: 0.4vh 0.8vh 0.4vh 1vh;
 }
 
 @media (orientation: landscape) {
