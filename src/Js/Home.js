@@ -12,13 +12,13 @@ import { Reward_Age, Reward_Premium, Reward_Chanel,
 import AnyTapChanel from '../IMG/All_Logo/AnyTapChanel.png';
 import tgLogo from '../IMG/All_Logo/TgComunity.png';
 import XLogo from '../IMG/All_Logo/XCominity.png';
-import FreePosition from '../IMG/All_Logo/freePosiction.png';
+// import FreePosition from '../IMG/All_Logo/freePosiction.png';
 import NickLogo from '../IMG/All_Logo/nick.png';
 //import image SupportSwapTask
 import galo4ka from '../IMG/All_Logo/galol4ka.png';
 import nickGalka from '../IMG/All_Logo/galka.png';
 import nickKr from '../IMG/All_Logo/nickNema.png';
-import ContactUs from '../IMG/All_Logo/ContactUs.png';
+// import ContactUs from '../IMG/All_Logo/ContactUs.png';
 import Join from '../IMG/All_Logo/Join.png';
 import Watch from '../IMG/All_Logo/watch.png';
 import racketaMain from '../IMG/All_Logo/karandash_in_hand.png';
@@ -28,7 +28,7 @@ import Logo from '../IMG/All_Logo/Logo.png';
 import Play from '../IMG/All_Logo/Play.png';
 import Octo from '../IMG/All_Logo/Octo.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
-import beeVerse from '../IMG/All_Logo/BeeVerse.png';
+// import beeVerse from '../IMG/All_Logo/BeeVerse.png';
 import clock from '../IMG/All_Logo/clock.png';
 
 function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, KnopkaNick, 
