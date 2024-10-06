@@ -699,7 +699,7 @@ button[data-tc-dropdown-button="true"] {
 #telefon{
   position: absolute;
   height: 100%;
-  right: -2vh;
+  right: 0vh;
 }
 
 #AdsMenu img{
@@ -724,7 +724,7 @@ button[data-tc-dropdown-button="true"] {
   font-size: 2vh;
   font-family: MullerMedium;
   margin: 0;
-  margin-top: 0.2vh;
+  margin-top: 0.1vh;
 }
 
 #clockimg{
@@ -755,7 +755,6 @@ button[data-tc-dropdown-button="true"] {
   font-family: MullerMedium;
   margin-right: 1vh ;
 }
-
 
 .Dailytimer img{
   height: 2.2vh;
