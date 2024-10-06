@@ -706,6 +706,33 @@ button[data-tc-dropdown-button="true"] {
   height: 3vh;
 }
 
+.Clocktimer{
+  background: #BABABA;
+  margin-left: 1.7vh;
+  border-radius: 50vh;
+  height: 3vh;
+  width: 8.745vh;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.Clocktimer p{
+  color: #000000;
+  font-size: 2vh;
+  font-family: MullerMedium;
+  margin: 0;
+  margin-top: 0.2vh;
+}
+
+#clockimg{
+  height: 2.2vh !important; 
+  margin: 0;
+  margin-right: 0.8vh;
+}
+
 .ForClock{
   display: flex;
   align-items: center;
@@ -753,6 +780,11 @@ button[data-tc-dropdown-button="true"] {
 
   #AdsMenu img{
     height: 5vh;
+  }
+
+  .Clocktimer{
+    height: 5vh;
+    width: 14.58vh;
   }
 
   .BTNLow {

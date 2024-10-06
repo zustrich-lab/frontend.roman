@@ -105,11 +105,14 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
     }, 5000);
   };
 
+
+  const [ads, setads] = useState(true);
   const Open_Ads = async () => {
+    setads(false);
     window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
    
     setTimeout(async () => {
-     
+      setads(true);
     }, 5000);
   };
 
@@ -246,7 +249,15 @@ const [date, setDate] = useState(new Date());
                   <p>Watch ads to farm $OCTIES and earn a <br/>special reward by viewing all 20 daily!</p>
                 </div> 
                 <div className='MenuBtn' id='AdsMenu'>
-                <img onClick={Open_Ads} src={Watch} alt='' />
+                {ads && (<img onClick={Open_Ads} src={Watch} alt='' />)}
+                {!ads && 
+                 <div className='Clocktimer'>
+                   <img src={clock} id='clockimg' alt=''/>
+                   <p>3:00</p>
+                 </div>
+               
+                  
+                  }
                 <p>+35 $OCTIES for<span id='highlight'> view </span></p>   
                 </div>
                 <img src={racketaMain} id='telefon' alt=''/>
