@@ -150,8 +150,8 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   // }, 5000);
 
 //_______________________________________________________________Task_Swap
-const blockRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
-const [blockVisibility, setBlockVisibility] = useState([false, false, false, false, false, false]);
+const blockRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+const [blockVisibility, setBlockVisibility] = useState([false, false, false, false]);
 
 useEffect(() => {
   const observerOptions = {
