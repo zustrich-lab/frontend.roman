@@ -16,7 +16,7 @@ function  PlayToEarn() {
         <>  
           <div style={{ 
             position: "absolute",
-            top: "60vh",
+            top: "55vh",
             width: `${Math.round(loadingProgression * 90)}%`,
             height: "2vh",
             margin: "5%",
@@ -26,7 +26,7 @@ function  PlayToEarn() {
           /> 
           <div style={{ 
             position: "absolute",
-            top: "60vh",
+            top: "55vh",
             width: '90%',
             margin: "5%",
             height: "2vh",
@@ -36,7 +36,7 @@ function  PlayToEarn() {
           /> 
           <p style={{ 
             position: "absolute",
-            top: "70vh",
+            top: "65vh",
             alignSelf: "center"}}>
               {Math.round(loadingProgression * 100)}%
           </p> 

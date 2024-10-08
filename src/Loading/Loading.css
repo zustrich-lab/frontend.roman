@@ -172,3 +172,5 @@ to {width: 23vmax;}
   flex-direction: column;
   z-index: 9999;
 }
+
+.loading-game img{height: 40%;}
