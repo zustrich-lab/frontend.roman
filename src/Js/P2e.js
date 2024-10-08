@@ -10,7 +10,6 @@ function  PlayToEarn() {
     codeUrl: "buildTgGameUnity/TG_buid.wasm.unityweb",
   });
 
-
   return (
     <>
       {!isLoaded && (
@@ -55,7 +54,6 @@ function  PlayToEarn() {
       />
     </>
   );
-
 }
 
 export default PlayToEarn;
