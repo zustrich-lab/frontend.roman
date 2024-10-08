@@ -159,3 +159,16 @@ to {width: 23vmax;}
     bottom: 18%;
   }
 }
+
+.loading-game{
+  position: fixed;
+  width: 100%;
+  height: 50%;
+  background: black;
+  display: flex;
+  margin: 0;
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+}
