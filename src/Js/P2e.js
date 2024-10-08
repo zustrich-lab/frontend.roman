@@ -12,7 +12,8 @@ function  PlayToEarn() {
   return (
       <Unity unityProvider={unityProvider} 
       style={{
-        height:"80%",
+        height:"90%",
+        width:"100%",
         justifySelf: "center",
         alignSelf: "center"}}
       />
