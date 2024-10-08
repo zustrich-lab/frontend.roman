@@ -1,23 +1,15 @@
 import React from 'react';
-import '../Css/P2e.css';
-import { P2e_Soon, P2e_OctiesCosmo,
-         P2e_Planet, P2e_starship} from "../IMG/ComingSoon";
-
+import { Unity, useUnityContext } from 'react-unity-webgl';
 const PlayToEarn = () => {
 
-  return (
-    <div className='P2E_Window' >
-      <div class="background-container">
-      <div class="clouds"></div>
-        <div class="stars"></div>
-        <div class="twinkling"></div>
-      </div>
-      <img src={P2e_Soon} id='soontext'alt=''/>
-      <img src={P2e_OctiesCosmo} id='cosmo'alt=''/>
-      <img src={P2e_starship} id='starship'alt=''/>
-      <img src={P2e_Planet} id='planet' alt=''/>
-    </div>
-);
-};
+  const { unityProvider } = useUnityContext({
+    loaderUrl: "../TestGame/TG_buid.loader.js",
+    dataUrl: "../TestGame/TG_buid.data.unityweb",
+    frameworkUrl: "../TestGame/TG_buid.framework.js.unityweb",
+    codeUrl: "../TestGame/TG_buid.wasm.unityweb",
+  });
+
+  return <Unity unityProvider={unityProvider} />;
+}
 
 export default PlayToEarn;
