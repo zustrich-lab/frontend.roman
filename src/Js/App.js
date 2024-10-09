@@ -122,8 +122,8 @@ function App() {
   const KnopkaAnyTap = localStorage.getItem('KnopkaAnyTap') === 'true';
   if (!localStorage.getItem('KnopkaNick')) {localStorage.setItem('KnopkaNick', 'false');}
   const KnopkaNick = localStorage.getItem('KnopkaNick') === 'true';
-  if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
-  const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
+  if (!localStorage.getItem('buttonVisibleNFT2')) {localStorage.setItem('buttonVisibleNFT2', 'false');}
+  const buttonVisible = localStorage.getItem('buttonVisibleNFT2') === 'true';
   const [showNotCompleted, setShowNotCompleted] = useState(false);
 
   if (!localStorage.getItem('Galo4kaBee')) {localStorage.setItem('Galo4kaBee', 'false');}
@@ -376,26 +376,48 @@ useEffect(() => {
   
 
   
-const handleCheckReferrals = () => {
-    axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
-      .then(response => {
-        const referralCount = response.data.referralCount;
+// const handleCheckReferrals = () => {
+//     axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
+//       .then(response => {
+//         const referralCount = response.data.referralCount;
 
-        if (referralCount >= 15) {
-          localStorage.setItem('buttonVisibleNFT', 'true'); 
-          window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
-        } else {
-          setShowNotCompleted(true);
-          window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-          setTimeout(() => {
-            setShowNotCompleted(false);
-          }, 1900);
-        }
-      })
-      .catch(error => {
-        console.error('Ошибка при проверке рефералов:', error);
-      });
-  };
+//         if (referralCount >= 15) {
+//           localStorage.setItem('buttonVisibleNFT2', 'true'); 
+//           window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+//         } else {
+//           setShowNotCompleted(true);
+//           window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+//           setTimeout(() => {
+//             setShowNotCompleted(false);
+//           }, 1900);
+//         }
+//       })
+//       .catch(error => {
+//         console.error('Ошибка при проверке рефералов:', error);
+//       });
+//   };
+
+const handleCheckReferrals = () => {
+  axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
+    .then(response => {
+      const referralCount = response.data.referralCount;
+
+      if (referralCount >= 15) {
+        localStorage.setItem('buttonVisibleNFT', 'true'); 
+        window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+      } else {
+        setShowNotCompleted(true);
+        window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+        setTimeout(() => {
+          setShowNotCompleted(false);
+        }, 1900);
+      }
+    })
+    .catch(error => {
+      console.error('Ошибка при проверке рефералов:', error);
+    });
+};
+
 
   const checkSubscriptionAndUpdate = async (userId) => {
     try {
