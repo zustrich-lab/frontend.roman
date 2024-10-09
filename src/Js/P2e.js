@@ -4,10 +4,10 @@ import LoadingScreenGame from '../Loading/LoadingGame.jsx';
 
 function  PlayToEarn() {
   const { unityProvider, loadingProgression, isLoaded } = useUnityContext({
-    loaderUrl: "buildTgGameUnity/TG_buid.loader.js",
-    dataUrl: "buildTgGameUnity/TG_buid.data.unityweb",
-    frameworkUrl: "buildTgGameUnity/TG_buid.framework.js.unityweb",
-    codeUrl: "buildTgGameUnity/TG_buid.wasm.unityweb",
+    loaderUrl: "buildTgGameUnity/Game.loader.js",
+    dataUrl: "buildTgGameUnity/Game.data.unityweb",
+    frameworkUrl: "buildTgGameUnity/Game.framework.js.unityweb",
+    codeUrl: "buildTgGameUnity/Game.wasm.unityweb",
   });
 
   return (
