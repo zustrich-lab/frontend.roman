@@ -277,34 +277,16 @@ useEffect(() => {
     }
 }, []);
 
-const [telegramId1, setTelegramId1] = useState(null);
 
-useEffect(() => {
-    // Извлекаем данные Telegram при запуске приложения
-    const initDataUnsafe = window.Telegram?.WebApp?.initDataUnsafe;
-    if (initDataUnsafe && initDataUnsafe.user) {
-        const extractedTelegramId1 = initDataUnsafe.user.id;
-        console.log(`Telegram ID: ${extractedTelegramId1}`);
-        
-        // Сохраняем telegramId в состояние компонента
-        setTelegramId1(extractedTelegramId1);
-
-        // Можно сохранить telegramId в localStorage для дальнейшего использования
-        localStorage.setItem('telegramId1', extractedTelegramId1);
-    } else {
-        console.error('Telegram ID не найден');
-    }
-}, []);
-
-  const fetchUserData = useCallback(async (telegramId1) => {
-    if (!telegramId1) {
+  const fetchUserData = useCallback(async (userId) => {
+    if (!userId) {
       console.error('userId не передан');
       return;
     }
     try {
-      console.log("User Id", telegramId1);
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { telegramId1 });
-      console.log("User Id", telegramId1);
+            console.log("User Id", userId);
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
+      console.log("User Id", userId);
       const data = response.data;
       if (response.status === 200) {
         setCoins(data.coins);
