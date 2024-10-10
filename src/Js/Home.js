@@ -139,7 +139,7 @@ const showAd = async () => {
   };
 
 
-  // const [ads, setads] = useState(true);
+  const [ads] = useState(true);
   // const Open_Ads = async () => {
   //   setads(false);
   //   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
