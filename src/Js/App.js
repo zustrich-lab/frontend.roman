@@ -357,6 +357,7 @@ useEffect(() => {
         }
         setLoadingOcto(false);
         setAccountAgeCoins(accountAgeCoins);
+        setReferralThresholdReached(data.referralThresholdReached);
   
         const referralResponse = await axios.post(`${REACT_APP_BACKEND_URL}/generate-referral`, { userId });
         const referralData = referralResponse.data;
@@ -400,7 +401,9 @@ useEffect(() => {
 const handleCheckReferrals = () => {
   axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
     .then(response => {
-      const referralCount = response.data.referralCount;
+      const { referralThresholdReached, oldReferralCount, newReferralCount } = response.data;
+
+      const referralCount = referralThresholdReached ? newReferralCount : oldReferralCount;
 
       if (referralCount >= 15) {
         localStorage.setItem('buttonVisibleNFT', 'true'); 
