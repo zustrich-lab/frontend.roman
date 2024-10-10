@@ -357,7 +357,7 @@ useEffect(() => {
         }
         setLoadingOcto(false);
         setAccountAgeCoins(accountAgeCoins);
-        setReferralThresholdReached(data.referralThresholdReached);
+       //setReferralThresholdReached(data.referralThresholdReached);
   
         const referralResponse = await axios.post(`${REACT_APP_BACKEND_URL}/generate-referral`, { userId });
         const referralData = referralResponse.data;
