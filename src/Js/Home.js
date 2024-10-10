@@ -45,6 +45,39 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   // const bot_part = "https://t.me/bee_verse_bot?start=7236554978";
 
   const userId1 = new URLSearchParams(window.location.search).get('userId');
+  const AdControllerRef = useRef(null);
+
+  useEffect(() => {
+    if (window.Adsgram) {
+        AdControllerRef.current = window.Adsgram.init({
+            blockId: "2682", // замените на ваш реальный blockId
+            debug: false, // отключите в продакшене
+            debugBannerType: "FullscreenMedia" // тип тестового баннера, если debug включен
+        });
+    }
+}, []); // пустой массив зависимостей для выполнения только один раз
+
+const showAd = async () => {
+  try {
+
+          if (AdControllerRef.current) {
+              AdControllerRef.current.show()
+                  .then(async (result) => {
+                      if (result.done) {
+                          console.log('Пользователь досмотрел рекламу до конца');
+                      }
+                  })
+                  .catch((error) => {
+                      console.error('Ошибка при показе рекламы:', error);
+                  });
+          } else {
+              console.error('AdsGram SDK не загружен');
+          }
+      
+  } catch (error) {
+      console.error('Ошибка при запросе количества просмотренной рекламы:', error);
+  }
+};
 
   function handleOpenStoryWithVibration() {
     setYearsOpen(true);
@@ -106,15 +139,15 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   };
 
 
-  const [ads, setads] = useState(true);
-  const Open_Ads = async () => {
-    setads(false);
-    window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
+  // const [ads, setads] = useState(true);
+  // const Open_Ads = async () => {
+  //   setads(false);
+  //   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
    
-    setTimeout(async () => {
-      setads(true);
-    }, 5000);
-  };
+  //   setTimeout(async () => {
+  //     setads(true);
+  //   }, 5000);
+  // };
 
   
   // const Tg_Bot_Bee = async () => {
@@ -249,7 +282,7 @@ const [date, setDate] = useState(new Date());
                   <p>Watch ads to farm $OCTIES and earn a <br/>special reward by viewing all 20 daily!</p>
                 </div> 
                 <div className='MenuBtn' id='AdsMenu'>
-                {ads && (<img onClick={Open_Ads} src={Watch} alt='' />)}
+                {ads && (<img onClick={showAd} src={Watch} alt='' />)}
                 {!ads && 
                  <div className='Clocktimer'>
                    <img src={clock} id='clockimg' alt=''/>
