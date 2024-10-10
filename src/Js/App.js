@@ -38,10 +38,8 @@ import IconFriends from '../IMG/LowerIcon/Friends.png';
 import NFTlogo from '../IMG/LowerIcon/NFTLogo.png';
 import p2e from '../IMG/LowerIcon/p2e.png';
 
-
 import { P2e_Soon, P2e_OctiesCosmo,
   P2e_Planet, P2e_starship} from "../IMG/ComingSoon";
-
 
 const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
 
@@ -95,8 +93,6 @@ function App() {
   preloadImage(P2e_OctiesCosmo);
   preloadImage(P2e_Planet);
   preloadImage(P2e_starship);
-  
-
   }, []);
 
   useEffect(() => {
@@ -143,8 +139,8 @@ function App() {
   const locationOcties = useLocation();
   const navigateOcties = useNavigate();
 
-  const [isLoadingOcto, setLoadingOcto] = useState(false);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOcto, setLoadingOcto] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [coins, setCoins] = useState(0);
