@@ -140,7 +140,7 @@ function App() {
   const navigateOcties = useNavigate();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [coins, setCoins] = useState(0);
