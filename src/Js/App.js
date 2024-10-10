@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback} from 'react';
 import { TonConnectUIProvider, useTonAddress } from '@tonconnect/ui-react';
 import { Routes, Route, Link, useLocation, useNavigate  } from 'react-router-dom';
-
 import axios from 'axios';
 import '../Css/App.css';
 //import pages
@@ -19,6 +18,11 @@ import LoadingScreenOcto from '../Loading/LoadingOcto.js';
 import LoadingScreenOctoNft from '../Loading/LoadingOctoNft.js'
 //import image Friends
 import invite from '../IMG/All_Logo/Invite_png.png';
+//import image p2e
+import soon from '../IMG/ComingSoon/Text_soon.png';
+import PLANET from '../IMG/ComingSoon/PLANET.png';
+import OctiesCosmo from '../IMG/ComingSoon/OctiesCosmo.png';
+import starship from '../IMG/ComingSoon/starship.png';
 //import image NFT
 import missed from '../IMG/NFTs/Missed.png';
 import complated from '../IMG/NFTs/Complated.png';
@@ -38,10 +42,12 @@ import IconFriends from '../IMG/LowerIcon/Friends.png';
 import NFTlogo from '../IMG/LowerIcon/NFTLogo.png';
 import p2e from '../IMG/LowerIcon/p2e.png';
 
-import { P2e_Soon, P2e_OctiesCosmo,
-  P2e_Planet, P2e_starship} from "../IMG/ComingSoon";
 
-const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
+const REACT_APP_BACKEND_URL = 'testforeveryoneback-production.up.railway.app';
+
+
+
+
 
 function App() {
 
@@ -79,6 +85,10 @@ function App() {
       const img = new Image();
       img.src = src;
   };
+  preloadImage(soon); 
+  preloadImage(PLANET); 
+  preloadImage(OctiesCosmo);
+  preloadImage(starship);
   preloadImage(Nft);
   preloadImage(shapka2);
   preloadImage(dedpool);
@@ -89,10 +99,7 @@ function App() {
   preloadImage(invite);
   preloadImage(complated);
   preloadImage(missed);
-  preloadImage(P2e_Soon);
-  preloadImage(P2e_OctiesCosmo);
-  preloadImage(P2e_Planet);
-  preloadImage(P2e_starship);
+
   }, []);
 
   useEffect(() => {
@@ -118,9 +125,11 @@ function App() {
   const KnopkaAnyTap = localStorage.getItem('KnopkaAnyTap') === 'true';
   if (!localStorage.getItem('KnopkaNick')) {localStorage.setItem('KnopkaNick', 'false');}
   const KnopkaNick = localStorage.getItem('KnopkaNick') === 'true';
-  if (!localStorage.getItem('buttonVisibleNFT2')) {localStorage.setItem('buttonVisibleNFT2', 'false');}
-  const buttonVisible = localStorage.getItem('buttonVisibleNFT2') === 'true';
+  if (!localStorage.getItem('buttonVisibleNFT')) {localStorage.setItem('buttonVisibleNFT', 'false');}
+  const buttonVisible = localStorage.getItem('buttonVisibleNFT') === 'true';
   const [showNotCompleted, setShowNotCompleted] = useState(false);
+  if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
+  const isMint = localStorage.getItem('isMintNFT') === 'true';
 
   if (!localStorage.getItem('Galo4kaBee')) {localStorage.setItem('Galo4kaBee', 'false');}
   const [Galo4kaBee, setGalo4kaBee] = useState(localStorage.getItem('Galo4kaBee') === 'true')
@@ -128,10 +137,6 @@ function App() {
   if (!localStorage.getItem('KnopkaBee')) {localStorage.setItem('KnopkaBee', 'true');}
   const [KnopkaBee, setKnopkaBee] = useState(localStorage.getItem('KnopkaBee') === 'true')
 
-  if (!localStorage.getItem('isMintNFT')) {localStorage.setItem('isMintNFT', 'false');}
-  const isMint = localStorage.getItem('isMintNFT') === 'true';
-  if (!localStorage.getItem('isMintNFTv2')) {localStorage.setItem('isMintNFTv2', 'false');}
-  const isMintv2 = localStorage.getItem('isMintNFTv2') === 'true';
 
   const [alert, setalert] = useState(false);
 
@@ -140,7 +145,7 @@ function App() {
   const navigateOcties = useNavigate();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [coins, setCoins] = useState(0);
@@ -277,35 +282,17 @@ useEffect(() => {
     }
 }, []);
 
-const [telegramId1, setTelegramId1] = useState(null);
 
-useEffect(() => {
-    // Извлекаем данные Telegram при запуске приложения
-    const initDataUnsafe = window.Telegram?.WebApp?.initDataUnsafe;
-    if (initDataUnsafe && initDataUnsafe.user) {
-        const extractedTelegramId1 = initDataUnsafe.user.id;
-        console.log(`Telegram ID: ${extractedTelegramId1}`);
-        
-        // Сохраняем telegramId в состояние компонента
-        setTelegramId1(extractedTelegramId1);
-
-        // Можно сохранить telegramId в localStorage для дальнейшего использования
-        localStorage.setItem('telegramId1', extractedTelegramId1);
-    } else {
-        console.error('Telegram ID не найден');
-    }
-}, []);
-
-  const fetchUserData = useCallback(async (telegramId1) => {
-    if (!telegramId1) {
+  const fetchUserData = useCallback(async (userId) => {
+    if (!userId) {
       console.error('userId не передан');
       return;
     }
     try {
-      console.log("User Id", telegramId1);
-      const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { telegramId1 });
-      console.log("User Id", telegramId1);
+      const response = await axios.post(`${REACT_APP_BACKEND_URL}/get-coins`, { userId });
+      console.log("User Id", userId);
       const data = response.data;
+      
       if (response.status === 200) {
         setCoins(data.coins);
         setTon5Succes(data.specialTransactionCounter);
@@ -353,27 +340,9 @@ useEffect(() => {
         else{
           localStorage.setItem('KnopkaNick', 'false');
         }
-        if (data.hasReceivedTwitterReward) {
-          localStorage.setItem('GalkaX', 'true');
-          localStorage.setItem('KnopkaX', 'false');
-        } else {
-          localStorage.setItem('GalkaX', 'false');
-          localStorage.setItem('KnopkaX', 'true');
-        }
-        if (data.hasBotSub) {
-          localStorage.setItem('Galo4kaBee', 'true');
-          localStorage.setItem('KnopkaBee', 'false');
-          setGalo4kaBee(true);
-          setKnopkaBee(false);
-        } else {
-          localStorage.setItem('Galo4kaBee', 'false');
-          localStorage.setItem('KnopkaBee', 'true');
-          setGalo4kaBee(false);
-          setKnopkaBee(true);
-        }
+        
         setLoadingOcto(false);
         setAccountAgeCoins(accountAgeCoins);
-       //setReferralThresholdReached(data.referralThresholdReached);
   
         const referralResponse = await axios.post(`${REACT_APP_BACKEND_URL}/generate-referral`, { userId });
         const referralData = referralResponse.data;
@@ -393,50 +362,26 @@ useEffect(() => {
   
 
   
-// const handleCheckReferrals = () => {
-//     axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
-//       .then(response => {
-//         const referralCount = response.data.referralCount;
-
-//         if (referralCount >= 15) {
-//           localStorage.setItem('buttonVisibleNFT2', 'true'); 
-//           window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
-//         } else {
-//           setShowNotCompleted(true);
-//           window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-//           setTimeout(() => {
-//             setShowNotCompleted(false);
-//           }, 1900);
-//         }
-//       })
-//       .catch(error => {
-//         console.error('Ошибка при проверке рефералов:', error);
-//       });
-//   };
-
 const handleCheckReferrals = () => {
-  axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
-    .then(response => {
-      const { referralThresholdReached, oldReferralCount, newReferralCount } = response.data;
+    axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
+      .then(response => {
+        const referralCount = response.data.referralCount;
 
-      const referralCount = referralThresholdReached ? newReferralCount : oldReferralCount;
-
-      if (referralCount >= 15) {
-        localStorage.setItem('buttonVisibleNFT', 'true'); 
-        window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
-      } else {
-        setShowNotCompleted(true);
-        window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-        setTimeout(() => {
-          setShowNotCompleted(false);
-        }, 1900);
-      }
-    })
-    .catch(error => {
-      console.error('Ошибка при проверке рефералов:', error);
-    });
-};
-
+        if (referralCount >= 15) {
+          localStorage.setItem('buttonVisibleNFT', 'true'); 
+          window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
+        } else {
+          setShowNotCompleted(true);
+          window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
+          setTimeout(() => {
+            setShowNotCompleted(false);
+          }, 1900);
+        }
+      })
+      .catch(error => {
+        console.error('Ошибка при проверке рефералов:', error);
+      });
+  };
 
   const checkSubscriptionAndUpdate = async (userId) => {
     try {
@@ -568,13 +513,13 @@ const handleCheckReferrals = () => {
 
         <Route path="/leaderboard" element={<Leaderboard userId={userId} coins={coins} getRandomColor={getRandomColor}/>} />
 
-        <Route path="/playtoearn" element={<PlayToEarn/>} />
+        <Route path="/playtoearn" element={<PlayToEarn soon={soon} PLANET={PLANET} OctiesCosmo={OctiesCosmo} starship={starship}/>} />
 
         <Route path="/friends" element={<Friends invite={invite} referralCode={referralCode} telegramLink={telegramLink} getRandomColor={getRandomColor}/>} />
 
         <Route path="/nfts" element={<NFTs showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
                               Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} setTransactionNumber={setTransactionNumber} userId={userId}
-                              rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} isMintv2={isMintv2} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
+                              rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
                               missed={missed} complated={complated}/>}>
 
         </Route>
