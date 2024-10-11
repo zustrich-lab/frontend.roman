@@ -10,7 +10,6 @@ function  PlayToEarn() {
     codeUrl: "buildTgGameUnity/Build.wasm.unityweb",
   });
 
-  
   return (
     <>
       {!isLoaded && (
