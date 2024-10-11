@@ -312,17 +312,28 @@ useEffect(() => {
   };
 }, );
 
-const [date, setDate] = useState(new Date());
+//------------------------------------------------------------------------------------------
+const [timeLeft, setTimeLeft] = useState('');
 
-  useEffect(() => {
-    // Set the interval to update the time every second
-    const timer = setInterval(() => {
-      setDate(new Date());
-    }, 1000);
+useEffect(() => {
+  const updateCountdown = () => {
+    const now = new Date();
+    const midnight = new Date();
 
-    // Cleanup the timer when the component unmounts
-    return () => clearInterval(timer);
-  }, []);
+    midnight.setHours(24, 0, 0, 0);
+
+    const difference = midnight - now;
+
+    const hours = Math.floor(difference / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+    setTimeLeft(`${hours}:${minutes < 10 ? '0' + minutes : minutes}`);
+  };
+
+  const timerId = setInterval(updateCountdown, 1000);
+
+  return () => clearInterval(timerId);
+}, []);
 //_______________________________________________________________________________________
 
     return (
@@ -358,7 +369,7 @@ const [date, setDate] = useState(new Date());
                     <p>DAILY QUEST <span id='highgreeen'>{AdsWatched}</span>/20</p>
                     <div className='Dailytimer'>
                       <img src={clock} alt=''/>
-                      <p>{date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                      <p>{timeLeft}</p>
                     </div>
                    
                   </div>
