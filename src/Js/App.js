@@ -299,6 +299,7 @@ useEffect(() => {
         setTransactionNumber(data.transactionNumber);
         setSubscriptionCoins(data.coinsSub);
         setAdsWatched(data.adsWatched);
+        console.log("adswatched", AdsWatched)
 
 
         const accountCreationDate = new Date(data.accountCreationDate);
