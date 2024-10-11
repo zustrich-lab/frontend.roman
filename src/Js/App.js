@@ -404,7 +404,7 @@ useEffect(() => {
   
         const referralCount = hasMintedNFT ? newReferralCount : oldReferralCount;
   
-        if (referralCount >= 15) {
+        if (referralCount >= 1) {
           localStorage.setItem('buttonVisibleNFT', 'true'); 
           window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
         } else {
