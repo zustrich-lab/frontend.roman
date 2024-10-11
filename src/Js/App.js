@@ -160,24 +160,7 @@ function App() {
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
   const walletAddress = useTonAddress();
 
-  useEffect(() => {
-    const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
-    const savedUserId = localStorage.getItem('userId');
-  
-    let userId;
-  
-    if (userIdFromURL) {
-      userId = userIdFromURL;
-      localStorage.setItem('userId', userId); // Сохраняем userId для последующего использования
-    } else if (savedUserId) {
-      userId = savedUserId; // Берем userId из localStorage, если он был сохранен
-    } else {
-      console.error('userId не найден');
-      return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
-    }
-  
-    fetchUserData(userId); // Вызываем функцию с userId
-  }, [fetchUserData]);
+
 
   useEffect(() => {
     if (!isLoadingOcto) {
@@ -391,6 +374,25 @@ useEffect(() => {
       console.error('Ошибка при получении данных пользователя:', error);
     }
   }, []);
+
+  useEffect(() => {
+    const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
+    const savedUserId = localStorage.getItem('userId');
+  
+    let userId;
+  
+    if (userIdFromURL) {
+      userId = userIdFromURL;
+      localStorage.setItem('userId', userId); // Сохраняем userId для последующего использования
+    } else if (savedUserId) {
+      userId = savedUserId; // Берем userId из localStorage, если он был сохранен
+    } else {
+      console.error('userId не найден');
+      return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
+    }
+  
+    fetchUserData(userId); // Вызываем функцию с userId
+  }, [fetchUserData]);
   
 
   
