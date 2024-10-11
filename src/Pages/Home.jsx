@@ -91,73 +91,74 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
 
 const showAd = async () => {
-  try {
-       //const response = await fetch(`https://testforeveryoneback-production.up.railway.app/get-ads-watched?telegramId=${userId}`);
-       const response = await axios.get(`https://testforeveryoneback-production.up.railway.app/get-ads-watched`, {
+    try {
+      const response = await axios.get(`https://testforeveryoneback-production.up.railway.app/get-ads-watched`, {
         params: { userId }
       });
       const data = response.data;
-      
-      if (data.success) {
-          const adsWatched = data.adsWatched;
-
-          if (adsWatched >= 20) {
-              alert('That\'s enough for today. Come back tomorrow!');
-              return; 
-          }
-
-          if (AdControllerRef.current) {
-              AdControllerRef.current.show()
-                  .then(async (result) => {
-                      if (result.done) {
-                          console.log('Пользователь досмотрел рекламу до конца');
-                          try {
-                              const addCoinsResponse = await fetch('https://testforeveryoneback-production.up.railway.app/add-coins', {
-                                  method: 'POST',
-                                  headers: {
-                                      'Content-Type': 'application/json',
-                                  },
-                                  body: JSON.stringify({ userId, amount: 35 }),
-
-                              });
-                              const coinsData = await addCoinsResponse.json();
-                              if (coinsData.success) {
-                                  console.log('25 монет успешно добавлены пользователю');
-                                  
-                                  // Update ads watched count
-                                  const updateAdsResponse = await fetch('https://testforeveryoneback-production.up.railway.app/update-ads-watched', {
-                                      method: 'POST',
-                                      headers: {
-                                          'Content-Type': 'application/json',
-                                      },
-                                      body: JSON.stringify({ userId }),
-                                  });
-
-                                  const adsUpdateData = await updateAdsResponse.json();
-                                  if (adsUpdateData.success) {
-                                      console.log('Количество просмотров рекламы обновлено:', adsUpdateData.adsWatched);
-                                  } else {
-                                      console.error('Ошибка при обновлении количества просмотров рекламы:', adsUpdateData.message);
-                                  }
-                              } else {
-                                  console.error('Ошибка при добавлении монет пользователю:', coinsData.message);
-                              }
-                          } catch (error) {
-                              console.error('Ошибка при выполнении запроса на добавление монет:', error);
-                          }
-                      }
-                  })
-                  .catch((error) => {
-                      console.error('Ошибка при показе рекламы:', error);
-                  });
-          } else {
-              console.error('AdsGram SDK не загружен');
-          }
-      } else {
-          console.error('Ошибка при получении количества просмотренной рекламы:', data.message);
+  
+      if (!data.success) {
+        alert(data.message); // Показываем сообщение о времени ожидания
+        return;
       }
-  } catch (error) {
-      console.error('Ошибка при запросе количества просмотренной рекламы:', error);
+  
+      const adsWatched = data.adsWatched;
+  
+
+      if (adsWatched >= 20) {
+        alert('That\'s enough for today. Come back tomorrow!');
+        return;
+      }
+
+      if (AdControllerRef.current) {
+        AdControllerRef.current.show()
+          .then(async (result) => {
+            if (result.done) {
+              console.log('Пользователь досмотрел рекламу до конца');
+              try {
+                const addCoinsResponse = await fetch('https://testforeveryoneback-production.up.railway.app/add-coins', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({ userId, amount: 35 }),
+                });
+                const coinsData = await addCoinsResponse.json();
+                if (coinsData.success) {
+                  console.log('35 монет успешно добавлены пользователю');
+
+                  // Update ads watched count
+                  const updateAdsResponse = await fetch('https://testforeveryoneback-production.up.railway.app/update-ads-watched', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ userId }),
+                  });
+
+                  const adsUpdateData = await updateAdsResponse.json();
+                  if (adsUpdateData.success) {
+                    console.log('Количество просмотров рекламы обновлено:', adsUpdateData.adsWatched);
+                  } else {
+                    console.error('Ошибка при обновлении количества просмотров рекламы:', adsUpdateData.message);
+                  }
+                } else {
+                  console.error('Ошибка при добавлении монет пользователю:', coinsData.message);
+                }
+              } catch (error) {
+                console.error('Ошибка при выполнении запроса на добавление монет:', error);
+              }
+            }
+          })
+          .catch((error) => {
+            console.error('Ошибка при показе рекламы:', error);
+          });
+      } else {
+        console.error('AdsGram SDK не загружен');
+      }
+    } 
+   catch (error) {
+    console.error('Ошибка при запросе количества просмотренной рекламы:', error);
   }
 };
 
