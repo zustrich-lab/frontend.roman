@@ -50,7 +50,6 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
   
 
-
   const userId1 = new URLSearchParams(window.location.search).get('userId');
   const AdControllerRef = useRef(null);
 
