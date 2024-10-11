@@ -301,6 +301,7 @@ useEffect(() => {
           console.log("Adswatched", AdsWatched)
 
 
+
         const accountCreationDate = new Date(data.accountCreationDate);
         const currentYear = new Date().getFullYear();
         const accountYear = accountCreationDate.getFullYear();
@@ -375,7 +376,7 @@ useEffect(() => {
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  }, []);
+  }, [AdsWatched]);
 
   useEffect(() => {
     const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
