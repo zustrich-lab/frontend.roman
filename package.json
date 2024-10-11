@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@tonconnect/ui": "^2.0.9",
     "@tonconnect/ui-react": "^2.0.9",
+    "@vitejs/plugin-react": "^4.3.2",
     "axios": "^1.7.4",
     "html2canvas": "^1.4.1",
     "react": "^18.3.1",
@@ -15,13 +16,17 @@
     "react-router-dom": "^6.26.0",
     "react-scripts": "5.0.1",
     "react-unity-webgl": "^9.5.2",
+    "vite": "^5.4.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "vite",
+    "buildvite": "vite build",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
