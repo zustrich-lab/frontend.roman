@@ -45,6 +45,10 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   // const Support = "https://t.me/octies_manage";
   // const bot_part = "https://t.me/bee_verse_bot?start=7236554978";
 
+  const [ads, setAds] = useState(true);
+  const [timeRemaining, setTimeRemaining] = useState(0);
+
+
   const userId1 = new URLSearchParams(window.location.search).get('userId');
   const AdControllerRef = useRef(null);
 
@@ -84,6 +88,52 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
 
 
+useEffect(() => {
+  let timerId;
+  if (!ads && timeRemaining > 0) {
+    timerId = setInterval(() => {
+      setTimeRemaining((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(timerId);
+          setAds(true);
+          return 0;
+        } else {
+          return prevTime - 1;
+        }
+      });
+    }, 1000);
+  }
+  return () => clearInterval(timerId);
+}, [ads, timeRemaining]);
+
+const formatTime = (seconds) => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+};
+
+useEffect(() => {
+  const checkAdAvailability = async () => {
+    try {
+      const response = await axios.get(`${REACT_APP_BACKEND_URL}/get-ads-watched`, {
+        params: { userId },
+      });
+      const data = response.data;
+      if (data.success) {
+        if (!data.canWatchAd) {
+          setAds(false);
+          setTimeRemaining(data.timeRemaining);
+        }
+      } else {
+        console.error('Ошибка при получении количества просмотренной рекламы:', data.message);
+      }
+    } catch (error) {
+      console.error('Ошибка при запросе количества просмотренной рекламы:', error);
+    }
+  };
+
+  checkAdAvailability();
+}, [userId]);
 
 
 
@@ -91,54 +141,64 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
 
 const showAd = async () => {
-    try {
-      const response = await axios.get(`https://testforeveryoneback-production.up.railway.app/get-ads-watched`, {
-        params: { userId }
-      });
-      const data = response.data;
-  
-      if (!data.success) {
-        alert(data.message); // Показываем сообщение о времени ожидания
-        return;
-      }
-  
+  try {
+    const response = await axios.get(`${REACT_APP_BACKEND_URL}/get-ads-watched`, {
+      params: { userId },
+    });
+    const data = response.data;
+
+    if (data.success) {
       const adsWatched = data.adsWatched;
-  
 
       if (adsWatched >= 20) {
-        alert('That\'s enough for today. Come back tomorrow!');
+        alert("That's enough for today. Come back tomorrow!");
+        return;
+      }
+
+      if (!data.canWatchAd) {
+        setAds(false);
+        setTimeRemaining(data.timeRemaining);
         return;
       }
 
       if (AdControllerRef.current) {
-        AdControllerRef.current.show()
+        AdControllerRef.current
+          .show()
           .then(async (result) => {
             if (result.done) {
               console.log('Пользователь досмотрел рекламу до конца');
               try {
-                const addCoinsResponse = await fetch('https://testforeveryoneback-production.up.railway.app/add-coins', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({ userId, amount: 35 }),
-                });
-                const coinsData = await addCoinsResponse.json();
-                if (coinsData.success) {
-                  console.log('35 монет успешно добавлены пользователю');
-
-                  // Update ads watched count
-                  const updateAdsResponse = await fetch('https://testforeveryoneback-production.up.railway.app/update-ads-watched', {
+                const addCoinsResponse = await fetch(
+                  `${REACT_APP_BACKEND_URL}/add-coins`,
+                  {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ userId }),
-                  });
+                    body: JSON.stringify({ userId, amount: 35 }),
+                  }
+                );
+                const coinsData = await addCoinsResponse.json();
+                if (coinsData.success) {
+                  console.log('35 монет успешно добавлены пользователю');
 
+                  // Обновляем количество просмотренных реклам
+                  const updateAdsResponse = await fetch(
+                    `${REACT_APP_BACKEND_URL}/update-ads-watched`,
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({ userId }),
+                    }
+                  );
                   const adsUpdateData = await updateAdsResponse.json();
                   if (adsUpdateData.success) {
                     console.log('Количество просмотров рекламы обновлено:', adsUpdateData.adsWatched);
+                    // Запускаем таймер ожидания
+                    setAds(false);
+                    setTimeRemaining(180); // 3 минуты ожидания
                   } else {
                     console.error('Ошибка при обновлении количества просмотров рекламы:', adsUpdateData.message);
                   }
@@ -156,8 +216,10 @@ const showAd = async () => {
       } else {
         console.error('AdsGram SDK не загружен');
       }
-    } 
-   catch (error) {
+    } else {
+      console.error('Ошибка при получении количества просмотренной рекламы:', data.message);
+    }
+  } catch (error) {
     console.error('Ошибка при запросе количества просмотренной рекламы:', error);
   }
 };
@@ -225,7 +287,7 @@ const showAd = async () => {
   };
 
 
-  const [ads] = useState(true);
+
   // const Open_Ads = async () => {
   //   setads(false);
   //   window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy');
