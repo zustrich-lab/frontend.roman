@@ -10,6 +10,7 @@ import First from './Firstpage.jsx';
 import Check from './Checking.jsx';
 import Years from './Years.jsx';
 import Oct from './Oct.jsx';
+import Qr from './Qr.jsx';
 import Leaderboard from './Leaderboard.jsx';
 import PlayToEarn from './P2e.jsx';
 import Friends from './Friends.jsx';
@@ -556,10 +557,15 @@ const handleCheckReferrals = () => {
   //   fetchUserData(userId); // Вызываем функцию с userId
   // }, [fetchUserData]);
 
+  const isMobileDevice = () => {
+    return /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent);
+  };
+
   return (
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
     <div className="App">
 
+      {!isMobileDevice() && <Qr/>}
       {isLoadingOctoVs && <LoadingScreen isLoadingOcto={isLoadingOcto} />}
       {isMint && isLoadingOctoVs && <LoadingScreenOctoNft isLoadingOcto={isLoadingOcto} />}
       {!isMint && isLoadingOctoVs && <LoadingScreenOcto isLoadingOcto={isLoadingOcto} />}
@@ -587,6 +593,7 @@ const handleCheckReferrals = () => {
       {CheckOpen && (<Check setCheckOpen={setCheckOpen} setYearsOpen={setYearsOpen} />)}
       {YearsOpen && (<Years onClose={setYearsOpen} setOctOpen={setOctOpen} Yearr={Yearr} />)}
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears} />)}
+      
 
       <footer className='BTNLow'>
         <ul className='footerItems'>
