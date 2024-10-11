@@ -92,7 +92,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
 const showAd = async () => {
   try {
-      const response = await fetch(`https://anypatbackend-production.up.railway.app/get-ads-watched?telegramId=${userId}`);
+      const response = await fetch(`https://testforeveryoneback-production.up.railway.app/get-ads-watched?telegramId=${userId}`);
       const data = await response.json();
       
       if (data.success) {
@@ -109,7 +109,7 @@ const showAd = async () => {
                       if (result.done) {
                           console.log('Пользователь досмотрел рекламу до конца');
                           try {
-                              const addCoinsResponse = await fetch('https://anypatbackend-production.up.railway.app/add-coins', {
+                              const addCoinsResponse = await fetch('https://testforeveryoneback-production.up.railway.app/add-coins', {
                                   method: 'POST',
                                   headers: {
                                       'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ const showAd = async () => {
                                   console.log('25 монет успешно добавлены пользователю');
                                   
                                   // Update ads watched count
-                                  const updateAdsResponse = await fetch('https://anypatbackend-production.up.railway.app/update-ads-watched', {
+                                  const updateAdsResponse = await fetch('https://testforeveryoneback-production.up.railway.app/update-ads-watched', {
                                       method: 'POST',
                                       headers: {
                                           'Content-Type': 'application/json',
