@@ -161,6 +161,25 @@ function App() {
   const walletAddress = useTonAddress();
 
   useEffect(() => {
+    const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
+    const savedUserId = localStorage.getItem('userId');
+  
+    let userId;
+  
+    if (userIdFromURL) {
+      userId = userIdFromURL;
+      localStorage.setItem('userId', userId); // Сохраняем userId для последующего использования
+    } else if (savedUserId) {
+      userId = savedUserId; // Берем userId из localStorage, если он был сохранен
+    } else {
+      console.error('userId не найден');
+      return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
+    }
+  
+    fetchUserData(userId); // Вызываем функцию с userId
+  }, [fetchUserData]);
+
+  useEffect(() => {
     if (!isLoadingOcto) {
       const timeoutId = setTimeout(() => {
         setLoadingOctoVs(false);
@@ -266,16 +285,16 @@ useEffect(() => {
     }
   }, [userId, checkSubscription]);
 
-  useEffect(() => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    if (userId) {
-        const intervalId = setInterval(() => {
-            checkSubscriptionAndUpdate(userId);
-        }, 3000); 
+//   useEffect(() => {
+//     const userId = new URLSearchParams(window.location.search).get('userId');
+//     if (userId) {
+//         const intervalId = setInterval(() => {
+//             checkSubscriptionAndUpdate(userId);
+//         }, 3000); 
 
-        return () => clearInterval(intervalId);
-    }
-}, []);
+//         return () => clearInterval(intervalId);
+//     }
+// }, []);
 
 
   const fetchUserData = useCallback(async (userId) => {
@@ -474,18 +493,18 @@ const handleCheckReferrals = () => {
     }
   }, [checkSubscription]);
 
-  useEffect(() => {
-    const userId = new URLSearchParams(window.location.search).get('userId');
-    if (userId) {
-      fetchUserData(userId).then(() => {
-        checkSubscription(userId).then(() => {
-          fetchUserData(userId);
-        });
-      });
-    } else {
-      console.error('userId не найден в URL');
-    }
-  }, [fetchUserData, checkSubscription]);
+  // useEffect(() => {
+  //   const userId = new URLSearchParams(window.location.search).get('userId');
+  //   if (userId) {
+  //     fetchUserData(userId).then(() => {
+  //       checkSubscription(userId).then(() => {
+  //         fetchUserData(userId);
+  //       });
+  //     });
+  //   } else {
+  //     console.error('userId не найден в URL');
+  //   }
+  // }, [fetchUserData, checkSubscription]);
 
   useEffect(() => {
     if (window.Telegram.WebApp) {
@@ -513,24 +532,24 @@ const handleCheckReferrals = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
-  useEffect(() => {
-    const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
-    const savedUserId = localStorage.getItem('userId');
+  // useEffect(() => {
+  //   const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
+  //   const savedUserId = localStorage.getItem('userId');
   
-    let userId;
+  //   let userId;
   
-    if (userIdFromURL) {
-      userId = userIdFromURL;
-      localStorage.setItem('userId', userId); // Сохраняем userId для последующего использования
-    } else if (savedUserId) {
-      userId = savedUserId; // Берем userId из localStorage, если он был сохранен
-    } else {
-      console.error('userId не найден');
-      return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
-    }
+  //   if (userIdFromURL) {
+  //     userId = userIdFromURL;
+  //     localStorage.setItem('userId', userId); // Сохраняем userId для последующего использования
+  //   } else if (savedUserId) {
+  //     userId = savedUserId; // Берем userId из localStorage, если он был сохранен
+  //   } else {
+  //     console.error('userId не найден');
+  //     return; // Останавливаем выполнение, если userId не найден ни в URL, ни в localStorage
+  //   }
  
-    fetchUserData(userId); // Вызываем функцию с userId
-  }, [fetchUserData]);
+  //   fetchUserData(userId); // Вызываем функцию с userId
+  // }, [fetchUserData]);
 
 
   return (
