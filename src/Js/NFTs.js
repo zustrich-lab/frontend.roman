@@ -167,6 +167,7 @@ const handleComplatedNFT = () => {
           buttonVisible={buttonVisible} 
           showNotCompleted={showNotCompleted} 
           isMintv2={isMintv2}
+          isMintv3={isMintv3}
           sendTransactionFunc={sendTransactionFunc} 
           Checknft={Checknft}
           sendTransaction1={sendTransaction1} 
@@ -181,7 +182,7 @@ const handleComplatedNFT = () => {
           />)}
 
 
-        {VisibleComplatedNFT && (<ComplatedNFT ChecknftDone={ChecknftDone} Nft={Nft} isMint={isMint} isMintv2={isMintv2} complated={complated}/>)}
+        {VisibleComplatedNFT && (<ComplatedNFT ChecknftDone={ChecknftDone} Nft={Nft} isMint={isMint} isMintv2={isMintv2} isMintv3={isMintv3} complated={complated}/>)}
 
         {VisibleMissedNFT && (<MissedNFT Checknft={Checknft} Nft={Nft} isMint={isMint} missed={missed}/>)}
 

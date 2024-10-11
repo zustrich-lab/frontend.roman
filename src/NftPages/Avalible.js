@@ -5,7 +5,7 @@ import TonRef1 from '../IMG/Nft_ref/1tonRef.png';
 
 
 const AvalibleNFT = ( {buttonVisible, showNotCompleted, ChecknftDone, sendTransactionFunc, Checknft, sendTransaction1,
-    handleCheckReferrals, timerforsent, updatedSpots, Tg_Form_Window, durov, ton55, isMintv2
+    handleCheckReferrals, timerforsent, updatedSpots, Tg_Form_Window, durov, ton55, isMintv2, isMintv3
  }) => {
 
 
@@ -13,7 +13,7 @@ const AvalibleNFT = ( {buttonVisible, showNotCompleted, ChecknftDone, sendTransa
   return (
     <div className='mainNft'> 
        
-       {!isMintv2 && <div className='nft-promo'>
+       {!isMintv3 && <div className='nft-promo'>
       <div className='nft-text'>
         <h2>GET YOUR <span id='highlight'>REFERRAL</span> NFT!</h2>
         <p>Invite 15 friends <br/> & Connect Wallet <span id='highlight'>v.2</span></p>

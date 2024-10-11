@@ -2,12 +2,12 @@ import React from 'react';
 import '../Css/NFTs.css';
 import NFtV2 from '../IMG/NFTs/NftV2.png';
 
-const ComplatedNFT = ({Nft, ChecknftDone, isMint, isMintv2, complated}) => {
+const ComplatedNFT = ({Nft, ChecknftDone, isMint, isMintv2, isMintv3, complated}) => {
 
     return (
         <div className='mainNftComplated'> 
 
-            {isMintv2 && (<div className='nft-promo' >
+            {isMintv3 && (<div className='nft-promo' >
                 <div className='nft-text'>
                     <h2>GET YOUR <span id='highlight'>REFERRAL</span> NFT!</h2>
                     <p>Invite 15 friends <br/> & Connect Wallet <span id='highlight'>v.2</span></p>
