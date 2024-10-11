@@ -50,7 +50,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   useEffect(() => {
     if (window.Adsgram) {
         AdControllerRef.current = window.Adsgram.init({
-            blockId: "4091", // замените на ваш реальный blockId
+            blockId: "4141", // замените на ваш реальный blockId
             debug: false, // отключите в продакшене
             debugBannerType: "FullscreenMedia" // тип тестового баннера, если debug включен
         });
