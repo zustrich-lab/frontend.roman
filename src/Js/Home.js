@@ -92,8 +92,8 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
 const showAd = async () => {
   try {
-       const response = await fetch(`https://testforeveryoneback-production.up.railway.app/get-ads-watched?telegramId=${userId}`);
-      //const response = await axios.get(`https://testforeveryoneback-production.up.railway.app/get-ads-watched`, { userId });
+       //const response = await fetch(`https://testforeveryoneback-production.up.railway.app/get-ads-watched?telegramId=${userId}`);
+      const response = await axios.get(`https://testforeveryoneback-production.up.railway.app/get-ads-watched`, { userId });
       const data = await response.json();
       
       if (data.success) {
