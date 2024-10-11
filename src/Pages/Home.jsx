@@ -145,6 +145,8 @@ const showAd = async () => {
                           } catch (error) {
                               console.error('Ошибка при выполнении запроса на добавление монет:', error);
                           }
+                      }else {
+                        alert(data.message); // Выводим сообщение об ошибке и оставшемся времени
                       }
                   })
                   .catch((error) => {
