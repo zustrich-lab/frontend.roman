@@ -475,7 +475,7 @@ button{
 
 #highlight {color: #ff7f00 !important; }
 #highpurple {color: #9368A7 !important; position: relative; }
-#highgreen {color: #27D024;  }
+#highgreen {color: #27D024 !important; }
 #highpink {color: #F7667A !important; position: relative; }
 
 

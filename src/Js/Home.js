@@ -351,7 +351,7 @@ const [date, setDate] = useState(new Date());
               <div className='rightFlex' id='rightFlexAds'>
                 <div id='upAds'>
                   <div className='ForClock'>
-                    <p>DAILY QUEST <span id='highgreen'>20</span>/20</p>
+                    <p>DAILY QUEST <span id='highgreen'>{adsWatched}</span>/20</p>
                     <div className='Dailytimer'>
                       <img src={clock} alt=''/>
                       <p>{date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
