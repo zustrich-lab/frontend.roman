@@ -397,28 +397,6 @@ useEffect(() => {
   }, [fetchUserData]);
   
 
-  
-// const handleCheckReferrals = () => {
-//     axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
-//       .then(response => {
-//         const referralCount = response.data.referralCount;
-
-//         if (referralCount >= 15) {
-//           localStorage.setItem('buttonVisibleNFT2', 'true'); 
-//           window.Telegram.WebApp.HapticFeedback.notificationOccurred('success');
-//         } else {
-//           setShowNotCompleted(true);
-//           window.Telegram.WebApp.HapticFeedback.notificationOccurred('error');
-//           setTimeout(() => {
-//             setShowNotCompleted(false);
-//           }, 1900);
-//         }
-//       })
-//       .catch(error => {
-//         console.error('Ошибка при проверке рефералов:', error);
-//       });
-//   };
-
 const handleCheckReferrals = () => {
   axios.post(`${REACT_APP_BACKEND_URL}/get-referral-count`, { userId })
     .then(response => {
