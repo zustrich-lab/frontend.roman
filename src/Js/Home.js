@@ -439,7 +439,7 @@ const [date, setDate] = useState(new Date());
           </div>
           <p>Your Rewards</p>
         </div>
-        <div className='Tasks' id={isMint ? 'TaskswithoutNft' : undefined}>
+        <div className='Tasks'>
           
         <div className='TS'>
             <div className='tsPhoto'>
