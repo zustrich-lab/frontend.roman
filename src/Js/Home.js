@@ -34,7 +34,7 @@ import clock from '../IMG/All_Logo/clock.png';
 function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, KnopkaNick, 
     Ton5Succes, hasTelegramPremium, accountAgeCoins, transactionNumber,
      coins, setYearsOpen, isMint, subscriptionCoins, referralCoins, REACT_APP_BACKEND_URL,  userId, checkSubscriptionAndUpdate , setCoins,
-     adsWatched,
+     AdsWatched,
      Galo4kaBee, setGalo4kaBee, KnopkaBee, setKnopkaBee
 
  }) {
@@ -354,7 +354,7 @@ const [date, setDate] = useState(new Date());
               <div className='rightFlex' id='rightFlexAds'>
                 <div id='upAds'>
                   <div className='ForClock'>
-                    <p>DAILY QUEST <span id='highgreeen'>{adsWatched}</span>/20</p>
+                    <p>DAILY QUEST <span id='highgreeen'>{AdsWatched}</span>/20</p>
                     <div className='Dailytimer'>
                       <img src={clock} alt=''/>
                       <p>{date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
