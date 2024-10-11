@@ -11,7 +11,7 @@ import MissedNFT from '../NftPages/Missed.js';
 
 
 const NFTs = ({showNotCompleted, Nft, handleCheckReferrals, buttonVisible, Checknft,  ChecknftDone ,
-  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, isMintv2,alert, setalert, updatedSpots, setTransactionNumber, userId, missed, complated
+  shapka2, dedpool, rosomaha, ton5, ton55, durov, isMint, isMintv2, isMintv3, alert, setalert, updatedSpots, setTransactionNumber, userId, missed, complated
 }) => {
 
   const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';

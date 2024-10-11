@@ -132,6 +132,8 @@ function App() {
   const isMint = localStorage.getItem('isMintNFT') === 'true';
   if (!localStorage.getItem('isMintNFTv2')) {localStorage.setItem('isMintNFTv2', 'false');}
   const isMintv2 = localStorage.getItem('isMintNFTv2') === 'true';
+  if (!localStorage.getItem('isMintNFTv3')) {localStorage.setItem('isMintNFTv3', 'false');}
+  const isMintv3 = localStorage.getItem('isMintNFTv3') === 'true';
 
   const [alert, setalert] = useState(false);
 
@@ -554,7 +556,7 @@ const handleCheckReferrals = () => {
 
         <Route path="/nfts" element={<NFTs showNotCompleted={showNotCompleted} Nft={Nft} handleCheckReferrals={handleCheckReferrals} buttonVisible={buttonVisible}
                               Checknft={Checknft} shapka2={shapka2} dedpool={dedpool} ChecknftDone={ChecknftDone} setTransactionNumber={setTransactionNumber} userId={userId}
-                              rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} isMintv2={isMintv2} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
+                              rosomaha={rosomaha} ton5={ton5} ton55={ton55} durov={durov} isMint={isMint} isMintv2={isMintv2} isMintv3={isMintv3} alert={alert} setalert={setalert} updatedSpots={updatedSpots}
                               missed={missed} complated={complated}/>}>
 
         </Route>
