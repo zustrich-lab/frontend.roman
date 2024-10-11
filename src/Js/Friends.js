@@ -6,7 +6,7 @@ const Friends = ({ invite, referralCode, telegramLink, getRandomColor }) => {;
       
     const [referredUsers, setReferredUsers] = useState([]);
     const [colorsF, setColorsF] = useState([]);
-    const REACT_APP_BACKEND_URL = 'testforeveryoneback-production.up.railway.app';
+    const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
 
 
     useEffect(() => {
