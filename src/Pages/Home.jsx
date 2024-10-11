@@ -47,6 +47,9 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
   const [ads, setAds] = useState(true);
   const [timeRemaining, setTimeRemaining] = useState(0);
+  
+  const userId = new URLSearchParams(window.location.search).get('userId'); // Если не получаете userId иным способом
+  
 
 
   const userId1 = new URLSearchParams(window.location.search).get('userId');
@@ -106,6 +109,7 @@ useEffect(() => {
   return () => clearInterval(timerId);
 }, [ads, timeRemaining]);
 
+
 const formatTime = (seconds) => {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
@@ -134,6 +138,7 @@ useEffect(() => {
 
   checkAdAvailability();
 }, [userId]);
+
 
 
 
@@ -223,6 +228,7 @@ const showAd = async () => {
     console.error('Ошибка при запросе количества просмотренной рекламы:', error);
   }
 };
+
 
 
 
@@ -434,7 +440,7 @@ const [date, setDate] = useState(new Date());
                 {!ads && 
                  <div className='Clocktimer'>
                    <img src={clock} id='clockimg' alt=''/>
-                   <p>3:00</p>
+                   <p>{formatTime(timeRemaining)}</p>
                  </div>
                
                   
