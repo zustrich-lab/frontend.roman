@@ -376,7 +376,7 @@ useEffect(() => {
     } catch (error) {
       console.error('Ошибка при получении данных пользователя:', error);
     }
-  }, []);
+  }, [AdsWatched]);
 
   useEffect(() => {
     const userIdFromURL = new URLSearchParams(window.location.search).get('userId');
