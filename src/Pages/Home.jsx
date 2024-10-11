@@ -91,14 +91,19 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
 
 const showAd = async () => {
-  try {
-    const response = await axios.get(`https://testforeveryoneback-production.up.railway.app/get-ads-watched`, {
-      params: { userId }
-    });
-    const data = response.data;
-
-    if (data.success) {
+    try {
+      const response = await axios.get(`https://testforeveryoneback-production.up.railway.app/get-ads-watched`, {
+        params: { userId }
+      });
+      const data = response.data;
+  
+      if (!data.success) {
+        alert(data.message); // Показываем сообщение о времени ожидания
+        return;
+      }
+  
       const adsWatched = data.adsWatched;
+  
 
       if (adsWatched >= 20) {
         alert('That\'s enough for today. Come back tomorrow!');
@@ -151,10 +156,8 @@ const showAd = async () => {
       } else {
         console.error('AdsGram SDK не загружен');
       }
-    } else {
-      alert(data.message); // Выводим сообщение об оставшемся времени ожидания
-    }
-  } catch (error) {
+    } 
+   catch (error) {
     console.error('Ошибка при запросе количества просмотренной рекламы:', error);
   }
 };
