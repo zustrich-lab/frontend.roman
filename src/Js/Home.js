@@ -96,7 +96,7 @@ const showAd = async () => {
        const response = await axios.get(`https://testforeveryoneback-production.up.railway.app/get-ads-watched`, {
         params: { userId }
       });
-      const data = await response.json();
+      const data = response.data;
       
       if (data.success) {
           const adsWatched = data.adsWatched;
