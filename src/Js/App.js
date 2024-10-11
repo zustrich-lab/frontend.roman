@@ -144,6 +144,7 @@ function App() {
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [coins, setCoins] = useState(0);
+  const [AdsWatched, setAdsWatched] = useState(0);
   const [Ton5Succes, setTon5Succes] = useState(0);
   const [referralCoins, setReferralCoins] = useState(0);
   const [hasTelegramPremium, setHasTelegramPremium] = useState(false);
@@ -297,6 +298,7 @@ useEffect(() => {
         setHasTelegramPremium(data.hasTelegramPremium);
         setTransactionNumber(data.transactionNumber);
         setSubscriptionCoins(data.coinsSub);
+        setAdsWatched(data.adsWatched);
 
 
         const accountCreationDate = new Date(data.accountCreationDate);
@@ -567,7 +569,7 @@ const handleCheckReferrals = () => {
                                   KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes} hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} 
                                   transactionNumber={transactionNumber} coins={coins} setYearsOpen={setYearsOpen} isMint={isMint} 
                                   subscriptionCoins={subscriptionCoins} referralCoins={referralCoins} REACT_APP_BACKEND_URL={REACT_APP_BACKEND_URL} checkSubscriptionAndUpdate={checkSubscriptionAndUpdate }
-                                  userId={userId}  setCoins={ setCoins} Galo4kaBee={Galo4kaBee} setGalo4kaBee={setGalo4kaBee} KnopkaBee={KnopkaBee} setKnopkaBee={setKnopkaBee}/>}/>
+                                  userId={userId}  setCoins={ setCoins} Galo4kaBee={Galo4kaBee} setGalo4kaBee={setGalo4kaBee} AdsWatched={AdsWatched} KnopkaBee={KnopkaBee} setKnopkaBee={setKnopkaBee}/>}/>
 
         <Route path="/leaderboard" element={<Leaderboard userId={userId} coins={coins} getRandomColor={getRandomColor}/>} />
 
