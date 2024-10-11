@@ -47,8 +47,7 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
   const [ads, setAds] = useState(true);
   const [timeRemaining, setTimeRemaining] = useState(0);
-  
-  const userId = new URLSearchParams(window.location.search).get('userId'); // Если не получаете userId иным способом
+
   
 
 
