@@ -23,9 +23,9 @@ import invite from '../IMG/All_Logo/Invite_png.png';
 //import image NFT
 import missed from '../IMG/NFTs/Missed.png';
 import complated from '../IMG/NFTs/Complated.png';
-import shapka2 from '../IMG/NFTs/Shapka2.png';
-import dedpool from '../IMG/NFTs/dedpool.png';
-import rosomaha from '../IMG/NFTs/rosomaha.png';
+import shapka2 from '../IMG/NFTs/shaoka3.png';
+import dedpool from '../IMG/NFTs/yoda.png';
+import rosomaha from '../IMG/NFTs/ksm.png';
 import ton5 from '../IMG/NFTs/5Ton.png';
 import ton55 from '../IMG/NFTs/Ton5.png';
 import durov from '../IMG/NFTs/durov.png';
