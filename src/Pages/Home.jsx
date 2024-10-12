@@ -387,7 +387,7 @@ useEffect(() => {
           <img src={Play} alt='Play' />
           <p>Your Score</p>
         </div> */}
-        <div className='Shapka'>
+        <div className='Txt'>
         <div className='shapkaborder'>
           <p> GET YOUR <span id='highlight'>REFERRAL</span> NFT! <br/> Invite 15 friends & Connect Wallet <span id='highlight'>v.2</span></p>
           {/* <img src={ton5} onClick={sendTransaction1} alt=''/> */}
