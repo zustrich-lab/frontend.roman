@@ -5,7 +5,7 @@ import { Reward_Age, Reward_Premium, Reward_Chanel,
          Reward_Invite, Reward_X, Reward_PartnerChanels,
          Reward_NFT, Reward_Nick, Reward_pass,
          Reward_pass_ticket,  Reward_hz_sho_ce_kakoito_karandash,
-         Reward_racketa} from "../IMG/Reward_icon";
+         Reward_racketa, Reward_Ads} from "../IMG/Reward_icon";
 
 
 //import image SwapTask
@@ -89,10 +89,6 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 //   }
 // };
 
-
-
-
-
 useEffect(() => {
   let timerId;
   if (!ads && timeRemaining > 0) {
@@ -142,15 +138,8 @@ useEffect(() => {
   checkAdAvailability();
 }, [userId]);
 
-
-
-
-
-
-
 const showAd = async () => {
   try {
-    // Запрашиваем информацию о возможности просмотра рекламы
     const response = await axios.get(`${REACT_APP_BACKEND_URL}/get-ads-watched`, {
       params: { userId },
     });
@@ -177,7 +166,6 @@ const showAd = async () => {
             if (result.done) {
               console.log('Пользователь досмотрел рекламу до конца');
               try {
-                // Добавляем монеты пользователю
                 const addCoinsResponse = await axios.post(
                   `${REACT_APP_BACKEND_URL}/add-coins`,
                   { userId, amount: 35 }
@@ -185,9 +173,8 @@ const showAd = async () => {
                 const coinsData = addCoinsResponse.data;
                 if (coinsData.success) {
                   console.log('35 монет успешно добавлены пользователю');
-                  setCoins(coinsData.coins); // Обновляем состояние монет
+                  setCoins(coinsData.coins);
 
-                  // Обновляем количество просмотров рекламы
                   const updateAdsResponse = await axios.post(
                     `${REACT_APP_BACKEND_URL}/update-ads-watched`,
                     { userId }
@@ -195,10 +182,9 @@ const showAd = async () => {
                   const adsUpdateData = updateAdsResponse.data;
                   if (adsUpdateData.success) {
                     console.log('Количество просмотров рекламы обновлено:', adsUpdateData.adsWatched);
-                    setAdsCompletionCount(adsUpdateData.adsCompletionCount); // Обновляем adsCompletionCount
-                    // Запускаем таймер ожидания
+                    setAdsCompletionCount(adsUpdateData.adsCompletionCount); 
                     setAds(false);
-                    setTimeRemaining(180); // 3 минуты ожидания
+                    setTimeRemaining(180); 
                   } else {
                     console.error('Ошибка при обновлении количества просмотров рекламы:', adsUpdateData.message);
                   }
@@ -223,11 +209,6 @@ const showAd = async () => {
     console.error('Ошибка при запросе данных о просмотренной рекламе:', error);
   }
 };
-
-
-
-
-
 
   function handleOpenStoryWithVibration() {
     setYearsOpen(true);
@@ -592,8 +573,6 @@ useEffect(() => {
             <img src={Ellipse} alt='Ellips' className={blockVisibility[1] ? '' : 'img-dark'} />
             <img src={Ellipse} alt='Ellips' className={blockVisibility[2] ? '' : 'img-dark'} />
             <img src={Ellipse} alt='Ellips' className={blockVisibility[3] ? '' : 'img-dark'} />
-            {/* <img src={Ellipse} alt='Ellips' className={blockVisibility[4] ? '' : 'img-dark'} />
-            <img src={Ellipse} alt='Ellips' className={blockVisibility[5] ? '' : 'img-dark'} /> */}
           </div>
           <p>Your Rewards</p>
         </div>
@@ -608,6 +587,14 @@ useEffect(() => {
             </div>
           </div>)}
 
+          {isMint && (<div className='TS'>
+            <div className='tsPhoto'>
+              <img src={Reward_Ads} alt='' /> <p>ADS</p>
+            </div>
+            <div className='tsPhoto'>
+              <p>+1 Octies</p>
+            </div>
+          </div>)}
 
           {Ton5Succes > 0 &&(<div className='TS'>
             <div className='tsPhoto'>
