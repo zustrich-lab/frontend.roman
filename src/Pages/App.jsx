@@ -23,7 +23,7 @@ import invite from '../IMG/All_Logo/Invite_png.png';
 //import image NFT
 import missed from '../IMG/NFTs/Missed.png';
 import complated from '../IMG/NFTs/Complated.png';
-import shapka2 from '../IMG/NFTs/shapka2.png';
+import shapka2 from '../IMG/NFTs/Shapka2.png';
 import shapka3 from '../IMG/NFTs/shaoka3.png';
 import yoda from '../IMG/NFTs/yoda.png';
 import ksm from '../IMG/NFTs/ksm.png';
