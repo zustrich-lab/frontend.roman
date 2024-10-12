@@ -25,7 +25,7 @@ import racketaMain from '../IMG/All_Logo/karandash_in_hand.png';
 //import image Main
 import Ellipse from '../IMG/All_Logo/Ellipse.png';
 import Logo from '../IMG/All_Logo/Logo.png';
-import Play from '../IMG/All_Logo/Play.png';
+// import Play from '../IMG/All_Logo/Play.png';
 import Octo from '../IMG/All_Logo/Octo.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
 // import beeVerse from '../IMG/All_Logo/BeeVerse.png';
@@ -34,9 +34,7 @@ import clock from '../IMG/All_Logo/clock.png';
 function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, KnopkaNick, 
     Ton5Succes, hasTelegramPremium, accountAgeCoins, transactionNumber,
      coins, setYearsOpen, isMint, subscriptionCoins, referralCoins, REACT_APP_BACKEND_URL,  userId, checkSubscriptionAndUpdate , setCoins,
-     AdsWatched,coinsAdd, shapka3, yoda, ksm,
-     Galo4kaBee, setGalo4kaBee, KnopkaBee, setKnopkaBee
-
+     AdsWatched,coinsAdd, shapka3, yoda, ksm, Galo4kaBee, setGalo4kaBee, KnopkaBee, setKnopkaBee
  }) {
 
   const TG_CHANNEL_LINK = "https://t.me/octies_community";
