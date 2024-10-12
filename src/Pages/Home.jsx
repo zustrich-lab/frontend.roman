@@ -599,15 +599,14 @@ useEffect(() => {
         </div>
         <div className='Tasks'>
           
-        <div className='TS'>
+        {adsCompletionCount > 0 && (<div className='TS'>
             <div className='tsPhoto'>
               <img src={Reward_hz_sho_ce_kakoito_karandash} alt='' /> <p>Special reward</p>
             </div>
             <div className='tsPhoto'>
             <p id='highpurple'><img src={Reward_racketa} id='Reward_racketa' alt='' />+ {adsCompletionCount} ADS</p>
-
             </div>
-          </div>
+          </div>)}
 
 
           {Ton5Succes > 0 &&(<div className='TS'>
