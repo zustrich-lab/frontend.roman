@@ -450,10 +450,7 @@ useEffect(() => {
                  <div className='Clocktimer'>
                    <img src={clock} id='clockimg' alt=''/>
                    <p>{formatTime(timeRemaining)}</p>
-                 </div>
-               
-                  
-                  }
+                 </div>}
                 <p>+35 $OCTIES for<span id='highlight'> view </span></p>   
                 </div>
                 <img src={racketaMain} id='telefon' alt=''/>
