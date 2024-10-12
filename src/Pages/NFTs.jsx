@@ -151,8 +151,8 @@ const handleComplatedNFT = () => {
       {alert && <AlertNft rosomaha={rosomaha} setalert={setalert}/>}
       <div className='Shapka'>
         <div className='shapkaborder'>
-          <p> GET YOUR <span id='highlight'>REFERRAL</span> NFT! <br/> Invite 15 friends & Connect Wallet <span id='highlight'>v.2</span></p>
-          {/* <img src={ton5} onClick={sendTransaction1} alt=''/> */}
+          <p> CREATE AN <span id='highlight'>NFT</span> OF YOUR<br/> CHARACTER OCTIES!</p>
+          <img src={ton5} onClick={sendTransaction1} alt=''/>
         </div>
         <img className="marvel" src={dedpool} alt=''/>
         <img className="marvel" id="ros" src={rosomaha} alt=''/>

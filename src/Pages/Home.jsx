@@ -34,7 +34,7 @@ import clock from '../IMG/All_Logo/clock.png';
 function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, KnopkaNick, 
     Ton5Succes, hasTelegramPremium, accountAgeCoins, transactionNumber,
      coins, setYearsOpen, isMint, subscriptionCoins, referralCoins, REACT_APP_BACKEND_URL,  userId, checkSubscriptionAndUpdate , setCoins,
-     AdsWatched,coinsAdd,
+     AdsWatched,coinsAdd, shapka3, yoda, ksm,
      Galo4kaBee, setGalo4kaBee, KnopkaBee, setKnopkaBee
 
  }) {
@@ -385,10 +385,19 @@ useEffect(() => {
         <div className="mainHome">
                <div className="info">
         <img src={Logo} alt='Logo' />
-        <div className='Txt' onClick={handleOpenStoryWithVibration}>
+        {/* <div className='Txt' onClick={handleOpenStoryWithVibration}>
           <img src={Play} alt='Play' />
           <p>Your Score</p>
+        </div> */}
+        <div className='Shapka'>
+        <div className='shapkaborder'>
+          <p> GET YOUR <span id='highlight'>REFERRAL</span> NFT! <br/> Invite 15 friends & Connect Wallet <span id='highlight'>v.2</span></p>
+          {/* <img src={ton5} onClick={sendTransaction1} alt=''/> */}
         </div>
+        <img className="marvel" src={ksm} alt=''/>
+        <img className="marvel" id="ros" src={yoda} alt=''/>
+        <img src={shapka3} id="shapka2" alt=''/>
+      </div>
       </div>
       {!isMint && <div className="main">
         <img src={Octo} alt='Octo' onClick={(event) => {localStorage.clear()}}/>
