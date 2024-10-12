@@ -571,14 +571,14 @@ const handleCheckReferrals = () => {
 
   return (
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
-    {isMobileDevice() && (<div className="App">
+    <div className="App">
 
       {!isMobileDevice() && <Qr/>}
       {isLoadingOctoVs && <LoadingScreen isLoadingOcto={isLoadingOcto} />}
       {isMint && isLoadingOctoVs && <LoadingScreenOctoNft isLoadingOcto={isLoadingOcto} />}
       {!isMint && isLoadingOctoVs && <LoadingScreenOcto isLoadingOcto={isLoadingOcto} />}
 
-      <Routes>
+      {isMobileDevice() && ( <Routes>
         <Route path="/" element={ <Home Galo4ka={Galo4ka} Knopka={Knopka} Galo4kaX={Galo4kaX} KnopkaX={KnopkaX}  GalkaAnyTap={GalkaAnyTap} KnopkaAnyTap={KnopkaAnyTap}
                                   KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes} AdsWatched={AdsWatched}  coinsAdd={coinsAdd} hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} 
                                   transactionNumber={transactionNumber} coins={coins} setYearsOpen={setYearsOpen} isMint={isMint} 
@@ -636,8 +636,8 @@ const handleCheckReferrals = () => {
               <p className= {`footerItemLabel ${locationOcties.pathname !== "/nfts" ? 'img-dark' : ''}`}>NFTs</p>
             </li>
           </ul>
-      </footer>
-    </div>)}
+      </footer>)}
+    </div>
      </TonConnectUIProvider>
   );
 }
