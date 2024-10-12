@@ -587,7 +587,7 @@ useEffect(() => {
             </div>
           </div>)}
 
-          {isMint && (<div className='TS'>
+          { (<div className='TS'>
             <div className='tsPhoto'>
               <img src={Reward_Ads} alt='' /> <p>ADS</p>
             </div>
