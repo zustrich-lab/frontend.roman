@@ -571,7 +571,7 @@ const handleCheckReferrals = () => {
 
   return (
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
-    <div className="App">
+    {isMobileDevice() && (<div className="App">
 
       {!isMobileDevice() && <Qr/>}
       {isLoadingOctoVs && <LoadingScreen isLoadingOcto={isLoadingOcto} />}
@@ -637,7 +637,7 @@ const handleCheckReferrals = () => {
             </li>
           </ul>
       </footer>
-    </div>
+    </div>)}
      </TonConnectUIProvider>
   );
 }
