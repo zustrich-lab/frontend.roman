@@ -34,7 +34,7 @@ import clock from '../IMG/All_Logo/clock.png';
 function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, KnopkaNick, 
     Ton5Succes, hasTelegramPremium, accountAgeCoins, transactionNumber,
      coins, setYearsOpen, isMint, subscriptionCoins, referralCoins, REACT_APP_BACKEND_URL,  userId, checkSubscriptionAndUpdate , setCoins,
-     AdsWatched,
+     AdsWatched,coinsAdd,
      Galo4kaBee, setGalo4kaBee, KnopkaBee, setKnopkaBee
 
  }) {
@@ -587,12 +587,12 @@ useEffect(() => {
             </div>
           </div>)}
 
-          { (<div className='TS'>
+          { coinsAdd > 0 && (<div className='TS'>
             <div className='tsPhoto'>
               <img src={Reward_Ads} alt='' /> <p>ADS</p>
             </div>
             <div className='tsPhoto'>
-              <p>+1 Octies</p>
+              <p>+{coinsAdd}Octies</p>
             </div>
           </div>)}
 
