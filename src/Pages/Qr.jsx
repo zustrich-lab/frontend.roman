@@ -1,16 +1,18 @@
 
 import React from 'react';
-import '../Css/Years.css';
-import durov from '../IMG/NFTs/durov.png';
+import '../Css/Qr.css';
+import QrOcties from '../IMG/All_Logo/QrOcties.png';
+import QrTg from '../IMG/All_Logo/QrTg.png';
 
 const Qr = () => {
 
   return (
-    <div className="First_Window">
-      <img src={durov} alt=''/>
+    <div className="Qr_Window">
+      <img src={QrOcties} id='QrOcties' alt=''/>
+      <img src={QrTg} id='QrTg' alt=''/>
     </div>
   );
-  
+
 };
 
 export default Qr;
