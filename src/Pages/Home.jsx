@@ -47,6 +47,10 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
 
   const [ads, setAds] = useState(true);
   const [timeRemaining, setTimeRemaining] = useState(0);
+  const [adsCompletionCount, setAdsCompletionCount] = useState(0);
+  
+  
+
 
   
 
@@ -126,11 +130,12 @@ useEffect(() => {
           setAds(false);
           setTimeRemaining(data.timeRemaining);
         }
+        setAdsCompletionCount(data.adsCompletionCount);
       } else {
-        console.error('Ошибка при получении количества просмотренной рекламы:', data.message);
+        console.error('Ошибка при получении данных о просмотрах рекламы:', data.message);
       }
     } catch (error) {
-      console.error('Ошибка при запросе количества просмотренной рекламы:', error);
+      console.error('Ошибка при запросе данных о просмотрах рекламы:', error);
     }
   };
 
@@ -145,6 +150,7 @@ useEffect(() => {
 
 const showAd = async () => {
   try {
+    // Запрашиваем информацию о возможности просмотра рекламы
     const response = await axios.get(`${REACT_APP_BACKEND_URL}/get-ads-watched`, {
       params: { userId },
     });
@@ -171,34 +177,25 @@ const showAd = async () => {
             if (result.done) {
               console.log('Пользователь досмотрел рекламу до конца');
               try {
-                const addCoinsResponse = await fetch(
+                // Добавляем монеты пользователю
+                const addCoinsResponse = await axios.post(
                   `${REACT_APP_BACKEND_URL}/add-coins`,
-                  {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ userId, amount: 35 }),
-                  }
+                  { userId, amount: 35 }
                 );
-                const coinsData = await addCoinsResponse.json();
+                const coinsData = addCoinsResponse.data;
                 if (coinsData.success) {
                   console.log('35 монет успешно добавлены пользователю');
+                  setCoins(coinsData.coins); // Обновляем состояние монет
 
-                  // Обновляем количество просмотренных реклам
-                  const updateAdsResponse = await fetch(
+                  // Обновляем количество просмотров рекламы
+                  const updateAdsResponse = await axios.post(
                     `${REACT_APP_BACKEND_URL}/update-ads-watched`,
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({ userId }),
-                    }
+                    { userId }
                   );
-                  const adsUpdateData = await updateAdsResponse.json();
+                  const adsUpdateData = updateAdsResponse.data;
                   if (adsUpdateData.success) {
                     console.log('Количество просмотров рекламы обновлено:', adsUpdateData.adsWatched);
+                    setAdsCompletionCount(adsUpdateData.adsCompletionCount); // Обновляем adsCompletionCount
                     // Запускаем таймер ожидания
                     setAds(false);
                     setTimeRemaining(180); // 3 минуты ожидания
@@ -220,12 +217,13 @@ const showAd = async () => {
         console.error('AdsGram SDK не загружен');
       }
     } else {
-      console.error('Ошибка при получении количества просмотренной рекламы:', data.message);
+      console.error('Ошибка при получении данных о просмотренной рекламе:', data.message);
     }
   } catch (error) {
-    console.error('Ошибка при запросе количества просмотренной рекламы:', error);
+    console.error('Ошибка при запросе данных о просмотренной рекламе:', error);
   }
 };
+
 
 
 
@@ -609,7 +607,8 @@ useEffect(() => {
               <img src={Reward_hz_sho_ce_kakoito_karandash} alt='' /> <p>Special reward</p>
             </div>
             <div className='tsPhoto'>
-              <p id='highpurple' ><img src={Reward_racketa} id='Reward_racketa' alt='' />+ 1 ADS</p>
+            <p id='highpurple'><img src={Reward_racketa} id='Reward_racketa' alt='' />+ {adsCompletionCount} ADS</p>
+
             </div>
           </div>
 
