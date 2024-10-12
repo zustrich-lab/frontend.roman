@@ -8,8 +8,9 @@ const Qr = () => {
 
   return (
     <div className="Qr_Window">
-      <img src={QrOcties} id='QrOcties' alt=''/>
-      <img src={QrTg} id='QrTg' alt=''/>
+        <p>PLAY ON MOBILE</p>
+        <img src={QrOcties} id='QrOcties' alt=''/>
+        <img src={QrTg} id='QrTg' alt=''/>
     </div>
   );
 
