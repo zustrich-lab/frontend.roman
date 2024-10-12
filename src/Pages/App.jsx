@@ -161,6 +161,7 @@ function App() {
   const [subscriptionCoins, setSubscriptionCoins] = useState(0);
   const walletAddress = useTonAddress();
   const [AdsWatched, setAdsWatched] = useState(0);
+  const [coinsAdd, setcoinsAdd] = useState(0);
 
 
   useEffect(() => {
@@ -236,6 +237,7 @@ useEffect(() => {
         setCoins(data.coins);
         setTon5Succes(data.specialTransactionCounter);
         setAdsWatched(data.adsWatched);
+        setcoinsAdd(data.coinsAdd)
         
 
         if (data.hasCheckedSubscription) {
@@ -301,6 +303,7 @@ useEffect(() => {
           setTransactionNumber(data.transactionNumber);
           setSubscriptionCoins(data.coinsSub);
           setAdsWatched(data.adsWatched);
+          setcoinsAdd(data.coinsAdd);
           console.log("Adswatched", AdsWatched)
 
 
@@ -455,6 +458,7 @@ const handleCheckReferrals = () => {
         setCoins(data.coins);
         setTon5Succes(data.specialTransactionCounter);
         setAdsWatched(data.adsWatched);
+        setcoinsAdd(data.coinsAdd)
 
         
         if (data.hasCheckedSubscription) {
@@ -576,7 +580,7 @@ const handleCheckReferrals = () => {
 
       <Routes>
         <Route path="/" element={ <Home Galo4ka={Galo4ka} Knopka={Knopka} Galo4kaX={Galo4kaX} KnopkaX={KnopkaX}  GalkaAnyTap={GalkaAnyTap} KnopkaAnyTap={KnopkaAnyTap}
-                                  KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes} AdsWatched={AdsWatched} hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} 
+                                  KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes} AdsWatched={AdsWatched}  coinsAdd={coinsAdd} hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} 
                                   transactionNumber={transactionNumber} coins={coins} setYearsOpen={setYearsOpen} isMint={isMint} 
                                   subscriptionCoins={subscriptionCoins} referralCoins={referralCoins} REACT_APP_BACKEND_URL={REACT_APP_BACKEND_URL} checkSubscriptionAndUpdate={checkSubscriptionAndUpdate }
                                   userId={userId}  setCoins={ setCoins} Galo4kaBee={Galo4kaBee} setGalo4kaBee={setGalo4kaBee} KnopkaBee={KnopkaBee} setKnopkaBee={setKnopkaBee}/>}/>
