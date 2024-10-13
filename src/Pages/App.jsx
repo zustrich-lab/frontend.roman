@@ -97,6 +97,9 @@ function App() {
   preloadImage(P2e_OctiesCosmo);
   preloadImage(P2e_Planet);
   preloadImage(P2e_starship);
+  preloadImage(shapka3);
+  preloadImage(yoda);
+  preloadImage(ksm);
   }, []);
 
   useEffect(() => {

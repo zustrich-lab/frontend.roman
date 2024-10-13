@@ -156,6 +156,7 @@ const showAd = async () => {
       if (AdControllerRef.current) {
         AdControllerRef.current
           .show()
+          window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')
           .then(async (result) => {
             if (result.done) {
               console.log('Пользователь досмотрел рекламу до конца');
@@ -385,7 +386,7 @@ useEffect(() => {
         </div>  */}
         <div className='Txt'>
         <div className='shapkaborder' id='GoTonft'>
-        <Link className="GoToNFT" to="/nfts" ><p id='NftGo'>PRESS FOR DETAILS</p></Link>
+        <Link className="GoToNFT" to="/nfts" ><p id='NftGo' onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}}>PRESS FOR DETAILS</p></Link>
           <p> GET YOUR <span id='highlight'>REFERRAL</span> NFT! <br/> Invite 15 friends & Connect Wallet <span id='highlight'>v.2</span></p>
         </div>
         <img className="marvel" src={yoda} alt=''/>
