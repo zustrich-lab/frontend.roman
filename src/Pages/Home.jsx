@@ -391,8 +391,8 @@ useEffect(() => {
         <div className='shapkaborder'>
           <p> GET YOUR <span id='highlight'>REFERRAL</span> NFT! <br/> Invite 15 friends & Connect Wallet <span id='highlight'>v.2</span></p>
         </div>
-        <img className="marvel" src={ksm} alt=''/>
-        <img className="marvel" id="ros" src={yoda} alt=''/>
+        <img className="marvel" src={yoda} alt=''/>
+        <img className="marvel" id="ros" src={ksm} alt=''/>
         <img src={shapka3} id="shapka2" alt=''/>
       </div>
       </div>
