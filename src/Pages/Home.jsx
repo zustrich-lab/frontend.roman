@@ -24,7 +24,7 @@ import Watch from '../IMG/All_Logo/watch.png';
 import racketaMain from '../IMG/All_Logo/karandash_in_hand.png';
 //import image Main
 import Ellipse from '../IMG/All_Logo/Ellipse.png';
-import Logo from '../IMG/All_Logo/Logo.png';
+// import Logo from '../IMG/All_Logo/Logo.png';
 // import Play from '../IMG/All_Logo/Play.png';
 import Octo from '../IMG/All_Logo/Octo.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
@@ -382,15 +382,14 @@ useEffect(() => {
     return (
         <div className="mainHome">
                <div className="info">
-        <img src={Logo} alt='Logo' />
-        {/* <div className='Txt' onClick={handleOpenStoryWithVibration}>
+        {/* <img src={Logo} alt='Logo' />
+        <div className='Txt' onClick={handleOpenStoryWithVibration}>
           <img src={Play} alt='Play' />
           <p>Your Score</p>
-        </div> */}
+        </div>  */}
         <div className='Txt'>
         <div className='shapkaborder'>
           <p> GET YOUR <span id='highlight'>REFERRAL</span> NFT! <br/> Invite 15 friends & Connect Wallet <span id='highlight'>v.2</span></p>
-          {/* <img src={ton5} onClick={sendTransaction1} alt=''/> */}
         </div>
         <img className="marvel" src={ksm} alt=''/>
         <img className="marvel" id="ros" src={yoda} alt=''/>
@@ -594,12 +593,12 @@ useEffect(() => {
             </div>
           </div>)}
 
-          { coinsAdd > 0 && (<div className='TS'>
+          {coinsAdd > 0 && (<div className='TS'>
             <div className='tsPhoto'>
               <img src={Reward_Ads} alt='' /> <p>ADS</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{coinsAdd}Octies</p>
+              <p>+{coinsAdd} $OCTIES</p>
             </div>
           </div>)}
 

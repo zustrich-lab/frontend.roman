@@ -149,8 +149,8 @@ const handleComplatedNFT = () => {
   return (
     <div className='NFTs_Window'  >
       {alert && <AlertNft rosomaha={rosomaha} setalert={setalert}/>}
-      <div className='Shapka'>
-        <div className='shapkaborder'>
+      <div className='Shapka' >
+        <div className='shapkaborder' id='shapkaNFT'>
           <p> CREATE AN <span id='highlight'>NFT</span> OF YOUR<br/> CHARACTER OCTIES!</p>
           <img src={ton5} onClick={sendTransaction1} alt=''/>
         </div>

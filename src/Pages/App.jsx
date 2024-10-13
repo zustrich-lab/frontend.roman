@@ -27,8 +27,8 @@ import shapka2 from '../IMG/NFTs/Shapka2.png';
 import shapka3 from '../IMG/NFTs/shaoka3.png';
 import yoda from '../IMG/NFTs/yoda.png';
 import ksm from '../IMG/NFTs/ksm.png';
-import dedpool from '../IMG/NFTs/rosomaha.png';
-import rosomaha from '../IMG/NFTs/dedpool.png';
+import dedpool from '../IMG/NFTs/dedpool.png';
+import rosomaha from '../IMG/NFTs/rosomaha.png';
 import ton5 from '../IMG/NFTs/5Ton.png';
 import ton55 from '../IMG/NFTs/Ton5.png';
 import durov from '../IMG/NFTs/durov.png';
@@ -576,12 +576,12 @@ const handleCheckReferrals = () => {
     <TonConnectUIProvider manifestUrl="https://resilient-madeleine-9ff7c2.netlify.app/tonconnect-manifest.json">
     <div className="App">
 
-      {!isMobileDevice() && <Qr/>}
+      {isMobileDevice() && <Qr/>}
       {isLoadingOctoVs && <LoadingScreen isLoadingOcto={isLoadingOcto} />}
       {isMint && isLoadingOctoVs && <LoadingScreenOctoNft isLoadingOcto={isLoadingOcto} />}
       {!isMint && isLoadingOctoVs && <LoadingScreenOcto isLoadingOcto={isLoadingOcto} />}
 
-      {isMobileDevice() && ( <Routes>
+      {!isMobileDevice() && ( <Routes>
         <Route path="/" element={ <Home Galo4ka={Galo4ka} Knopka={Knopka} Galo4kaX={Galo4kaX} KnopkaX={KnopkaX}  GalkaAnyTap={GalkaAnyTap} KnopkaAnyTap={KnopkaAnyTap}
                                   KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes} AdsWatched={AdsWatched}  coinsAdd={coinsAdd} hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} 
                                   transactionNumber={transactionNumber} coins={coins} setYearsOpen={setYearsOpen} isMint={isMint} 
@@ -607,7 +607,7 @@ const handleCheckReferrals = () => {
       {OctOpen && (<Oct onClose={setOctOpen} setYearsOpen={setYearsOpen} coinOnlyYears={coinOnlyYears} />)}
       
 
-      {isMobileDevice() && (<footer className='BTNLow'>
+      {!isMobileDevice() && (<footer className='BTNLow'>
         <ul className='footerItems'>
             <li className='footerItem'>
               <Link className={`footerItemImgWrapper ${(locationOcties.pathname !== "/") ? 'img-dark' : ''}`}  to="/" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}} >

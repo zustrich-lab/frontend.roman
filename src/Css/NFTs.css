@@ -50,6 +50,10 @@
   filter: drop-shadow(0 0 4mm #0088CC);
 }
 
+#shapkaNFT p{
+  text-align: start;
+}
+
 #shapka2{
   height: 100%;
   left: 0;
