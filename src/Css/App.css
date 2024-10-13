@@ -762,6 +762,36 @@ button[data-tc-dropdown-button="true"] {
   margin: 0.4vh 0.8vh 0.4vh 1vh;
 }
 
+.GoToNFT{
+  height: 33%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: black;
+  border-radius: 0.5vh ;
+  box-shadow: 0 0 1vh 0 #ff7f00;
+  text-decoration: none;
+}
+
+#GoTonft{
+  flex-direction: column;
+  justify-content: space-evenly; 
+}
+
+#NftGo {
+  margin: 0;
+  margin-top: 0.2vh !important;
+  font-size: 1.2vh !important;
+}
+
+#GoTonft p{
+  margin: 0;
+  margin-top: 0.2vh ;
+  font-size: 1.5vh;
+}
+
 @media (orientation: landscape) {
 
   .AdsGramBorder{

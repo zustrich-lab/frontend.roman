@@ -29,7 +29,7 @@ const ComplatedNFT = ({Nft, ChecknftDone, isMint, isMintv2, isMintv3, complated}
                 </div>
             </div>)}
             
-            {isMint && (<div className='nft-promo'>
+            {isMint && (<div className='nft-promo' id={`${(isMintv3) ? 'nft-promov2' : ''}`}>
                 <div className='nft-text'>
                     <h2>GET YOUR <span id='highlight'>FREE</span> NFT!</h2>
                     <p>Invite 15 friends, Connect Wallet <br/>and receive unique OCTIES NFT</p>

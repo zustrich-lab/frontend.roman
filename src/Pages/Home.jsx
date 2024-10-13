@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import {  Link  } from 'react-router-dom';
 import axios from 'axios';
 import '../Css/App.css';
 import { Reward_Age, Reward_Premium, Reward_Chanel,
@@ -46,11 +47,6 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   const [ads, setAds] = useState(true);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [adsCompletionCount, setAdsCompletionCount] = useState(0);
-  
-  
-
-
-  
 
   const userId1 = new URLSearchParams(window.location.search).get('userId');
   const AdControllerRef = useRef(null);
@@ -388,7 +384,8 @@ useEffect(() => {
           <p>Your Score</p>
         </div>  */}
         <div className='Txt'>
-        <div className='shapkaborder'>
+        <div className='shapkaborder' id='GoTonft'>
+        <Link className="GoToNFT" to="/nfts" ><p id='NftGo'>PRESS FOR DETAILS</p></Link>
           <p> GET YOUR <span id='highlight'>REFERRAL</span> NFT! <br/> Invite 15 friends & Connect Wallet <span id='highlight'>v.2</span></p>
         </div>
         <img className="marvel" src={yoda} alt=''/>
