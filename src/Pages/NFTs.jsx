@@ -192,13 +192,15 @@ const handleComplatedNFT = () => {
   return (
     <div className='NFTs_Window'  >
       {alert && <AlertNft rosomaha={rosomaha} setalert={setalert}/>}
-      <div className='Shapka'>
-        <div className='shapkaborder'>
-          <p> GET YOUR <span id='highlight'>REFERRAL</span> NFT! <br/> Invite 15 friends & Connect Wallet <span id='highlight'>v.2</span></p>
-          {/* <img src={ton5} onClick={sendTransaction1} alt=''/> */}
+      <div className='Shapka' >
+        
+        <div className='shapkaborder' id='shapkaNFT'>
+          <p> CREATE AN <span id='highlight'>NFT</span> OF YOUR<br/> CHARACTER OCTIES!</p>
+          <img src={ton5} onClick={sendTransaction1} alt=''/>
         </div>
         <img className="marvel" src={dedpool} alt=''/>
         <img className="marvel" id="ros" src={rosomaha} alt=''/>
+        
         <img src={shapka2} id="shapka2" alt=''/>
       </div>
       <div className='feikton'>
@@ -213,6 +215,7 @@ const handleComplatedNFT = () => {
           sendTransactionFunc={sendTransactionFunc} 
           Checknft={Checknft}
           sendTransaction1={sendTransaction1} 
+          sendTransaction1Ton={sendTransaction1Ton}
           ChecknftDone={ChecknftDone} 
           handleCheckReferrals={handleCheckReferrals}
           timerforsent={timerforsent} 

@@ -23,9 +23,12 @@ import invite from '../IMG/All_Logo/Invite_png.png';
 //import image NFT
 import missed from '../IMG/NFTs/Missed.png';
 import complated from '../IMG/NFTs/Complated.png';
-import shapka2 from '../IMG/NFTs/shaoka3.png';
-import dedpool from '../IMG/NFTs/yoda.png';
-import rosomaha from '../IMG/NFTs/ksm.png';
+import shapka2 from '../IMG/NFTs/Shapka2.png';
+import shapka3 from '../IMG/NFTs/shaoka3.png';
+import yoda from '../IMG/NFTs/yoda.png';
+import ksm from '../IMG/NFTs/ksm.png';
+import dedpool from '../IMG/NFTs/dedpool.png';
+import rosomaha from '../IMG/NFTs/rosomaha.png';
 import ton5 from '../IMG/NFTs/5Ton.png';
 import ton55 from '../IMG/NFTs/Ton5.png';
 import durov from '../IMG/NFTs/durov.png';
@@ -94,6 +97,9 @@ function App() {
   preloadImage(P2e_OctiesCosmo);
   preloadImage(P2e_Planet);
   preloadImage(P2e_starship);
+  preloadImage(shapka3);
+  preloadImage(yoda);
+  preloadImage(ksm);
   }, []);
 
   useEffect(() => {
@@ -141,7 +147,7 @@ function App() {
   const navigateOcties = useNavigate();
 
   const [isLoadingOcto, setLoadingOcto] = useState(true);
-  const [isLoadingOctoVs, setLoadingOctoVs] = useState(false);
+  const [isLoadingOctoVs, setLoadingOctoVs] = useState(true);
 
   const [coinOnlyYears, setcoinOnlyYears] = useState(0);
   const [coins, setCoins] = useState(0);
@@ -583,7 +589,8 @@ const handleCheckReferrals = () => {
                                   KnopkaNick={KnopkaNick} Ton5Succes={Ton5Succes} AdsWatched={AdsWatched}  coinsAdd={coinsAdd} hasTelegramPremium={hasTelegramPremium} accountAgeCoins={accountAgeCoins} 
                                   transactionNumber={transactionNumber} coins={coins} setYearsOpen={setYearsOpen} isMint={isMint} 
                                   subscriptionCoins={subscriptionCoins} referralCoins={referralCoins} REACT_APP_BACKEND_URL={REACT_APP_BACKEND_URL} checkSubscriptionAndUpdate={checkSubscriptionAndUpdate }
-                                  userId={userId}  setCoins={ setCoins} Galo4kaBee={Galo4kaBee} setGalo4kaBee={setGalo4kaBee} KnopkaBee={KnopkaBee} setKnopkaBee={setKnopkaBee}/>}/>
+                                  userId={userId}  setCoins={ setCoins} Galo4kaBee={Galo4kaBee} setGalo4kaBee={setGalo4kaBee} KnopkaBee={KnopkaBee} setKnopkaBee={setKnopkaBee} shapka3={shapka3}
+                                  yoda={yoda} ksm={ksm} />}/>
 
         <Route path="/leaderboard" element={<Leaderboard userId={userId} coins={coins} getRandomColor={getRandomColor}/>} />
 

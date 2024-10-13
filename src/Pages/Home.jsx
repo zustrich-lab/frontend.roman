@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import {  Link  } from 'react-router-dom';
 import axios from 'axios';
 import '../Css/App.css';
 import { Reward_Age, Reward_Premium, Reward_Chanel,
@@ -24,8 +25,8 @@ import Watch from '../IMG/All_Logo/watch.png';
 import racketaMain from '../IMG/All_Logo/karandash_in_hand.png';
 //import image Main
 import Ellipse from '../IMG/All_Logo/Ellipse.png';
-import Logo from '../IMG/All_Logo/Logo.png';
-import Play from '../IMG/All_Logo/Play.png';
+// import Logo from '../IMG/All_Logo/Logo.png';
+// import Play from '../IMG/All_Logo/Play.png';
 import Octo from '../IMG/All_Logo/Octo.png';
 import NFTm from '../IMG/All_Logo/NFTmint.png';
 // import beeVerse from '../IMG/All_Logo/BeeVerse.png';
@@ -34,9 +35,7 @@ import clock from '../IMG/All_Logo/clock.png';
 function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, KnopkaNick, 
     Ton5Succes, hasTelegramPremium, accountAgeCoins, transactionNumber,
      coins, setYearsOpen, isMint, subscriptionCoins, referralCoins, REACT_APP_BACKEND_URL,  userId, checkSubscriptionAndUpdate , setCoins,
-     AdsWatched,coinsAdd,
-     Galo4kaBee, setGalo4kaBee, KnopkaBee, setKnopkaBee
-
+     AdsWatched,coinsAdd, shapka3, yoda, ksm, Galo4kaBee, setGalo4kaBee, KnopkaBee, setKnopkaBee
  }) {
 
   const TG_CHANNEL_LINK = "https://t.me/octies_community";
@@ -48,11 +47,6 @@ function Home({Galo4ka, Knopka, Galo4kaX, KnopkaX,  GalkaAnyTap, KnopkaAnyTap, K
   const [ads, setAds] = useState(true);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [adsCompletionCount, setAdsCompletionCount] = useState(0);
-  
-  
-
-
-  
 
   const userId1 = new URLSearchParams(window.location.search).get('userId');
   const AdControllerRef = useRef(null);
@@ -162,6 +156,7 @@ const showAd = async () => {
       if (AdControllerRef.current) {
         AdControllerRef.current
           .show()
+          window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')
           .then(async (result) => {
             if (result.done) {
               console.log('Пользователь досмотрел рекламу до конца');
@@ -384,11 +379,20 @@ useEffect(() => {
     return (
         <div className="mainHome">
                <div className="info">
-        <img src={Logo} alt='Logo' />
+        {/* <img src={Logo} alt='Logo' />
         <div className='Txt' onClick={handleOpenStoryWithVibration}>
           <img src={Play} alt='Play' />
           <p>Your Score</p>
+        </div>  */}
+        <div className='Txt'>
+        <div className='shapkaborder' id='GoTonft'>
+        <Link className="GoToNFT" to="/nfts" onClick={(event) => {window.Telegram.WebApp.HapticFeedback.impactOccurred('heavy')}}><p id='NftGo'>PRESS FOR DETAILS</p></Link>
+          <p> GET YOUR <span id='highlight'>REFERRAL</span> NFT! <br/> Invite 15 friends & Connect Wallet <span id='highlight'>v.2</span></p>
         </div>
+        <img className="marvel" src={yoda} alt=''/>
+        <img className="marvel" id="ros" src={ksm} alt=''/>
+        <img src={shapka3} id="shapka2" alt=''/>
+      </div>
       </div>
       {!isMint && <div className="main">
         <img src={Octo} alt='Octo' onClick={(event) => {localStorage.clear()}}/>
@@ -587,12 +591,12 @@ useEffect(() => {
             </div>
           </div>)}
 
-          { coinsAdd > 0 && (<div className='TS'>
+          {coinsAdd > 0 && (<div className='TS'>
             <div className='tsPhoto'>
               <img src={Reward_Ads} alt='' /> <p>ADS</p>
             </div>
             <div className='tsPhoto'>
-              <p>+{coinsAdd}Octies</p>
+              <p>+{coinsAdd} $OCTIES</p>
             </div>
           </div>)}
 
