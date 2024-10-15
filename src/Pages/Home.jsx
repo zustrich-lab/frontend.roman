@@ -138,6 +138,7 @@ const showAd = async () => {
       params: { userId },
     });
     const data = response.data;
+    console.log("userid", userId)
 
     if (data.success) {
       const adsWatched = data.adsWatched;
