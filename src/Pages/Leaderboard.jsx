@@ -5,7 +5,7 @@ import axios from 'axios';
 import logo from '../IMG/All_Logo/LBoard.png';
 import Octo from '../IMG/All_Logo/Octo.png';
 
-const REACT_APP_BACKEND_URL = 'https://octiesback-production.up.railway.app';
+const REACT_APP_BACKEND_URL = 'https://backendroman-production.up.railway.app';
 
 const Leaderboard = ({ userId, coins, getRandomColor}) => {
   

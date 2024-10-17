@@ -45,7 +45,7 @@ import p2e from '../IMG/LowerIcon/p2e.png';
 import { P2e_Soon, P2e_OctiesCosmo,
   P2e_Planet, P2e_starship} from "../IMG/ComingSoon/index.js";
 
-const REACT_APP_BACKEND_URL = 'https://testforeveryoneback-production.up.railway.app';
+const REACT_APP_BACKEND_URL = 'https://backendroman-production.up.railway.app';
 
 function App() {
 
