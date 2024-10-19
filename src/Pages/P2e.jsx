@@ -18,6 +18,7 @@
 // export default PlayToEarn;
 
 import React, { useEffect, useState } from 'react';
+import '../Game/doodlejump.css';
 
 const PlayToEarn = () => {
   const [userId, setUserId] = useState(null);
@@ -32,12 +33,13 @@ const PlayToEarn = () => {
   const gameUrl = `https://octiesdev.github.io?userId=${userId}`;
 
   return (
-    <div>
-      {userId ? (
+    <div style={{display: "flex"}}>
+      {/* {userId ? (
         <iframe src={gameUrl} width="800" height="600" title="Game" />
       ) : (
         <p>Loading game...</p>
-      )}
+      )} */}
+      <iframe style={{flex: 1, border: "none"}} src="./src/Game/index.html" height="800" width="600" title="Game"/>
     </div>
   );
 };
