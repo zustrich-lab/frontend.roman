@@ -32,13 +32,13 @@ const PlayToEarn = () => {
   const gameUrl = `https://octiesdev.github.io?userId=${userId}`;
 
   return (
-    <div style={{display: "flex"}}>
+    <div>
       {/* {userId ? (
         <iframe src={gameUrl} width="800" height="600" title="Game" />
       ) : (
         <p>Loading game...</p>
       )} */}
-      <iframe style={{flex: 1, border: "none"}} src="https://gameroman.netlify.app" width="800" height="600" title="Game"/>
+      <iframe style={{border: "none"}} src="https://gameroman.netlify.app" width="800" height="600" title="Game"/>
     </div>
   );
 };
