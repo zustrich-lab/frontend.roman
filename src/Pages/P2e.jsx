@@ -38,7 +38,7 @@ const PlayToEarn = () => {
       ) : (
         <p>Loading game...</p>
       )} */}
-      <iframe style={{flex: 1, border: "none"}} src="https://gameroman.netlify.app" width="800" height="550" title="Game"/>
+      <iframe style={{flex: 1, border: "none"}} src="https://gameroman.netlify.app" title="Game"/>
     </div>
   );
 };
